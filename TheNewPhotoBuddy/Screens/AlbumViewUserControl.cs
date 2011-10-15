@@ -12,6 +12,8 @@ using System;
 using System.Windows.Forms;
 using TheNewPhotoBuddy.BussinessRule;
 using TheNewPhotoBuddy.Controls;
+using System.Drawing;
+using TheNewPhotoBuddy.Common.CommonClass;
 
 namespace TheNewPhotoBuddy.Screens
 {
@@ -30,6 +32,7 @@ namespace TheNewPhotoBuddy.Screens
                 {
                     labelAlbumName.Text = currentAlbum.albumID;
                     refreshingAlbumPhotosViewList();
+                    //photosFlowPanel.Focus();
                 }
             }
         }
@@ -118,9 +121,10 @@ namespace TheNewPhotoBuddy.Screens
         /// <param name="e">the event args.</param>
         private void photo_Click(object sender, EventArgs e)
         {
-            Label photoLabel = sender as Label;
+            //Label photoLabel = sender as Label;
+            PictureBox uc = sender as PictureBox;
             // Show the photo that the user clicked on.
-            ViewPhotoForm photoForm = new ViewPhotoForm(currentAlbum, (Photo)photoLabel.Tag);
+            ViewPhotoForm photoForm = new ViewPhotoForm(currentAlbum, (Photo)uc.Tag);
             photoForm.ShowDialog();
         }
 
@@ -139,17 +143,53 @@ namespace TheNewPhotoBuddy.Screens
                 {
                     foreach (Photo d in currentAlbum.photoObjects.photoList.Values)
                     {
-                        Photo tempAlbum = (Photo)d;
+                        Photo tempPhoto = (Photo)d;
+
+                        // OLD PHOTO NAME LABEL CODE WHEN PHOTOS WERE DISPLAYED AS TEXT.
                         // Create a new text label for each photo in the album
-                        PB_ClickLabel label = new PB_ClickLabel();  
-                        label.Text = tempAlbum.display_name;
-                        label.Tag = tempAlbum;
-                        //wire up the click event handler
-                        label.Click += new EventHandler(photo_Click);
-                        photosFlowPanel.Controls.Add(label);
+                        //PB_ClickLabel label = new PB_ClickLabel();  
+                        //label.Text = tempAlbum.display_name;
+                        //label.Tag = tempAlbum;
+                        ////wire up the click event handler
+                        //label.Click += new EventHandler(photo_Click);
+
+                        // Create a thumbnail control for the current photo
+                        PB_ThumbNailUserControl thumb = new PB_ThumbNailUserControl();
+                        thumb.DiaplayName = tempPhoto.display_name;
+                        // Store the photo object in the thumbnail tag.
+                        // thumbnail is a public property to set the picturebox on the thumbnailUserControl.
+                        thumb.thumbnail.Tag = tempPhoto;
+                        // Get the photo from file.
+                        thumb.thumbnail.Image = Image.FromFile(Constants.photosFolderPath + tempPhoto.copiedPath);
+                        // Wire the click event to the picturebox
+                        thumb.thumbnail.Click += new EventHandler(photo_Click);
+                        // Add the thumb control to the flow panel.
+                        photosFlowPanel.Controls.Add(thumb);
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// 
+        /// Flow panel needs to be focused in order to scroll using the mouse wheel and that 
+        /// is what this function does.
+        /// </summary>
+        private void photosFlowPanel_MouseEnter(object sender, EventArgs e)
+        {
+            photosFlowPanel.Focus();
+        }
+
+        /// <summary>
+        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// 
+        /// Flow panel needs to be focused in order to scroll using the mouse wheel and that 
+        /// is what this function does.
+        /// </summary>
+        private void photosFlowPanel_MouseClick(object sender, MouseEventArgs e)
+        {
+            photosFlowPanel.Focus();
         }
     }
 }

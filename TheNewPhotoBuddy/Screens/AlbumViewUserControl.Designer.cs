@@ -94,6 +94,7 @@
             this.labelAlbumName.ForeColor = System.Drawing.Color.White;
             this.labelAlbumName.Location = new System.Drawing.Point(2, 7);
             this.labelAlbumName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelAlbumName.MaximumSize = new System.Drawing.Size(400, 24);
             this.labelAlbumName.Name = "labelAlbumName";
             this.labelAlbumName.Size = new System.Drawing.Size(115, 24);
             this.labelAlbumName.TabIndex = 2;
@@ -185,6 +186,8 @@
             this.photosFlowPanel.Name = "photosFlowPanel";
             this.photosFlowPanel.Size = new System.Drawing.Size(299, 200);
             this.photosFlowPanel.TabIndex = 2;
+            this.photosFlowPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.photosFlowPanel_MouseClick);
+            this.photosFlowPanel.MouseEnter += new System.EventHandler(this.photosFlowPanel_MouseEnter);
             // 
             // AlbumViewUserControl
             // 

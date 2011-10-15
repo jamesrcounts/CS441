@@ -38,10 +38,10 @@
             // 
             this.panelScreenHolder.BackColor = System.Drawing.Color.Transparent;
             this.panelScreenHolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelScreenHolder.Location = new System.Drawing.Point(0, 60);
+            this.panelScreenHolder.Location = new System.Drawing.Point(0, 49);
             this.panelScreenHolder.Margin = new System.Windows.Forms.Padding(0);
             this.panelScreenHolder.Name = "panelScreenHolder";
-            this.panelScreenHolder.Size = new System.Drawing.Size(1045, 632);
+            this.panelScreenHolder.Size = new System.Drawing.Size(784, 513);
             this.panelScreenHolder.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -49,7 +49,7 @@
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(146)))), ((int)(((byte)(190)))));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel1.Controls.Add(this.AppNameLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panelScreenHolder, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -57,9 +57,9 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1045, 692);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 562);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // AppNameLabel
@@ -68,10 +68,9 @@
             this.AppNameLabel.Dock = System.Windows.Forms.DockStyle.Right;
             this.AppNameLabel.Font = new System.Drawing.Font("Magneto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AppNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.AppNameLabel.Location = new System.Drawing.Point(747, 0);
-            this.AppNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.AppNameLabel.Location = new System.Drawing.Point(542, 0);
             this.AppNameLabel.Name = "AppNameLabel";
-            this.AppNameLabel.Size = new System.Drawing.Size(294, 60);
+            this.AppNameLabel.Size = new System.Drawing.Size(239, 49);
             this.AppNameLabel.TabIndex = 7;
             this.AppNameLabel.Text = "Photo Buddy";
             this.AppNameLabel.Click += new System.EventHandler(this.AppNameLabel_Click);
@@ -80,11 +79,11 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1045, 692);
+            this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeScreenForm";

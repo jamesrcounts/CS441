@@ -6,6 +6,15 @@
  * 
  ************************************************************************************/
 
+// References:
+// The MSDN reference library at http://msdn.microsoft.com/en-us/
+// The website Dot Net Pearls helped with the textbox enter key functionality
+//          as well as many other useful tips:
+//          http://www.dotnetperls.com/
+// The Stack Overflow site was very helpful as always in getting answers to specific
+//          questions, like converting a hashtable to a list.
+//          http://stackoverflow.com/
+
 using System;
 using System.Windows.Forms;
 
