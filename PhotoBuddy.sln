@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheNewPhotoBuddy", "PhotoBuddy\TheNewPhotoBuddy.csproj", "{75BBBE77-3F60-4114-B655-2B827D5F027F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoBuddy", "PhotoBuddy\PhotoBuddy.csproj", "{75BBBE77-3F60-4114-B655-2B827D5F027F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
