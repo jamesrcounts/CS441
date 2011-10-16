@@ -8,7 +8,7 @@
     <ProjectGuid>{75BBBE77-3F60-4114-B655-2B827D5F027F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TheNewPhotoBuddy</RootNamespace>
+    <RootNamespace>PhotoBuddy</RootNamespace>
     <AssemblyName>PhotoBuddy</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -196,6 +196,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Screens\AlbumViewUserControl.resx">
       <DependentUpon>AlbumViewUserControl.cs</DependentUpon>
