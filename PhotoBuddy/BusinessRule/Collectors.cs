@@ -95,9 +95,9 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// </summary>
         public void checkAndCreatePhotoBuddyDir()
         {
-            if (!Directory.Exists(Constants.photosFolderPath))
+            if (!Directory.Exists(Constants.PhotosFolderPath))
             {
-                Directory.CreateDirectory(Constants.photosFolderPath);
+                Directory.CreateDirectory(Constants.PhotosFolderPath);
             }
         }
 
@@ -287,7 +287,7 @@ namespace TheNewPhotoBuddy.BussinessRule
             tempPhoto.display_name = photoName;
             tempPhoto.copiedPath = photoFilename;
             string fileExtension = Path.GetExtension(photoFilename);
-            tempPhoto.copyOverThefileToSecretDir(@tempPhoto.copiedPath, @Constants.photosFolderPath + tempPhoto.ID + fileExtension);
+            tempPhoto.copyOverThefileToSecretDir(@tempPhoto.copiedPath, @Constants.PhotosFolderPath + tempPhoto.ID + fileExtension);
 
             tempPhoto.copiedPath = tempPhoto.ID + fileExtension;   
             //query for album from albumlist

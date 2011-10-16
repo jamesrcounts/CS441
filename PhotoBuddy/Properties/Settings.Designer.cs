@@ -22,5 +22,29 @@ namespace PhotoBuddy.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\PhotoBuddy")]
+        public string PhotosFolderPath {
+            get {
+                return ((string)(this["PhotosFolderPath"]));
+            }
+            set {
+                this["PhotosFolderPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\PhotoBuddyData.xml")]
+        public string DataFilePath {
+            get {
+                return ((string)(this["DataFilePath"]));
+            }
+            set {
+                this["DataFilePath"] = value;
+            }
+        }
     }
 }

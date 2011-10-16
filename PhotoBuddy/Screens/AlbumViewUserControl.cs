@@ -160,7 +160,7 @@ namespace TheNewPhotoBuddy.Screens
                         // thumbnail is a public property to set the picturebox on the thumbnailUserControl.
                         thumb.thumbnail.Tag = tempPhoto;
                         // Get the photo from file.
-                        thumb.thumbnail.Image = Image.FromFile(Constants.photosFolderPath + tempPhoto.copiedPath);
+                        thumb.thumbnail.Image = Image.FromFile(Constants.PhotosFolderPath + tempPhoto.copiedPath);
                         // Wire the click event to the picturebox
                         thumb.thumbnail.Click += new EventHandler(photo_Click);
                         // Add the thumb control to the flow panel.

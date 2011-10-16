@@ -119,7 +119,7 @@
     <Compile Include="BusinessRule\Collectors.cs" />
     <Compile Include="BusinessRule\Photo.cs" />
     <Compile Include="BusinessRule\Photos.cs" />
-    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Controls\PB_ClickLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -213,6 +213,7 @@
     <EmbeddedResource Include="ViewPhotoForm.resx">
       <DependentUpon>ViewPhotoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="GoldRush.snk" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

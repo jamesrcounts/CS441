@@ -87,7 +87,7 @@ namespace TheNewPhotoBuddy
         private void displayPhoto(int index)
         {
             string filename = Path.GetFileName(allPhotosInAlbum[index].copiedPath);
-            pictureBox1.Image = Image.FromFile(Constants.photosFolderPath + filename);
+            pictureBox1.Image = Image.FromFile(Constants.PhotosFolderPath + filename);
             photoNameLabel.Text = allPhotosInAlbum[index].display_name;
             this.Text = allPhotosInAlbum[index].display_name + " - Photo Buddy";
         }
