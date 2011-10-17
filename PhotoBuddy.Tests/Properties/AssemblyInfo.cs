@@ -1,4 +1,9 @@
-﻿using System.Reflection;
+﻿//-----------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -8,9 +13,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("PhotoBuddy.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("FNC Inc")]
+[assembly: AssemblyCompany("Gold Rush")]
 [assembly: AssemblyProduct("PhotoBuddy.Tests")]
-[assembly: AssemblyCopyright("Copyright © FNC Inc 2011")]
+[assembly: AssemblyCopyright("Copyright © Gold Rush 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +36,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]

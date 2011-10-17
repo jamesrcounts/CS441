@@ -1,0 +1,2041 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PhotoBuddy.Moles</name>
+    </assembly>
+    <members>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.BussinessRule.Album"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.#ctor(TheNewPhotoBuddy.BussinessRule.Album)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Album.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.ConstructorString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Album.#ctor(System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.ToString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Album.ToString"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.albumIDGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Album.albumID"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.albumIDSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Album.albumID"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.photoObjectsGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Album.photoObjects"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.photoObjectsSetPhotos">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Album.photoObjects"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.AllInstances.ToString01">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Album.ToString"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.AllInstances.albumIDGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Album.albumID"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.AllInstances.albumIDSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Album.albumID"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.AllInstances.photoObjectsGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Album.photoObjects"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbum.AllInstances.photoObjectsSetPhotos">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Album.photoObjects"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.EventObjects.Moles.MAlbumEventArgs">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.EventObjects.AlbumEventArgs"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.EventObjects.Moles.MAlbumEventArgs.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.EventObjects.Moles.MAlbumEventArgs.#ctor(TheNewPhotoBuddy.EventObjects.AlbumEventArgs)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.EventObjects.Moles.MAlbumEventArgs.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.EventObjects.Moles.MAlbumEventArgs.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.EventObjects.Moles.MAlbumEventArgs.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.EventObjects.Moles.MAlbumEventArgs.ConstructorAlbum">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.EventObjects.AlbumEventArgs.#ctor(TheNewPhotoBuddy.BussinessRule.Album)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.EventObjects.Moles.MAlbumEventArgs.ConstructorString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.EventObjects.AlbumEventArgs.#ctor(System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.EventObjects.Moles.MAlbumEventArgs.TheAlbumGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.EventObjects.AlbumEventArgs.TheAlbum"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.EventObjects.Moles.MAlbumEventArgs.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.EventObjects.Moles.MAlbumEventArgs.AllInstances.TheAlbumGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.EventObjects.AlbumEventArgs.TheAlbum"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.Screens.AlbumViewUserControl"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.#ctor(TheNewPhotoBuddy.Screens.AlbumViewUserControl)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.Bind(TheNewPhotoBuddy.Screens.IScreen)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.Bind(System.ComponentModel.IComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.Bind(System.ComponentModel.ISynchronizeInvoke)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.Bind(System.Windows.Forms.IBindableComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.Bind(System.Windows.Forms.IContainerControl)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.Bind(System.Windows.Forms.IDropTarget)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.Bind(System.Windows.Forms.IWin32Window)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AddPhotosButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.AddPhotosButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AddPhotosEventAddAlbumViewUserControlAddPhotosEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.add_AddPhotosEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.AddPhotosEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AddPhotosEventRemoveAlbumViewUserControlAddPhotosEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.remove_AddPhotosEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.AddPhotosEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.BackEventAddAlbumViewUserControlBackEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.add_BackEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.BackEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.BackEventRemoveAlbumViewUserControlBackEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.remove_BackEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.BackEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.CurrentAlbumGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.AlbumViewUserControl.CurrentAlbum"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.CurrentAlbumSetAlbum">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.AlbumViewUserControl.CurrentAlbum"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.DisplayNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.AlbumViewUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.DisplayNameSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.AlbumViewUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.RenameAlbumEventAddAlbumViewUserControlRenameAlbumHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.add_RenameAlbumEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.RenameAlbumHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.RenameAlbumEventRemoveAlbumViewUserControlRenameAlbumHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.remove_RenameAlbumEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.RenameAlbumHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.backButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.backButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.photo_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.photo_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.photosFlowPanel_MouseClickObjectMouseEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.photosFlowPanel_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.photosFlowPanel_MouseEnterObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.photosFlowPanel_MouseEnter(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.refreshingAlbumPhotosViewList">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.refreshingAlbumPhotosViewList"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.renameAlbumButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.renameAlbumButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.AddPhotosButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.AddPhotosButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.AddPhotosEventAddAlbumViewUserControlAddPhotosEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.add_AddPhotosEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.AddPhotosEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.AddPhotosEventRemoveAlbumViewUserControlAddPhotosEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.remove_AddPhotosEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.AddPhotosEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.BackEventAddAlbumViewUserControlBackEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.add_BackEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.BackEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.BackEventRemoveAlbumViewUserControlBackEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.remove_BackEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.BackEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.CurrentAlbumGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.AlbumViewUserControl.CurrentAlbum"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.CurrentAlbumSetAlbum">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.AlbumViewUserControl.CurrentAlbum"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.DisplayNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.AlbumViewUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.DisplayNameSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.AlbumViewUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.RenameAlbumEventAddAlbumViewUserControlRenameAlbumHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.add_RenameAlbumEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.RenameAlbumHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.RenameAlbumEventRemoveAlbumViewUserControlRenameAlbumHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.remove_RenameAlbumEvent(TheNewPhotoBuddy.Screens.AlbumViewUserControl.RenameAlbumHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.backButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.backButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.photo_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.photo_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.photosFlowPanel_MouseClickObjectMouseEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.photosFlowPanel_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.photosFlowPanel_MouseEnterObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.photosFlowPanel_MouseEnter(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.refreshingAlbumPhotosViewList">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.refreshingAlbumPhotosViewList"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MAlbumViewUserControl.AllInstances.renameAlbumButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.renameAlbumButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.BussinessRule.Albums"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.#ctor(TheNewPhotoBuddy.BussinessRule.Albums)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Albums.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.IsExistingAlbumNameString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Albums.IsExistingAlbumName(System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.addAlbumAlbum">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Albums.addAlbum(TheNewPhotoBuddy.BussinessRule.Album)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.albumsListGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Albums.albumsList"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.deleteAlbumAlbum">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Albums.deleteAlbum(TheNewPhotoBuddy.BussinessRule.Album)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.getAlbumString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Albums.getAlbum(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.AllInstances.IsExistingAlbumNameString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Albums.IsExistingAlbumName(System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.AllInstances.addAlbumAlbum">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Albums.addAlbum(TheNewPhotoBuddy.BussinessRule.Album)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.AllInstances.albumsListGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Albums.albumsList"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.AllInstances.deleteAlbumAlbum">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Albums.deleteAlbum(TheNewPhotoBuddy.BussinessRule.Album)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MAlbums.AllInstances.getAlbumString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Albums.getAlbum(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.BussinessRule.Collectors"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.#ctor(TheNewPhotoBuddy.BussinessRule.Collectors)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.AddPhotoToAlbumStringStringString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.AddPhotoToAlbum(System.String,System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.EditAlbumNameStringString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.EditAlbumName(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.addAlbumtoAlbumListAlbum">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.addAlbumtoAlbumList(TheNewPhotoBuddy.BussinessRule.Album)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.checkAndCreatePhotoBuddyDir">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.checkAndCreatePhotoBuddyDir"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.editOrAddPhotosToAlbumPhotosString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.editOrAddPhotosToAlbum(TheNewPhotoBuddy.BussinessRule.Photos,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.getAlbumsGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Collectors.getAlbums"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.getAlbumsSetAlbums">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Collectors.getAlbums"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.populateAlbumsAnditsPhotos">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.populateAlbumsAnditsPhotos"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.populateObjectsIntoXML">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.populateObjectsIntoXML"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.AllInstances.AddPhotoToAlbumStringStringString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.AddPhotoToAlbum(System.String,System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.AllInstances.EditAlbumNameStringString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.EditAlbumName(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.AllInstances.addAlbumtoAlbumListAlbum">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.addAlbumtoAlbumList(TheNewPhotoBuddy.BussinessRule.Album)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.AllInstances.checkAndCreatePhotoBuddyDir">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.checkAndCreatePhotoBuddyDir"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.AllInstances.editOrAddPhotosToAlbumPhotosString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.editOrAddPhotosToAlbum(TheNewPhotoBuddy.BussinessRule.Photos,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.AllInstances.getAlbumsGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Collectors.getAlbums"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.AllInstances.getAlbumsSetAlbums">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Collectors.getAlbums"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.AllInstances.populateAlbumsAnditsPhotos">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.populateAlbumsAnditsPhotos"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MCollectors.AllInstances.populateObjectsIntoXML">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Collectors.populateObjectsIntoXML"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Common.CommonClass.Moles.MConstants">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.Common.CommonClass.Constants"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Common.CommonClass.Moles.MConstants.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Common.CommonClass.Moles.MConstants.#ctor(TheNewPhotoBuddy.Common.CommonClass.Constants)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Common.CommonClass.Moles.MConstants.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Common.CommonClass.Moles.MConstants.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Common.CommonClass.Moles.MConstants.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Common.CommonClass.Moles.MConstants.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Common.CommonClass.Constants.#ctor"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Common.CommonClass.Moles.MConstants.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.Screens.CreateAlbumUserControl"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.#ctor(TheNewPhotoBuddy.Screens.CreateAlbumUserControl)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.Bind(TheNewPhotoBuddy.Screens.IScreen)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.Bind(System.ComponentModel.IComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.Bind(System.ComponentModel.ISynchronizeInvoke)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.Bind(System.Windows.Forms.IBindableComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.Bind(System.Windows.Forms.IContainerControl)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.Bind(System.Windows.Forms.IDropTarget)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.Bind(System.Windows.Forms.IWin32Window)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AlbumNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.AlbumName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.CancelEventAddCreateAlbumUserControlCancelEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.add_CancelEvent(TheNewPhotoBuddy.Screens.CreateAlbumUserControl.CancelEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.CancelEventRemoveCreateAlbumUserControlCancelEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.remove_CancelEvent(TheNewPhotoBuddy.Screens.CreateAlbumUserControl.CancelEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.ContinueEventAddCreateAlbumUserControlContinueEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.add_ContinueEvent(TheNewPhotoBuddy.Screens.CreateAlbumUserControl.ContinueEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.ContinueEventRemoveCreateAlbumUserControlContinueEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.remove_ContinueEvent(TheNewPhotoBuddy.Screens.CreateAlbumUserControl.ContinueEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.DisplayNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.DisplayNameSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.IsCreateGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.IsCreate"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.ResetCreateFormBooleanString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.ResetCreateForm(System.Boolean,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.UserEnteredTextGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.UserEnteredText"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.albumNameTextBox_KeyDownObjectKeyEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.albumNameTextBox_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.cancelButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.cancelButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.continueButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.continueButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.AlbumNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.AlbumName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.CancelEventAddCreateAlbumUserControlCancelEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.add_CancelEvent(TheNewPhotoBuddy.Screens.CreateAlbumUserControl.CancelEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.CancelEventRemoveCreateAlbumUserControlCancelEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.remove_CancelEvent(TheNewPhotoBuddy.Screens.CreateAlbumUserControl.CancelEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.ContinueEventAddCreateAlbumUserControlContinueEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.add_ContinueEvent(TheNewPhotoBuddy.Screens.CreateAlbumUserControl.ContinueEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.ContinueEventRemoveCreateAlbumUserControlContinueEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.remove_ContinueEvent(TheNewPhotoBuddy.Screens.CreateAlbumUserControl.ContinueEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.DisplayNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.DisplayNameSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.IsCreateGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.IsCreate"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.ResetCreateFormBooleanString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.ResetCreateForm(System.Boolean,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.UserEnteredTextGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.UserEnteredText"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.albumNameTextBox_KeyDownObjectKeyEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.albumNameTextBox_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.cancelButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.cancelButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MCreateAlbumUserControl.AllInstances.continueButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.continueButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.DataAccessLayer.Moles.MDataAccessBaseXML">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.DataAccessLayer.DataAccessBaseXML"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.DataAccessLayer.Moles.MDataAccessBaseXML.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.DataAccessLayer.Moles.MDataAccessBaseXML.#ctor(TheNewPhotoBuddy.DataAccessLayer.DataAccessBaseXML)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.DataAccessLayer.Moles.MDataAccessBaseXML.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.DataAccessLayer.Moles.MDataAccessBaseXML.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.DataAccessLayer.Moles.MDataAccessBaseXML.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.DataAccessLayer.Moles.MDataAccessBaseXML.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.DataAccessLayer.DataAccessBaseXML.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.DataAccessLayer.Moles.MDataAccessBaseXML.initializedInfoDataXMlString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.DataAccessLayer.DataAccessBaseXML.initializedInfoDataXMl(System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.DataAccessLayer.Moles.MDataAccessBaseXML.loadORinitializeInfoXMLString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.DataAccessLayer.DataAccessBaseXML.loadORinitializeInfoXML(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.DataAccessLayer.Moles.MDataAccessBaseXML.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.DataAccessLayer.Moles.MDataAccessBaseXML.AllInstances.loadORinitializeInfoXMLString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.DataAccessLayer.DataAccessBaseXML.loadORinitializeInfoXML(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.Screens.HomeScreenUserControl"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.#ctor(TheNewPhotoBuddy.Screens.HomeScreenUserControl)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.Bind(TheNewPhotoBuddy.Screens.IScreen)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.Bind(System.ComponentModel.IComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.Bind(System.ComponentModel.ISynchronizeInvoke)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.Bind(System.Windows.Forms.IBindableComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.Bind(System.Windows.Forms.IContainerControl)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.Bind(System.Windows.Forms.IDropTarget)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.Bind(System.Windows.Forms.IWin32Window)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AlbumSelectedEventAddHomeScreenUserControlAlbumSelectedEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.add_AlbumSelectedEvent(TheNewPhotoBuddy.Screens.HomeScreenUserControl.AlbumSelectedEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AlbumSelectedEventRemoveHomeScreenUserControlAlbumSelectedEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.remove_AlbumSelectedEvent(TheNewPhotoBuddy.Screens.HomeScreenUserControl.AlbumSelectedEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.CreateButtonEventAddHomeScreenUserControlCreateButtonClicked">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.add_CreateButtonEvent(TheNewPhotoBuddy.Screens.HomeScreenUserControl.CreateButtonClicked)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.CreateButtonEventRemoveHomeScreenUserControlCreateButtonClicked">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.remove_CreateButtonEvent(TheNewPhotoBuddy.Screens.HomeScreenUserControl.CreateButtonClicked)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.CreateButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.CreateButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.DisplayNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.HomeScreenUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.DisplayNameSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.HomeScreenUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.ExitButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.ExitButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.RefreshingAlbumViewListAlbums">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.RefreshingAlbumViewList(TheNewPhotoBuddy.BussinessRule.Albums)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.album_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.album_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.AlbumSelectedEventAddHomeScreenUserControlAlbumSelectedEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.add_AlbumSelectedEvent(TheNewPhotoBuddy.Screens.HomeScreenUserControl.AlbumSelectedEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.AlbumSelectedEventRemoveHomeScreenUserControlAlbumSelectedEventHandler">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.remove_AlbumSelectedEvent(TheNewPhotoBuddy.Screens.HomeScreenUserControl.AlbumSelectedEventHandler)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.CreateButtonEventAddHomeScreenUserControlCreateButtonClicked">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.add_CreateButtonEvent(TheNewPhotoBuddy.Screens.HomeScreenUserControl.CreateButtonClicked)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.CreateButtonEventRemoveHomeScreenUserControlCreateButtonClicked">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.remove_CreateButtonEvent(TheNewPhotoBuddy.Screens.HomeScreenUserControl.CreateButtonClicked)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.CreateButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.CreateButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.DisplayNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.HomeScreenUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.DisplayNameSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Screens.HomeScreenUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.ExitButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.ExitButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.RefreshingAlbumViewListAlbums">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.RefreshingAlbumViewList(TheNewPhotoBuddy.BussinessRule.Albums)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.MHomeScreenUserControl.AllInstances.album_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.album_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Moles.MMainForm">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.MainForm"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MMainForm.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MMainForm.#ctor(TheNewPhotoBuddy.MainForm)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MMainForm.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MMainForm.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MMainForm.Bind(System.ComponentModel.IComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MMainForm.Bind(System.ComponentModel.ISynchronizeInvoke)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MMainForm.Bind(System.Windows.Forms.IBindableComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MMainForm.Bind(System.Windows.Forms.IContainerControl)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MMainForm.Bind(System.Windows.Forms.IDropTarget)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MMainForm.Bind(System.Windows.Forms.IWin32Window)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MMainForm.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AlbumViewGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.AlbumView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AppNameLabel_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.AppNameLabel_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AppNameLabel_MouseEnterObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.AppNameLabel_MouseEnter(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AppNameLabel_MouseLeaveObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.AppNameLabel_MouseLeave(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AttachEventsToScreens">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.AttachEventsToScreens"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.CreateAlbumViewGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.CreateAlbumView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.CreateButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.CreateButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.FinishCreateOrEditAlbumObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.FinishCreateOrEditAlbum(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.HideAllScreens">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.HideAllScreens"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.HomeViewGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.HomeView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.InitializeUIScreens">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.InitializeUIScreens"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.PreviousViewGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.PreviousView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.PreviousViewSetUserControl">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.PreviousView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.ShowScreenUserControl">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.ShowScreen(System.Windows.Forms.UserControl)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.addPhotosObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.addPhotos(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.backObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.back(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.backToHomeScreenObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.backToHomeScreen(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.haveUserVerifyAddPhotoString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.haveUserVerifyAddPhoto(System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.renameAlbumObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.renameAlbum(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.showSelectedAlbumObjectAlbumEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.showSelectedAlbum(System.Object,TheNewPhotoBuddy.EventObjects.AlbumEventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Moles.MMainForm.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.AlbumViewGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.AlbumView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.AppNameLabel_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.AppNameLabel_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.AppNameLabel_MouseEnterObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.AppNameLabel_MouseEnter(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.AppNameLabel_MouseLeaveObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.AppNameLabel_MouseLeave(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.AttachEventsToScreens">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.AttachEventsToScreens"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.CreateAlbumViewGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.CreateAlbumView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.CreateButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.CreateButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.FinishCreateOrEditAlbumObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.FinishCreateOrEditAlbum(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.HideAllScreens">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.HideAllScreens"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.HomeViewGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.HomeView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.InitializeUIScreens">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.InitializeUIScreens"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.PreviousViewGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.PreviousView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.PreviousViewSetUserControl">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.PreviousView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.ShowScreenUserControl">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.ShowScreen(System.Windows.Forms.UserControl)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.addPhotosObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.addPhotos(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.backObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.back(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.backToHomeScreenObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.backToHomeScreen(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.haveUserVerifyAddPhotoString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.haveUserVerifyAddPhoto(System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.renameAlbumObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.renameAlbum(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.showSelectedAlbumObjectAlbumEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.showSelectedAlbum(System.Object,TheNewPhotoBuddy.EventObjects.AlbumEventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.Controls.PB_ClickLabel"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.#ctor(TheNewPhotoBuddy.Controls.PB_ClickLabel)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.Bind(System.ComponentModel.IComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.Bind(System.ComponentModel.ISynchronizeInvoke)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.Bind(System.Windows.Forms.IBindableComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.Bind(System.Windows.Forms.IDropTarget)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.Bind(System.Windows.Forms.IWin32Window)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.ClickableLabel_MouseEnterObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ClickLabel.ClickableLabel_MouseEnter(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.ClickableLabel_MouseLeaveObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ClickLabel.ClickableLabel_MouseLeave(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ClickLabel.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ClickLabel.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.AllInstances.ClickableLabel_MouseEnterObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ClickLabel.ClickableLabel_MouseEnter(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.AllInstances.ClickableLabel_MouseLeaveObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ClickLabel.ClickableLabel_MouseLeave(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ClickLabel.AllInstances.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ClickLabel.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.#ctor(TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.Bind(System.ComponentModel.IComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.Bind(System.ComponentModel.ISynchronizeInvoke)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.Bind(System.Windows.Forms.IBindableComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.Bind(System.Windows.Forms.IContainerControl)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.Bind(System.Windows.Forms.IDropTarget)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.Bind(System.Windows.Forms.IWin32Window)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.DiaplayNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.DiaplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.DiaplayNameSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.DiaplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.pictureBox1_MouseEnterObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.pictureBox1_MouseEnter(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.pictureBox1_MouseLeaveObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.pictureBox1_MouseLeave(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.thumbnailGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.thumbnail"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.thumbnailSetPictureBox">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.thumbnail"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.AllInstances.DiaplayNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.DiaplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.AllInstances.DiaplayNameSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.DiaplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.AllInstances.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.AllInstances.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.AllInstances.pictureBox1_MouseEnterObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.pictureBox1_MouseEnter(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.AllInstances.pictureBox1_MouseLeaveObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.pictureBox1_MouseLeave(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.AllInstances.thumbnailGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.thumbnail"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.MPB_ThumbNailUserControl.AllInstances.thumbnailSetPictureBox">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.thumbnail"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.BussinessRule.Photo"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.#ctor(TheNewPhotoBuddy.BussinessRule.Photo)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photo.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.IDGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.ID"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.IDSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.ID"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.ToString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photo.ToString"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.copiedPathGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.copiedPath"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.copiedPathSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.copiedPath"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.copyOverThefileToSecretDirStringString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photo.copyOverThefileToSecretDir(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.display_nameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.display_name"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.display_nameSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.display_name"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.generateUniqueHashPhotoKeyString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photo.generateUniqueHashPhotoKey(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.AllInstances.IDGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.ID"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.AllInstances.IDSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.ID"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.AllInstances.ToString01">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photo.ToString"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.AllInstances.copiedPathGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.copiedPath"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.AllInstances.copiedPathSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.copiedPath"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.AllInstances.copyOverThefileToSecretDirStringString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photo.copyOverThefileToSecretDir(System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.AllInstances.display_nameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.display_name"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.AllInstances.display_nameSetString">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photo.display_name"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhoto.AllInstances.generateUniqueHashPhotoKeyString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photo.generateUniqueHashPhotoKey(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.BussinessRule.Photos"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.#ctor(TheNewPhotoBuddy.BussinessRule.Photos)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photos.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.addPhotosAtPhoto">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photos.addPhotosAt(TheNewPhotoBuddy.BussinessRule.Photo)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.photoListGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photos.photoList"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.removePhotosAtPhotoString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photos.removePhotosAt(TheNewPhotoBuddy.BussinessRule.Photo,System.String)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.AllInstances.addPhotosAtPhoto">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photos.addPhotosAt(TheNewPhotoBuddy.BussinessRule.Photo)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.AllInstances.photoListGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.BussinessRule.Photos.photoList"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.MPhotos.AllInstances.removePhotosAtPhotoString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photos.removePhotosAt(TheNewPhotoBuddy.BussinessRule.Photo,System.String)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Moles.MUploadViewForm">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.UploadViewForm"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MUploadViewForm.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MUploadViewForm.#ctor(TheNewPhotoBuddy.UploadViewForm)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MUploadViewForm.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MUploadViewForm.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MUploadViewForm.Bind(System.ComponentModel.IComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MUploadViewForm.Bind(System.ComponentModel.ISynchronizeInvoke)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MUploadViewForm.Bind(System.Windows.Forms.IBindableComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MUploadViewForm.Bind(System.Windows.Forms.IContainerControl)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MUploadViewForm.Bind(System.Windows.Forms.IDropTarget)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MUploadViewForm.Bind(System.Windows.Forms.IWin32Window)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MUploadViewForm.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.ConstructorString">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.#ctor(System.String)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.PhotoNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.UploadViewForm.PhotoName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.cancelButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.cancelButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.continueButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.continueButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.textBox1_KeyDownObjectKeyEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.textBox1_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Moles.MUploadViewForm.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.AllInstances.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.AllInstances.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.AllInstances.PhotoNameGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.UploadViewForm.PhotoName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.AllInstances.cancelButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.cancelButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.AllInstances.continueButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.continueButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MUploadViewForm.AllInstances.textBox1_KeyDownObjectKeyEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.UploadViewForm.textBox1_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Moles.MViewPhotoForm">
+            <summary>Mole type of <see cref="T:TheNewPhotoBuddy.ViewPhotoForm"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MViewPhotoForm.#ctor">
+            <summary>Initializes a new mole</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MViewPhotoForm.#ctor(TheNewPhotoBuddy.ViewPhotoForm)">
+            <summary>Initializes a new mole for the given instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MViewPhotoForm.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MViewPhotoForm.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MViewPhotoForm.Bind(System.ComponentModel.IComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MViewPhotoForm.Bind(System.ComponentModel.ISynchronizeInvoke)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MViewPhotoForm.Bind(System.Windows.Forms.IBindableComponent)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MViewPhotoForm.Bind(System.Windows.Forms.IContainerControl)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MViewPhotoForm.Bind(System.Windows.Forms.IDropTarget)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MViewPhotoForm.Bind(System.Windows.Forms.IWin32Window)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.MViewPhotoForm.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the mole.</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.Behavior">
+            <summary>Assigns the behavior for all methods of the moled type</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.Constructor">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.#ctor"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.ConstructorAlbumPhoto">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.#ctor(TheNewPhotoBuddy.BussinessRule.Album,TheNewPhotoBuddy.BussinessRule.Photo)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.backButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.backButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.canGoBack">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.canGoBack"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.canGoForward">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.canGoForward"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.displayPhotoInt32">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.displayPhoto(System.Int32)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.fillPhotoList">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.fillPhotoList"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.nextPhotoButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.nextPhotoButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.previousPhotoButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.previousPhotoButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.previousPhotoButton_MouseEnterObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.previousPhotoButton_MouseEnter(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.previousPhotoButton_MouseLeaveObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.previousPhotoButton_MouseLeave(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances">
+            <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances.DisposeBoolean">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances.InitializeComponent">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.InitializeComponent"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances.backButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.backButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances.canGoBack">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.canGoBack"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances.canGoForward">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.canGoForward"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances.displayPhotoInt32">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.displayPhoto(System.Int32)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances.fillPhotoList">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.fillPhotoList"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances.nextPhotoButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.nextPhotoButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances.previousPhotoButton_ClickObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.previousPhotoButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances.previousPhotoButton_MouseEnterObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.previousPhotoButton_MouseEnter(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MViewPhotoForm.AllInstances.previousPhotoButton_MouseLeaveObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.previousPhotoButton_MouseLeave(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.SAlbum">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.BussinessRule.Album"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SAlbum.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SAlbum.#ctor(System.String)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SAlbum.InitializeStub">
+            <summary>Initializes a new instance of type SAlbum</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SAlbum.ToString">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.BussinessRule.Album.ToString"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.BussinessRule.Moles.SAlbum.ToString01">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.BussinessRule.Album.ToString"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.SAlbum.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.SAlbum.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.EventObjects.Moles.SAlbumEventArgs">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.EventObjects.AlbumEventArgs"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.EventObjects.Moles.SAlbumEventArgs.#ctor(TheNewPhotoBuddy.BussinessRule.Album)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.EventObjects.Moles.SAlbumEventArgs.#ctor(System.String)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.EventObjects.Moles.SAlbumEventArgs.InitializeStub">
+            <summary>Initializes a new instance of type SAlbumEventArgs</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.EventObjects.Moles.SAlbumEventArgs.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.EventObjects.Moles.SAlbumEventArgs.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Screens.Moles.SAlbumViewUserControl">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.Screens.AlbumViewUserControl"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SAlbumViewUserControl.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SAlbumViewUserControl.AttachBackingFieldToDisplayName">
+            <summary>Attaches delegates to emulate SAlbumViewUserControl.DisplayName as a property with a backing field</summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Screens.Moles.SAlbumViewUserControl.DisplayNameGet">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.AlbumViewUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Screens.Moles.SAlbumViewUserControl.DisplayNameSetString">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.AlbumViewUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SAlbumViewUserControl.Dispose(System.Boolean)">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Screens.Moles.SAlbumViewUserControl.DisposeBoolean">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.Screens.AlbumViewUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SAlbumViewUserControl.InitializeStub">
+            <summary>Initializes a new instance of type SAlbumViewUserControl</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.SAlbumViewUserControl.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.SAlbumViewUserControl.DisplayName">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.AlbumViewUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.SAlbumViewUserControl.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.SAlbums">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.BussinessRule.Albums"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SAlbums.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SAlbums.InitializeStub">
+            <summary>Initializes a new instance of type SAlbums</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.SAlbums.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.SAlbums.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.SCollectors">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.BussinessRule.Collectors"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SCollectors.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SCollectors.InitializeStub">
+            <summary>Initializes a new instance of type SCollectors</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.SCollectors.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.SCollectors.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Screens.Moles.SCreateAlbumUserControl">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.Screens.CreateAlbumUserControl"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SCreateAlbumUserControl.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SCreateAlbumUserControl.AttachBackingFieldToDisplayName">
+            <summary>Attaches delegates to emulate SCreateAlbumUserControl.DisplayName as a property with a backing field</summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Screens.Moles.SCreateAlbumUserControl.DisplayNameGet">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Screens.Moles.SCreateAlbumUserControl.DisplayNameSetString">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SCreateAlbumUserControl.Dispose(System.Boolean)">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Screens.Moles.SCreateAlbumUserControl.DisposeBoolean">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SCreateAlbumUserControl.InitializeStub">
+            <summary>Initializes a new instance of type SCreateAlbumUserControl</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.SCreateAlbumUserControl.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.SCreateAlbumUserControl.DisplayName">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.CreateAlbumUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.SCreateAlbumUserControl.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.DataAccessLayer.Moles.SDataAccessBaseXML">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.DataAccessLayer.DataAccessBaseXML"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.DataAccessLayer.Moles.SDataAccessBaseXML.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.DataAccessLayer.Moles.SDataAccessBaseXML.InitializeStub">
+            <summary>Initializes a new instance of type SDataAccessBaseXML</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.DataAccessLayer.Moles.SDataAccessBaseXML.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.DataAccessLayer.Moles.SDataAccessBaseXML.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Screens.Moles.SHomeScreenUserControl">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.Screens.HomeScreenUserControl"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SHomeScreenUserControl.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SHomeScreenUserControl.AttachBackingFieldToDisplayName">
+            <summary>Attaches delegates to emulate SHomeScreenUserControl.DisplayName as a property with a backing field</summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Screens.Moles.SHomeScreenUserControl.DisplayNameGet">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.HomeScreenUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Screens.Moles.SHomeScreenUserControl.DisplayNameSetString">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.HomeScreenUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SHomeScreenUserControl.Dispose(System.Boolean)">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Screens.Moles.SHomeScreenUserControl.DisposeBoolean">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.Screens.HomeScreenUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SHomeScreenUserControl.InitializeStub">
+            <summary>Initializes a new instance of type SHomeScreenUserControl</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.SHomeScreenUserControl.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.SHomeScreenUserControl.DisplayName">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.HomeScreenUserControl.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.SHomeScreenUserControl.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Screens.Moles.SIScreen">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.Screens.IScreen"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SIScreen.#ctor">
+            <summary>Initializes a new instance of type SIScreen</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Screens.Moles.SIScreen.AttachBackingFieldToDisplayName">
+            <summary>Attaches delegates to emulate SIScreen.DisplayName as a property with a backing field</summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Screens.Moles.SIScreen.DisplayNameGet">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.IScreen.DisplayName"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Screens.Moles.SIScreen.DisplayNameSetString">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.IScreen.DisplayName"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Screens.Moles.SIScreen.pb::TheNewPhotoBuddy#Screens#IScreen#DisplayName">
+            <summary>Sets the stub of <see cref="P:TheNewPhotoBuddy.Screens.IScreen.DisplayName"/>
+            </summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Moles.SMainForm">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.MainForm"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.SMainForm.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.SMainForm.Dispose(System.Boolean)">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.MainForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Moles.SMainForm.DisposeBoolean">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.MainForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.SMainForm.InitializeStub">
+            <summary>Initializes a new instance of type SMainForm</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.SMainForm.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.SMainForm.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Controls.Moles.SPB_ClickLabel">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.Controls.PB_ClickLabel"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.SPB_ClickLabel.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.SPB_ClickLabel.InitializeStub">
+            <summary>Initializes a new instance of type SPB_ClickLabel</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.SPB_ClickLabel.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.SPB_ClickLabel.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Controls.Moles.SPB_ThumbNailUserControl">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.SPB_ThumbNailUserControl.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.SPB_ThumbNailUserControl.Dispose(System.Boolean)">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Controls.Moles.SPB_ThumbNailUserControl.DisposeBoolean">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Controls.Moles.SPB_ThumbNailUserControl.InitializeStub">
+            <summary>Initializes a new instance of type SPB_ThumbNailUserControl</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.SPB_ThumbNailUserControl.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Controls.Moles.SPB_ThumbNailUserControl.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.SPhoto">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.BussinessRule.Photo"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SPhoto.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SPhoto.InitializeStub">
+            <summary>Initializes a new instance of type SPhoto</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SPhoto.ToString">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photo.ToString"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.BussinessRule.Moles.SPhoto.ToString01">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.BussinessRule.Photo.ToString"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.SPhoto.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.SPhoto.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.BussinessRule.Moles.SPhotos">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.BussinessRule.Photos"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SPhotos.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.BussinessRule.Moles.SPhotos.InitializeStub">
+            <summary>Initializes a new instance of type SPhotos</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.SPhotos.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.BussinessRule.Moles.SPhotos.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Moles.SUploadViewForm">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.UploadViewForm"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.SUploadViewForm.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.SUploadViewForm.#ctor(System.String)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.SUploadViewForm.Dispose(System.Boolean)">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.UploadViewForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Moles.SUploadViewForm.DisposeBoolean">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.UploadViewForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.SUploadViewForm.InitializeStub">
+            <summary>Initializes a new instance of type SUploadViewForm</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.SUploadViewForm.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.SUploadViewForm.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="T:TheNewPhotoBuddy.Moles.SViewPhotoForm">
+            <summary>Stub type of <see cref="T:TheNewPhotoBuddy.ViewPhotoForm"/>
+            .</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.SViewPhotoForm.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.SViewPhotoForm.#ctor(TheNewPhotoBuddy.BussinessRule.Album,TheNewPhotoBuddy.BussinessRule.Photo)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.SViewPhotoForm.Dispose(System.Boolean)">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="F:TheNewPhotoBuddy.Moles.SViewPhotoForm.DisposeBoolean">
+            <summary>Sets the stub of <see cref="M:TheNewPhotoBuddy.ViewPhotoForm.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="M:TheNewPhotoBuddy.Moles.SViewPhotoForm.InitializeStub">
+            <summary>Initializes a new instance of type SViewPhotoForm</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.SViewPhotoForm.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.SViewPhotoForm.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+    </members>
+</doc>
