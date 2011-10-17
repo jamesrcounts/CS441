@@ -105,9 +105,8 @@ namespace TheNewPhotoBuddy.Screens
         /// postCOndition: display the list of the albums thata re currently have.
         /// </summary>
         /// <param name="albums">The list of all the albums.</param>
-        public void refreshingAlbumViewList(Albums albums)
+        public void RefreshingAlbumViewList(Albums albums)
         {
-            //this.listBoxAlbums.Items.Clear();
             albumsFlowPanel.Controls.Clear();
             if (albums.albumsList.Count != 0)
             {

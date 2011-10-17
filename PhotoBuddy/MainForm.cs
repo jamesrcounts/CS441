@@ -1,7 +1,7 @@
 ﻿/***********************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
- * Modified date: Oct 9 2011
+ * Modified date: Oct 17 2011
  * Description: program start up forms, which gets inherited from multiple usercontrols
  * 
  ************************************************************************************/
@@ -18,69 +18,125 @@ namespace TheNewPhotoBuddy
 {
   public partial class MainForm : Form
   {
-    //Album currentAlbum = new Album();
     public static Collectors collectors = new Collectors();
 
     // The different screens(or views) of the application.
-    HomeScreenUserControl homeScreen = new HomeScreenUserControl();
-    AlbumViewUserControl albumScreen = new AlbumViewUserControl();
-    CreateAlbumUserControl createAlbumScreen = new CreateAlbumUserControl();
-    UserControl currentScreen = null;
-    UserControl previousScreen = null;
+    private readonly HomeScreenUserControl homeScreen = new HomeScreenUserControl();
+    private readonly AlbumViewUserControl albumScreen = new AlbumViewUserControl();
+    private readonly CreateAlbumUserControl createAlbumScreen = new CreateAlbumUserControl();
+    private UserControl currentScreen;
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// The MainForm constructor.
     /// </summary>
     public MainForm()
     {
       InitializeComponent();
-      initializeUIScreens();
-      currentScreen = homeScreen;
-      showScreen(currentScreen);
+      InitializeUIScreens();
+      currentScreen = HomeView;
+      ShowScreen(currentScreen);
       // Set the newAlbumName of the form
       this.Text = Strings.AppName;
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Gets a reference to the Album View.
+    /// </summary>    
+    /// <remarks>
+    /// <para>Author: Jim Counts</para>
+    /// </remarks>
+    public AlbumViewUserControl AlbumView
+    {
+      get
+      {
+        return this.albumScreen;
+      }
+    }
+
+    /// <summary>
+    /// Gets a reference to the create album view.
+    /// </summary>
+    /// <remarks>
+    /// <para>Author: Jim Counts</para>
+    /// </remarks>
+    public CreateAlbumUserControl CreateAlbumView
+    {
+      get
+      {
+        return this.createAlbumScreen;
+      }
+    }
+
+    /// <summary>
+    /// Gets a reference to the Opening View.
+    /// </summary>
+    /// <remarks>
+    /// <para>Author: Jim Counts</para>
+    /// </remarks>
+    public HomeScreenUserControl HomeView
+    {
+      get
+      {
+        return this.homeScreen;
+      }
+    }
+
+    /// <summary>
+    /// Gets or sets the previous View.
+    /// </summary>
+    /// <value>
+    /// The previous screen.
+    /// </value>
+    /// <remarks>
+    /// <para>Author: Jim Counts</para>
+    /// </remarks>
+    public UserControl PreviousView { get; protected set; }
+
+    /// <summary>
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// setting the user control screen to whichever it focues on
     /// preCondition: usercontrol screen must be passed int
     /// postCondition: shows the current usercontrol that is being passed in.
     /// </summary>
     /// <param name="screen">The screen to make visible.</param>
-    private void showScreen(UserControl screen)
+    protected void ShowScreen(UserControl screen)
     {
       // Helps prevent flickering by suspending layout during changes.
       panelScreenHolder.SuspendLayout();
+
       // Refresh the albums list if we are showing the home screen.
-      if (screen == homeScreen)
+      if (screen == HomeView)
       {
-        homeScreen.refreshingAlbumViewList(collectors.getAlbums);
+        HomeView.RefreshingAlbumViewList(collectors.getAlbums);
       }
+
       // Can't go back to create album screen so don't allow previous screen to be set to it.
-      if (currentScreen != createAlbumScreen)
+      if (currentScreen != CreateAlbumView)
       {
-        previousScreen = currentScreen;
+        PreviousView = currentScreen;
       }
+
       currentScreen = screen;
-      hideAllScreens();
+      HideAllScreens();
       screen.Visible = true;
+
       // Set the main form focus to the screen. This is important for focusing textboxes.
       currentScreen.Focus();
+
       panelScreenHolder.ResumeLayout();
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// this function is created to hide all the screen that is currently opened
     /// preCondition: None
     /// postCondition: none of the controls will be shown.
     /// </summary>
-    private void hideAllScreens()
+    private void HideAllScreens()
     {
       foreach (Control screen in panelScreenHolder.Controls)
       {
@@ -89,50 +145,50 @@ namespace TheNewPhotoBuddy
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// This adds all of the apps screens to the screen holder panel and attaches all the main 
     /// form event handlers for the screens' events.
     /// preCondition: program is started
     /// postCondition: initialized the control to all the screens that are available in this project.
     /// </summary>
-    private void initializeUIScreens()
+    private void InitializeUIScreens()
     {
-      attachEventsToScreens();
-      this.panelScreenHolder.Controls.Add(homeScreen);
-      this.panelScreenHolder.Controls.Add(albumScreen);
-      this.panelScreenHolder.Controls.Add(createAlbumScreen);
-      hideAllScreens();
+      AttachEventsToScreens();
+      this.panelScreenHolder.Controls.Add(HomeView);
+      this.panelScreenHolder.Controls.Add(AlbumView);
+      this.panelScreenHolder.Controls.Add(CreateAlbumView);
+      HideAllScreens();
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// Attaches all of the event handlers in this form to the various events on 
     /// the apps screens.
     /// preCondition: program is started
     /// postCondition: added the events to all the buttons that are avaialble in the UI
     /// </summary>
-    private void attachEventsToScreens()
+    private void AttachEventsToScreens()
     {
-      homeScreen.CreateButtonEvent +=
+      HomeView.CreateButtonEvent +=
           new HomeScreenUserControl.CreateButtonClicked(CreateButton_Click);
-      homeScreen.AlbumSelectedEvent +=
+      HomeView.AlbumSelectedEvent +=
           new HomeScreenUserControl.AlbumSelectedEventHandler(showSelectedAlbum);
-      createAlbumScreen.CancelEvent +=
+      CreateAlbumView.CancelEvent +=
           new CreateAlbumUserControl.CancelEventHandler(back);
-      createAlbumScreen.ContinueEvent +=
+      CreateAlbumView.ContinueEvent +=
           new CreateAlbumUserControl.ContinueEventHandler(FinishCreateOrEditAlbum);
-      albumScreen.BackEvent +=
+      AlbumView.BackEvent +=
           new AlbumViewUserControl.BackEventHandler(backToHomeScreen);
-      albumScreen.AddPhotosEvent +=
+      AlbumView.AddPhotosEvent +=
           new AlbumViewUserControl.AddPhotosEventHandler(addPhotos);
-      albumScreen.RenameAlbumEvent +=
+      AlbumView.RenameAlbumEvent +=
           new AlbumViewUserControl.RenameAlbumHandler(renameAlbum);
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// Shows an album when the user selects an album name from the list of albums.
     /// preCondition: event button clicked for changing UI
@@ -142,12 +198,12 @@ namespace TheNewPhotoBuddy
     /// <param name="e">The event args.</param>
     private void showSelectedAlbum(object sender, AlbumEventArgs e)
     {
-      albumScreen.CurrentAlbum = (Album)collectors.getAlbums.albumsList[e.TheAlbum.albumID];
-      showScreen(albumScreen);
+      AlbumView.CurrentAlbum = (Album)collectors.getAlbums.albumsList[e.TheAlbum.albumID];
+      ShowScreen(AlbumView);
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// finished create or edit album is used to update the object that is in the album list (hashtable)
     /// and also write the data into xml
@@ -160,9 +216,9 @@ namespace TheNewPhotoBuddy
     /// <param name="e">The event args.</param>
     private void FinishCreateOrEditAlbum(object sender, EventArgs e)
     {
-      string newAlbumName = createAlbumScreen.UserEnteredText;
+      string newAlbumName = CreateAlbumView.UserEnteredText;
       //Creating a new album
-      if (createAlbumScreen.IsCreate)
+      if (CreateAlbumView.IsCreate)
       {
         if (collectors.getAlbums.IsExistingAlbumName(newAlbumName))
         {
@@ -184,15 +240,15 @@ namespace TheNewPhotoBuddy
           "Album name Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
           return;
         }
-        collectors.EditAlbumName(createAlbumScreen.AlbumName, newAlbumName);
+        collectors.EditAlbumName(CreateAlbumView.AlbumName, newAlbumName);
       }
       // Return to the album view screen, showing the current album.
-      albumScreen.CurrentAlbum = (Album)collectors.getAlbums.albumsList[newAlbumName];
-      showScreen(albumScreen);
+      AlbumView.CurrentAlbum = (Album)collectors.getAlbums.albumsList[newAlbumName];
+      ShowScreen(AlbumView);
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// this function is used to rename album when an event to change the album name is clicked.
     /// preCondition : change album name is clicked
@@ -202,15 +258,15 @@ namespace TheNewPhotoBuddy
     /// <param name="e">The event args.</param>
     private void renameAlbum(object sender, EventArgs e)
     {
-      if (albumScreen.CurrentAlbum != null)
+      if (AlbumView.CurrentAlbum != null)
       {
-        createAlbumScreen.ResetCreateForm(false, albumScreen.CurrentAlbum.albumID);
-        showScreen(createAlbumScreen);
+        CreateAlbumView.ResetCreateForm(false, AlbumView.CurrentAlbum.albumID);
+        ShowScreen(CreateAlbumView);
       }
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// addPhotos event is invoked, it will call openDialog for the user to choose all the possible picture type photos.
     /// when OK button is clicked it will call haveUserVerifyAddPhoto function
@@ -228,7 +284,7 @@ namespace TheNewPhotoBuddy
       openFileDialog1.FilterIndex = 1;
       openFileDialog1.RestoreDirectory = true;
       openFileDialog1.Multiselect = false;
-      openFileDialog1.Title = "Add to " + albumScreen.CurrentAlbum.albumID + " - Photo Buddy";
+      openFileDialog1.Title = "Add to " + AlbumView.CurrentAlbum.albumID + " - Photo Buddy";
 
       DialogResult result = openFileDialog1.ShowDialog();
       if (result == System.Windows.Forms.DialogResult.OK)
@@ -239,11 +295,11 @@ namespace TheNewPhotoBuddy
       {
         // Do nothing as the user canceled
       }
-      albumScreen.refreshingAlbumPhotosViewList();
+      AlbumView.refreshingAlbumPhotosViewList();
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// have User verify add photo takes in photo file name string
     /// and instantiated the uploadPhoto object.
@@ -270,7 +326,7 @@ namespace TheNewPhotoBuddy
         // User approved so upload the photo to the album.
         string name = uploadPhoto.PhotoName;
         string file = photoFilename;
-        collectors.AddPhotoToAlbum(albumScreen.CurrentAlbum.albumID, name, file);
+        collectors.AddPhotoToAlbum(AlbumView.CurrentAlbum.albumID, name, file);
       }
       else
       {
@@ -280,7 +336,7 @@ namespace TheNewPhotoBuddy
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// back button function takes in a event.
     /// when back button is clicked, it will try to return to the previous page
@@ -292,18 +348,18 @@ namespace TheNewPhotoBuddy
     /// <param name="e"></param>
     private void back(object sender, EventArgs e)
     {
-      if (previousScreen != null)
+      if (PreviousView != null)
       {
-        showScreen(previousScreen);
+        ShowScreen(PreviousView);
       }
       else
       {
-        showScreen(homeScreen);
+        ShowScreen(HomeView);
       }
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// Back to Home screen,
     /// when Photobuddy button is clicked, this method will get called
@@ -315,11 +371,11 @@ namespace TheNewPhotoBuddy
     /// <param name="e"></param>
     private void backToHomeScreen(object sender, EventArgs e)
     {
-      showScreen(homeScreen);
+      ShowScreen(HomeView);
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// Handles the create new album event.
     /// </summary>
@@ -327,12 +383,12 @@ namespace TheNewPhotoBuddy
     /// <param name="e">The event args.</param>
     private void CreateButton_Click(object sender, EventArgs e)
     {
-      createAlbumScreen.ResetCreateForm(true, "");
-      showScreen(createAlbumScreen);
+      CreateAlbumView.ResetCreateForm(true, "");
+      ShowScreen(CreateAlbumView);
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// this is change even color
     /// when mouse is hoovered on top of the Photo Buddy label.
@@ -346,7 +402,7 @@ namespace TheNewPhotoBuddy
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// this is change even color
     /// when mouse is hoovered away from the object
@@ -360,7 +416,7 @@ namespace TheNewPhotoBuddy
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// this method is showing the message box when photobuddy is clicked
     /// at the home screen (mainUserControl) if the user is on the homescreen. 
@@ -372,13 +428,13 @@ namespace TheNewPhotoBuddy
     /// <param name="e">The event args.</param>
     private void AppNameLabel_Click(object sender, EventArgs e)
     {
-      if (currentScreen == homeScreen)
+      if (currentScreen == HomeView)
       {
         MessageBox.Show("Photo Buddy by GOLD RUSH\n", Strings.AppName, MessageBoxButtons.OK);
         return;
       }
-      previousScreen = null;
-      showScreen(homeScreen);
+      PreviousView = null;
+      ShowScreen(HomeView);
     }
   }
 }
