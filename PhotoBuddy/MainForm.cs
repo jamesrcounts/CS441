@@ -1,7 +1,7 @@
 ﻿/***********************************************************************************
  * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
- * Modified date: Oct 17 2011
+ * Modified date: Oct 18 2011
  * Description: program start up forms, which gets inherited from multiple usercontrols
  * 
  ************************************************************************************/
@@ -21,10 +21,20 @@ namespace TheNewPhotoBuddy
     public static Collectors collectors = new Collectors();
 
     // The different screens(or views) of the application.
+    /// <summary>
+    /// The Opening View shows a list of albums; allows user to create new albums.
+    /// </summary>
     private readonly HomeScreenUserControl homeScreen = new HomeScreenUserControl();
+
+    /// <summary>
+    /// The Album View shows list of photos in album; allows new photos to be added.
+    /// </summary>
     private readonly AlbumViewUserControl albumScreen = new AlbumViewUserControl();
+
+    /// <summary>
+    /// The Create Album View allows user to name new albums.
+    /// </summary>
     private readonly CreateAlbumUserControl createAlbumScreen = new CreateAlbumUserControl();
-    private UserControl currentScreen;
 
     /// <summary>
     /// Author(s): Miguel Gonzales and Andrea Tan
@@ -35,8 +45,8 @@ namespace TheNewPhotoBuddy
     {
       InitializeComponent();
       InitializeUIScreens();
-      currentScreen = HomeView;
-      ShowScreen(currentScreen);
+      CurrentView = HomeView;
+      ShowScreen(CurrentView);
       // Set the newAlbumName of the form
       this.Text = Strings.AppName;
     }
@@ -68,6 +78,17 @@ namespace TheNewPhotoBuddy
         return this.createAlbumScreen;
       }
     }
+
+    /// <summary>
+    /// Gets or sets a reference to the current screen.
+    /// </summary>
+    /// <value>
+    /// The current screen.
+    /// </value>
+    /// <remarks>
+    /// <para>Author: Jim Counts</para>
+    /// </remarks>
+    public UserControl CurrentView { get; protected set; }
 
     /// <summary>
     /// Gets a reference to the Opening View.
@@ -114,17 +135,17 @@ namespace TheNewPhotoBuddy
       }
 
       // Can't go back to create album screen so don't allow previous screen to be set to it.
-      if (currentScreen != CreateAlbumView)
+      if (CurrentView != CreateAlbumView)
       {
-        PreviousView = currentScreen;
+        PreviousView = CurrentView;
       }
 
-      currentScreen = screen;
+      CurrentView = screen;
       HideAllScreens();
       screen.Visible = true;
 
       // Set the main form focus to the screen. This is important for focusing textboxes.
-      currentScreen.Focus();
+      CurrentView.Focus();
 
       panelScreenHolder.ResumeLayout();
     }
@@ -428,7 +449,7 @@ namespace TheNewPhotoBuddy
     /// <param name="e">The event args.</param>
     private void AppNameLabel_Click(object sender, EventArgs e)
     {
-      if (currentScreen == HomeView)
+      if (CurrentView == HomeView)
       {
         MessageBox.Show("Photo Buddy by GOLD RUSH\n", Strings.AppName, MessageBoxButtons.OK);
         return;

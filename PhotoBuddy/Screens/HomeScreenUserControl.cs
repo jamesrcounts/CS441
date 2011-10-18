@@ -9,13 +9,15 @@
  * 
  ************************************************************************************/
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using TheNewPhotoBuddy.BussinessRule;
-using TheNewPhotoBuddy.EventObjects;
 using TheNewPhotoBuddy.Controls;
+using TheNewPhotoBuddy.EventObjects;
 
 namespace TheNewPhotoBuddy.Screens
 {
+  [DebuggerDisplay("{DisplayName}")]
     public partial class HomeScreenUserControl : UserControl, IScreen
     {
         string displayName;

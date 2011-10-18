@@ -153,6 +153,25 @@ namespace PhotoBuddy.Tests
     }
 
     /// <summary>
+    /// Sets the current view when showing view.
+    /// </summary>
+    /// <remarks>
+    /// <para>Author: Jim Counts</para>
+    /// </remarks>
+    [TestMethod]
+    public void SetCurrentViewWhenShowingView()
+    {
+      // Arrange
+      var target = new MainFormAccessor();
+
+      // Act
+      target.ShowScreenAccessor(target.AlbumView);
+
+      // Assert
+      Assert.AreEqual(target.CurrentView, target.AlbumView);
+    }
+
+    /// <summary>
     /// Provides unit tests with methods to call protected <see cref="MainForm"/> methods directly.
     /// </summary>
     /// <remarks>

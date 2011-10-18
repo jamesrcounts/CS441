@@ -9,11 +9,13 @@
  ************************************************************************************/
 
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace TheNewPhotoBuddy.Screens
 {
-    public partial class CreateAlbumUserControl : UserControl, IScreen
+  [DebuggerDisplay("{DisplayName}")]
+  public partial class CreateAlbumUserControl : UserControl, IScreen
     {
         string displayName;
         string albumName;

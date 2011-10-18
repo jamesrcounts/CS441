@@ -930,6 +930,14 @@
             <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.CreateButton_Click(System.Object,System.EventArgs)"/>
             </summary>
         </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.CurrentViewGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.CurrentView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.CurrentViewSetUserControl">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.CurrentView"/>
+            </summary>
+        </member>
         <member name="P:TheNewPhotoBuddy.Moles.MMainForm.DisposeBoolean">
             <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.Dispose(System.Boolean)"/>
             </summary>
@@ -1019,6 +1027,14 @@
         </member>
         <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.CreateButton_ClickObjectEventArgs">
             <summary>Sets the mole of <see cref="M:TheNewPhotoBuddy.MainForm.CreateButton_Click(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.CurrentViewGet">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.CurrentView"/>
+            </summary>
+        </member>
+        <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.CurrentViewSetUserControl">
+            <summary>Sets the mole of <see cref="P:TheNewPhotoBuddy.MainForm.CurrentView"/>
             </summary>
         </member>
         <member name="P:TheNewPhotoBuddy.Moles.MMainForm.AllInstances.DisposeBoolean">

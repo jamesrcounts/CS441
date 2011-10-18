@@ -9,15 +9,17 @@
  ************************************************************************************/
 
 using System;
+using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 using TheNewPhotoBuddy.BussinessRule;
-using TheNewPhotoBuddy.Controls;
-using System.Drawing;
 using TheNewPhotoBuddy.Common.CommonClass;
+using TheNewPhotoBuddy.Controls;
 
 namespace TheNewPhotoBuddy.Screens
 {
-    public partial class AlbumViewUserControl : UserControl, IScreen
+  [DebuggerDisplay("{DisplayName}")]
+  public partial class AlbumViewUserControl : UserControl, IScreen
     {
         string displayName;
 
