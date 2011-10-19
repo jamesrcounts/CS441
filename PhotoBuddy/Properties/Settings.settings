@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="PhotosFolderPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">.\PhotoBuddy</Value>
+      <Value Profile="(Default)">%APPDATA%\PhotoBuddy</Value>
     </Setting>
     <Setting Name="DataFilePath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">.\PhotoBuddyData.xml</Value>
+      <Value Profile="(Default)">%APPDATA%\PhotoBuddy\PhotoBuddyData.xml</Value>
     </Setting>
   </Settings>
 </SettingsFile>

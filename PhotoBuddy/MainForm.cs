@@ -192,20 +192,13 @@ namespace TheNewPhotoBuddy
     /// </summary>
     private void AttachEventsToScreens()
     {
-      HomeView.CreateButtonEvent +=
-          new HomeScreenUserControl.CreateButtonClicked(CreateButton_Click);
-      HomeView.AlbumSelectedEvent +=
-          new HomeScreenUserControl.AlbumSelectedEventHandler(showSelectedAlbum);
-      CreateAlbumView.CancelEvent +=
-          new CreateAlbumUserControl.CancelEventHandler(back);
-      CreateAlbumView.ContinueEvent +=
-          new CreateAlbumUserControl.ContinueEventHandler(FinishCreateOrEditAlbum);
-      AlbumView.BackEvent +=
-          new AlbumViewUserControl.BackEventHandler(backToHomeScreen);
-      AlbumView.AddPhotosEvent +=
-          new AlbumViewUserControl.AddPhotosEventHandler(addPhotos);
-      AlbumView.RenameAlbumEvent +=
-          new AlbumViewUserControl.RenameAlbumHandler(renameAlbum);
+      HomeView.CreateButtonEvent += CreateButton_Click;
+      HomeView.AlbumSelectedEvent += showSelectedAlbum;
+      CreateAlbumView.CancelEvent += back;
+      CreateAlbumView.ContinueEvent += FinishCreateOrEditAlbum;
+      AlbumView.BackEvent += backToHomeScreen;
+      AlbumView.AddPhotosEvent += addPhotos;
+      AlbumView.RenameAlbumEvent +=          renameAlbum;
     }
 
     /// <summary>
