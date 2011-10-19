@@ -87,7 +87,7 @@
             this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = false;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.HandleCancelButtonClick);
             // 
             // continueButton
             // 
@@ -104,7 +104,7 @@
             this.continueButton.TabIndex = 3;
             this.continueButton.Text = "Continue";
             this.continueButton.UseVisualStyleBackColor = false;
-            this.continueButton.Click += new System.EventHandler(this.continueButton_Click);
+            this.continueButton.Click += new System.EventHandler(this.HandleContinueButtonClick);
             // 
             // albumNameTextBox
             // 
@@ -115,7 +115,7 @@
             this.albumNameTextBox.Name = "albumNameTextBox";
             this.albumNameTextBox.Size = new System.Drawing.Size(241, 35);
             this.albumNameTextBox.TabIndex = 0;
-            this.albumNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.albumNameTextBox_KeyDown);
+            this.albumNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleAlbumNameTextBoxKeyDown);
             // 
             // createAlbumLabel
             // 

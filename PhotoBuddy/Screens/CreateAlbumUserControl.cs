@@ -1,155 +1,228 @@
-﻿/***********************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
- * Date: Sept 28 2011
- * Modified date: Oct 9 2011
- * Description: this class is responsible for the use control in create album which 
- *              is called from mainForm to do the state changes.
- *             
- * 
- ************************************************************************************/
-
-using System;
-using System.Diagnostics;
-using System.Windows.Forms;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="CreateAlbumUserControl.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+// Author(s): Miguel Gonzales and Andrea Tan
+// Date: Sept 28 2011
+// Modified date: Oct 9 2011
+// Description: this class is responsible for the use control in create album which 
+//             is called from mainForm to do the state changes.
+//-----------------------------------------------------------------------
 namespace TheNewPhotoBuddy.Screens
 {
-  [DebuggerDisplay("{DisplayName}")]
-  public partial class CreateAlbumUserControl : UserControl, IScreen
+    using System;
+    using System.Diagnostics;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// The create album view
+    /// </summary>
+    [DebuggerDisplay("{DisplayName}")]
+    public sealed partial class CreateAlbumUserControl : UserControl, IScreen
     {
-        string displayName;
-        string albumName;
-        private string userEnteredText;
-        // Indicates whether this control is used to created an ablum (true) or edit an album.
-        bool isCreate = true;
-
-        public string AlbumName { get { return albumName; } }
-        public string UserEnteredText { get { return userEnteredText; } }
-        public bool IsCreate { get { return isCreate; } }
-
-        public virtual string DisplayName
-        {
-            get { return displayName; }
-            set { displayName = value; }
-        }
-
-        // Create the events for this user control.
-        public delegate void CancelEventHandler(object sender, EventArgs e);
-        // add an event of the delegate type
-        public event CancelEventHandler CancelEvent;
-
-        public delegate void ContinueEventHandler(object sender, EventArgs e);
-        // add an event of the delegate type
-        public event ContinueEventHandler ContinueEvent;
-
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// Contructor for Create album user control.
+        /// Initializes a new instance of the <see cref="CreateAlbumUserControl"/> class.
         /// </summary>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         public CreateAlbumUserControl()
         {
             InitializeComponent();
-            this.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.displayName = "Create New Album";
-            this.createHeaderLabel.Text = this.displayName;
+            this.Dock = DockStyle.Fill;
+            this.DisplayName = "Create New Album";
+            this.createHeaderLabel.Text = this.DisplayName;
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// Handles the cancel button click.
+        /// Defines a delegate to handle the Cancel Event.
         /// </summary>
-        /// <param name="sender">The cancel button.</param>
-        /// <param name="e">the event args.</param>
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            // raise the create event
-            CancelEvent(this, e);
-        }
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        public delegate void CancelEventHandler(object sender, EventArgs e);
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// this function is made to check when event create album is invoked
-        /// the input name must not be empty otherwise there will be a message warning
-        /// showing that the label is empty and must be change.
-        /// preCondition: input label must not be empty string
-        /// postCondition: if the album name has not been created then simply continue and
-        ///                eventually get added to album list. otherwise it will do nothing.
+        /// Defines a delegate to handle the Continue Event.
         /// </summary>
-        /// <param name="sender">Continue button</param>
-        /// <param name="e">the event args.</param>
-        private void continueButton_Click(object sender, EventArgs e)
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        public delegate void ContinueEventHandler(object sender, EventArgs e);
+
+        /// <summary>
+        /// Occurs when the user cancels album create/edit
+        /// </summary>
+        public event CancelEventHandler CancelEvent;
+
+        /// <summary>
+        /// Occurs when user decides to complete the create/edit action.
+        /// </summary>
+        public event ContinueEventHandler ContinueEvent;
+
+        /// <summary>
+        /// Gets the name of the album.
+        /// </summary>
+        /// <value>
+        /// The name of the album.
+        /// </value>
+        public string AlbumName { get; private set; }
+
+        /// <summary>
+        /// Gets the control managed by this view.
+        /// </summary>
+        /// <remarks>Author: Jim Counts</remarks>
+        public UserControl Control
         {
-            if (albumNameTextBox.Text == "")
+            get
             {
-                MessageBox.Show("Album name must not be empty!", "Empty Album ID Issue", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return this;
             }
-            if (!isCreate) 
-            {
-                // Renaming album - user entered the existing name so cancel the rename
-                if (albumName == albumNameTextBox.Text)
-                {
-                    CancelEvent(this, e);
-                    return;
-                }
-            }
-            // Store the text that the user entered.
-            userEnteredText = albumNameTextBox.Text;
-            // raise the create event
-            ContinueEvent(this, e);
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// reset Create form method which takes a boolean and a string album name.
+        /// Gets the user entered text.
+        /// </summary>
+        public string UserEnteredText { get; private set; }
+
+        /// <summary>
+        /// Gets a value indicating whether to use this control to create an album.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if album creation is needed; otherwise, <c>false</c> if editing is needed.
+        /// </value>
+        public bool InCreateMode { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the display name.
+        /// </summary>
+        /// <value>
+        /// The display name.
+        /// </value>
+        public string DisplayName { get; set; }
+
+        /// <summary>
+        /// Resets the form.
+        /// </summary>
+        /// <param name="isCreateAlbum">Bool value indicates creating a new object or editing existing.</param>
+        /// <param name="theAlbumName">Name of the album if editing.</param>
+        /// <remarks>
+        ///   <para>Author(s): Miguel Gonzales and Andrea Tan</para>
+        ///   <para>reset Create form method which takes a boolean and a string album name.
         /// this function is mainly used to set focus on object label of what user control
         /// is currently at and set the label name for it.
         /// depending if it's on create it will assigned a different kind of text message,
         /// and if it's on the renaming it will use the same usercontrol but change the prompt message for it.
-        /// 
         /// preCondition: 2 parameters string and bool
-        /// postCondition: display a necessary label depending of what state it is currently in.
-        /// </summary>
-        /// <param name="isCreateAlbum">Bool value indicates creating a new object or editing existing.</param>
-        /// <param name="theAlbumName">Name of the album if editing.</param>
-        public void ResetCreateForm(bool isCreateAlbum, string theAlbumName)
+        /// postCondition: display a necessary label depending of what state it is currently in.</para>
+        /// </remarks>
+        public void ResetForm(bool isCreateAlbum, string theAlbumName)
         {
-            albumName = theAlbumName;
-            this.isCreate = isCreateAlbum;
-            if (isCreate)
-            {// Creating a new album.
+            this.AlbumName = theAlbumName;
+            this.InCreateMode = isCreateAlbum;
+            if (this.InCreateMode)
+            {
+                // Creating a new album.
                 createAlbumLabel.Text = "Please enter the name of the new album:";
-                albumNameTextBox.Text = "";
-                this.createHeaderLabel.Text = this.displayName;
+                albumNameTextBox.Text = string.Empty;
+                this.createHeaderLabel.Text = this.DisplayName;
             }
             else
-            {// Editing an existing album.
+            {
+                // Editing an existing album.
                 albumNameTextBox.Text = theAlbumName;
-                createAlbumLabel.Text = "Please enter the new album name for: " + albumName;
+                createAlbumLabel.Text = "Please enter the new album name for: " + this.AlbumName;
                 this.createHeaderLabel.Text = "Edit Album: " + theAlbumName;
             }
+
             albumNameTextBox.Focus();
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// Checks to see if the user pressed the return key and if so it executes the continue button
-        /// click event.
+        /// Shows the view.
+        /// </summary>
+        /// <param name="caller">The caller.</param>
+        /// <remarks>Author: Jim Counts</remarks>
+        public void ShowView(MainForm caller)
+        {
+            caller.CurrentView = this;
+            this.Visible = true;
+
+            // Important for focusing text boxes.
+            this.Focus();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the cancelButton control.
+        /// </summary>
+        /// <param name="sender">The cancel button.</param>
+        /// <param name="e">the event args.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleCancelButtonClick(object sender, EventArgs e)
+        {
+            // raise the create event
+            this.CancelEvent(this, e);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the continueButton control.
+        /// </summary>
+        /// <param name="sender">Continue button</param>
+        /// <param name="e">the event args.</param>
+        /// <remarks>
+        /// <para>Author(s): Miguel Gonzales and Andrea Tan</para>
+        /// <para>this function is made to check when event create album is invoked
+        /// the input name must not be empty otherwise there will be a message warning
+        /// showing that the label is empty and must be change.
+        /// preCondition: input label must not be empty string
+        /// postCondition: if the album name has not been created then simply continue and
+        /// eventually get added to album list. otherwise it will do nothing.</para>
+        /// </remarks>
+        private void HandleContinueButtonClick(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(albumNameTextBox.Text))
+            {
+                MessageBox.Show(
+                    "Album name must not be empty!",
+                    "Empty Album ID Issue",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!this.InCreateMode)
+            {
+                // Renaming album - user entered the existing name so cancel the rename
+                if (this.AlbumName == albumNameTextBox.Text)
+                {
+                    this.CancelEvent(this, e);
+                    return;
+                }
+            }
+
+            // Store the text that the user entered.
+            this.UserEnteredText = albumNameTextBox.Text;
+
+            // raise the create event
+            this.ContinueEvent(this, e);
+        }
+
+        /// <summary>
+        /// Handles the KeyDown event of the albumNameTextBox control.
         /// </summary>
         /// <param name="sender">The album name textbox.</param>
         /// <param name="e">the event args.</param>
-        private void albumNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        /// <remarks>
+        ///   <para>Author(s): Miguel Gonzales and Andrea Tan</para>
+        ///   <para>Checks to see if the user pressed the return key and if so it executes the continue button
+        /// click event.</para>
+        /// </remarks>
+        private void HandleAlbumNameTextBoxKeyDown(object sender, KeyEventArgs e)
         {
             // See if the user pressed the enter key.
             if (e.KeyCode == Keys.Enter)
             {
-                continueButton_Click(sender, e);
+                this.HandleContinueButtonClick(sender, e);
             }
         }
     }

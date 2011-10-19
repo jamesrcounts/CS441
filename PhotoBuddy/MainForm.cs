@@ -92,7 +92,7 @@ namespace TheNewPhotoBuddy
     /// <remarks>
     /// <para>Author: Jim Counts</para>
     /// </remarks>
-    public UserControl CurrentView { get; protected set; }
+    public UserControl CurrentView { get;  set; }
 
     /// <summary>
     /// Gets a reference to the Opening View.
@@ -172,7 +172,6 @@ namespace TheNewPhotoBuddy
         PreviousView = CurrentView;
       }
 
-      CurrentView = viewToShow.Control;
       HideAllViews();
       viewToShow.ShowView(this);
 
@@ -259,7 +258,7 @@ namespace TheNewPhotoBuddy
     {
       string newAlbumName = CreateAlbumView.UserEnteredText;
       //Creating a new album
-      if (CreateAlbumView.IsCreate)
+      if (CreateAlbumView.InCreateMode)
       {
         if (model.Albums.IsExistingAlbumName(newAlbumName))
         {
@@ -301,7 +300,7 @@ namespace TheNewPhotoBuddy
     {
       if (AlbumView.CurrentAlbum != null)
       {
-        CreateAlbumView.ResetCreateForm(false, AlbumView.CurrentAlbum.albumID);
+        CreateAlbumView.ResetForm(false, AlbumView.CurrentAlbum.albumID);
         ShowView(CreateAlbumView as IScreen);
       }
     }
@@ -424,7 +423,7 @@ namespace TheNewPhotoBuddy
     /// <param name="e">The event args.</param>
     private void CreateButton_Click(object sender, EventArgs e)
     {
-      CreateAlbumView.ResetCreateForm(true, "");
+      CreateAlbumView.ResetForm(true, "");
       ShowView((IScreen)CreateAlbumView);
     }
 
