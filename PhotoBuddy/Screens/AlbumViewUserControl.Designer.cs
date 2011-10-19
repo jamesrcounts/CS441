@@ -117,7 +117,7 @@
             this.renameAlbumButton.TabIndex = 1;
             this.renameAlbumButton.Text = "Rename Album";
             this.renameAlbumButton.UseVisualStyleBackColor = false;
-            this.renameAlbumButton.Click += new System.EventHandler(this.renameAlbumButton_Click);
+            this.renameAlbumButton.Click += new System.EventHandler(this.HandleRenameAlbumButtonClick);
             // 
             // AlbumsLabel
             // 
@@ -157,7 +157,7 @@
             this.AddPhotosButton.TabIndex = 0;
             this.AddPhotosButton.Text = "Add Photos";
             this.AddPhotosButton.UseVisualStyleBackColor = false;
-            this.AddPhotosButton.Click += new System.EventHandler(this.AddPhotosButton_Click);
+            this.AddPhotosButton.Click += new System.EventHandler(this.HandleAddPhotosButtonClick);
             // 
             // backButton
             // 
@@ -174,7 +174,7 @@
             this.backButton.TabIndex = 1;
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = false;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.backButton.Click += new System.EventHandler(this.HandleBackButtonClick);
             // 
             // photosFlowPanel
             // 
@@ -186,8 +186,8 @@
             this.photosFlowPanel.Name = "photosFlowPanel";
             this.photosFlowPanel.Size = new System.Drawing.Size(299, 200);
             this.photosFlowPanel.TabIndex = 2;
-            this.photosFlowPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.photosFlowPanel_MouseClick);
-            this.photosFlowPanel.MouseEnter += new System.EventHandler(this.photosFlowPanel_MouseEnter);
+            this.photosFlowPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.HandlePhotosFlowPanelMouseClick);
+            this.photosFlowPanel.MouseEnter += new System.EventHandler(this.HandlePhotosFlowPanelMouseEnter);
             // 
             // AlbumViewUserControl
             // 

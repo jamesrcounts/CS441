@@ -1,197 +1,234 @@
-﻿/***********************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
- * Date: Sept 28 2011
- * Modified date: Oct 9 2011
- * Description: this class is responsible for the use control in album view which 
- *              is called from mainForm to do the state changes.
- *             
- * 
- ************************************************************************************/
-
-using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Windows.Forms;
-using TheNewPhotoBuddy.BussinessRule;
-using TheNewPhotoBuddy.Common.CommonClass;
-using TheNewPhotoBuddy.Controls;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="AlbumViewUserControl.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+// Author(s): Miguel Gonzales and Andrea Tan
+// Date: Sept 28 2011
+// Modified date: Oct 19 2011
+// Description: this class is responsible for the use control in album view which 
+//              is called from mainForm to do the state changes.
+//-----------------------------------------------------------------------
 namespace TheNewPhotoBuddy.Screens
 {
+  using System;
+  using System.Diagnostics;
+  using System.Drawing;
+  using System.Windows.Forms;
+  using TheNewPhotoBuddy.BussinessRule;
+  using TheNewPhotoBuddy.Common.CommonClass;
+  using TheNewPhotoBuddy.Controls;
+
+  /// <summary>
+  /// Displays an album
+  /// </summary>
   [DebuggerDisplay("{DisplayName}")]
   public partial class AlbumViewUserControl : UserControl, IScreen
+  {
+    /// <summary>
+    /// The current album.
+    /// </summary>
+    private Album currentAlbum;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AlbumViewUserControl"/> class.
+    /// </summary>
+    /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
+    public AlbumViewUserControl()
     {
-        string displayName;
-
-        private Album currentAlbum;
-        public Album CurrentAlbum
-        {
-            get { return currentAlbum; }
-            set
-            {
-                currentAlbum = value;
-                if (currentAlbum != null)
-                {
-                    labelAlbumName.Text = currentAlbum.albumID;
-                    refreshingAlbumPhotosViewList();
-                    //photosFlowPanel.Focus();
-                }
-            }
-        }
-
-        public virtual string DisplayName
-        {
-            get { return displayName; }
-            set { displayName = value; }
-        }
-
-        // Author(s): Miguel Gonzales & Andrea Tan
-        // Date: Sept 28 2011
-        // Modified date: Oct 9 2011
-
-        // Create the events for this user control.
-
-        //public event CancelEventHandler CancelEvent;
-        public delegate void BackEventHandler(object sender, EventArgs e);
-        // add an event of the delegate type
-        public event BackEventHandler BackEvent;
-        //public event CancelEventHandler CancelEvent;
-        public delegate void RenameAlbumHandler(object sender, EventArgs e);
-        // add an event of the delegate type
-        public event RenameAlbumHandler RenameAlbumEvent;
-        //public event CancelEventHandler CancelEvent;
-        public delegate void AddPhotosEventHandler(object sender, EventArgs e);
-        // add an event of the delegate type
-        public event AddPhotosEventHandler AddPhotosEvent;
-
-        /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// Album View user control constructor.
-        /// </summary>
-        public AlbumViewUserControl()
-        {
-            InitializeComponent();
-            // Set the DockStyle of the UserControl to Fill.
-            this.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.displayName = "Album";
-        }
-
-        /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// Handles the click of the back button.
-        /// </summary>
-        /// <param name="sender">Back button</param>
-        /// <param name="e">event args</param>
-        private void backButton_Click(object sender, EventArgs e)
-        {
-            // raise the create event
-            BackEvent(this, e);
-        }
-
-        /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// Handles the click of the add photos button.
-        /// </summary>
-        /// <param name="sender">Add photos button,</param>
-        /// <param name="e">the event args.</param>
-        private void AddPhotosButton_Click(object sender, EventArgs e)
-        {
-            AddPhotosEvent(this, e);
-        }
-
-        /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// Handles the click of the rename album button.
-        /// </summary>
-        /// <param name="sender">Rename album button</param>
-        /// <param name="e">the event args.</param>
-        private void renameAlbumButton_Click(object sender, EventArgs e)
-        {
-            RenameAlbumEvent(this, e);
-        }
-
-        /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// Handles the click of the name of a photo.
-        /// </summary>
-        /// <param name="sender">The photo name label.</param>
-        /// <param name="e">the event args.</param>
-        private void photo_Click(object sender, EventArgs e)
-        {
-            //Label photoLabel = sender as Label;
-            PictureBox uc = sender as PictureBox;
-            // Show the photo that the user clicked on.
-            ViewPhotoForm photoForm = new ViewPhotoForm(currentAlbum, (Photo)uc.Tag);
-            photoForm.ShowDialog();
-        }
-
-        /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// Refreshes the list of photos in the current album.
-        /// </summary>
-        public void refreshingAlbumPhotosViewList()
-        {
-            if (currentAlbum != null)
-            {
-                // Clear out the photos is the panel.
-                photosFlowPanel.Controls.Clear();
-                if (currentAlbum.photoObjects.photoList.Count != 0)
-                {
-                    foreach (Photo d in currentAlbum.photoObjects.photoList.Values)
-                    {
-                        Photo tempPhoto = (Photo)d;
-
-                        // OLD PHOTO NAME LABEL CODE WHEN PHOTOS WERE DISPLAYED AS TEXT.
-                        // Create a new text label for each photo in the album
-                        //PB_ClickLabel label = new PB_ClickLabel();  
-                        //label.Text = tempAlbum.display_name;
-                        //label.Tag = tempAlbum;
-                        ////wire up the click event handler
-                        //label.Click += new EventHandler(photo_Click);
-
-                        // Create a thumbnail control for the current photo
-                        PB_ThumbNailUserControl thumb = new PB_ThumbNailUserControl();
-                        thumb.DiaplayName = tempPhoto.display_name;
-                        // Store the photo object in the thumbnail tag.
-                        // thumbnail is a public property to set the picturebox on the thumbnailUserControl.
-                        thumb.thumbnail.Tag = tempPhoto;
-                        // Get the photo from file.
-                        thumb.thumbnail.Image = Image.FromFile(Constants.PhotosFolderPath + tempPhoto.copiedPath);
-                        // Wire the click event to the picturebox
-                        thumb.thumbnail.Click += new EventHandler(photo_Click);
-                        // Add the thumb control to the flow panel.
-                        photosFlowPanel.Controls.Add(thumb);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// Flow panel needs to be focused in order to scroll using the mouse wheel and that 
-        /// is what this function does.
-        /// </summary>
-        private void photosFlowPanel_MouseEnter(object sender, EventArgs e)
-        {
-            photosFlowPanel.Focus();
-        }
-
-        /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// Flow panel needs to be focused in order to scroll using the mouse wheel and that 
-        /// is what this function does.
-        /// </summary>
-        private void photosFlowPanel_MouseClick(object sender, MouseEventArgs e)
-        {
-            photosFlowPanel.Focus();
-        }
+      InitializeComponent();
+      this.Dock = DockStyle.Fill;
+      this.DisplayName = "Album";
     }
+
+    /// <summary>
+    /// Defines a delegate to handle "Rename Album" events.
+    /// </summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    /// <remarks>Rename Album events are typically fired by the rename album button, which indicates the user wants to rename
+    /// an album.</remarks>
+    public delegate void RenameAlbumHandler(object sender, EventArgs e);
+
+    /// <summary>
+    /// Defines a delegate to handle "Back" events.
+    /// </summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    /// <remarks>Back events are typically fired by back buttons, which return the user to the previous view.</remarks>
+    public delegate void BackEventHandler(object sender, EventArgs e);
+
+    /// <summary>
+    /// Defines a delegate to handle "Add Photo" events.
+    /// </summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    /// <remarks>Add Photos events are typically fired by the Add Photos button, which indicates the user wants to add photos.</remarks>
+    public delegate void AddPhotosEventHandler(object sender, EventArgs e);
+
+    /// <summary>
+    /// Occurs when the back button is clicked.
+    /// </summary>
+    public event BackEventHandler BackEvent;
+
+    /// <summary>
+    /// Occurs when the rename album button is clicked.
+    /// </summary>
+    public event RenameAlbumHandler RenameAlbumEvent;
+
+    /// <summary>
+    /// Occurs when the add photo button is clicked.
+    /// </summary>
+    public event AddPhotosEventHandler AddPhotosEvent;
+
+    /// <summary>
+    /// Gets or sets the current album.
+    /// </summary>
+    /// <value>
+    /// The current album.
+    /// </value>
+    public Album CurrentAlbum
+    {
+      get
+      {
+        return this.currentAlbum;
+      }
+
+      set
+      {
+        this.currentAlbum = value;
+        if (this.currentAlbum != null)
+        {
+          labelAlbumName.Text = this.currentAlbum.albumID;
+          this.RefreshPhotoList();
+        }
+      }
+    }
+
+    /// <summary>
+    /// Gets or sets the display name.
+    /// </summary>
+    /// <value>
+    /// The display name.
+    /// </value>
+    public virtual string DisplayName { get; set; }
+    
+    /// <summary>
+    /// Refreshes the list of photos in the current album.
+    /// </summary>
+    /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
+    public void RefreshPhotoList()
+    {
+      if (this.currentAlbum == null)
+      {
+        return;
+      }
+
+      // Clear out the photos is the panel.
+      photosFlowPanel.Controls.Clear();
+      if (this.currentAlbum.photoObjects.photoList.Count == 0)
+      {
+        return;
+      }
+
+      foreach (Photo photo in this.currentAlbum.photoObjects.photoList.Values)
+      {
+        // Create a thumbnail control for the current photo
+        PB_ThumbNailUserControl thumb = new PB_ThumbNailUserControl();
+        thumb.DiaplayName = photo.display_name;
+
+        // Store the photo object in the thumbnail tag.
+        // thumbnail is a public property to set the picturebox on the thumbnailUserControl.
+        thumb.thumbnail.Tag = photo;
+
+        // Get the photo from file.
+        thumb.thumbnail.Image = Image.FromFile(Constants.PhotosFolderPath + photo.copiedPath);
+
+        // Wire the click event to the picturebox
+        thumb.thumbnail.Click += this.HandlePhotoClick;
+
+        // Add the thumb control to the flow panel.
+        photosFlowPanel.Controls.Add(thumb);
+      }
+    }
+
+    /// <summary>
+    /// Handles the Click event of the backButton control.
+    /// </summary>
+    /// <param name="sender">Back button</param>
+    /// <param name="e">event args</param>
+    /// <remarks>
+    /// Author(s): Miguel Gonzales and Andrea Tan
+    /// </remarks>
+    private void HandleBackButtonClick(object sender, EventArgs e)
+    {
+      this.BackEvent(this, e);
+    }
+
+    /// <summary>
+    /// Handles the Click event of the AddPhotosButton control.
+    /// </summary>
+    /// <param name="sender">Add photos button,</param>
+    /// <param name="e">the event args.</param>
+    /// <remarks>
+    /// Author(s): Miguel Gonzales and Andrea Tan
+    /// </remarks>
+    private void HandleAddPhotosButtonClick(object sender, EventArgs e)
+    {
+      this.AddPhotosEvent(this, e);
+    }
+
+    /// <summary>  
+    /// Handles the click of the rename album button.
+    /// </summary>
+    /// <param name="sender">Rename album button</param>
+    /// <param name="e">the event args.</param>
+    /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
+    private void HandleRenameAlbumButtonClick(object sender, EventArgs e)
+    {
+      this.RenameAlbumEvent(this, e);
+    }
+
+    /// <summary>
+    /// Show the photo that the user clicked on.
+    /// </summary>
+    /// <param name="sender">The photo name label.</param>
+    /// <param name="e">the event args.</param>
+    /// <remarks>
+    /// Author(s): Miguel Gonzales and Andrea Tan
+    /// </remarks>
+    private void HandlePhotoClick(object sender, EventArgs e)
+    {
+      PictureBox uc = sender as PictureBox;
+      ViewPhotoForm photoForm = new ViewPhotoForm(this.currentAlbum, (Photo)uc.Tag);
+      photoForm.ShowDialog();
+    }
+    
+    /// <summary>
+    /// Gives focus to the flow panel on mouse enter.
+    /// </summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+    /// <remarks>
+    ///   <para>Author(s): Miguel Gonzales and Andrea Tan</para>
+    ///   <para>Flow panel needs to be focused in order to scroll using the mouse wheel.</para>
+    /// </remarks>
+    private void HandlePhotosFlowPanelMouseEnter(object sender, EventArgs e)
+    {
+      photosFlowPanel.Focus();
+    }
+
+    /// <summary>
+    /// Gives focus to flow panel on mouse click.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+    /// <remarks>
+    ///   <para>Author(s): Miguel Gonzales and Andrea Tan</para>
+    ///   <para>Flow panel needs to be focused in order to scroll using the mouse wheel.</para>
+    /// </remarks>
+    private void HandlePhotosFlowPanelMouseClick(object sender, MouseEventArgs e)
+    {
+      photosFlowPanel.Focus();
+    }
+  }
 }

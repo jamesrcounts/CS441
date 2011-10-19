@@ -2,6 +2,10 @@
 // <copyright file="ConstantsTest.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
+// Author: Jim Counts
+// Date: October 18, 2011
+// Modified: October 18, 2011
+// Description: Unit tests for Constants
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Tests
 {

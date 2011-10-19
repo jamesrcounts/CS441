@@ -1,9 +1,8 @@
 ﻿/***********************************************************************************
  * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
- * Modified date: Oct 18 2011
+ * Modified date: Oct 19 2011
  * Description: program start up forms, which gets inherited from multiple usercontrols
- * 
  ************************************************************************************/
 
 using System;
@@ -16,9 +15,15 @@ using TheNewPhotoBuddy.Screens;
 
 namespace TheNewPhotoBuddy
 {
+  /// <summary>
+  /// The application shell.
+  /// </summary>
   public partial class MainForm : Form
   {
-    public static Collectors collectors = new Collectors();
+    /// <summary>
+    /// The album model
+    /// </summary>
+    public static Collectors model = new Collectors();
 
     // The different screens(or views) of the application.
     /// <summary>
@@ -37,16 +42,15 @@ namespace TheNewPhotoBuddy
     private readonly CreateAlbumUserControl createAlbumScreen = new CreateAlbumUserControl();
 
     /// <summary>
-    /// Author(s): Miguel Gonzales and Andrea Tan
-    /// 
-    /// The MainForm constructor.
+    /// Initializes a new instance of the <see cref="MainForm"/> class.
     /// </summary>
+    /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
     public MainForm()
     {
       InitializeComponent();
       InitializeUIScreens();
       CurrentView = HomeView;
-      ShowScreen(CurrentView);
+      ShowView(CurrentView);
       // Set the newAlbumName of the form
       this.Text = Strings.AppName;
     }
@@ -116,22 +120,19 @@ namespace TheNewPhotoBuddy
     public UserControl PreviousView { get; protected set; }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales and Andrea Tan
-    /// 
-    /// setting the user control screen to whichever it focues on
-    /// preCondition: usercontrol screen must be passed int
-    /// postCondition: shows the current usercontrol that is being passed in.
+    /// Shows a view, hides all others.
     /// </summary>
-    /// <param name="screen">The screen to make visible.</param>
-    protected void ShowScreen(UserControl screen)
+    /// <param name="viewToShow">The view to show.</param>
+    /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
+    protected void ShowView(UserControl viewToShow)
     {
       // Helps prevent flickering by suspending layout during changes.
       panelScreenHolder.SuspendLayout();
 
       // Refresh the albums list if we are showing the home screen.
-      if (screen == HomeView)
+      if (viewToShow == HomeView)
       {
-        HomeView.RefreshingAlbumViewList(collectors.getAlbums);
+        HomeView.RefreshingAlbumViewList(model.getAlbums);
       }
 
       // Can't go back to create album screen so don't allow previous screen to be set to it.
@@ -140,9 +141,9 @@ namespace TheNewPhotoBuddy
         PreviousView = CurrentView;
       }
 
-      CurrentView = screen;
-      HideAllScreens();
-      screen.Visible = true;
+      CurrentView = viewToShow;
+      HideAllViews();
+      viewToShow.Visible = true;
 
       // Set the main form focus to the screen. This is important for focusing textboxes.
       CurrentView.Focus();
@@ -151,13 +152,10 @@ namespace TheNewPhotoBuddy
     }
 
     /// <summary>
-    /// Author(s): Miguel Gonzales and Andrea Tan
-    /// 
-    /// this function is created to hide all the screen that is currently opened
-    /// preCondition: None
-    /// postCondition: none of the controls will be shown.
+    /// Hides all views.
     /// </summary>
-    private void HideAllScreens()
+    /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
+    private void HideAllViews()
     {
       foreach (Control screen in panelScreenHolder.Controls)
       {
@@ -179,7 +177,7 @@ namespace TheNewPhotoBuddy
       this.panelScreenHolder.Controls.Add(HomeView);
       this.panelScreenHolder.Controls.Add(AlbumView);
       this.panelScreenHolder.Controls.Add(CreateAlbumView);
-      HideAllScreens();
+      HideAllViews();
     }
 
     /// <summary>
@@ -198,7 +196,7 @@ namespace TheNewPhotoBuddy
       CreateAlbumView.ContinueEvent += FinishCreateOrEditAlbum;
       AlbumView.BackEvent += backToHomeScreen;
       AlbumView.AddPhotosEvent += addPhotos;
-      AlbumView.RenameAlbumEvent +=          renameAlbum;
+      AlbumView.RenameAlbumEvent += renameAlbum;
     }
 
     /// <summary>
@@ -212,8 +210,8 @@ namespace TheNewPhotoBuddy
     /// <param name="e">The event args.</param>
     private void showSelectedAlbum(object sender, AlbumEventArgs e)
     {
-      AlbumView.CurrentAlbum = (Album)collectors.getAlbums.albumsList[e.TheAlbum.albumID];
-      ShowScreen(AlbumView);
+      AlbumView.CurrentAlbum = (Album)model.getAlbums.albumsList[e.TheAlbum.albumID];
+      ShowView(AlbumView);
     }
 
     /// <summary>
@@ -234,31 +232,31 @@ namespace TheNewPhotoBuddy
       //Creating a new album
       if (CreateAlbumView.IsCreate)
       {
-        if (collectors.getAlbums.IsExistingAlbumName(newAlbumName))
+        if (model.getAlbums.IsExistingAlbumName(newAlbumName))
         {
           MessageBox.Show(
           "Invalid album name! Please enter a new album name.",
           "Album Name Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
           return;
         }
-        collectors.addAlbumtoAlbumList(new Album(newAlbumName));
-        collectors.populateObjectsIntoXML();
+        model.addAlbumtoAlbumList(new Album(newAlbumName));
+        model.populateObjectsIntoXML();
       }
       // Editing an album
       else
       {
-        if (collectors.getAlbums.IsExistingAlbumName(newAlbumName))
+        if (model.getAlbums.IsExistingAlbumName(newAlbumName))
         {
           MessageBox.Show(
           "Invalid album name! please enter a new album name",
           "Album name Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
           return;
         }
-        collectors.EditAlbumName(CreateAlbumView.AlbumName, newAlbumName);
+        model.EditAlbumName(CreateAlbumView.AlbumName, newAlbumName);
       }
       // Return to the album view screen, showing the current album.
-      AlbumView.CurrentAlbum = (Album)collectors.getAlbums.albumsList[newAlbumName];
-      ShowScreen(AlbumView);
+      AlbumView.CurrentAlbum = (Album)model.getAlbums.albumsList[newAlbumName];
+      ShowView(AlbumView);
     }
 
     /// <summary>
@@ -275,7 +273,7 @@ namespace TheNewPhotoBuddy
       if (AlbumView.CurrentAlbum != null)
       {
         CreateAlbumView.ResetCreateForm(false, AlbumView.CurrentAlbum.albumID);
-        ShowScreen(CreateAlbumView);
+        ShowView(CreateAlbumView);
       }
     }
 
@@ -309,7 +307,7 @@ namespace TheNewPhotoBuddy
       {
         // Do nothing as the user canceled
       }
-      AlbumView.refreshingAlbumPhotosViewList();
+      AlbumView.RefreshPhotoList();
     }
 
     /// <summary>
@@ -340,7 +338,7 @@ namespace TheNewPhotoBuddy
         // User approved so upload the photo to the album.
         string name = uploadPhoto.PhotoName;
         string file = photoFilename;
-        collectors.AddPhotoToAlbum(AlbumView.CurrentAlbum.albumID, name, file);
+        model.AddPhotoToAlbum(AlbumView.CurrentAlbum.albumID, name, file);
       }
       else
       {
@@ -364,11 +362,11 @@ namespace TheNewPhotoBuddy
     {
       if (PreviousView != null)
       {
-        ShowScreen(PreviousView);
+        ShowView(PreviousView);
       }
       else
       {
-        ShowScreen(HomeView);
+        ShowView(HomeView);
       }
     }
 
@@ -385,7 +383,7 @@ namespace TheNewPhotoBuddy
     /// <param name="e"></param>
     private void backToHomeScreen(object sender, EventArgs e)
     {
-      ShowScreen(HomeView);
+      ShowView(HomeView);
     }
 
     /// <summary>
@@ -398,7 +396,7 @@ namespace TheNewPhotoBuddy
     private void CreateButton_Click(object sender, EventArgs e)
     {
       CreateAlbumView.ResetCreateForm(true, "");
-      ShowScreen(CreateAlbumView);
+      ShowView(CreateAlbumView);
     }
 
     /// <summary>
@@ -448,7 +446,7 @@ namespace TheNewPhotoBuddy
         return;
       }
       PreviousView = null;
-      ShowScreen(HomeView);
+      ShowView(HomeView);
     }
   }
 }

@@ -31,7 +31,7 @@ namespace TheNewPhotoBuddy.BussinessRule
 
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// collectors constructor calls the create secret directory if it has not been made.
         /// collectors also calls the load xml file from the dataLayer to grab the entire node which

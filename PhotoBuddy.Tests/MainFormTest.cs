@@ -188,7 +188,7 @@ namespace PhotoBuddy.Tests
       /// </remarks>
       public void ShowScreenAccessor(UserControl screenToShow)
       {
-        ShowScreen(screenToShow);
+        ShowView(screenToShow);
       }
     }
   }
