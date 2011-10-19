@@ -19,6 +19,11 @@ namespace TheNewPhotoBuddy.Screens
   public interface IScreen
   {
     /// <summary>
+    /// Gets the control managed by this view.
+    /// </summary>
+    UserControl Control { get; }
+
+    /// <summary>
     /// Gets or sets the display name.
     /// </summary>
     /// <value>

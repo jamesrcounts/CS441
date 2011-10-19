@@ -106,7 +106,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// 
         /// getAlbums object provides a method to easily get and update the Albums object.
         /// </summary>
-        public Albums getAlbums
+        public Albums Albums
         {
             get { return globalAlbums; }
             set { globalAlbums = value; }

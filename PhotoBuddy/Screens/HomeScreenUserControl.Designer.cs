@@ -109,7 +109,7 @@
             this.CreateButton.TabIndex = 0;
             this.CreateButton.Text = "Create";
             this.CreateButton.UseVisualStyleBackColor = false;
-            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
+            this.CreateButton.Click += new System.EventHandler(this.HandleCreateButtonClick);
             // 
             // ExitButton
             // 
@@ -127,7 +127,7 @@
             this.ExitButton.TabIndex = 1;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = false;
-            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            this.ExitButton.Click += new System.EventHandler(this.HandleExitButtonClick);
             // 
             // albumsFlowPanel
             // 

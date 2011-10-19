@@ -17,7 +17,7 @@ namespace TheNewPhotoBuddy.Screens
   using TheNewPhotoBuddy.BussinessRule;
   using TheNewPhotoBuddy.Common.CommonClass;
   using TheNewPhotoBuddy.Controls;
-
+  
   /// <summary>
   /// Displays an album
   /// </summary>
@@ -79,6 +79,18 @@ namespace TheNewPhotoBuddy.Screens
     /// Occurs when the add photo button is clicked.
     /// </summary>
     public event AddPhotosEventHandler AddPhotosEvent;
+
+    /// <summary>
+    /// Gets the control managed by this view.
+    /// </summary>
+    /// <remarks>Author: Jim Counts</remarks>
+    public UserControl Control
+    {
+      get
+      {
+        return this;
+      }
+    }
 
     /// <summary>
     /// Gets or sets the current album.
@@ -149,6 +161,19 @@ namespace TheNewPhotoBuddy.Screens
         // Add the thumb control to the flow panel.
         photosFlowPanel.Controls.Add(thumb);
       }
+    }
+
+    /// <summary>
+    /// Shows the view.
+    /// </summary>
+    /// <param name="caller">The caller.</param>
+    /// <remarks>Author: Jim Counts</remarks>
+    public virtual void ShowView(Form caller)
+    {
+      this.Visible = true;
+
+      // To focus textboxes.
+      this.Focus();
     }
 
     /// <summary>
