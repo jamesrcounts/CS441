@@ -11,30 +11,30 @@
 //-----------------------------------------------------------------------
 namespace TheNewPhotoBuddy.Screens
 {
-  using System.Windows.Forms;
-
-  /// <summary>
-  /// Describes a view
-  /// </summary>
-  public interface IScreen
-  {
-    /// <summary>
-    /// Gets the control managed by this view.
-    /// </summary>
-    UserControl Control { get; }
+    using System.Windows.Forms;
 
     /// <summary>
-    /// Gets or sets the display name.
+    /// Describes a view
     /// </summary>
-    /// <value>
-    /// The display name.
-    /// </value>
-    string DisplayName { get; set; }
+    public interface IScreen
+    {
+        /// <summary>
+        /// Gets the control managed by this view.
+        /// </summary>
+        UserControl Control { get; }
 
-    /// <summary>
-    /// Shows the view.
-    /// </summary>
-    /// <param name="caller">The caller.</param>
-    void ShowView(Form caller);
-  }
+        /// <summary>
+        /// Gets or sets the display name.
+        /// </summary>
+        /// <value>
+        /// The display name.
+        /// </value>
+        string DisplayName { get; set; }
+
+        /// <summary>
+        /// Shows the view.
+        /// </summary>
+        /// <param name="caller">The caller.</param>
+        void ShowView(MainForm caller);
+    }
 }

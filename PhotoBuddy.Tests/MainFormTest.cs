@@ -107,7 +107,7 @@ namespace PhotoBuddy.Tests
       };
       var homeScreenMole = new MHomeScreenUserControl(homeScreenStub)
       {
-        RefreshingAlbumViewListAlbums = albums => callCount++
+        RefreshAlbumViewListAlbums = albums => callCount++
       };
       var target = new MainFormAccessor();
       var mainFormMole = new MMainForm(target)
@@ -137,7 +137,7 @@ namespace PhotoBuddy.Tests
       var homeScreenStub = new SHomeScreenUserControl() { CallBase = true };
       var homeScreenMole = new MHomeScreenUserControl(homeScreenStub)
       {
-        RefreshingAlbumViewListAlbums = albums => callCount++
+        RefreshAlbumViewListAlbums = albums => callCount++
       };
       var target = new MainFormAccessor();
       var mainFormMole = new MMainForm(target)
@@ -180,7 +180,7 @@ namespace PhotoBuddy.Tests
     private class MainFormAccessor : MainForm
     {
       /// <summary>
-      /// Proivdes unit tests with a method to call <see cref="MainForm.ShowScreen"/> directly.
+      /// Provides unit tests with a method to call <see cref="MainForm.ShowScreen"/> directly.
       /// </summary>
       /// <param name="screenToShow">The screen to show.</param>
       /// <remarks>

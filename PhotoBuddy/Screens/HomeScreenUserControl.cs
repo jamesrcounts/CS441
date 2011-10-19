@@ -22,7 +22,7 @@ namespace TheNewPhotoBuddy.Screens
     /// The Opening View
     /// </summary>
     [DebuggerDisplay("{DisplayName}")]
-    public sealed partial class HomeScreenUserControl : UserControl, IScreen
+    public partial class HomeScreenUserControl : UserControl, IScreen
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HomeScreenUserControl"/> class.

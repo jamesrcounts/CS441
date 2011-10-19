@@ -18,7 +18,7 @@ namespace TheNewPhotoBuddy.Screens
     /// The create album view
     /// </summary>
     [DebuggerDisplay("{DisplayName}")]
-    public sealed partial class CreateAlbumUserControl : UserControl, IScreen
+    public partial class CreateAlbumUserControl : UserControl, IScreen
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAlbumUserControl"/> class.
