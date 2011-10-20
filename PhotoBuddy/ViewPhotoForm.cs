@@ -20,9 +20,9 @@ namespace TheNewPhotoBuddy
 {
     public partial class ViewPhotoForm : Form
     {
-        Album album;
-        string photoID;
-        Photo picture;
+        readonly Album album;
+        readonly string photoID;
+        readonly Photo picture;
         List<Photo> allPhotosInAlbum;
         // The index of the photo in the allPhotosInAlbum list.
         int photoIndex;
@@ -87,7 +87,8 @@ namespace TheNewPhotoBuddy
         private void displayPhoto(int index)
         {
             string filename = Path.GetFileName(allPhotosInAlbum[index].copiedPath);
-            pictureBox1.Image = Image.FromFile(Constants.PhotosFolderPath + filename);
+            string path = Path.Combine(Constants.PhotosFolderPath, filename);
+            pictureBox1.Image = Image.FromFile(path);
             photoNameLabel.Text = allPhotosInAlbum[index].display_name;
             this.Text = allPhotosInAlbum[index].display_name + " - Photo Buddy";
         }

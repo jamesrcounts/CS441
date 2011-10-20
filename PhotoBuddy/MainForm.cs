@@ -327,7 +327,7 @@ namespace TheNewPhotoBuddy
                 fileBrowser.FilterIndex = 1;
                 fileBrowser.RestoreDirectory = true;
                 fileBrowser.Multiselect = false;
-                fileBrowser.Title = "Add to " + AlbumView.CurrentAlbum.albumID + " - Photo Buddy";
+                fileBrowser.Title = string.Format("Add to {0} - Photo Buddy", AlbumView.CurrentAlbum.albumID);
                 DialogResult result = fileBrowser.ShowDialog();
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
