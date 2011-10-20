@@ -91,19 +91,20 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// </summary>
         /// <param name="fileDirectory"></param>
         /// <returns></returns>
-        public string generateUniqueHashPhotoKey(String fileDirectory)
+        public string GenerateUniqueHashPhotoKey(String filePath)
         {
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            byte[] tmpSource;
-            byte[] tmpHash;
+            // Reading the bytes of the actual file contents
+            byte[] tmpSource = System.IO.File.ReadAllBytes(filePath);
 
-            tmpSource = ASCIIEncoding.ASCII.GetBytes(fileDirectory); // Turn password into byte array
-            tmpHash = md5.ComputeHash(tmpSource);
+            // Computing the SHA 256 Hash value
+            SHA256Managed hashAlgorithm = new SHA256Managed();
+            byte[] tmpHash = hashAlgorithm.ComputeHash(tmpSource);
 
+            // Convert to HEX encoded string
             StringBuilder sOutput = new StringBuilder(tmpHash.Length);
             for (int i = 0; i < tmpHash.Length; i++)
             {
-                sOutput.Append(tmpHash[i].ToString());  // X2 formats to hexadecimal
+                sOutput.Append(tmpHash[i].ToString("X2"));  // X2 formats to hexadecimal
             }
             return sOutput.ToString();
         }

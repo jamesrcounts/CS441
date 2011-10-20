@@ -282,12 +282,20 @@ namespace TheNewPhotoBuddy.BussinessRule
         public void AddPhotoToAlbum(string key, string photoName, string photoFilename)
         {
             Photo tempPhoto = new Photo();
-            tempPhoto.ID = tempPhoto.generateUniqueHashPhotoKey(photoFilename);
+            tempPhoto.ID = tempPhoto.GenerateUniqueHashPhotoKey(photoFilename);
 
             tempPhoto.display_name = photoName;
             tempPhoto.copiedPath = photoFilename;
+
+            // Combines two paths without having to worry about whether path1 ends with a '\' character
+            string path = System.IO.Path.Combine(Constants.PhotosFolderPath, tempPhoto.ID);
+
+            // Changes or adds the original file extension to the new path
             string fileExtension = Path.GetExtension(photoFilename);
-            tempPhoto.copyOverThefileToSecretDir(@tempPhoto.copiedPath, @Constants.PhotosFolderPath + tempPhoto.ID + fileExtension);
+            path = System.IO.Path.ChangeExtension(path, fileExtension);
+
+            // Copies the file to the secret location.
+            tempPhoto.copyOverThefileToSecretDir(@tempPhoto.copiedPath, path);
 
             tempPhoto.copiedPath = tempPhoto.ID + fileExtension;   
             //query for album from albumlist

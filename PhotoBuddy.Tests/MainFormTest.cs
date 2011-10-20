@@ -14,8 +14,8 @@ namespace PhotoBuddy.Tests
   using ApprovalTests.WinForms;
   using Microsoft.VisualStudio.TestTools.UnitTesting;
   using TheNewPhotoBuddy;
-  using TheNewPhotoBuddy.Moles;
-  using TheNewPhotoBuddy.Screens.Moles;
+  //using TheNewPhotoBuddy.Moles;
+  //using TheNewPhotoBuddy.Screens.Moles;
 
   /// <summary>
   /// A container for tests related to <see cref="MainForm"/>
@@ -89,68 +89,68 @@ namespace PhotoBuddy.Tests
       }
     }
 
-    /// <summary>
-    /// Refreshes the album view list when showing opening view.
-    /// </summary>
-    /// <remarks>
-    /// <para>Author: Jim Counts</para>
-    /// </remarks>
-    [TestMethod]
-    [HostType("Moles")]
-    public void RefreshAlbumViewListWhenShowingOpeningView()
-    {
-      // Arrange
-      int callCount = 0;
-      var homeScreenStub = new SHomeScreenUserControl()
-      {
-        CallBase = true
-      };
-      var homeScreenMole = new MHomeScreenUserControl(homeScreenStub)
-      {
-        RefreshAlbumViewListAlbums = albums => callCount++
-      };
-      var target = new MainFormAccessor();
-      var mainFormMole = new MMainForm(target)
-      {
-        HomeViewGet = () => homeScreenMole
-      };
+    ///// <summary>
+    ///// Refreshes the album view list when showing opening view.
+    ///// </summary>
+    ///// <remarks>
+    ///// <para>Author: Jim Counts</para>
+    ///// </remarks>
+    //[TestMethod]
+    //[HostType("Moles")]
+    //public void RefreshAlbumViewListWhenShowingOpeningView()
+    //{
+    //  // Arrange
+    //  int callCount = 0;
+    //  var homeScreenStub = new SHomeScreenUserControl()
+    //  {
+    //    CallBase = true
+    //  };
+    //  var homeScreenMole = new MHomeScreenUserControl(homeScreenStub)
+    //  {
+    //    RefreshAlbumViewListAlbums = albums => callCount++
+    //  };
+    //  var target = new MainFormAccessor();
+    //  var mainFormMole = new MMainForm(target)
+    //  {
+    //    HomeViewGet = () => homeScreenMole
+    //  };
 
-      // Act
-      target.ShowScreenAccessor(target.HomeView);
+    //  // Act
+    //  target.ShowScreenAccessor(target.HomeView);
 
-      // Assert
-      Assert.AreEqual(1, callCount);
-    }
+    //  // Assert
+    //  Assert.AreEqual(1, callCount);
+    //}
 
-    /// <summary>
-    /// Skips the refresh album view list when showing other views.
-    /// </summary>
-    /// <remarks>
-    /// <para>Author: Jim Counts</para>
-    /// </remarks>
-    [TestMethod]
-    [HostType("Moles")]
-    public void SkipRefreshAlbumViewListWhenShowingOtherViews()
-    {
-      // Arrange
-      int callCount = 0;
-      var homeScreenStub = new SHomeScreenUserControl() { CallBase = true };
-      var homeScreenMole = new MHomeScreenUserControl(homeScreenStub)
-      {
-        RefreshAlbumViewListAlbums = albums => callCount++
-      };
-      var target = new MainFormAccessor();
-      var mainFormMole = new MMainForm(target)
-      {
-        HomeViewGet = () => homeScreenMole
-      };
+    ///// <summary>
+    ///// Skips the refresh album view list when showing other views.
+    ///// </summary>
+    ///// <remarks>
+    ///// <para>Author: Jim Counts</para>
+    ///// </remarks>
+    //[TestMethod]
+    //[HostType("Moles")]
+    //public void SkipRefreshAlbumViewListWhenShowingOtherViews()
+    //{
+    //  // Arrange
+    //  int callCount = 0;
+    //  var homeScreenStub = new SHomeScreenUserControl() { CallBase = true };
+    //  var homeScreenMole = new MHomeScreenUserControl(homeScreenStub)
+    //  {
+    //    RefreshAlbumViewListAlbums = albums => callCount++
+    //  };
+    //  var target = new MainFormAccessor();
+    //  var mainFormMole = new MMainForm(target)
+    //  {
+    //    HomeViewGet = () => homeScreenMole
+    //  };
 
-      // Act
-      target.ShowScreenAccessor(target.AlbumView);
+    //  // Act
+    //  target.ShowScreenAccessor(target.AlbumView);
 
-      // Assert
-      Assert.AreEqual(0, callCount);
-    }
+    //  // Assert
+    //  Assert.AreEqual(0, callCount);
+    //}
 
     /// <summary>
     /// Sets the current view when showing view.
