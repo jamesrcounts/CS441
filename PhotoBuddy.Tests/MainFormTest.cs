@@ -61,7 +61,7 @@ namespace PhotoBuddy.Tests
                 target.ShowScreenAccessor(target.AlbumView);
 
                 // Assert
-                Assert.AreEqual(target.HomeView, target.PreviousView);
+                Assert.AreEqual(target.HomeView, target.PreviousViews.Peek());
             }
         }
 
@@ -83,7 +83,7 @@ namespace PhotoBuddy.Tests
                 target.ShowScreenAccessor(target.AlbumView);
 
                 // Assert
-                Assert.AreEqual(target.HomeView, target.PreviousView);
+                Assert.AreEqual(target.HomeView, target.PreviousViews.Peek());
             }
         }
 
