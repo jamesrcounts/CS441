@@ -24,11 +24,9 @@ namespace TheNewPhotoBuddy.BussinessRule
 
     public class Collectors
     {
-        XDocument document;
-        
-        //private Photos globalPhotos;
-        private Albums globalAlbums;
+        readonly XDocument document;
 
+        //private Photos globalPhotos;
 
         /// <summary>
         /// Author(s): Miguel Gonzales and Andrea Tan
@@ -45,7 +43,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         public Collectors()
         {
             //make directory
-            checkAndCreatePhotoBuddyDir();
+            CheckAndCreatePhotoBuddyDir();
 
             //initialize xdocument & dataaccessXML
             document = new XDocument();
@@ -53,7 +51,7 @@ namespace TheNewPhotoBuddy.BussinessRule
             document = dataAccessXML.loadORinitializeInfoXML(Constants.XMLDataFilePath);
 
             //initialize all objects
-            globalAlbums = new Albums();
+            Albums = new Albums();
             populateAlbumsAnditsPhotos();
         }
 
@@ -74,11 +72,11 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// <param name="oldName"></param>
         /// <param name="newName"></param>
         public void EditAlbumName(string oldName, string newName)
-        {        
-            Album tempAlbum = globalAlbums.getAlbum(oldName);
-            globalAlbums.albumsList.Remove(oldName);
+        {
+            Album tempAlbum = Albums.getAlbum(oldName);
+            Albums.albumsList.Remove(oldName);
             tempAlbum.albumID = newName;
-            globalAlbums.addAlbum(tempAlbum);
+            Albums.addAlbum(tempAlbum);
             populateObjectsIntoXML();
         }
 
@@ -93,7 +91,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// postCondition : secret directory will be created if it has not been there
         ///                 otherwise do nothing.
         /// </summary>
-        public void checkAndCreatePhotoBuddyDir()
+        public static void CheckAndCreatePhotoBuddyDir()
         {
             if (!Directory.Exists(Constants.PhotosFolderPath))
             {
@@ -106,11 +104,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// 
         /// getAlbums object provides a method to easily get and update the Albums object.
         /// </summary>
-        public Albums Albums
-        {
-            get { return globalAlbums; }
-            set { globalAlbums = value; }
-        }
+        public Albums Albums { get; set; }
 
 
         /// <summary>
@@ -125,7 +119,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// <param name="tempAlbum"></param>
         public void addAlbumtoAlbumList(Album tempAlbum)
         {
-            globalAlbums.addAlbum(tempAlbum);
+            Albums.addAlbum(tempAlbum);
         }
 
 
@@ -144,7 +138,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         {
             //query for album from albumlist
             Album currentAlbum = new Album();
-            currentAlbum = globalAlbums.getAlbum(key);
+            currentAlbum = Albums.getAlbum(key);
 
             currentAlbum.photoObjects = tempPhotos;
         }
@@ -169,13 +163,13 @@ namespace TheNewPhotoBuddy.BussinessRule
             XmlNode albumsNode = doc.CreateElement("albums");
             productsNode.AppendChild(albumsNode);
 
-            foreach (Album albumObj in globalAlbums.albumsList.Values)
+            foreach (Album albumObj in Albums.albumsList.Values)
             {
                 XmlNode albumNode = doc.CreateElement("album");
                 XmlAttribute albumIDAttr = albumNode.OwnerDocument.CreateAttribute("id_tag");
                 albumIDAttr.Value = albumObj.albumID;
                 albumNode.Attributes.Append(albumIDAttr);
-                
+
                 XmlNode photosNode = doc.CreateElement("photos");
 
                 if (albumObj.photoObjects != null)
@@ -202,7 +196,7 @@ namespace TheNewPhotoBuddy.BussinessRule
                 albumNode.AppendChild(photosNode);
                 albumsNode.AppendChild(albumNode);
             }
-            doc.Save(Constants.XMLDataFilePath);          
+            doc.Save(Constants.XMLDataFilePath);
         }
 
         /// <summary>
@@ -218,11 +212,11 @@ namespace TheNewPhotoBuddy.BussinessRule
         {
             // look through album node.
             var albumNodes = from node in document.Descendants("album")
-                                  select new 
-                                  {
-                                      id_tag = node.Attribute("id_tag").Value,
-                                      photos = node.Element("photos")
-                                  };
+                             select new
+                             {
+                                 id_tag = node.Attribute("id_tag").Value,
+                                 photos = node.Element("photos")
+                             };
 
             // check if the albumNode is not empty.
             if (albumNodes.Count() == 0)
@@ -242,22 +236,24 @@ namespace TheNewPhotoBuddy.BussinessRule
                     foreach (XElement photoInfo in albumInfo.photos.Descendants("photo"))
                     {
                         //photo
-                        Photo tempPhoto = new Photo();
-                        tempPhoto.ID = photoInfo.Attribute("id_tag").Value;
-                        tempPhoto.display_name = photoInfo.Element("display_name").Value;
-                        tempPhoto.copiedPath = photoInfo.Element("copied_path").Value;
+                        Photo tempPhoto = new Photo()
+                        {
+                            ID = photoInfo.Attribute("id_tag").Value,
+                            display_name = photoInfo.Element("display_name").Value,
+                            copiedPath = photoInfo.Element("copied_path").Value
+                        };
 
                         localPhotoList.addPhotosAt(tempPhoto);
                     }
                     tempAlbum.photoObjects = localPhotoList;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e);
                     Photo tempPhoto = new Photo();
                     localPhotoList.addPhotosAt(tempPhoto);
                 }
-                globalAlbums.addAlbum(tempAlbum);
+                Albums.addAlbum(tempAlbum);
             }
 
         }//end function
@@ -281,27 +277,28 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// <param name="photoFilename"></param>
         public void AddPhotoToAlbum(string key, string photoName, string photoFilename)
         {
-            Photo tempPhoto = new Photo();
-            tempPhoto.ID = tempPhoto.GenerateUniqueHashPhotoKey(photoFilename);
-
-            tempPhoto.display_name = photoName;
-            tempPhoto.copiedPath = photoFilename;
+            Photo tempPhoto = new Photo()
+            {
+                ID = Photo.GenerateUniqueHashPhotoKey(photoFilename),
+                display_name = photoName,
+                copiedPath = photoFilename
+            };
 
             // Combines two paths without having to worry about whether path1 ends with a '\' character
-            string path = System.IO.Path.Combine(Constants.PhotosFolderPath, tempPhoto.ID);
+            string path = Path.Combine(Constants.PhotosFolderPath, tempPhoto.ID);
 
             // Changes or adds the original file extension to the new path
             string fileExtension = Path.GetExtension(photoFilename);
-            path = System.IO.Path.ChangeExtension(path, fileExtension);
+            path = Path.ChangeExtension(path, fileExtension);
 
             // Copies the file to the secret location.
-            tempPhoto.copyOverThefileToSecretDir(@tempPhoto.copiedPath, path);
+            Photo.CopyOverThefileToSecretDir(@tempPhoto.copiedPath, path);
 
-            tempPhoto.copiedPath = tempPhoto.ID + fileExtension;   
-            //query for album from albumlist
+            tempPhoto.copiedPath = tempPhoto.ID + fileExtension;
+            //query for album from album list
             Album currentAlbum = new Album();
-            currentAlbum = globalAlbums.getAlbum(key);
-            
+            currentAlbum = Albums.getAlbum(key);
+
             currentAlbum.photoObjects.addPhotosAt(tempPhoto);
             populateObjectsIntoXML();
         }

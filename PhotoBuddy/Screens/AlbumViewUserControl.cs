@@ -146,8 +146,7 @@ namespace TheNewPhotoBuddy.Screens
             foreach (Photo photo in this.currentAlbum.photoObjects.photoList.Values)
             {
                 // Create a thumbnail control for the current photo
-                PB_ThumbNailUserControl thumb = new PB_ThumbNailUserControl();
-                thumb.DiaplayName = photo.display_name;
+                PB_ThumbNailUserControl thumb = new PB_ThumbNailUserControl() { DiaplayName = photo.display_name };
 
                 // Store the photo object in the thumbnail tag.
                 // thumbnail is a public property to set the picturebox on the thumbnailUserControl.
@@ -234,8 +233,10 @@ namespace TheNewPhotoBuddy.Screens
         private void HandlePhotoClick(object sender, EventArgs e)
         {
             PictureBox uc = sender as PictureBox;
-            ViewPhotoForm photoForm = new ViewPhotoForm(this.currentAlbum, (Photo)uc.Tag);
-            photoForm.ShowDialog();
+            using (ViewPhotoForm photoForm = new ViewPhotoForm(this.currentAlbum, (Photo)uc.Tag))
+            {
+                photoForm.ShowDialog();
+            }
         }
 
         /// <summary>

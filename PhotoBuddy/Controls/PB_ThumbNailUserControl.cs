@@ -7,12 +7,7 @@
  *****************************************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace TheNewPhotoBuddy.Controls
@@ -36,14 +31,7 @@ namespace TheNewPhotoBuddy.Controls
             }
         }
 
-        public PictureBox thumbnail
-        {
-            get { return pictureBox1; }
-            set
-            {
-                pictureBox1 = value;
-            }
-        }
+        public PictureBox thumbnail { get; set; }
 
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan

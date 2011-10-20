@@ -14,14 +14,12 @@
 using System;
 using System.Text;
 using System.Security.Cryptography;  // This is where the hash functions reside
+using System.IO;
 
 namespace TheNewPhotoBuddy.BussinessRule
 {
-    public class Photo 
+    public class Photo
     {
-        private string _ID;
-        private string _display_name;
-        private string _copiedPath;
 
         /// <summary>
         /// 
@@ -35,9 +33,9 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// </summary>
         public Photo()
         {
-            _ID = "";
-            _display_name = "";
-            _copiedPath = "";
+            ID = "";
+            display_name = "";
+            copiedPath = "";
         }
 
         /// <summary>
@@ -47,11 +45,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// variable _ID
         /// 
         /// </summary>
-        public String ID
-        {
-            get { return _ID; }
-            set { _ID = value; }
-        }
+        public String ID { get; set; }
 
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan
@@ -60,11 +54,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// variable _ID
         /// 
         /// </summary>
-        public String display_name
-        {
-            get { return _display_name; }
-            set { _display_name = value; }
-        }
+        public String display_name { get; set; }
 
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan
@@ -73,11 +63,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// variable _copiedPath
         /// 
         /// </summary>
-        public String copiedPath
-        {
-            get { return _copiedPath; }
-            set { _copiedPath = value; }
-        }
+        public String copiedPath { get; set; }
 
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan
@@ -91,22 +77,23 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// </summary>
         /// <param name="fileDirectory"></param>
         /// <returns></returns>
-        public string GenerateUniqueHashPhotoKey(String filePath)
+        public static string GenerateUniqueHashPhotoKey(String filePath)
         {
             // Reading the bytes of the actual file contents
-            byte[] tmpSource = System.IO.File.ReadAllBytes(filePath);
+            byte[] tmpSource = File.ReadAllBytes(filePath);
 
             // Computing the SHA 256 Hash value
-            SHA256Managed hashAlgorithm = new SHA256Managed();
-            byte[] tmpHash = hashAlgorithm.ComputeHash(tmpSource);
-
-            // Convert to HEX encoded string
-            StringBuilder sOutput = new StringBuilder(tmpHash.Length);
-            for (int i = 0; i < tmpHash.Length; i++)
+            using (SHA256Managed hashAlgorithm = new SHA256Managed())
             {
-                sOutput.Append(tmpHash[i].ToString("X2"));  // X2 formats to hexadecimal
+                byte[] tmpHash = hashAlgorithm.ComputeHash(tmpSource);
+                // Convert to HEX encoded string
+                StringBuilder sOutput = new StringBuilder(tmpHash.Length);
+                for (int i = 0; i < tmpHash.Length; i++)
+                {
+                    sOutput.Append(tmpHash[i].ToString("X2")); // X2 formats to hexadecimal
+                }
+                return sOutput.ToString();
             }
-            return sOutput.ToString();
         }
 
         /// <summary>
@@ -123,17 +110,11 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// </summary>
         /// <param name="filepath"></param>
         /// <param name="destFile"></param>
-        public void copyOverThefileToSecretDir(String filepath, String destFile)
+        public static void CopyOverThefileToSecretDir(String filepath, String destFile)
         {
-            try
-            {
-                // To copy a file to another location and 
-                // overwrite the destination file if it already exists.
-                System.IO.File.Copy(filepath, destFile, true);
-            }
-            catch
-            {
-            }
+            // To copy a file to another location and 
+            // overwrite the destination file if it already exists.
+            File.Copy(filepath, destFile, true);
         }
 
         /// <summary>
@@ -145,7 +126,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// <returns></returns>
         public override string ToString()
         {
-            return this._display_name;
+            return this.display_name;
         }
     }
 }

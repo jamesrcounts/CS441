@@ -2,7 +2,7 @@
  * Author(s): Miguel Gonzales & Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 9 2011
- * Description: this class is responsible in instation of the album objects.
+ * Description: this class is responsible in instantiation of the album objects.
  *              this class also provides the mean of accessing the album contents
  *              as well as updating its contents as well
  * 
@@ -19,24 +19,22 @@ namespace TheNewPhotoBuddy.BussinessRule
     /// this class also contains public functions to set and get the following below:
     /// 1. AlbumID.
     /// 2. CoverPhoto.
-    /// 3. a collections of photolists.
+    /// 3. a collections of photo lists.
     /// </summary>
     public class Album 
     {
-        private string _albumID;
-        private Photos _photoList;  
 
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan
         /// 
-        /// constructor which initialized the variables albumid, coverphoto, and photolist
+        /// constructor which initialized the variables album id, cover photo, and photo list
         /// precondition: none
-        /// postcondition: initialzed objects and variables such as albumid and cover photo
+        /// postcondition: initialized objects and variables such as album id and cover photo
         /// </summary>
         public Album()
         {
-            _albumID = "";
-            _photoList = new Photos();
+            albumID = "";
+            photoObjects = new Photos();
         }
 
         /// <summary>
@@ -44,13 +42,13 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// 
         /// overloading constructor which initialized the variables albumid, coverphoto, and photolist
         /// precondition: parameter albumName must be passed into this constructor.
-        /// postcondition: initialzed objects and variables such as albumid and cover photo
+        /// postcondition: initialized objects and variables such as albumid and cover photo
         /// </summary>C:\Documents and Settings\andrea.tan\My Documents\Downloads\TheNewPhotoBuddy-1-0-0-5-Source\TheNewPhotoBuddy\TheNewPhotoBuddy\Controls\
         /// <param name="albumName"></param>
         public Album(string albumName)
         {
-            this._albumID = albumName;
-            _photoList = new Photos();
+            this.albumID = albumName;
+            photoObjects = new Photos();
         }
        
         /// <summary>
@@ -58,22 +56,14 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// 
         /// get and set albumID from instantiated album object.
         /// </summary>
-        public String albumID
-        {
-            get { return _albumID; }
-            set { _albumID = value; }
-        }
+        public String albumID { get; set; }
 
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan
         /// 
         /// get and set photoObjects from instantiated album object.
         /// </summary>
-        public Photos photoObjects
-        {
-            get { return _photoList; }
-            set { _photoList = value; }
-        }
+        public Photos photoObjects { get; set; }
 
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan

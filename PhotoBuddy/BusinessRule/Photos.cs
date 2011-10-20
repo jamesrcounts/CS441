@@ -12,13 +12,14 @@
 
 using System;
 using System.Collections;
+using System.IO;
 
 namespace TheNewPhotoBuddy.BussinessRule
 {
     public class Photos
     {
         // private hash of photos
-        private Hashtable PhotosObjectHashtable;
+        private readonly Hashtable PhotosObjectHashtable;
 
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan
@@ -39,7 +40,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         {
             get { return PhotosObjectHashtable; }
         }
-       
+
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan
         /// 
@@ -64,7 +65,7 @@ namespace TheNewPhotoBuddy.BussinessRule
                 return false;
             }
         }
-        
+
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan
         /// 
@@ -78,32 +79,23 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// <returns></returns>
         public bool removePhotosAt(Photo tempPhoto, String removeFileatDir)
         {
-            if (PhotosObjectHashtable.ContainsKey(tempPhoto.ID))
-            {
-
-                // Delete a file by using File class static method...
-                if (System.IO.File.Exists(@removeFileatDir))
-                {
-                    // Use a try block to catch IOExceptions, to
-                    // handle the case of the file already being
-                    // opened by another process.
-                    try
-                    {
-                        System.IO.File.Delete(@removeFileatDir);
-                    }
-                    catch            
-                    {
-                    }
-                }
-
-                PhotosObjectHashtable.Remove(tempPhoto.ID);
-                return true;
-            }
-            else
+            if (!PhotosObjectHashtable.ContainsKey(tempPhoto.ID))
             {
                 //cannot find this album id probably has been deleted?
                 return false;
             }
+
+            // Delete a file by using File class static method...
+            if (File.Exists(@removeFileatDir))
+            {
+                // Use a try block to catch IOExceptions, to
+                // handle the case of the file already being
+                // opened by another process.
+                File.Delete(@removeFileatDir);
+            }
+
+            PhotosObjectHashtable.Remove(tempPhoto.ID);
+            return true;
         }
     }
 }

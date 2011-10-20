@@ -4,7 +4,7 @@
 // </copyright>
 // Author: Jim Counts
 // Date: October 16, 2011
-// Modified: October 17, 2011
+// Modified: October 20, 2011
 // Description: Unit tests for MainForm
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Tests
@@ -47,6 +47,50 @@ namespace PhotoBuddy.Tests
 
             using (var mainForm = new MainForm())
             {
+                // Approve
+                Approvals.Approve(mainForm);
+            }
+        }
+
+        /// <summary>
+        /// Approve Create Album View
+        /// </summary>
+        [TestMethod]
+        public void ApproveCreateAlbumView()
+        {
+            // Do
+            var data = new FileInfo(Constants.XMLDataFilePath);
+            if (data.Exists)
+            {
+                data.Delete();
+            }
+
+            using (var mainForm = new MainFormAccessor())
+            {
+                mainForm.ShowScreenAccessor(mainForm.CreateAlbumView);
+
+                // Approve
+                Approvals.Approve(mainForm);
+            }
+        }
+
+        /// <summary>
+        /// Approve Album View
+        /// </summary>
+        [TestMethod]
+        public void ApproveAlbumView()
+        {
+            // Do
+            var data = new FileInfo(Constants.XMLDataFilePath);
+            if (data.Exists)
+            {
+                data.Delete();
+            }
+
+            using (var mainForm = new MainFormAccessor())
+            {
+                mainForm.ShowScreenAccessor(mainForm.AlbumView);
+
                 // Approve
                 Approvals.Approve(mainForm);
             }
@@ -100,65 +144,6 @@ namespace PhotoBuddy.Tests
                 Assert.AreEqual(target.HomeView, target.PreviousViews.Pop());
             }
         }
-
-        /////// <summary>
-        /////// Refreshes the album view list when showing opening view.
-        /////// </summary>
-        /////// <remarks>
-        /////// <para>Author: Jim Counts</para>
-        /////// </remarks>
-        ////[TestMethod]
-        ////public void RefreshAlbumViewListWhenShowingOpeningView()
-        ////{
-        ////    // Arrange
-        ////    mock
-        ////    int callCount = 0;
-        ////    var homeScreenStub = new SHomeScreenUserControl()
-        ////    {
-        ////        CallBase = true
-        ////    };
-        ////    var homeScreenMole = new MHomeScreenUserControl(homeScreenStub)
-        ////    {
-        ////        RefreshAlbumViewListAlbums = albums => callCount++
-        ////    };
-        ////    var target = new MainFormAccessor();
-        ////    var mainFormMole = new MMainForm(target)
-        ////    {
-        ////        HomeViewGet = () => homeScreenMole
-        ////    };
-
-        ////    // Act
-        ////    target.ShowScreenAccessor(target.HomeView);
-
-        ////    // Assert
-        ////    Assert.AreEqual(1, callCount);
-        ////}
-
-        /////// <summary>
-        /////// Skips the refresh album view list when showing other views.
-        /////// </summary>
-        /////// <remarks>
-        /////// <para>Author: Jim Counts</para>
-        /////// </remarks>
-        ////[TestMethod]
-        ////public void SkipRefreshAlbumViewListWhenShowingOtherViews()
-        ////{
-        ////    // Arrange
-        ////    var viewMock = new Mock<IScreen> { DefaultValue = DefaultValue.Mock };
-        ////        RefreshAlbumViewListAlbums = albums => callCount++
-        ////    };
-        ////    var target = new MainFormAccessor();
-        ////    var mainFormMole = new MMainForm(target)
-        ////    {
-        ////        HomeViewGet = () => homeScreenMole
-        ////    };
-
-        ////    // Act
-        ////    target.ShowScreenAccessor(target.AlbumView);
-
-        ////    // Assert
-        ////    Assert.AreEqual(0, callCount);
-        ////}
 
         /// <summary>
         /// Sets the current view when showing view.

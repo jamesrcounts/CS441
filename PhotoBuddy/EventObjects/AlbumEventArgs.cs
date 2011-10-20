@@ -21,7 +21,7 @@ namespace TheNewPhotoBuddy.EventObjects
     /// </summary>
     public class AlbumEventArgs : System.EventArgs
     {
-        private Album album;
+        private readonly Album album;
 
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan

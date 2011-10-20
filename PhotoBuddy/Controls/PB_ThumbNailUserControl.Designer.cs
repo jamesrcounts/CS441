@@ -30,11 +30,11 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.thumbnail = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thumbnail)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -61,7 +61,7 @@
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.thumbnail);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.MinimumSize = new System.Drawing.Size(10, 10);
@@ -72,17 +72,17 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(2, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 120);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
-            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
+            this.thumbnail.BackColor = System.Drawing.Color.White;
+            this.thumbnail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.thumbnail.Location = new System.Drawing.Point(2, 2);
+            this.thumbnail.Margin = new System.Windows.Forms.Padding(5);
+            this.thumbnail.Name = "pictureBox1";
+            this.thumbnail.Size = new System.Drawing.Size(160, 120);
+            this.thumbnail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.thumbnail.TabIndex = 0;
+            this.thumbnail.TabStop = false;
+            this.thumbnail.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
+            this.thumbnail.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             // 
             // textBox1
             // 
@@ -107,7 +107,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thumbnail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -116,7 +116,7 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        
         private System.Windows.Forms.TextBox textBox1;
     }
 }

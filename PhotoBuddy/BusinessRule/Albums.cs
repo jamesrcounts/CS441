@@ -19,7 +19,7 @@ namespace TheNewPhotoBuddy.BussinessRule
     public class Albums 
     {
         //private hashtable of album objects declared
-        private Hashtable AlbumObjectHashtable;
+        private readonly Hashtable AlbumObjectHashtable;
 
         /// <summary>
         /// Author(s): Miguel Gonzales & Andrea Tan
