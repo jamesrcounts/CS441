@@ -44,6 +44,9 @@
       <HintPath>..\packages\ApprovalTests.1.0.11.0\lib\ApprovalUtilities.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -62,19 +65,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\PhotoBuddy\PhotoBuddy.csproj">
       <Project>{75BBBE77-3F60-4114-B655-2B827D5F027F}</Project>
       <Name>PhotoBuddy</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Moles Include="PhotoBuddy.moles" />
-  </ItemGroup>
-  <ItemGroup>
-    <Moles Include="PhotoBuddy01.moles" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
