@@ -11,6 +11,7 @@
 //-----------------------------------------------------------------------
 namespace TheNewPhotoBuddy.Screens
 {
+    using System.Collections.Generic;
     using System.Windows.Forms;
 
     /// <summary>
@@ -35,6 +36,6 @@ namespace TheNewPhotoBuddy.Screens
         /// Shows the view.
         /// </summary>
         /// <param name="caller">The caller.</param>
-        void ShowView(MainForm caller);
+        void ShowView(Stack<UserControl> caller);
     }
 }

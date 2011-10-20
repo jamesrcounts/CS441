@@ -17,6 +17,7 @@ namespace TheNewPhotoBuddy.Screens
     using TheNewPhotoBuddy.BussinessRule;
     using TheNewPhotoBuddy.Common.CommonClass;
     using TheNewPhotoBuddy.Controls;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Displays an album
@@ -122,7 +123,7 @@ namespace TheNewPhotoBuddy.Screens
         /// <value>
         /// The display name.
         /// </value>
-        public virtual string DisplayName { get; set; }
+        public string DisplayName { get; set; }
 
         /// <summary>
         /// Refreshes the list of photos in the current album.
@@ -169,11 +170,16 @@ namespace TheNewPhotoBuddy.Screens
         /// <summary>
         /// Shows the view.
         /// </summary>
-        /// <param name="caller">The caller.</param>
-        /// <remarks>Author: Jim Counts</remarks>
-        public virtual void ShowView(MainForm caller)
+        /// <param name="history">The caller's history of previous views.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        /// </remarks>
+        public void ShowView(Stack<UserControl> history)
         {
-            caller.CurrentView = this;
+            // Push myself onto the history stack
+            history.Push(this);
+
+            // Show myself
             this.Visible = true;
 
             // To focus text boxes.

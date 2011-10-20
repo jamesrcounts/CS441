@@ -17,6 +17,7 @@ namespace TheNewPhotoBuddy.Screens
     using TheNewPhotoBuddy.BussinessRule;
     using TheNewPhotoBuddy.Controls;
     using TheNewPhotoBuddy.EventObjects;
+    using System.Collections.Generic;
 
     /// <summary>
     /// The Opening View
@@ -121,11 +122,17 @@ namespace TheNewPhotoBuddy.Screens
         /// <summary>
         /// Shows the view.
         /// </summary>
-        /// <param name="caller">The caller.</param>
-        public void ShowView(MainForm caller)
+        /// <param name="history">The caller's history of previous views.</param>
+        /// <remarks>Author: Jim Counts</remarks>
+        public void ShowView(Stack<UserControl> history)
         {
+            // Refresh the list of Albums.
             this.RefreshAlbumViewList(this.Albums);
-            caller.CurrentView = this;
+
+            // Push myself onto the history.
+            history.Push(this);
+
+            // Show myself.
             this.Visible = true;
 
             // Important for focusing text boxes.

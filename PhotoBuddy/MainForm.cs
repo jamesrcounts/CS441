@@ -121,40 +121,40 @@ namespace TheNewPhotoBuddy
         /// </remarks>
         public Stack<UserControl> PreviousViews { get; protected set; }
 
-        /// <summary>
-        /// Shows a view, hides all others.
-        /// </summary>
-        /// <param name="viewToShow">The view to show.</param>
-        /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// </remarks>
-        [System.Obsolete("Use ShowView(IScreen) instead")]
-        protected void ShowView(UserControl viewToShow)
-        {
-            // Helps prevent flickering by suspending layout during changes.
-            panelScreenHolder.SuspendLayout();
+        ///// <summary>
+        ///// Shows a view, hides all others.
+        ///// </summary>
+        ///// <param name="viewToShow">The view to show.</param>
+        ///// <remarks>
+        ///// Author(s): Miguel Gonzales and Andrea Tan
+        ///// </remarks>
+        //[System.Obsolete("Use ShowView(IScreen) instead")]
+        //protected void ShowView(UserControl viewToShow)
+        //{
+        //    // Helps prevent flickering by suspending layout during changes.
+        //    panelScreenHolder.SuspendLayout();
 
-            // Refresh the albums list if we are showing the home screen.
-            if (viewToShow == HomeView)
-            {
-                HomeView.RefreshAlbumViewList(model.Albums);
-            }
+        //    // Refresh the albums list if we are showing the home screen.
+        //    if (viewToShow == HomeView)
+        //    {
+        //        HomeView.RefreshAlbumViewList(model.Albums);
+        //    }
 
-            // Can't go back to create album screen so don't allow previous screen to be set to it.
-            if (CurrentView != CreateAlbumView)
-            {
-                this.PreviousViews.Push(this.CurrentView);
-            }
+        //    // Can't go back to create album screen so don't allow previous screen to be set to it.
+        //    if (CurrentView != CreateAlbumView)
+        //    {
+        //        this.PreviousViews.Push(this.CurrentView);
+        //    }
 
-            CurrentView = viewToShow;
-            HideAllViews();
-            viewToShow.Visible = true;
+        //    CurrentView = viewToShow;
+        //    HideAllViews();
+        //    viewToShow.Visible = true;
 
-            // Set the main form focus to the screen. This is important for focusing text boxes.
-            CurrentView.Focus();
+        //    // Set the main form focus to the screen. This is important for focusing text boxes.
+        //    CurrentView.Focus();
 
-            panelScreenHolder.ResumeLayout();
-        }
+        //    panelScreenHolder.ResumeLayout();
+        //}
 
         /// <summary>
         /// Shows the view.
@@ -166,18 +166,14 @@ namespace TheNewPhotoBuddy
         protected void ShowView(IScreen viewToShow)
         {
             // Helps prevent flickering by suspending layout during changes.
-            panelScreenHolder.SuspendLayout();
+            this.panelScreenHolder.SuspendLayout();
 
-            // Can't go back to create album screen so don't allow previous screen to be set to it.
-            if (CurrentView != CreateAlbumView)
-            {
-                this.PreviousViews.Push(this.CurrentView);
-            }
+            this.CurrentView = viewToShow.Control;
+            this.HideAllViews();
+            
+            viewToShow.ShowView(this.PreviousViews);
 
-            HideAllViews();
-            viewToShow.ShowView(this);
-
-            panelScreenHolder.ResumeLayout();
+            this.panelScreenHolder.ResumeLayout();
         }
 
         /// <summary>
@@ -329,7 +325,7 @@ namespace TheNewPhotoBuddy
                 fileBrowser.Multiselect = false;
                 fileBrowser.Title = string.Format("Add to {0} - Photo Buddy", AlbumView.CurrentAlbum.albumID);
                 DialogResult result = fileBrowser.ShowDialog();
-                if (result == System.Windows.Forms.DialogResult.OK)
+                if (result == DialogResult.OK)
                 {
                     VerifyAddPhoto(fileBrowser.FileName);
                 }               

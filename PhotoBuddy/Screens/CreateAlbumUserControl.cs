@@ -13,6 +13,7 @@ namespace TheNewPhotoBuddy.Screens
     using System;
     using System.Diagnostics;
     using System.Windows.Forms;
+    using System.Collections.Generic;
 
     /// <summary>
     /// The create album view
@@ -139,11 +140,14 @@ namespace TheNewPhotoBuddy.Screens
         /// <summary>
         /// Shows the view.
         /// </summary>
-        /// <param name="caller">The caller.</param>
-        /// <remarks>Author: Jim Counts</remarks>
-        public void ShowView(MainForm caller)
+        /// <param name="history">The caller's history of previous views.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Note: this view does not push itself onto the history stack.</para>
+        /// </remarks>
+        public void ShowView(Stack<UserControl> history)
         {
-            caller.CurrentView = this;
+            // Show myself
             this.Visible = true;
 
             // Important for focusing text boxes.

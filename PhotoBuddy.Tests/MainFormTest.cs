@@ -9,10 +9,12 @@
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Tests
 {
+    using System.IO;
     using ApprovalTests.Reporters;
     using ApprovalTests.WinForms;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using TheNewPhotoBuddy;
+    using TheNewPhotoBuddy.Common.CommonClass;
     using TheNewPhotoBuddy.Screens;
 
     /// <summary>
@@ -37,6 +39,12 @@ namespace PhotoBuddy.Tests
         public void ApproveOpeningView()
         {
             // Do
+            var data = new FileInfo(Constants.XMLDataFilePath);
+            if (data.Exists)
+            {
+                data.Delete();
+            }
+
             using (var mainForm = new MainForm())
             {
                 // Approve
@@ -61,7 +69,10 @@ namespace PhotoBuddy.Tests
                 target.ShowScreenAccessor(target.AlbumView);
 
                 // Assert
-                Assert.AreEqual(target.HomeView, target.PreviousViews.Peek());
+                Assert.AreEqual(3, target.PreviousViews.Count);
+                Assert.AreEqual(target.AlbumView, target.PreviousViews.Pop());
+                Assert.AreEqual(target.HomeView, target.PreviousViews.Pop());
+                Assert.AreEqual(target.HomeView, target.PreviousViews.Pop());
             }
         }
 
@@ -83,7 +94,10 @@ namespace PhotoBuddy.Tests
                 target.ShowScreenAccessor(target.AlbumView);
 
                 // Assert
-                Assert.AreEqual(target.HomeView, target.PreviousViews.Peek());
+                Assert.AreEqual(3, target.PreviousViews.Count);
+                Assert.AreEqual(target.AlbumView, target.PreviousViews.Pop());
+                Assert.AreEqual(target.HomeView, target.PreviousViews.Pop());
+                Assert.AreEqual(target.HomeView, target.PreviousViews.Pop());
             }
         }
 
