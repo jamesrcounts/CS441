@@ -84,6 +84,30 @@ namespace TheNewPhotoBuddy
         private void continueButton_Click(object sender, EventArgs e)
         {
             this.photoName = textBox1.Text;
+
+            // Did user enter a blank name?
+            if (string.IsNullOrWhiteSpace(this.PhotoName))
+            {
+                MessageBox.Show(
+                    "Photo name must not be empty!",
+                    "Empty Photo Name Issue",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Did user enter too long of a name?
+            if (this.PhotoName.Length > TheNewPhotoBuddy.Common.CommonClass.Constants.MaxAlbumLength)
+            {
+                MessageBox.Show(
+                    "Photo name is too long.  Please enter a name less than " + TheNewPhotoBuddy.Common.CommonClass.Constants.MaxAlbumLength,
+                    "Photo Name Length Issue",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+          
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -34,5 +34,10 @@ namespace TheNewPhotoBuddy.Common.CommonClass
     /// A file-type filter for use with an <see cref="OpenFileDialog"/>
     /// </summary>
     public static readonly string Filetype = "XML (.xml)|*.xml";
+
+      /// <summary>
+      /// This is the maximum length for the name of albums and photos
+      /// </summary>
+    public static readonly int MaxAlbumLength = Settings.Default.MaxAlbumLength;
   }
 }

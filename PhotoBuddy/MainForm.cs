@@ -359,6 +359,8 @@ namespace TheNewPhotoBuddy
                 DialogResult result = uploadPhoto.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    
+
                     // User approved so upload the photo to the album.
                     string name = uploadPhoto.PhotoName;
                     string file = photoFilename;

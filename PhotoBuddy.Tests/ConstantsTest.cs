@@ -19,6 +19,21 @@ namespace PhotoBuddy.Tests
   [TestClass]
   public class ConstantsTest
   {
+      
+      /// <summary>
+      /// Should read maximum album name length from configuration
+      /// </summary>
+      /// <remarks>
+      /// <para> Author: Jim Counts and Eric Wei</para>
+      /// </remarks>
+      [TestMethod]
+      public void ShouldReadMaxAlbumLengthFromConfig()
+      {
+          int expected = 32;
+          int actual = Constants.MaxAlbumLength;
+          Assert.AreEqual(expected, actual);
+      }
+
     /// <summary>
     /// Refers to app data folder in photos folder path.
     /// </summary>

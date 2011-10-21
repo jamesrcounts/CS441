@@ -194,6 +194,16 @@ namespace TheNewPhotoBuddy.Screens
                 return;
             }
 
+            if (albumNameTextBox.Text.Length > TheNewPhotoBuddy.Common.CommonClass.Constants.MaxAlbumLength)
+            {
+                MessageBox.Show(
+                    "Album name is too long.  Please enter a name less than " + TheNewPhotoBuddy.Common.CommonClass.Constants.MaxAlbumLength,
+                    "Album Name Length Issue",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             if (!this.InCreateMode)
             {
                 // Renaming album - user entered the existing name so cancel the rename
@@ -208,9 +218,27 @@ namespace TheNewPhotoBuddy.Screens
             this.UserEnteredText = albumNameTextBox.Text;
 
             // raise the create event
-            this.ContinueEvent(this, e);
+            if (this.ContinueEvent != null)
+            {
+                this.ContinueEvent(this, e);
+            }            
         }
 
+        public Button ContinueButton
+        {
+            get
+            {
+                return this.continueButton;
+            }
+        }
+        
+        public TextBox AlbumNameTextBox
+        {
+            get
+            {
+                return this.albumNameTextBox;
+            }
+        }
         /// <summary>
         /// Handles the KeyDown event of the albumNameTextBox control.
         /// </summary>

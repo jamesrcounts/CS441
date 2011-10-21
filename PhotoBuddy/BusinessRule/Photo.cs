@@ -112,6 +112,11 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// <param name="destFile"></param>
         public static void CopyOverThefileToSecretDir(String filepath, String destFile)
         {
+            if (File.Exists(destFile))
+            {
+                return;
+            }
+
             // To copy a file to another location and 
             // overwrite the destination file if it already exists.
             File.Copy(filepath, destFile, true);
