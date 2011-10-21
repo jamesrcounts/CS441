@@ -7,6 +7,7 @@
 // Modified date: Oct 9 2011
 // Description: this class is responsible for the use control in create album which 
 //             is called from mainForm to do the state changes.
+using TheNewPhotoBuddy.Common.CommonClass;
 //-----------------------------------------------------------------------
 namespace TheNewPhotoBuddy.Screens
 {
@@ -194,10 +195,10 @@ namespace TheNewPhotoBuddy.Screens
                 return;
             }
 
-            if (albumNameTextBox.Text.Length > TheNewPhotoBuddy.Common.CommonClass.Constants.MaxAlbumLength)
+            if (albumNameTextBox.Text.Length > Constants.MaxAlbumLength)
             {
                 MessageBox.Show(
-                    "Album name is too long.  Please enter a name less than " + TheNewPhotoBuddy.Common.CommonClass.Constants.MaxAlbumLength,
+                    "Album name is too long.  Please enter a name less than " + Constants.MaxAlbumLength,
                     "Album Name Length Issue",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -221,7 +222,7 @@ namespace TheNewPhotoBuddy.Screens
             if (this.ContinueEvent != null)
             {
                 this.ContinueEvent(this, e);
-            }            
+            }
         }
 
         public Button ContinueButton

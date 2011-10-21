@@ -2,7 +2,7 @@
  * Author(s): Miguel Gonzales & Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 9 2011
- * Description: this Photo class is responsible in instation of the photo object.
+ * Description: this Photo class is responsible in instantiation of the photo object.
  *              this class also provides the mean of accessing the photo contents
  *              as well as updating its contents as well. additional feature for this is
  *              creating a unique hashkey for a unique picture filename.
@@ -11,13 +11,13 @@
  ************************************************************************************/
 
 
+
+namespace TheNewPhotoBuddy.BussinessRule
+{
 using System;
 using System.Text;
 using System.Security.Cryptography;  // This is where the hash functions reside
 using System.IO;
-
-namespace TheNewPhotoBuddy.BussinessRule
-{
     public class Photo
     {
 

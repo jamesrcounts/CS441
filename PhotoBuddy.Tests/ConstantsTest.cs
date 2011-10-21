@@ -19,19 +19,17 @@ namespace PhotoBuddy.Tests
   [TestClass]
   public class ConstantsTest
   {
-      
       /// <summary>
       /// Should read maximum album name length from configuration
       /// </summary>
       /// <remarks>
-      /// <para> Author: Jim Counts and Eric Wei</para>
+      /// Author: Jim Counts and Eric Wei
       /// </remarks>
       [TestMethod]
       public void ShouldReadMaxAlbumLengthFromConfig()
       {
-          int expected = 32;
           int actual = Constants.MaxAlbumLength;
-          Assert.AreEqual(expected, actual);
+          Assert.AreEqual(32, actual);
       }
 
     /// <summary>
