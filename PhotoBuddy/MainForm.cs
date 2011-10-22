@@ -53,8 +53,8 @@ namespace TheNewPhotoBuddy
             InitializeUIScreens();
             CurrentView = HomeView;
             ShowView((IScreen)HomeView);
-            // Set the newAlbumName of the form
-            this.Text = Strings.AppName;
+
+            this.Text = string.Format("{0}: {1}", Environment.UserName, Strings.AppName);
         }
 
         /// <summary>
@@ -456,7 +456,7 @@ namespace TheNewPhotoBuddy
                 MessageBox.Show("Photo Buddy by GOLD RUSH\n", Strings.AppName, MessageBoxButtons.OK);
                 return;
             }
-            
+
             ShowView((IScreen)HomeView);
         }
     }

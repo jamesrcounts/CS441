@@ -17,6 +17,7 @@
 
 using System;
 using System.Windows.Forms;
+using PhotoBuddy.Resources;
 
 namespace TheNewPhotoBuddy
 {
@@ -25,12 +26,17 @@ namespace TheNewPhotoBuddy
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        /// <remarks>Authors: Jim Counts and Eric Wei</remarks>
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            string title = string.Format("{0}: {1}", Environment.UserName, Strings.AppName);
+            if (PhotoBuddy.ProcessChecker.IsOnlyProcess(title))
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new MainForm());
+            }
         }
     }
 }
