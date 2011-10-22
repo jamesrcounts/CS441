@@ -1,5 +1,5 @@
 ﻿/****************************************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 9 2011
  * High level Description: this class is a label control used to display the names of albums & photos 
@@ -15,14 +15,14 @@ using System.Drawing;
 namespace TheNewPhotoBuddy.Controls
 {
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// Date: Sept 28 2011
     /// Modified date: Oct 9 2011
     /// </summary>
     public class PB_ClickLabel : Label
     {
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// Date: Sept 28 2011
         /// Modified date: Oct 9 2011
         /// </summary>
@@ -32,7 +32,7 @@ namespace TheNewPhotoBuddy.Controls
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// Date: Sept 28 2011
         /// Modified date: Oct 9 2011
         /// </summary>
@@ -55,7 +55,7 @@ namespace TheNewPhotoBuddy.Controls
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// Date: Sept 28 2011
         /// Modified date: Oct 9 2011
         /// 
@@ -69,7 +69,7 @@ namespace TheNewPhotoBuddy.Controls
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// Date: Sept 28 2011
         /// Modified date: Oct 9 2011
         /// 

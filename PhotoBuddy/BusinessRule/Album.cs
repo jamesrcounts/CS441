@@ -1,5 +1,5 @@
 ﻿/***********************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 9 2011
  * Description: this class is responsible in instantiation of the album objects.
@@ -9,11 +9,12 @@
  *
  ************************************************************************************/
 using System;
+using System.Diagnostics;
 
 namespace TheNewPhotoBuddy.BussinessRule
 {
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// 
     /// Album Object Class this constructor initialize an album object.
     /// this class also contains public functions to set and get the following below:
@@ -21,11 +22,12 @@ namespace TheNewPhotoBuddy.BussinessRule
     /// 2. CoverPhoto.
     /// 3. a collections of photo lists.
     /// </summary>
+    [DebuggerDisplay("{albumID}")]
     public class Album 
     {
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// constructor which initialized the variables album id, cover photo, and photo list
         /// precondition: none
@@ -38,7 +40,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// overloading constructor which initialized the variables albumid, coverphoto, and photolist
         /// precondition: parameter albumName must be passed into this constructor.
@@ -52,21 +54,21 @@ namespace TheNewPhotoBuddy.BussinessRule
         }
        
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// get and set albumID from instantiated album object.
         /// </summary>
         public String albumID { get; set; }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// get and set photoObjects from instantiated album object.
         /// </summary>
         public Photos photoObjects { get; set; }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// overidde method to return album id in string type 
         /// for a generic get of the album object.

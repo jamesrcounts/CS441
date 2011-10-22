@@ -1,5 +1,5 @@
 ﻿/****************************************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 9 2011
  * High level Description: this class is responsible for populating the objects from the xmls,
@@ -12,12 +12,12 @@
 
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using TheNewPhotoBuddy.DataAccessLayer;
-using System.IO;
 using TheNewPhotoBuddy.Common.CommonClass;
+using TheNewPhotoBuddy.DataAccessLayer;
 
 namespace TheNewPhotoBuddy.BussinessRule
 {
@@ -52,12 +52,12 @@ namespace TheNewPhotoBuddy.BussinessRule
 
             //initialize all objects
             Albums = new Albums();
-            populateAlbumsAnditsPhotos();
+            LoadAlbums();
         }
 
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// EditAlumName
         /// this function takes in the old name of the album and as well as a new name
@@ -81,7 +81,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// checkAndCreatePhotoBuddyDirectory is responsible to see check weather
         /// the current startup path of the program directory has our secret folder
@@ -100,7 +100,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// getAlbums object provides a method to easily get and update the Albums object.
         /// </summary>
@@ -108,44 +108,43 @@ namespace TheNewPhotoBuddy.BussinessRule
 
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// this funcion provides the mean to add desired album object into
-        /// hash table
-        /// 
-        /// Percondition: album object is not empty
-        /// PostCondition: album object will be added into hashtable.
+        /// Adds the specified album to the repository.
         /// </summary>
-        /// <param name="tempAlbum"></param>
-        public void addAlbumtoAlbumList(Album tempAlbum)
+        /// <param name="albumToAdd">The album to add.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public void Add(Album albumToAdd)
         {
-            Albums.addAlbum(tempAlbum);
+            if (albumToAdd == null)
+            {
+                return;
+            }
+
+            this.Albums.addAlbum(albumToAdd);
         }
 
-
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// add or edit photos in a certain album 
-        /// gives a functionality to update a photos in particular album
-        /// 
-        /// preCondition : photos object and desired key that are being passed in are not empty
-        /// postCondition: update the photos which was fetched from the hashtable of albums 
+        /// Adds or replaces a collection of photos to an album.
         /// </summary>
-        /// <param name="tempPhotos"></param>
-        /// <param name="key"></param>
-        public void editOrAddPhotosToAlbum(Photos tempPhotos, String key)
+        /// <param name="albumId">The album id.</param>
+        /// <param name="photosToAdd">The photos to add.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public void ReplaceAlbumPhotos(string albumId, Photos photosToAdd)
         {
-            //query for album from albumlist
-            Album currentAlbum = new Album();
-            currentAlbum = Albums.getAlbum(key);
+            if (string.IsNullOrWhiteSpace(albumId) || photosToAdd == null)
+            {
+                return;
+            }
 
-            currentAlbum.photoObjects = tempPhotos;
+            var album = Albums.getAlbum(albumId);
+            album.photoObjects = photosToAdd;
         }
 
-
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// this function is resposible to write back all the objects that have been created (albums,photos)
         /// into an xmls.
@@ -167,7 +166,9 @@ namespace TheNewPhotoBuddy.BussinessRule
             {
                 XmlNode albumNode = doc.CreateElement("album");
                 XmlAttribute albumIDAttr = albumNode.OwnerDocument.CreateAttribute("id_tag");
-                albumIDAttr.Value = albumObj.albumID;
+                string id = albumObj.albumID;
+               //// var tempXElement = new System.Xml.Linq.XElement("Temp", id);
+                albumIDAttr.Value = id;
                 albumNode.Attributes.Append(albumIDAttr);
 
                 XmlNode photosNode = doc.CreateElement("photos");
@@ -179,7 +180,7 @@ namespace TheNewPhotoBuddy.BussinessRule
                         XmlNode photoNode = doc.CreateElement("photo");
 
                         XmlAttribute photoIDAttr = photoNode.OwnerDocument.CreateAttribute("id_tag");
-                        photoIDAttr.Value = photoObj.ID;
+                        photoIDAttr.Value = photoObj.PhotoId;
                         photoNode.Attributes.Append(photoIDAttr);
 
                         XmlElement photoCopiedPathNode = doc.CreateElement("copied_path");
@@ -200,15 +201,12 @@ namespace TheNewPhotoBuddy.BussinessRule
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// populate album and photos object when xml file is loaded.
-        /// this is done by using a linq xml statements.
-        /// 
-        /// preCondition: None
-        /// postCondition: hashtable will be full of objects that are being read from the xml file.
+        /// Loads the albums.
         /// </summary>
-        public void populateAlbumsAnditsPhotos()
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public void LoadAlbums()
         {
             // look through album node.
             var albumNodes = from node in document.Descendants("album")
@@ -218,48 +216,32 @@ namespace TheNewPhotoBuddy.BussinessRule
                                  photos = node.Element("photos")
                              };
 
-            // check if the albumNode is not empty.
-            if (albumNodes.Count() == 0)
-                return;
-
             foreach (var albumInfo in albumNodes)
             {
-                Album tempAlbum = new Album();
-                Photos localPhotoList = new Photos();
+                var album = new Album() { albumID = albumInfo.id_tag };
 
-                tempAlbum.albumID = albumInfo.id_tag;
-
-                // try and catch exception is made for album who has been created but does not have photos nodes in it.
-                try
+                //traverse through all the photos in particular album
+                var photoList = new Photos();
+                foreach (var photoInfo in albumInfo.photos.Descendants("photo"))
                 {
-                    //traverse through all the photos in particular album
-                    foreach (XElement photoInfo in albumInfo.photos.Descendants("photo"))
-                    {
-                        //photo
-                        Photo tempPhoto = new Photo()
-                        {
-                            ID = photoInfo.Attribute("id_tag").Value,
-                            display_name = photoInfo.Element("display_name").Value,
-                            copiedPath = photoInfo.Element("copied_path").Value
-                        };
+                    //photo
+                    var tempPhoto = new Photo()
+                                        {
+                                            PhotoId = photoInfo.Attribute("id_tag").Value,
+                                            display_name = photoInfo.Element("display_name").Value,
+                                            copiedPath = photoInfo.Element("copied_path").Value
+                                        };
 
-                        localPhotoList.addPhotosAt(tempPhoto);
-                    }
-                    tempAlbum.photoObjects = localPhotoList;
+                    photoList.addPhotosAt(tempPhoto);
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    Photo tempPhoto = new Photo();
-                    localPhotoList.addPhotosAt(tempPhoto);
-                }
-                Albums.addAlbum(tempAlbum);
+
+                album.photoObjects = photoList;
+                Albums.addAlbum(album);
             }
-
-        }//end function
+        }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// addPhototoAlbum functions does the following:
         /// 1. generate unique hashkey to avoid adding the same picture over and over again
@@ -279,13 +261,13 @@ namespace TheNewPhotoBuddy.BussinessRule
         {
             Photo tempPhoto = new Photo()
             {
-                ID = Photo.GenerateUniqueHashPhotoKey(photoFilename),
+                PhotoId = Photo.GenerateUniqueHashPhotoKey(photoFilename),
                 display_name = photoName,
                 copiedPath = photoFilename
             };
 
             // Combines two paths without having to worry about whether path1 ends with a '\' character
-            string path = Path.Combine(Constants.PhotosFolderPath, tempPhoto.ID);
+            string path = Path.Combine(Constants.PhotosFolderPath, tempPhoto.PhotoId);
 
             // Changes or adds the original file extension to the new path
             string fileExtension = Path.GetExtension(photoFilename);
@@ -294,7 +276,7 @@ namespace TheNewPhotoBuddy.BussinessRule
             // Copies the file to the secret location.
             Photo.CopyOverThefileToSecretDir(@tempPhoto.copiedPath, path);
 
-            tempPhoto.copiedPath = tempPhoto.ID + fileExtension;
+            tempPhoto.copiedPath = tempPhoto.PhotoId + fileExtension;
             //query for album from album list
             Album currentAlbum = new Album();
             currentAlbum = Albums.getAlbum(key);

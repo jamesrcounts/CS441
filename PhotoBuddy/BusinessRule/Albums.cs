@@ -1,5 +1,5 @@
 ﻿/***********************************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 9 2011
  * High Level Description: this class is responsible for numerous collections 
@@ -18,22 +18,21 @@ namespace TheNewPhotoBuddy.BussinessRule
 {
     public class Albums 
     {
-        //private hashtable of album objects declared
-        private readonly Hashtable AlbumObjectHashtable;
+        private readonly Hashtable AlbumTable;
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// Albums constructor which initialized the hash table to keep
         /// album objects.
         /// </summary>
         public Albums()
         {
-            AlbumObjectHashtable = new Hashtable();
+            this.AlbumTable = new Hashtable();
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// get method which return the hashtable when it is being requested
         /// precondition: hash table is initialized and not empty.
@@ -41,11 +40,11 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// </summary>
         public Hashtable albumsList
         {
-            get { return AlbumObjectHashtable; }
+            get { return this.AlbumTable; }
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// a search function which to return a specific album that is being requested
         /// from a presenter.
@@ -57,11 +56,11 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// <returns>the album object.</returns>
         public Album getAlbum(String key)
         {
-            return (Album) AlbumObjectHashtable[key];
+            return (Album) this.AlbumTable[key];
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// add album method which adding an album objects into a hashtable
         /// preCondition : the album object that is being passed must contain the necessary data without any null variables
@@ -74,43 +73,43 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// <returns></returns>
         public bool addAlbum(Album newAlbum)
         {
-            if (!AlbumObjectHashtable.ContainsKey(newAlbum.albumID))
+            if (!this.AlbumTable.ContainsKey(newAlbum.albumID))
             {
-                AlbumObjectHashtable.Add(newAlbum.albumID, newAlbum);
+                this.AlbumTable.Add(newAlbum.albumID, newAlbum);
                 return true;
             }
 
             return false;
         }
 
-        /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// a delete album method which adding an album objects into a hashtable
-        /// preCondition : the album object that is being passed must contain the necessary data without any null variables
-        ///                the album object must be a unique key and if the object already existed in the hash table, it will not be processed.
-        ///               
-        /// postCondition: when album object is sucessfully deletedd from hash table, the function will return a boolean true otherwise
-        ///                it will return boolean false.
-        /// </summary>
-        /// <param name="existingAlbum"></param>
-        /// <returns></returns>
-        public bool deleteAlbum(Album existingAlbum)
-        {
-            if (AlbumObjectHashtable.ContainsKey(existingAlbum.albumID))
-            {
-                AlbumObjectHashtable.Remove(existingAlbum.albumID);
-                return true;
-            }
-            else
-            {
-                //cannot find this album id probably has been deleted?
-                return false;
-            }
-        }
+        /////// <remarks>
+        /////// Author(s): Miguel Gonzales and Andrea Tan
+        /////// 
+        /////// a delete album method which adding an album objects into a hashtable
+        /////// preCondition : the album object that is being passed must contain the necessary data without any null variables
+        ///////                the album object must be a unique key and if the object already existed in the hash table, it will not be processed.
+        ///////               
+        /////// postCondition: when album object is sucessfully deletedd from hash table, the function will return a boolean true otherwise
+        ///////                it will return boolean false.
+        /////// </remarks>
+        /////// <param name="existingAlbum"></param>
+        /////// <returns></returns>
+        ////public bool deleteAlbum(Album existingAlbum)
+        ////{
+        ////    if (AlbumObjectHashtable.ContainsKey(existingAlbum.albumID))
+        ////    {
+        ////        AlbumObjectHashtable.Remove(existingAlbum.albumID);
+        ////        return true;
+        ////    }
+        ////    else
+        ////    {
+        ////        //cannot find this album id probably has been deleted?
+        ////        return false;
+        ////    }
+        ////}
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// this method is for checking wether the album alraedy exist
         /// in the hash table
@@ -121,7 +120,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// <returns></returns>
         public bool IsExistingAlbumName(string albumName)
         {
-            return AlbumObjectHashtable.ContainsKey(albumName);
+            return this.AlbumTable.ContainsKey(albumName);
         }
     }
 }

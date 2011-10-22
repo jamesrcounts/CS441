@@ -170,7 +170,7 @@ namespace TheNewPhotoBuddy
 
             this.CurrentView = viewToShow.Control;
             this.HideAllViews();
-            
+
             viewToShow.ShowView(this.PreviousViews);
 
             this.panelScreenHolder.ResumeLayout();
@@ -207,19 +207,17 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// Attaches all of the event handlers in this form to the various events on 
-        /// the apps screens.
-        /// preCondition: program is started
-        /// postCondition: added the events to all the buttons that are avaialble in the UI
+        /// Attaches the events to screens.
         /// </summary>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         private void AttachEventsToScreens()
         {
-            HomeView.CreateButtonEvent += CreateButton_Click;
+            HomeView.CreateButtonEvent += this.HandleCreateButtonClick;
             HomeView.AlbumSelectedEvent += showSelectedAlbum;
             CreateAlbumView.CancelEvent += GoBack;
-            CreateAlbumView.ContinueEvent += FinishCreateOrEditAlbum;
+            CreateAlbumView.ContinueEvent += CreateOrEditAlbum;
             AlbumView.BackEvent += backToHomeScreen;
             AlbumView.AddPhotosEvent += AddPhotos;
             AlbumView.RenameAlbumEvent += renameAlbum;
@@ -236,53 +234,46 @@ namespace TheNewPhotoBuddy
         /// <param name="e">The event args.</param>
         private void showSelectedAlbum(object sender, AlbumEventArgs e)
         {
-            AlbumView.CurrentAlbum = (Album)model.Albums.albumsList[e.TheAlbum.albumID];
+            AlbumView.CurrentAlbum = (Album)model.Albums.albumsList[e.TheAlbum.albumID.Replace("&&", "&")];
             ShowView((IScreen)AlbumView);
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// finished create or edit album is used to update the object that is in the album list (hashtable)
-        /// and also write the data into xml
-        /// preCondition: button finished or commit is invoked
-        /// postCondition: create the album based on user entered inputs and if the name of the album is the same
-        ///                a warning message will be shown to change the name.
-        /// 
+        /// Create or Edit an album
         /// </summary>
         /// <param name="sender">The continue button from the createScreen.</param>
         /// <param name="e">The event args.</param>
-        private void FinishCreateOrEditAlbum(object sender, EventArgs e)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void CreateOrEditAlbum(object sender, EventArgs e)
         {
-            string newAlbumName = CreateAlbumView.UserEnteredText;
-            //Creating a new album
-            if (CreateAlbumView.InCreateMode)
+            string rawAlbumName = CreateAlbumView.UserEnteredText;
+            if (model.Albums.IsExistingAlbumName(rawAlbumName))
             {
-                if (model.Albums.IsExistingAlbumName(newAlbumName))
-                {
-                    MessageBox.Show(
+                MessageBox.Show(
                     "Invalid album name! Please enter a new album name.",
-                    "Album Name Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                model.addAlbumtoAlbumList(new Album(newAlbumName));
+                    "Album Name Invalid",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (this.CreateAlbumView.InCreateMode)
+            {
+                // Creating a new album
+                model.Add(new Album(rawAlbumName));
                 model.populateObjectsIntoXML();
             }
-            // Editing an album
             else
             {
-                if (model.Albums.IsExistingAlbumName(newAlbumName))
-                {
-                    MessageBox.Show(
-                    "Invalid album name! please enter a new album name",
-                    "Album name Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                model.EditAlbumName(CreateAlbumView.AlbumName, newAlbumName);
+                // Editing an album
+                model.EditAlbumName(CreateAlbumView.AlbumName, rawAlbumName);
             }
+
             // Return to the album view screen, showing the current album.
-            AlbumView.CurrentAlbum = (Album)model.Albums.albumsList[newAlbumName];
-            ShowView((IScreen)AlbumView);
+            AlbumView.CurrentAlbum = (Album)model.Albums.albumsList[rawAlbumName];
+            ShowView(AlbumView);
         }
 
         /// <summary>
@@ -328,7 +319,7 @@ namespace TheNewPhotoBuddy
                 if (result == DialogResult.OK)
                 {
                     VerifyAddPhoto(fileBrowser.FileName);
-                }               
+                }
             }
             AlbumView.RefreshPhotoList();
         }
@@ -359,13 +350,13 @@ namespace TheNewPhotoBuddy
                 DialogResult result = uploadPhoto.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    
+
 
                     // User approved so upload the photo to the album.
                     string name = uploadPhoto.PhotoName;
                     string file = photoFilename;
                     model.AddPhotoToAlbum(AlbumView.CurrentAlbum.albumID, name, file);
-                }                
+                }
             }
         }
 
@@ -413,7 +404,7 @@ namespace TheNewPhotoBuddy
         /// </summary>
         /// <param name="sender">Create button click on Home screen.</param>
         /// <param name="e">The event args.</param>
-        private void CreateButton_Click(object sender, EventArgs e)
+        private void HandleCreateButtonClick(object sender, EventArgs e)
         {
             CreateAlbumView.ResetForm(true, "");
             ShowView((IScreen)CreateAlbumView);
@@ -465,7 +456,7 @@ namespace TheNewPhotoBuddy
                 MessageBox.Show("Photo Buddy by GOLD RUSH\n", Strings.AppName, MessageBoxButtons.OK);
                 return;
             }
-            PreviousViews = null;
+            
             ShowView((IScreen)HomeView);
         }
     }

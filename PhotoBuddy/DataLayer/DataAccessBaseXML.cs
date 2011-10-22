@@ -1,5 +1,5 @@
 ﻿/***********************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 9 2011
  * Description: this class is responsible to read xml data elements and data attributes.
@@ -18,7 +18,7 @@ namespace TheNewPhotoBuddy.DataAccessLayer
         private XDocument doc;
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// this function either load the existing file into xdocument
         /// OR
@@ -48,7 +48,7 @@ namespace TheNewPhotoBuddy.DataAccessLayer
 
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// initialized xml when the date is not there
         /// precondition: file name gets passed in from constructor

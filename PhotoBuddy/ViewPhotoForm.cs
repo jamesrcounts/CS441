@@ -1,5 +1,5 @@
 ﻿/***********************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 9 2011
  * Description: this class is responsible to show photo or possibly multiple photos
@@ -28,7 +28,7 @@ namespace TheNewPhotoBuddy
         int photoIndex;
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// constructor which initialized all the necessary hooks to show the objects forms.
         /// </summary>
@@ -38,7 +38,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// overloading constructor in which it takes an album object and a photo
         /// to assign to its GUI textboxs and labels. and also it calles the display
@@ -54,7 +54,7 @@ namespace TheNewPhotoBuddy
             InitializeComponent();
             this.Text = "Photo Display - Photo Buddy";
             this.album = currentAlbum;
-            this.photoID = thePhoto.ID;
+            this.photoID = thePhoto.PhotoId;
             this.picture = thePhoto;
             currentAlbumLabel.Text = album.albumID;
             // Convert the hashtable to a list so we can enumerate through them.
@@ -64,7 +64,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// Creates a list of photos in the current album from the hashtable object.
         /// preCondition: collections of album photos are not empty
@@ -76,7 +76,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// display Photo it actually takes a peek of where exactly the photo album is located
         /// and set the image to the pictureBox for image display.
@@ -94,7 +94,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// back button click method is used to listen to an event which back button is pressed.
         /// when this happened, the view form will be closed.
@@ -109,7 +109,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// next button photos is used to traverse to the photos that are currently in particular viewed album
         /// preCondition: event right arrow is clicked
@@ -127,7 +127,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// back button photos is used to traverse to the photos that are currently in particular viewed album
         /// preCondition: event left arrow is clicked
@@ -145,7 +145,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// cangoForward method is to check wether the the photos are at the end
         /// preCondition: counts must not be 0 and not at the end.
@@ -158,7 +158,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// cangoBack method is to check wether the the photos are at the beginning
         /// preCondition: counts must not be 0 and not at the end.
@@ -171,7 +171,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// event change color when mouse arrow is hoover on top of the arrow object.
         /// All of the buttons on this form use this function to change color on mouse over.
@@ -185,7 +185,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// event change color when mouse arrow is away from of the arrow object.
         /// All of the buttons on this form use this function to change color on mouse leave.

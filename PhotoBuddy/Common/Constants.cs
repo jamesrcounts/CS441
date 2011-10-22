@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 /***********************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 18 2011
  * Description: this class is responsible of the defined global static strings

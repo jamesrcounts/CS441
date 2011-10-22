@@ -1,5 +1,5 @@
 ﻿/***********************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 9 2011
  * Description: this class is responsible to show the upload photo in particular album that is
@@ -28,7 +28,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// uploadViewForm is a method which takes a string type of filePath of the picture
         /// precondition: string file path
@@ -58,7 +58,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// when cancel button is pressed the photo view form will be closed.
         /// preCondition: cancel event is executed
@@ -72,7 +72,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// method which invoked from button clicked to set the
         /// photo name from the user specified in the textbox.
@@ -113,7 +113,7 @@ namespace TheNewPhotoBuddy
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// Check for the enter key press and execute the continue button if it was pressed.
         /// </summary>

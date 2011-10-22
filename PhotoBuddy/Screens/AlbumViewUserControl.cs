@@ -111,7 +111,7 @@ namespace TheNewPhotoBuddy.Screens
                 this.currentAlbum = value;
                 if (this.currentAlbum != null)
                 {
-                    labelAlbumName.Text = this.currentAlbum.albumID;
+                    labelAlbumName.Text = this.currentAlbum.albumID.Replace("&", "&&");
                     this.RefreshPhotoList();
                 }
             }

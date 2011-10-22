@@ -1,5 +1,5 @@
 ﻿/***********************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 9 2011
  * Description: this class is responsible for collections of photo object. 
@@ -22,7 +22,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         private readonly Hashtable PhotosObjectHashtable;
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// photos constructor which initialized the hash table
         /// </summary>
@@ -32,7 +32,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// return the hash when is requested.
         /// </summary>
@@ -42,7 +42,7 @@ namespace TheNewPhotoBuddy.BussinessRule
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// add picture functionality, which takes a photo object
         /// and add it into the collection (hashtable)
@@ -55,9 +55,9 @@ namespace TheNewPhotoBuddy.BussinessRule
         /// <returns></returns>
         public bool addPhotosAt(Photo tempPhoto)
         {
-            if (!PhotosObjectHashtable.ContainsKey(tempPhoto.ID))
+            if (!PhotosObjectHashtable.ContainsKey(tempPhoto.PhotoId))
             {
-                PhotosObjectHashtable.Add(tempPhoto.ID, tempPhoto);
+                PhotosObjectHashtable.Add(tempPhoto.PhotoId, tempPhoto);
                 return true;
             }
             else
@@ -66,36 +66,36 @@ namespace TheNewPhotoBuddy.BussinessRule
             }
         }
 
-        /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// removePhoto from hashtable
-        /// preCondition: photo object and string of the real path of where the picture resides.
-        /// postCondition: photo object gets deleted off hashtable and also deleted from the
-        ///                secret directory.
-        /// </summary>
-        /// <param name="tempPhoto"></param>
-        /// <param name="removeFileatDir"></param>
-        /// <returns></returns>
-        public bool removePhotosAt(Photo tempPhoto, String removeFileatDir)
-        {
-            if (!PhotosObjectHashtable.ContainsKey(tempPhoto.ID))
-            {
-                //cannot find this album id probably has been deleted?
-                return false;
-            }
+        /////// <remarks>
+        /////// Author(s): Miguel Gonzales and Andrea Tan
+        /////// 
+        /////// removePhoto from hashtable
+        /////// preCondition: photo object and string of the real path of where the picture resides.
+        /////// postCondition: photo object gets deleted off hashtable and also deleted from the
+        ///////                secret directory.
+        /////// </remarks>
+        /////// <param name="tempPhoto"></param>
+        /////// <param name="removeFileatDir"></param>
+        /////// <returns></returns>
+        ////public bool removePhotosAt(Photo tempPhoto, String removeFileatDir)
+        ////{
+        ////    if (!PhotosObjectHashtable.ContainsKey(tempPhoto.PhotoId))
+        ////    {
+        ////        // cannot find this album id probably has been deleted?
+        ////        return false;
+        ////    }
 
-            // Delete a file by using File class static method...
-            if (File.Exists(@removeFileatDir))
-            {
-                // Use a try block to catch IOExceptions, to
-                // handle the case of the file already being
-                // opened by another process.
-                File.Delete(@removeFileatDir);
-            }
+        ////    // Delete a file by using File class static method...
+        ////    if (File.Exists(@removeFileatDir))
+        ////    {
+        ////        // Use a try block to catch IOExceptions, to
+        ////        // handle the case of the file already being
+        ////        // opened by another process.
+        ////        File.Delete(@removeFileatDir);
+        ////    }
 
-            PhotosObjectHashtable.Remove(tempPhoto.ID);
-            return true;
-        }
+        ////    PhotosObjectHashtable.Remove(tempPhoto.PhotoId);
+        ////    return true;
+        ////}
     }
 }

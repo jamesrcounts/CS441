@@ -112,7 +112,7 @@ namespace TheNewPhotoBuddy.Screens
 
             foreach (Album album in albums.albumsList.Values)
             {
-                PB_ClickLabel label = new PB_ClickLabel() { Text = album.albumID };
+                PB_ClickLabel label = new PB_ClickLabel() { Text = album.albumID.Replace("&", "&&") };
 
                 label.Click += this.HandleAlbumClick;
                 albumsFlowPanel.Controls.Add(label);

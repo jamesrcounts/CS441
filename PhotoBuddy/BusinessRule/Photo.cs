@@ -1,5 +1,5 @@
 ﻿/***********************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Sept 28 2011
  * Modified date: Oct 9 2011
  * Description: this Photo class is responsible in instantiation of the photo object.
@@ -9,21 +9,19 @@
  * 
  *
  ************************************************************************************/
-
-
-
 namespace TheNewPhotoBuddy.BussinessRule
 {
-using System;
-using System.Text;
-using System.Security.Cryptography;  // This is where the hash functions reside
-using System.IO;
+    using System;
+    using System.Text;
+    using System.Security.Cryptography;  // This is where the hash functions reside
+    using System.IO;
+
     public class Photo
     {
 
         /// <summary>
         /// 
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// Photo constructor
         /// initialized photo id, display name, and the copiedPath (which is the dir of secret folder)
@@ -33,22 +31,24 @@ using System.IO;
         /// </summary>
         public Photo()
         {
-            ID = "";
-            display_name = "";
-            copiedPath = "";
+            PhotoId = string.Empty;
+            display_name = string.Empty;
+            copiedPath = string.Empty;
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
-        /// 
-        /// public method ID to get & assign private class 
-        /// variable _ID
-        /// 
+        /// Gets or sets the photo id.
         /// </summary>
-        public String ID { get; set; }
+        /// <value>
+        /// The photo id.
+        /// </value>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public String PhotoId { get; set; }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// public method ID to get & assign private class 
         /// variable _ID
@@ -57,7 +57,7 @@ using System.IO;
         public String display_name { get; set; }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// public method ID to get & assign private class 
         /// variable _copiedPath
@@ -66,7 +66,7 @@ using System.IO;
         public String copiedPath { get; set; }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// this method takes in a file path of the file
         /// and calculate a unique hashkey MD5 checksum 
@@ -97,7 +97,7 @@ using System.IO;
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// this method is made is to copy over the picture files to 
         /// our secret directory.
@@ -123,7 +123,7 @@ using System.IO;
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// 
         /// overidde method to return album id in string type 
         /// for a generic get of the album object.

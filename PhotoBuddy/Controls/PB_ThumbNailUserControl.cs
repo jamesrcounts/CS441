@@ -1,5 +1,5 @@
 ﻿/****************************************************************************************************
- * Author(s): Miguel Gonzales & Andrea Tan
+ * Author(s): Miguel Gonzales and Andrea Tan
  * Date: Oct 13 2011
  * Modified date: Oct 14 2011
  * High level Description: This is a custom control that displays a thumbnail size image with a textbox.
@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace TheNewPhotoBuddy.Controls
 {
     /// <summary>
-    /// Author(s): Miguel Gonzales & Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan
     /// Date: Oct 13 2011
     /// Modified date: Oct 14 2011
     /// </summary>
@@ -34,7 +34,7 @@ namespace TheNewPhotoBuddy.Controls
         public PictureBox thumbnail { get; set; }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// Date: Oct 13 2011
         /// Modified date: Oct 14 2011
         /// </summary>
@@ -44,7 +44,7 @@ namespace TheNewPhotoBuddy.Controls
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// Date: Oct 13 2011
         /// Modified date: Oct 14 2011
         /// 
@@ -56,7 +56,7 @@ namespace TheNewPhotoBuddy.Controls
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales & Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// Date: Oct 13 2011
         /// Modified date: Oct 14 2011
         /// 
