@@ -1,198 +1,194 @@
-﻿/***********************************************************************************
- * Author(s): Miguel Gonzales and Andrea Tan
- * Date: Sept 28 2011
- * Modified date: Oct 9 2011
- * Description: this class is responsible to show photo or possibly multiple photos
- *              that are exist in the current album that the user added.
- * 
- ************************************************************************************/
-
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using PhotoBuddy.BussinessRule;
-using System.IO;
-using PhotoBuddy.Common.CommonClass;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="ViewPhotoForm.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+// Author(s): Miguel Gonzales and Andrea Tan
+// Date: Sept 28 2011
+// Modified date: Oct 23 2011
+// Description: this class is responsible to show photo or possibly multiple photos
+//              that are exist in the current album that the user added.
+//-----------------------------------------------------------------------
 namespace PhotoBuddy
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Linq;
+    using System.Windows.Forms;
+    using PhotoBuddy.BussinessRule;
+    using PhotoBuddy.Common.CommonClass;
+
+    /// <summary>
+    /// Displays photos full size (up to the limit of the screen size).
+    /// </summary>
     public partial class ViewPhotoForm : Form
     {
-        readonly Album album;
-        readonly string photoID;
-        readonly Photo picture;
-        List<Photo> allPhotosInAlbum;
-        // The index of the photo in the allPhotosInAlbum list.
-        int photoIndex;
+        /// <summary>
+        /// The album the photo belongs to.
+        /// </summary>
+        private readonly Album album;
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// constructor which initialized all the necessary hooks to show the objects forms.
+        /// The photo id.
         /// </summary>
+        private readonly string photoID;
+
+        /// <summary>
+        /// The photo
+        /// </summary>
+        private readonly Photo picture;
+
+        /// <summary>
+        /// All photos in the album.
+        /// </summary>
+        private List<Photo> allPhotosInAlbum;
+
+        /// <summary>
+        /// The current photo's index.
+        /// </summary>
+        private int photoIndex;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewPhotoForm"/> class.
+        /// </summary>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         public ViewPhotoForm()
         {
             InitializeComponent();
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// overloading constructor in which it takes an album object and a photo
-        /// to assign to its GUI textboxs and labels. and also it calles the display
-        /// of the index it is currently looked at.
-        /// preCondition: album and photo objects
-        /// postCondition: assigned the guis from the object parameters it gets from.
-        ///                and also display it.
+        /// Initializes a new instance of the <see cref="ViewPhotoForm"/> class.
         /// </summary>
         /// <param name="currentAlbum">The album whose photos the user is viewing.</param>
-        /// <param name="thePhoto">the specific photo to view.</param>
-        public ViewPhotoForm(Album currentAlbum, Photo thePhoto)
+        /// <param name="photoToDisplay">the specific photo to view.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public ViewPhotoForm(Album currentAlbum, Photo photoToDisplay)
         {
             InitializeComponent();
             this.Text = "Photo Display - Photo Buddy";
             this.album = currentAlbum;
-            this.photoID = thePhoto.PhotoId;
-            this.picture = thePhoto;
-            currentAlbumLabel.Text = album.albumID;
-            // Convert the hashtable to a list so we can enumerate through them.
-            fillPhotoList();
-            photoIndex = allPhotosInAlbum.IndexOf(picture);
-            displayPhoto(photoIndex);
+            this.photoID = photoToDisplay.PhotoId;
+            this.picture = photoToDisplay;
+            currentAlbumLabel.Text = this.album.albumID;
+            this.allPhotosInAlbum = this.album.photoObjects.PhotoTable.Values.Cast<Photo>().ToList();
+            this.photoIndex = this.allPhotosInAlbum.IndexOf(this.picture);
+            this.DisplayPhoto(this.photoIndex);
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// Creates a list of photos in the current album from the hashtable object.
-        /// preCondition: collections of album photos are not empty
-        /// postCondition: assigned all photos into allPhotoinAlbum variable
-        /// </summary>
-        private void fillPhotoList()
-        {
-            allPhotosInAlbum = album.photoObjects.PhotoTable.Values.Cast<Photo>().ToList();
-        }
-
-        /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// display Photo it actually takes a peek of where exactly the photo album is located
-        /// and set the image to the pictureBox for image display.
-        /// preCondition: index exist.
-        /// postCondition: UI labels and textbox assignments and also picture display.
+        /// Displays the photo at the specified index.
         /// </summary>
         /// <param name="index">The photo index in the list of photos.</param>
-        private void displayPhoto(int index)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void DisplayPhoto(int index)
         {
-            string filename = Path.GetFileName(allPhotosInAlbum[index].CopiedPath);
+            string filename = Path.GetFileName(this.allPhotosInAlbum[index].CopiedPath);
             string path = Path.Combine(Constants.PhotosFolderPath, filename);
             pictureBox1.Image = Image.FromFile(path);
-            photoNameLabel.Text = allPhotosInAlbum[index].DisplayName;
-            this.Text = allPhotosInAlbum[index].DisplayName + " - Photo Buddy";
+            photoNameLabel.Text = this.allPhotosInAlbum[index].DisplayName;
+            this.Text = this.allPhotosInAlbum[index].DisplayName + " - Photo Buddy";
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// back button click method is used to listen to an event which back button is pressed.
-        /// when this happened, the view form will be closed.
-        /// preCondition: back button is pressed.
-        /// postCondition: exit from viewphoto forms.
+        /// Handles the Click event of the backButton control.
         /// </summary>
         /// <param name="sender">The back button.</param>
         /// <param name="e">The event args.</param>
-        private void backButton_Click(object sender, EventArgs e)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleBackButtonClick(object sender, EventArgs e)
         {
             this.Close();
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// next button photos is used to traverse to the photos that are currently in particular viewed album
-        /// preCondition: event right arrow is clicked
-        /// postCOndition: focus and display the next photo objects.
+        /// Handles the Click event of the nextPhotoButton control.
         /// </summary>
         /// <param name="sender">The next photo button.</param>
         /// <param name="e">The event args.</param>
-        private void nextPhotoButton_Click(object sender, EventArgs e)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleNextPhotoButtonClick(object sender, EventArgs e)
         {
-            if (canGoForward())
-            {
-                photoIndex++;
-                displayPhoto(photoIndex);
-            }
+            this.photoIndex = this.CanGoForward() ? this.photoIndex + 1 : 0;
+            this.DisplayPhoto(this.photoIndex);
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// back button photos is used to traverse to the photos that are currently in particular viewed album
-        /// preCondition: event left arrow is clicked
-        /// postCOndition: focus and display the previous photo objects.
+        /// Handles the Click event of the previousPhotoButton control.
         /// </summary>
         /// <param name="sender">Previous photo button.</param>
         /// <param name="e">The event args.</param>
-        private void previousPhotoButton_Click(object sender, EventArgs e)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandlePreviousPhotoButtonClick(object sender, EventArgs e)
         {
-            if (canGoBack())
-            {
-                photoIndex--;
-                displayPhoto(photoIndex);
-            }
+            this.photoIndex = this.CanGoBack() ? this.photoIndex - 1 : this.allPhotosInAlbum.Count - 1;
+            this.DisplayPhoto(this.photoIndex);
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// cangoForward method is to check wether the the photos are at the end
-        /// preCondition: counts must not be 0 and not at the end.
-        /// postCondition: return true/false based on if index is less than its count-1.
+        /// Determines whether this instance can go forward to the next photo in the list.
         /// </summary>
-        /// <returns>true if we are not at the end of the list.</returns>
-        private bool canGoForward()
+        /// <returns>
+        /// true if we are not at the end of the list; otherwise false.
+        /// </returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private bool CanGoForward()
         {
-            return (photoIndex < allPhotosInAlbum.Count - 1);
+            return this.photoIndex < this.allPhotosInAlbum.Count - 1;
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// cangoBack method is to check wether the the photos are at the beginning
-        /// preCondition: counts must not be 0 and not at the end.
-        /// postCondition: return true/false based on if index is bigger than 0.
+        /// Determines whether this instance can go back to the previous photo in the list.
         /// </summary>
-        /// <returns>true if we are not at the first photo in the list.</returns>
-        private bool canGoBack()
+        /// <returns>
+        /// true if we are not at the first photo in the list; otherwise false.
+        /// </returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private bool CanGoBack()
         {
-            return (photoIndex > 0);
+            return this.photoIndex > 0;
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// event change color when mouse arrow is hoover on top of the arrow object.
-        /// All of the buttons on this form use this function to change color on mouse over.
+        /// Change the color of button controls when the mouse enters.
         /// </summary>
         /// <param name="sender">Any Button on this form.</param>
         /// <param name="e">The event args,</param>
-        private void previousPhotoButton_MouseEnter(object sender, EventArgs e)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleButtonMouseEnter(object sender, EventArgs e)
         {
             Button button = sender as Button;
             button.ForeColor = Color.Azure;
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// event change color when mouse arrow is away from of the arrow object.
-        /// All of the buttons on this form use this function to change color on mouse leave.
+        /// Change the color of button controls when the mouse leaves.
         /// </summary>
         /// <param name="sender">Any Button on this form.</param>
         /// <param name="e">The event args.</param>
-        private void previousPhotoButton_MouseLeave(object sender, EventArgs e)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleButtonMouseLeave(object sender, EventArgs e)
         {
             Button button = sender as Button;
             button.ForeColor = Color.DarkGray;

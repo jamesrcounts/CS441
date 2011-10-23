@@ -73,9 +73,9 @@
             this.AppNameLabel.Size = new System.Drawing.Size(239, 49);
             this.AppNameLabel.TabIndex = 7;
             this.AppNameLabel.Text = "Photo Buddy";
-            this.AppNameLabel.Click += new System.EventHandler(this.AppNameLabel_Click);
-            this.AppNameLabel.MouseEnter += new System.EventHandler(this.AppNameLabel_MouseEnter);
-            this.AppNameLabel.MouseLeave += new System.EventHandler(this.AppNameLabel_MouseLeave);
+            this.AppNameLabel.Click += new System.EventHandler(this.HandleAppNameLabelClick);
+            this.AppNameLabel.MouseEnter += new System.EventHandler(this.HandleAppNameLabelMouseEnter);
+            this.AppNameLabel.MouseLeave += new System.EventHandler(this.HandleAppNameLabelMouseLeave);
             // 
             // MainForm
             // 

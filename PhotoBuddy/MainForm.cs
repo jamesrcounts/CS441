@@ -1,21 +1,23 @@
-﻿/***********************************************************************************
- * Author(s): Miguel Gonzales and Andrea Tan
- * Date: Sept 28 2011
- * Modified date: Oct 19 2011
- * Description: program start up forms, which gets inherited from multiple usercontrols
- ************************************************************************************/
-
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using PhotoBuddy.Resources;
-using PhotoBuddy.BussinessRule;
-using PhotoBuddy.EventObjects;
-using PhotoBuddy.Screens;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="MainForm.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+// Author(s): Miguel Gonzales and Andrea Tan
+// Date: Sept 28 2011
+// Modified date: Oct 19 2011
+// Description: program start up forms, which gets inherited from multiple user controls
+//-----------------------------------------------------------------------
 namespace PhotoBuddy
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using PhotoBuddy.BussinessRule;
+    using PhotoBuddy.EventObjects;
+    using PhotoBuddy.Resources;
+    using PhotoBuddy.Screens;
+
     /// <summary>
     /// The application shell.
     /// </summary>
@@ -24,9 +26,8 @@ namespace PhotoBuddy
         /// <summary>
         /// The album model
         /// </summary>
-        public static readonly AlbumRespository model = new AlbumRespository();
+        public static readonly AlbumRespository Model = new AlbumRespository();
 
-        // The different screens(or views) of the application.
         /// <summary>
         /// The Opening View shows a list of albums; allows user to create new albums.
         /// </summary>
@@ -45,14 +46,16 @@ namespace PhotoBuddy
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
-        /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         public MainForm()
         {
             InitializeComponent();
             this.PreviousViews = new Stack<UserControl>();
-            InitializeUIScreens();
-            CurrentView = HomeView;
-            ShowView((IScreen)HomeView);
+            this.InitializeUIScreens();
+            this.CurrentView = this.HomeView;
+            this.ShowView(this.HomeView);
 
             this.Text = string.Format("{0}: {1}", Environment.UserName, Strings.AppName);
         }
@@ -121,41 +124,6 @@ namespace PhotoBuddy
         /// </remarks>
         public Stack<UserControl> PreviousViews { get; protected set; }
 
-        ///// <summary>
-        ///// Shows a view, hides all others.
-        ///// </summary>
-        ///// <param name="viewToShow">The view to show.</param>
-        ///// <remarks>
-        ///// Author(s): Miguel Gonzales and Andrea Tan
-        ///// </remarks>
-        //[System.Obsolete("Use ShowView(IScreen) instead")]
-        //protected void ShowView(UserControl viewToShow)
-        //{
-        //    // Helps prevent flickering by suspending layout during changes.
-        //    panelScreenHolder.SuspendLayout();
-
-        //    // Refresh the albums list if we are showing the home screen.
-        //    if (viewToShow == HomeView)
-        //    {
-        //        HomeView.RefreshAlbumViewList(model.Albums);
-        //    }
-
-        //    // Can't go back to create album screen so don't allow previous screen to be set to it.
-        //    if (CurrentView != CreateAlbumView)
-        //    {
-        //        this.PreviousViews.Push(this.CurrentView);
-        //    }
-
-        //    CurrentView = viewToShow;
-        //    HideAllViews();
-        //    viewToShow.Visible = true;
-
-        //    // Set the main form focus to the screen. This is important for focusing text boxes.
-        //    CurrentView.Focus();
-
-        //    panelScreenHolder.ResumeLayout();
-        //}
-
         /// <summary>
         /// Shows the view.
         /// </summary>
@@ -182,28 +150,26 @@ namespace PhotoBuddy
         /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
         private void HideAllViews()
         {
-            foreach (Control screen in panelScreenHolder.Controls)
+            foreach (Control screen in this.panelScreenHolder.Controls)
             {
                 screen.Visible = false;
             }
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// This adds all of the apps screens to the screen holder panel and attaches all the main 
-        /// form event handlers for the screens' events.
-        /// preCondition: program is started
-        /// postCondition: initialized the control to all the screens that are available in this project.
+        /// Initializes the UI screens.
         /// </summary>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         private void InitializeUIScreens()
         {
-            this.HomeView.Albums = MainForm.model.Albums;
-            AttachEventsToScreens();
-            this.panelScreenHolder.Controls.Add(HomeView);
-            this.panelScreenHolder.Controls.Add(AlbumView);
-            this.panelScreenHolder.Controls.Add(CreateAlbumView);
-            HideAllViews();
+            this.HomeView.Albums = MainForm.Model.Albums;
+            this.AttachEventsToScreens();
+            this.panelScreenHolder.Controls.Add(this.HomeView);
+            this.panelScreenHolder.Controls.Add(this.AlbumView);
+            this.panelScreenHolder.Controls.Add(this.CreateAlbumView);
+            this.HideAllViews();
         }
 
         /// <summary>
@@ -214,28 +180,27 @@ namespace PhotoBuddy
         /// </remarks>
         private void AttachEventsToScreens()
         {
-            HomeView.CreateButtonEvent += this.HandleCreateButtonClick;
-            HomeView.AlbumSelectedEvent += showSelectedAlbum;
-            CreateAlbumView.CancelEvent += GoBack;
-            CreateAlbumView.ContinueEvent += CreateOrEditAlbum;
-            AlbumView.BackEvent += backToHomeScreen;
-            AlbumView.AddPhotosEvent += AddPhotos;
-            AlbumView.RenameAlbumEvent += renameAlbum;
+            this.HomeView.CreateButtonEvent += this.HandleCreateButtonClick;
+            this.HomeView.AlbumSelectedEvent += this.ShowSelectedAlbum;
+            this.CreateAlbumView.CancelEvent += this.GoBack;
+            this.CreateAlbumView.ContinueEvent += this.CreateOrEditAlbum;
+            this.AlbumView.BackEvent += this.ReturnToHomeView;
+            this.AlbumView.AddPhotosEvent += this.AddPhotos;
+            this.AlbumView.RenameAlbumEvent += this.RenameAlbum;
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// Shows an album when the user selects an album name from the list of albums.
-        /// preCondition: event button clicked for changing UI
-        /// postCondition: assigned current Album object and switch to the new screen.
+        /// Shows the album selected from the opening view.
         /// </summary>
         /// <param name="sender">The album name label.</param>
         /// <param name="e">The event args.</param>
-        private void showSelectedAlbum(object sender, AlbumEventArgs e)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void ShowSelectedAlbum(object sender, AlbumEventArgs e)
         {
-            AlbumView.CurrentAlbum = (Album)model.Albums.albumsList[e.TheAlbum.albumID.Replace("&&", "&")];
-            ShowView((IScreen)AlbumView);
+            this.AlbumView.CurrentAlbum = (Album)Model.Albums.albumsList[e.TheAlbum.albumID.Replace("&&", "&")];
+            this.ShowView(this.AlbumView);
         }
 
         /// <summary>
@@ -248,8 +213,8 @@ namespace PhotoBuddy
         /// </remarks>
         private void CreateOrEditAlbum(object sender, EventArgs e)
         {
-            string rawAlbumName = CreateAlbumView.UserEnteredText;
-            if (model.Albums.IsExistingAlbumName(rawAlbumName))
+            string rawAlbumName = this.CreateAlbumView.UserEnteredText;
+            if (Model.Albums.IsExistingAlbumName(rawAlbumName))
             {
                 MessageBox.Show(
                     "Invalid album name! Please enter a new album name.",
@@ -262,49 +227,45 @@ namespace PhotoBuddy
             if (this.CreateAlbumView.InCreateMode)
             {
                 // Creating a new album
-                model.Add(new Album(rawAlbumName));
-                model.SaveAlbums();
+                Model.Add(new Album(rawAlbumName));
+                Model.SaveAlbums();
             }
             else
             {
                 // Editing an album
-                model.RenameAlbum(CreateAlbumView.AlbumName, rawAlbumName);
+                Model.RenameAlbum(this.CreateAlbumView.AlbumName, rawAlbumName);
             }
 
             // Return to the album view screen, showing the current album.
-            AlbumView.CurrentAlbum = (Album)model.Albums.albumsList[rawAlbumName];
-            ShowView(AlbumView);
+            this.AlbumView.CurrentAlbum = (Album)Model.Albums.albumsList[rawAlbumName];
+            this.ShowView(this.AlbumView);
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// this function is used to rename album when an event to change the album name is clicked.
-        /// preCondition : change album name is clicked
-        /// postCondition: when album exist, it will call showscreen screateAlbumscreen userControl 
+        /// Renames the album.
         /// </summary>
         /// <param name="sender">The rename album button.</param>
         /// <param name="e">The event args.</param>
-        private void renameAlbum(object sender, EventArgs e)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void RenameAlbum(object sender, EventArgs e)
         {
-            if (AlbumView.CurrentAlbum != null)
+            if (this.AlbumView.CurrentAlbum != null)
             {
-                CreateAlbumView.ResetForm(false, AlbumView.CurrentAlbum.albumID);
-                ShowView(CreateAlbumView as IScreen);
+                this.CreateAlbumView.ResetForm(false, this.AlbumView.CurrentAlbum.albumID);
+                this.ShowView(this.CreateAlbumView);
             }
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// addPhotos event is invoked, it will call openDialog for the user to choose all the possible picture type photos.
-        /// when OK button is clicked it will call haveUserVerifyAddPhoto function
-        /// preCondition: event for addphoto is called
-        /// postCOndition: called haveUserVerifyAddphoto event when OK is pressed otherwise do nothing.
-        ///                also refresh the albumphotoviewList
+        /// Adds photos to an album.
         /// </summary>
         /// <param name="sender">The finish button.</param>
         /// <param name="e">The event args.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         private void AddPhotos(object sender, EventArgs e)
         {
             using (OpenFileDialog fileBrowser = new OpenFileDialog())
@@ -314,30 +275,27 @@ namespace PhotoBuddy
                 fileBrowser.FilterIndex = 1;
                 fileBrowser.RestoreDirectory = true;
                 fileBrowser.Multiselect = false;
-                fileBrowser.Title = string.Format("Add to {0} - Photo Buddy", AlbumView.CurrentAlbum.albumID);
+                fileBrowser.Title = string.Format("Add to {0} - Photo Buddy", this.AlbumView.CurrentAlbum.albumID);
                 DialogResult result = fileBrowser.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    VerifyAddPhoto(fileBrowser.FileName);
+                    this.VerifyIncomingPhoto(fileBrowser.FileName);
                 }
             }
-            AlbumView.RefreshPhotoList();
+
+            this.AlbumView.RefreshPhotoList();
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// have User verify add photo takes in photo file name string
-        /// and instantiated the uploadPhoto object.
-        /// when Ok result return value is the return variable then it will
-        /// add the photo into the Album list table.
-        /// 
-        /// preCondition: photoFilename
-        /// postCondition: dispose the picture after another event is clicked and if the result is OK
-        ///                then it will add to the album list, otherwise it will do nothing.
+        /// Verifies the incoming photo.
         /// </summary>
         /// <param name="photoFilename">The name of the photo the user is uploading.</param>
-        private void VerifyAddPhoto(string photoFilename)
+        /// <remarks>
+        ///   <para>Author(s): Miguel Gonzales and Andrea Tan</para>
+        ///   <para>When the user selects a photo to import, we want to show them the photo so they can confirm
+        /// that they selected the correct photo.</para>
+        /// </remarks>
+        private void VerifyIncomingPhoto(string photoFilename)
         {
             using (UploadViewForm uploadPhoto = new UploadViewForm(photoFilename))
             {
@@ -350,114 +308,111 @@ namespace PhotoBuddy
                 DialogResult result = uploadPhoto.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-
-
                     // User approved so upload the photo to the album.
                     string name = uploadPhoto.PhotoName;
                     string file = photoFilename;
-                    model.AddPhotoToAlbum(AlbumView.CurrentAlbum.albumID, name, file);
+                    Model.AddPhotoToAlbum(this.AlbumView.CurrentAlbum.albumID, name, file);
                 }
             }
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// back button function takes in a event.
-        /// when back button is clicked, it will try to return to the previous page
-        /// that was previously looked at before the current page
-        /// PreCondition: must not be in start page.
-        /// postCondition: return to previous page (i-1)
+        /// Goes back to the most recent screen before the current screen.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         private void GoBack(object sender, EventArgs e)
         {
             if (this.PreviousViews == null || this.PreviousViews.Count < 1)
             {
-                this.ShowView((IScreen)this.HomeView);
+                this.ShowView(this.HomeView);
             }
 
             this.ShowView((IScreen)this.PreviousViews.Pop());
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// Back to Home screen,
-        /// when Photobuddy button is clicked, this method will get called
-        /// to return to the main usercontrol of the program.
-        /// preCondition: none
-        /// postCondition: always return to the main Usercontrol
+        /// Returns to the Opening View.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void backToHomeScreen(object sender, EventArgs e)
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void ReturnToHomeView(object sender, EventArgs e)
         {
-            ShowView((IScreen)HomeView);
+            this.ShowView(this.HomeView);
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// Handles the create new album event.
+        /// Handles the create button click.
         /// </summary>
         /// <param name="sender">Create button click on Home screen.</param>
         /// <param name="e">The event args.</param>
+        /// <remarks>
+        /// <para>Author(s): Miguel Gonzales and Andrea Tan</para>
+        /// <para>Initiates the creation of a new album.</para>
+        /// </remarks>
         private void HandleCreateButtonClick(object sender, EventArgs e)
         {
-            CreateAlbumView.ResetForm(true, "");
-            ShowView((IScreen)CreateAlbumView);
+            this.CreateAlbumView.ResetForm(true, string.Empty);
+            this.ShowView(this.CreateAlbumView);
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// this is change even color
-        /// when mouse is hoovered on top of the Photo Buddy label.
-        /// the color will change.
+        /// Changes the color of the app name label when the mouse passes over it.
         /// </summary>
         /// <param name="sender">AppName label.</param>
         /// <param name="e">The event args.</param>
-        private void AppNameLabel_MouseEnter(object sender, EventArgs e)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleAppNameLabelMouseEnter(object sender, EventArgs e)
         {
             AppNameLabel.ForeColor = Color.Azure;
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// this is change even color
-        /// when mouse is hoovered away from the object
-        /// the color will change.
+        /// Changes the color of the app name label when the mouse passes out of it.
         /// </summary>
         /// <param name="sender">AppName label.</param>
         /// <param name="e">The event args.</param>
-        private void AppNameLabel_MouseLeave(object sender, EventArgs e)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleAppNameLabelMouseLeave(object sender, EventArgs e)
         {
             AppNameLabel.ForeColor = Color.Black;
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// this method is showing the message box when photobuddy is clicked
-        /// at the home screen (mainUserControl) if the user is on the homescreen. 
-        /// Otherwise it returns to the homescreen.
-        /// preCondition: must be already in homeScreeenUserControl
-        /// postCondition: display the ownership of the program.
+        /// Handles the Click event of the AppNameLabel control.
         /// </summary>
         /// <param name="sender">App Name label.</param>
         /// <param name="e">The event args.</param>
-        private void AppNameLabel_Click(object sender, EventArgs e)
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// this method is showing the message box when photobuddy is clicked
+        /// at the home screen (mainUserControl) if the user is on the homescreen.
+        /// Otherwise it returns to the homescreen.
+        /// preCondition: must be already in homeScreeenUserControl
+        /// postCondition: display the ownership of the program.
+        /// </remarks>
+        private void HandleAppNameLabelClick(object sender, EventArgs e)
         {
-            if (CurrentView == HomeView)
+            if (this.CurrentView == this.HomeView)
             {
-                MessageBox.Show("Photo Buddy by GOLD RUSH\n", Strings.AppName, MessageBoxButtons.OK);
+                System.Text.StringBuilder aboutPhotoBuddy = new System.Text.StringBuilder();
+                aboutPhotoBuddy.AppendLine("Photo Buddy by GOLD RUSH.");
+                aboutPhotoBuddy.AppendFormat("Version: {0}", Application.ProductVersion).AppendLine();
+                MessageBox.Show(aboutPhotoBuddy.ToString(), Strings.AppName, MessageBoxButtons.OK);
                 return;
             }
 
-            ShowView((IScreen)HomeView);
+            this.ShowView(this.HomeView);
         }
     }
 }
