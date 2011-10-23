@@ -116,11 +116,11 @@
   <ItemGroup>
     <Compile Include="BusinessRule\Album.cs" />
     <Compile Include="BusinessRule\Albums.cs" />
-    <Compile Include="BusinessRule\Collectors.cs" />
+    <Compile Include="BusinessRule\AlbumRespository.cs" />
     <Compile Include="BusinessRule\Photo.cs" />
     <Compile Include="BusinessRule\Photos.cs" />
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="Controls\PB_ClickLabel.cs">
+    <Compile Include="Controls\ClickLabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\PB_ThumbNailUserControl.cs">
@@ -176,8 +176,8 @@
     <Compile Include="ViewPhotoForm.Designer.cs">
       <DependentUpon>ViewPhotoForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Controls\PB_ClickLabel.resx">
-      <DependentUpon>PB_ClickLabel.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ClickLabel.resx">
+      <DependentUpon>ClickLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PB_ThumbNailUserControl.resx">
       <DependentUpon>PB_ThumbNailUserControl.cs</DependentUpon>

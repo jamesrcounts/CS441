@@ -138,22 +138,22 @@ namespace PhotoBuddy.Screens
 
             // Clear out the photos is the panel.
             photosFlowPanel.Controls.Clear();
-            if (this.currentAlbum.photoObjects.photoList.Count == 0)
+            if (this.currentAlbum.photoObjects.PhotoTable.Count == 0)
             {
                 return;
             }
 
-            foreach (Photo photo in this.currentAlbum.photoObjects.photoList.Values)
+            foreach (Photo photo in this.currentAlbum.photoObjects.PhotoTable.Values)
             {
                 // Create a thumbnail control for the current photo
-                PB_ThumbNailUserControl thumb = new PB_ThumbNailUserControl() { DiaplayName = photo.display_name };
+                PB_ThumbNailUserControl thumb = new PB_ThumbNailUserControl() { DiaplayName = photo.DisplayName };
 
                 // Store the photo object in the thumbnail tag.
                 // thumbnail is a public property to set the picturebox on the thumbnailUserControl.
                 thumb.thumbnail.Tag = photo;
 
                 // Combine the secret location with the secret name to get the full file path.
-                string path = System.IO.Path.Combine(Constants.PhotosFolderPath, photo.copiedPath);
+                string path = System.IO.Path.Combine(Constants.PhotosFolderPath, photo.CopiedPath);
 
                 // Load the file
                 thumb.thumbnail.Image = Image.FromFile(path);

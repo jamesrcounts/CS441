@@ -112,7 +112,7 @@ namespace PhotoBuddy.Screens
 
             foreach (Album album in albums.albumsList.Values)
             {
-                PB_ClickLabel label = new PB_ClickLabel() { Text = album.albumID.Replace("&", "&&") };
+                ClickLabel label = new ClickLabel() { Text = album.albumID.Replace("&", "&&") };
 
                 label.Click += this.HandleAlbumClick;
                 albumsFlowPanel.Controls.Add(label);
@@ -149,7 +149,7 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandleAlbumClick(object sender, EventArgs e)
         {
-            PB_ClickLabel albumLabel = sender as PB_ClickLabel;
+            ClickLabel albumLabel = sender as ClickLabel;
             AlbumEventArgs args = new AlbumEventArgs(albumLabel.Text);
             this.AlbumSelectedEvent(this, args);
         }

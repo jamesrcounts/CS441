@@ -225,6 +225,9 @@ namespace PhotoBuddy.Screens
             }
         }
 
+        /// <summary>
+        /// Gets the continue button.
+        /// </summary>
         public Button ContinueButton
         {
             get
@@ -232,7 +235,10 @@ namespace PhotoBuddy.Screens
                 return this.continueButton;
             }
         }
-        
+
+        /// <summary>
+        /// Gets the album name text box.
+        /// </summary>
         public TextBox AlbumNameTextBox
         {
             get
@@ -240,6 +246,7 @@ namespace PhotoBuddy.Screens
                 return this.albumNameTextBox;
             }
         }
+
         /// <summary>
         /// Handles the KeyDown event of the albumNameTextBox control.
         /// </summary>

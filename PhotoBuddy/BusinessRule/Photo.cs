@@ -1,39 +1,38 @@
-﻿/***********************************************************************************
- * Author(s): Miguel Gonzales and Andrea Tan
- * Date: Sept 28 2011
- * Modified date: Oct 9 2011
- * Description: this Photo class is responsible in instantiation of the photo object.
- *              this class also provides the mean of accessing the photo contents
- *              as well as updating its contents as well. additional feature for this is
- *              creating a unique hashkey for a unique picture filename.
- * 
- *
- ************************************************************************************/
+﻿//-----------------------------------------------------------------------
+// <copyright file="Photo.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+// Author(s): Miguel Gonzales and Andrea Tan
+// Date: Sept 28 2011
+// Modified date: Oct 22 2011
+// Description: this Photo class is responsible in instantiation of the photo object.
+//              this class also provides the mean of accessing the photo contents
+//              as well as updating its contents as well. additional feature for this is
+//              creating a unique hashkey for a unique picture filename.
+//-----------------------------------------------------------------------
 namespace PhotoBuddy.BussinessRule
 {
     using System;
-    using System.Text;
-    using System.Security.Cryptography;  // This is where the hash functions reside
     using System.IO;
+    using System.Security.Cryptography;  
+    using System.Text;
 
+    /// <summary>
+    /// Provides methods for working with Album photos.
+    /// </summary>
     public class Photo
     {
-
         /// <summary>
-        /// 
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// Photo constructor
-        /// initialized photo id, display name, and the copiedPath (which is the dir of secret folder)
-        /// 
-        /// preCondition : none
-        /// postCondition: class photo variables get initialized.
+        /// Initializes a new instance of the <see cref="Photo"/> class.
         /// </summary>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         public Photo()
         {
-            PhotoId = string.Empty;
-            display_name = string.Empty;
-            copiedPath = string.Empty;
+            this.PhotoId = string.Empty;
+            this.DisplayName = string.Empty;
+            this.CopiedPath = string.Empty;
         }
 
         /// <summary>
@@ -45,93 +44,89 @@ namespace PhotoBuddy.BussinessRule
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        public String PhotoId { get; set; }
+        public string PhotoId { get; set; }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// public method ID to get & assign private class 
-        /// variable _ID
-        /// 
+        /// Gets or sets the display name.
         /// </summary>
-        public String display_name { get; set; }
+        /// <value>
+        /// The display name.
+        /// </value>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public string DisplayName { get; set; }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// public method ID to get & assign private class 
-        /// variable _copiedPath
-        /// 
+        /// Gets or sets the copied path.
         /// </summary>
-        public String copiedPath { get; set; }
+        /// <value>
+        /// The copied path.
+        /// </value>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public string CopiedPath { get; set; }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// this method takes in a file path of the file
-        /// and calculate a unique hashkey MD5 checksum 
-        /// 
-        /// preCondition: fileDirectory path
-        /// postCondition: create a unique hash key and return the string
-        /// 
+        /// Generates the photo key for the specified file.
         /// </summary>
-        /// <param name="fileDirectory"></param>
-        /// <returns></returns>
-        public static string GenerateUniqueHashPhotoKey(String filePath)
+        /// <param name="filePath">The file path.</param>
+        /// <returns>A unique string which identifies the file by its contents.</returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public static string GeneratePhotoKey(string filePath)
         {
             // Reading the bytes of the actual file contents
-            byte[] tmpSource = File.ReadAllBytes(filePath);
+            byte[] source = File.ReadAllBytes(filePath);
 
             // Computing the SHA 256 Hash value
             using (SHA256Managed hashAlgorithm = new SHA256Managed())
             {
-                byte[] tmpHash = hashAlgorithm.ComputeHash(tmpSource);
+                byte[] hash = hashAlgorithm.ComputeHash(source);
+
                 // Convert to HEX encoded string
-                StringBuilder sOutput = new StringBuilder(tmpHash.Length);
-                for (int i = 0; i < tmpHash.Length; i++)
+                StringBuilder hashString = new StringBuilder();
+                for (int i = 0; i < hash.Length; i++)
                 {
-                    sOutput.Append(tmpHash[i].ToString("X2")); // X2 formats to hexadecimal
+                    hashString.Append(hash[i].ToString("X2")); 
                 }
-                return sOutput.ToString();
+
+                return hashString.ToString();
             }
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// this method is made is to copy over the picture files to 
-        /// our secret directory.
-        /// 
-        /// preCondition: sourceFilePath and destinationPath as input params
-        /// 
-        /// postCondition: the file from sourceDir gets copied over to the 
-        ///                destinatione file path
-        /// 
+        /// Stores the file.
         /// </summary>
-        /// <param name="filepath"></param>
-        /// <param name="destFile"></param>
-        public static void CopyOverThefileToSecretDir(String filepath, String destFile)
+        /// <param name="sourcePath">The source path.</param>
+        /// <param name="destinationPath">The destination path.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public static void StoreFile(string sourcePath, string destinationPath)
         {
-            if (File.Exists(destFile))
+            if (File.Exists(destinationPath))
             {
                 return;
             }
 
-            // To copy a file to another location and 
-            // overwrite the destination file if it already exists.
-            File.Copy(filepath, destFile, true);
+            File.Copy(sourceFileName: sourcePath, destFileName: destinationPath, overwrite: true);
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// overidde method to return album id in string type 
-        /// for a generic get of the album object.
+        /// Returns a <see cref="System.String"/> that represents this instance.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         public override string ToString()
         {
-            return this.display_name;
+            return this.DisplayName;
         }
     }
 }

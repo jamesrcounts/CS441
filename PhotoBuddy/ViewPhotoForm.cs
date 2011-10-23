@@ -72,7 +72,7 @@ namespace PhotoBuddy
         /// </summary>
         private void fillPhotoList()
         {
-            allPhotosInAlbum = album.photoObjects.photoList.Values.Cast<Photo>().ToList();
+            allPhotosInAlbum = album.photoObjects.PhotoTable.Values.Cast<Photo>().ToList();
         }
 
         /// <summary>
@@ -86,11 +86,11 @@ namespace PhotoBuddy
         /// <param name="index">The photo index in the list of photos.</param>
         private void displayPhoto(int index)
         {
-            string filename = Path.GetFileName(allPhotosInAlbum[index].copiedPath);
+            string filename = Path.GetFileName(allPhotosInAlbum[index].CopiedPath);
             string path = Path.Combine(Constants.PhotosFolderPath, filename);
             pictureBox1.Image = Image.FromFile(path);
-            photoNameLabel.Text = allPhotosInAlbum[index].display_name;
-            this.Text = allPhotosInAlbum[index].display_name + " - Photo Buddy";
+            photoNameLabel.Text = allPhotosInAlbum[index].DisplayName;
+            this.Text = allPhotosInAlbum[index].DisplayName + " - Photo Buddy";
         }
 
         /// <summary>

@@ -24,7 +24,7 @@ namespace PhotoBuddy
         /// <summary>
         /// The album model
         /// </summary>
-        public static readonly Collectors model = new Collectors();
+        public static readonly AlbumRespository model = new AlbumRespository();
 
         // The different screens(or views) of the application.
         /// <summary>
@@ -263,12 +263,12 @@ namespace PhotoBuddy
             {
                 // Creating a new album
                 model.Add(new Album(rawAlbumName));
-                model.populateObjectsIntoXML();
+                model.SaveAlbums();
             }
             else
             {
                 // Editing an album
-                model.EditAlbumName(CreateAlbumView.AlbumName, rawAlbumName);
+                model.RenameAlbum(CreateAlbumView.AlbumName, rawAlbumName);
             }
 
             // Return to the album view screen, showing the current album.
