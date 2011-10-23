@@ -1,4 +1,4 @@
-﻿namespace TheNewPhotoBuddy
+﻿namespace PhotoBuddy
 {
     partial class MainForm
     {

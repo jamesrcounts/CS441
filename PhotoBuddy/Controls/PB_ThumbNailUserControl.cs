@@ -10,7 +10,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace TheNewPhotoBuddy.Controls
+namespace PhotoBuddy.Controls
 {
     /// <summary>
     /// Author(s): Miguel Gonzales and Andrea Tan

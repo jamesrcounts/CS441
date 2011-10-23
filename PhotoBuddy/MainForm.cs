@@ -10,11 +10,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using PhotoBuddy.Resources;
-using TheNewPhotoBuddy.BussinessRule;
-using TheNewPhotoBuddy.EventObjects;
-using TheNewPhotoBuddy.Screens;
+using PhotoBuddy.BussinessRule;
+using PhotoBuddy.EventObjects;
+using PhotoBuddy.Screens;
 
-namespace TheNewPhotoBuddy
+namespace PhotoBuddy
 {
     /// <summary>
     /// The application shell.

@@ -11,7 +11,7 @@
 using System;
 using System.Diagnostics;
 
-namespace TheNewPhotoBuddy.BussinessRule
+namespace PhotoBuddy.BussinessRule
 {
     /// <summary>
     /// Author(s): Miguel Gonzales and Andrea Tan

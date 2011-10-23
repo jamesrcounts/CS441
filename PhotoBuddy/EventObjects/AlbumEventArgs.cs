@@ -7,9 +7,9 @@
  * 
  ************************************************************************************/
 
-using TheNewPhotoBuddy.BussinessRule;
+using PhotoBuddy.BussinessRule;
 
-namespace TheNewPhotoBuddy.EventObjects
+namespace PhotoBuddy.EventObjects
 {
     /// <summary>
     /// Author(s): Miguel Gonzales and Andrea Tan

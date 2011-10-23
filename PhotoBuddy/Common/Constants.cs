@@ -9,7 +9,7 @@
  * Modified date: Oct 18 2011
  * Description: this class is responsible of the defined global static strings
  ************************************************************************************/
-namespace TheNewPhotoBuddy.Common.CommonClass
+namespace PhotoBuddy.Common.CommonClass
 {
   using System;
   using System.Windows.Forms;

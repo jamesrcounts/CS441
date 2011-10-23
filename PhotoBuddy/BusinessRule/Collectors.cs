@@ -16,10 +16,10 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using TheNewPhotoBuddy.Common.CommonClass;
-using TheNewPhotoBuddy.DataAccessLayer;
+using PhotoBuddy.Common.CommonClass;
+using PhotoBuddy.DataAccessLayer;
 
-namespace TheNewPhotoBuddy.BussinessRule
+namespace PhotoBuddy.BussinessRule
 {
 
     public class Collectors

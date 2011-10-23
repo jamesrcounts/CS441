@@ -12,11 +12,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using TheNewPhotoBuddy.BussinessRule;
+using PhotoBuddy.BussinessRule;
 using System.IO;
-using TheNewPhotoBuddy.Common.CommonClass;
+using PhotoBuddy.Common.CommonClass;
 
-namespace TheNewPhotoBuddy
+namespace PhotoBuddy
 {
     public partial class ViewPhotoForm : Form
     {

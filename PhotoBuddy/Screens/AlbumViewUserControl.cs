@@ -8,15 +8,15 @@
 // Description: this class is responsible for the use control in album view which 
 //              is called from mainForm to do the state changes.
 //-----------------------------------------------------------------------
-namespace TheNewPhotoBuddy.Screens
+namespace PhotoBuddy.Screens
 {
     using System;
     using System.Diagnostics;
     using System.Drawing;
     using System.Windows.Forms;
-    using TheNewPhotoBuddy.BussinessRule;
-    using TheNewPhotoBuddy.Common.CommonClass;
-    using TheNewPhotoBuddy.Controls;
+    using PhotoBuddy.BussinessRule;
+    using PhotoBuddy.Common.CommonClass;
+    using PhotoBuddy.Controls;
     using System.Collections.Generic;
 
     /// <summary>

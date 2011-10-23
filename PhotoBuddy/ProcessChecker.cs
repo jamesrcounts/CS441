@@ -6,11 +6,9 @@
 namespace PhotoBuddy
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Runtime.InteropServices;
     using System.Diagnostics;
+    using System.Runtime.InteropServices;
+    using System.Text;
     using System.Windows.Forms;
 
     /// <summary>
@@ -115,7 +113,7 @@ namespace PhotoBuddy
 
             StringBuilder caption = new StringBuilder(1024);
             NativeMethods.GetWindowText(hWnd, caption, 1024);
-                        
+
             // Use IndexOf to make sure our required string is in the title.
             if (
                 processId == lParam &&
@@ -151,6 +149,23 @@ namespace PhotoBuddy
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Tries to show the PhotoBuddy window with the same window title as the current process.
+        /// </summary>
+        /// <param name="title">The title to search for.</param>
+        /// <remarks>Authors: Jim Counts and Eric Wei</remarks>
+        public static void ShowWindow(string title)
+        {
+            ProcessChecker.photoBuddyTitle = title;
+            foreach (Process proc in Process.GetProcessesByName(Application.ProductName))
+            {
+                if (proc.Id != Process.GetCurrentProcess().Id)
+                {
+                    NativeMethods.EnumWindows(EnumWindowsProc, proc.Id);
+                }
+            }
         }
     }
 }

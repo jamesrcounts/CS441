@@ -11,7 +11,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace TheNewPhotoBuddy.DataAccessLayer
+namespace PhotoBuddy.DataAccessLayer
 {
     public class DataAccessBaseXML
     {

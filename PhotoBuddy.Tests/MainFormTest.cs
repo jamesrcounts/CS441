@@ -13,9 +13,9 @@ namespace PhotoBuddy.Tests
     using ApprovalTests.Reporters;
     using ApprovalTests.WinForms;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TheNewPhotoBuddy;
-    using TheNewPhotoBuddy.Common.CommonClass;
-    using TheNewPhotoBuddy.Screens;
+    using PhotoBuddy;
+    using PhotoBuddy.Common.CommonClass;
+    using PhotoBuddy.Screens;
 
     /// <summary>
     /// A container for tests related to <see cref="MainForm"/>

@@ -7,9 +7,9 @@
 // Modified date: Oct 9 2011
 // Description: this class is responsible for the use control in create album which 
 //             is called from mainForm to do the state changes.
-using TheNewPhotoBuddy.Common.CommonClass;
+using PhotoBuddy.Common.CommonClass;
 //-----------------------------------------------------------------------
-namespace TheNewPhotoBuddy.Screens
+namespace PhotoBuddy.Screens
 {
     using System;
     using System.Diagnostics;

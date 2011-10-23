@@ -14,7 +14,7 @@
 using System;
 using System.Collections;
 
-namespace TheNewPhotoBuddy.BussinessRule
+namespace PhotoBuddy.BussinessRule
 {
     public class Albums 
     {

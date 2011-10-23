@@ -9,7 +9,7 @@
 //               A screen is a user control that represents a view in the application.
 //               All screens inherit from this.
 //-----------------------------------------------------------------------
-namespace TheNewPhotoBuddy.Screens
+namespace PhotoBuddy.Screens
 {
     using System.Collections.Generic;
     using System.Windows.Forms;

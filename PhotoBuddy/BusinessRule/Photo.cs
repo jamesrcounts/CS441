@@ -9,7 +9,7 @@
  * 
  *
  ************************************************************************************/
-namespace TheNewPhotoBuddy.BussinessRule
+namespace PhotoBuddy.BussinessRule
 {
     using System;
     using System.Text;

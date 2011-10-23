@@ -1,4 +1,4 @@
-﻿namespace TheNewPhotoBuddy.Screens
+﻿namespace PhotoBuddy.Screens
 {
     partial class AlbumViewUserControl
     {

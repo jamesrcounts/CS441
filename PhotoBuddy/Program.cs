@@ -1,11 +1,10 @@
-﻿/***********************************************************************************
- * Author(s): Miguel Gonzales and Andrea Tan
- * Date: Sept 28 2011
- * Modified date: Oct 9 2011
- * Description: the main of the program which called mainForm.cs
- * 
- ************************************************************************************/
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="Program.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei
+// Date: Sept 28 2011
+// Modified date: Oct 22 2011
 // References:
 // The MSDN reference library at http://msdn.microsoft.com/en-us/
 // The website Dot Net Pearls helped with the textbox enter key functionality
@@ -14,25 +13,43 @@
 // The Stack Overflow site was very helpful as always in getting answers to specific
 //          questions, like converting a hashtable to a list.
 //          http://stackoverflow.com/
-
-using System;
-using System.Windows.Forms;
-using PhotoBuddy.Resources;
-
-namespace TheNewPhotoBuddy
+//-----------------------------------------------------------------------
+namespace PhotoBuddy
 {
-    static class Program
+    using System;
+    using System.Threading;
+    using System.Windows.Forms;
+    using PhotoBuddy.Resources;
+
+    /// <summary>
+    /// Container for the main entry point for the application.
+    /// </summary>
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        /// <remarks>Authors: Jim Counts and Eric Wei</remarks>
+        /// <remarks>
+        ///   <para>Authors: Jim Counts and Eric Wei</para>
+        ///   <para>Only one process is allowed per user.  This is accomplished using an inter-process mutex, described by Jon Skeet in the article linked below.</para>
+        ///   <para>When the process finds that it is not the first instance, it tries to find and show the other instance using <see cref="PhotoBuddy.ProcessChecker"/> which
+        ///   is adapted from a dotnetperls article linked below.</para>
+        /// </remarks>
+        /// <seealso cref="http://www.yoda.arachsys.com/csharp/threads/waithandles.shtml">Jon Skeet</seealso>
+        /// <seealso cref="http://www.dotnetperls.com/single-instance-windows-form">Dotnetperls</seealso>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
+            bool firstUserInstance;
             string title = string.Format("{0}: {1}", Environment.UserName, Strings.AppName);
-            if (PhotoBuddy.ProcessChecker.IsOnlyProcess(title))
+            using (Mutex mutex = new Mutex(true, string.Format(@"Local\{0}", title), out firstUserInstance))
             {
+                if (!firstUserInstance)
+                {
+                    PhotoBuddy.ProcessChecker.ShowWindow(title);
+                    return;
+                }
+
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());

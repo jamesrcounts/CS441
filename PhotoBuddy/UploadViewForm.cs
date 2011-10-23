@@ -13,7 +13,7 @@ using System.IO;
 using System.Windows.Forms;
 using PhotoBuddy.Resources;
 
-namespace TheNewPhotoBuddy
+namespace PhotoBuddy
 {
     public partial class UploadViewForm : Form
     {
@@ -97,10 +97,10 @@ namespace TheNewPhotoBuddy
             }
 
             // Did user enter too long of a name?
-            if (this.PhotoName.Length > TheNewPhotoBuddy.Common.CommonClass.Constants.MaxAlbumLength)
+            if (this.PhotoName.Length > PhotoBuddy.Common.CommonClass.Constants.MaxAlbumLength)
             {
                 MessageBox.Show(
-                    "Photo name is too long.  Please enter a name less than " + TheNewPhotoBuddy.Common.CommonClass.Constants.MaxAlbumLength,
+                    "Photo name is too long.  Please enter a name less than " + PhotoBuddy.Common.CommonClass.Constants.MaxAlbumLength,
                     "Photo Name Length Issue",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);

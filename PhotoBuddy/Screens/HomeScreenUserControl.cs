@@ -9,14 +9,14 @@
 //              view which is called during the state changes and the 
 //              startup of the program
 //-----------------------------------------------------------------------
-namespace TheNewPhotoBuddy.Screens
+namespace PhotoBuddy.Screens
 {
     using System;
     using System.Diagnostics;
     using System.Windows.Forms;
-    using TheNewPhotoBuddy.BussinessRule;
-    using TheNewPhotoBuddy.Controls;
-    using TheNewPhotoBuddy.EventObjects;
+    using PhotoBuddy.BussinessRule;
+    using PhotoBuddy.Controls;
+    using PhotoBuddy.EventObjects;
     using System.Collections.Generic;
 
     /// <summary>
