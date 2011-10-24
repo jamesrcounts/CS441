@@ -11,13 +11,13 @@
 namespace PhotoBuddy.Screens
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
     using System.Windows.Forms;
     using PhotoBuddy.BussinessRule;
     using PhotoBuddy.Common.CommonClass;
     using PhotoBuddy.Controls;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Displays an album
@@ -111,7 +111,7 @@ namespace PhotoBuddy.Screens
                 this.currentAlbum = value;
                 if (this.currentAlbum != null)
                 {
-                    labelAlbumName.Text = this.currentAlbum.albumID.Replace("&", "&&");
+                    labelAlbumName.Text = this.currentAlbum.AlbumID.Replace("&", "&&");
                     this.RefreshPhotoList();
                 }
             }
@@ -137,32 +137,32 @@ namespace PhotoBuddy.Screens
             }
 
             // Clear out the photos is the panel.
-            photosFlowPanel.Controls.Clear();
-            if (this.currentAlbum.photoObjects.PhotoTable.Count == 0)
+            this.photosFlowPanel.Controls.Clear();
+            if (this.currentAlbum.PhotoList.PhotoTable.Count == 0)
             {
                 return;
             }
 
-            foreach (Photo photo in this.currentAlbum.photoObjects.PhotoTable.Values)
+            foreach (Photo photo in this.currentAlbum.PhotoList.PhotoTable.Values)
             {
                 // Create a thumbnail control for the current photo
-                PB_ThumbNailUserControl thumb = new PB_ThumbNailUserControl() { DiaplayName = photo.DisplayName };
+                ThumbNailUserControl thumb = new ThumbNailUserControl() { DisplayName = photo.DisplayName };
 
                 // Store the photo object in the thumbnail tag.
                 // thumbnail is a public property to set the picturebox on the thumbnailUserControl.
-                thumb.thumbnail.Tag = photo;
+                thumb.Thumbnail.Tag = photo;
 
                 // Combine the secret location with the secret name to get the full file path.
                 string path = System.IO.Path.Combine(Constants.PhotosFolderPath, photo.CopiedPath);
 
                 // Load the file
-                thumb.thumbnail.Image = Image.FromFile(path);
+                thumb.Thumbnail.Image = Image.FromFile(path);
 
                 // Wire the click event to the picturebox
-                thumb.thumbnail.Click += this.HandlePhotoClick;
+                thumb.Thumbnail.Click += this.HandlePhotoClick;
 
                 // Add the thumb control to the flow panel.
-                photosFlowPanel.Controls.Add(thumb);
+                this.photosFlowPanel.Controls.Add(thumb);
             }
         }
 
@@ -250,7 +250,7 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandlePhotosFlowPanelMouseEnter(object sender, EventArgs e)
         {
-            photosFlowPanel.Focus();
+            this.photosFlowPanel.Focus();
         }
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandlePhotosFlowPanelMouseClick(object sender, MouseEventArgs e)
         {
-            photosFlowPanel.Focus();
+            this.photosFlowPanel.Focus();
         }
     }
 }

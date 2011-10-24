@@ -123,11 +123,11 @@
     <Compile Include="Controls\ClickLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\PB_ThumbNailUserControl.cs">
+    <Compile Include="Controls\ThumbNailUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\PB_ThumbNailUserControl.Designer.cs">
-      <DependentUpon>PB_ThumbNailUserControl.cs</DependentUpon>
+    <Compile Include="Controls\ThumbNailUserControl.Designer.cs">
+      <DependentUpon>ThumbNailUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ProcessChecker.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
@@ -179,8 +179,8 @@
     <EmbeddedResource Include="Controls\ClickLabel.resx">
       <DependentUpon>ClickLabel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\PB_ThumbNailUserControl.resx">
-      <DependentUpon>PB_ThumbNailUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ThumbNailUserControl.resx">
+      <DependentUpon>ThumbNailUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>

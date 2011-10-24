@@ -57,7 +57,7 @@ namespace PhotoBuddy
         /// </remarks>
         public ViewPhotoForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         /// <summary>
@@ -70,13 +70,13 @@ namespace PhotoBuddy
         /// </remarks>
         public ViewPhotoForm(Album currentAlbum, Photo photoToDisplay)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.Text = "Photo Display - Photo Buddy";
             this.album = currentAlbum;
             this.photoID = photoToDisplay.PhotoId;
             this.picture = photoToDisplay;
-            currentAlbumLabel.Text = this.album.albumID;
-            this.allPhotosInAlbum = this.album.photoObjects.PhotoTable.Values.Cast<Photo>().ToList();
+            this.currentAlbumLabel.Text = this.album.AlbumID;
+            this.allPhotosInAlbum = this.album.PhotoList.PhotoTable.Values.Cast<Photo>().ToList();
             this.photoIndex = this.allPhotosInAlbum.IndexOf(this.picture);
             this.DisplayPhoto(this.photoIndex);
         }
@@ -92,8 +92,8 @@ namespace PhotoBuddy
         {
             string filename = Path.GetFileName(this.allPhotosInAlbum[index].CopiedPath);
             string path = Path.Combine(Constants.PhotosFolderPath, filename);
-            pictureBox1.Image = Image.FromFile(path);
-            photoNameLabel.Text = this.allPhotosInAlbum[index].DisplayName;
+            this.pictureBox1.Image = Image.FromFile(path);
+            this.photoNameLabel.Text = this.allPhotosInAlbum[index].DisplayName;
             this.Text = this.allPhotosInAlbum[index].DisplayName + " - Photo Buddy";
         }
 

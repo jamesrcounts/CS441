@@ -12,12 +12,12 @@
 namespace PhotoBuddy.Screens
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Windows.Forms;
     using PhotoBuddy.BussinessRule;
     using PhotoBuddy.Controls;
     using PhotoBuddy.EventObjects;
-    using System.Collections.Generic;
 
     /// <summary>
     /// The Opening View
@@ -33,7 +33,7 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         public HomeScreenUserControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.Dock = DockStyle.Fill;
             this.DisplayName = "Albums";
         }
@@ -104,18 +104,18 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         public void RefreshAlbumViewList(Albums albums)
         {
-            albumsFlowPanel.Controls.Clear();
-            if (albums.albumsList.Count == 0)
+            this.albumsFlowPanel.Controls.Clear();
+            if (albums.AlbumList.Count == 0)
             {
                 return;
             }
 
-            foreach (Album album in albums.albumsList.Values)
+            foreach (Album album in albums.AlbumList.Values)
             {
-                ClickLabel label = new ClickLabel() { Text = album.albumID.Replace("&", "&&") };
+                ClickLabel label = new ClickLabel() { Text = album.AlbumID.Replace("&", "&&") };
 
                 label.Click += this.HandleAlbumClick;
-                albumsFlowPanel.Controls.Add(label);
+                this.albumsFlowPanel.Controls.Add(label);
             }
         }
 

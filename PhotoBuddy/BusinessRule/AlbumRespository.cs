@@ -41,7 +41,7 @@ namespace PhotoBuddy.BussinessRule
 
             this.document = new XDocument();
             DataAccessBaseXML dataAccessXML = new DataAccessBaseXML();
-            this.document = dataAccessXML.loadORinitializeInfoXML(Constants.XMLDataFilePath);
+            this.document = dataAccessXML.LoadXml(Constants.XMLDataFilePath);
 
             Albums = new Albums();
             this.LoadAlbums();
@@ -84,10 +84,10 @@ namespace PhotoBuddy.BussinessRule
         /// </remarks>
         public void RenameAlbum(string name, string updateName)
         {
-            Album tempAlbum = Albums.getAlbum(name);
-            Albums.albumsList.Remove(name);
-            tempAlbum.albumID = updateName;
-            Albums.addAlbum(tempAlbum);
+            Album tempAlbum = Albums.GetAlbum(name);
+            Albums.AlbumList.Remove(name);
+            tempAlbum.AlbumID = updateName;
+            Albums.AddAlbum(tempAlbum);
             this.SaveAlbums();
         }
 
@@ -105,7 +105,7 @@ namespace PhotoBuddy.BussinessRule
                 return;
             }
 
-            this.Albums.addAlbum(albumToAdd);
+            this.Albums.AddAlbum(albumToAdd);
         }
 
         /// <summary>
@@ -123,8 +123,8 @@ namespace PhotoBuddy.BussinessRule
                 return;
             }
 
-            var album = Albums.getAlbum(albumId);
-            album.photoObjects = photosToAdd;
+            var album = Albums.GetAlbum(albumId);
+            album.PhotoList = photosToAdd;
         }
 
         /// <summary>
@@ -143,19 +143,19 @@ namespace PhotoBuddy.BussinessRule
             XmlNode albumsNode = doc.CreateElement("albums");
             productsNode.AppendChild(albumsNode);
 
-            foreach (Album albumObj in Albums.albumsList.Values)
+            foreach (Album albumObj in Albums.AlbumList.Values)
             {
                 XmlNode albumNode = doc.CreateElement("album");
                 XmlAttribute albumIDAttr = albumNode.OwnerDocument.CreateAttribute("id_tag");
-                string id = albumObj.albumID;
+                string id = albumObj.AlbumID;
                 albumIDAttr.Value = id;
                 albumNode.Attributes.Append(albumIDAttr);
 
                 XmlNode photosNode = doc.CreateElement("photos");
 
-                if (albumObj.photoObjects != null)
+                if (albumObj.PhotoList != null)
                 {
-                    foreach (Photo photoObj in albumObj.photoObjects.PhotoTable.Values)
+                    foreach (Photo photoObj in albumObj.PhotoList.PhotoTable.Values)
                     {
                         XmlNode photoNode = doc.CreateElement("photo");
 
@@ -200,7 +200,7 @@ namespace PhotoBuddy.BussinessRule
 
             foreach (var albumInfo in albumNodes)
             {
-                var album = new Album() { albumID = albumInfo.id_tag };
+                var album = new Album() { AlbumID = albumInfo.id_tag };
 
                 // traverse through all the photos in particular album
                 var photoList = new Photos();
@@ -217,8 +217,8 @@ namespace PhotoBuddy.BussinessRule
                     photoList.Add(tempPhoto);
                 }
 
-                album.photoObjects = photoList;
-                Albums.addAlbum(album);
+                album.PhotoList = photoList;
+                Albums.AddAlbum(album);
             }
         }
 
@@ -253,9 +253,9 @@ namespace PhotoBuddy.BussinessRule
             tempPhoto.CopiedPath = tempPhoto.PhotoId + fileExtension;
             
             // query for album from album list
-            Album currentAlbum = Albums.getAlbum(albumId);
+            Album currentAlbum = Albums.GetAlbum(albumId);
 
-            currentAlbum.photoObjects.Add(tempPhoto);
+            currentAlbum.PhotoList.Add(tempPhoto);
             this.SaveAlbums();
         }
     }

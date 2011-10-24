@@ -51,7 +51,7 @@ namespace PhotoBuddy
         /// </remarks>
         public MainForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.PreviousViews = new Stack<UserControl>();
             this.InitializeUIScreens();
             this.CurrentView = this.HomeView;
@@ -199,7 +199,7 @@ namespace PhotoBuddy
         /// </remarks>
         private void ShowSelectedAlbum(object sender, AlbumEventArgs e)
         {
-            this.AlbumView.CurrentAlbum = (Album)Model.Albums.albumsList[e.TheAlbum.albumID.Replace("&&", "&")];
+            this.AlbumView.CurrentAlbum = (Album)Model.Albums.AlbumList[e.TheAlbum.AlbumID.Replace("&&", "&")];
             this.ShowView(this.AlbumView);
         }
 
@@ -237,7 +237,7 @@ namespace PhotoBuddy
             }
 
             // Return to the album view screen, showing the current album.
-            this.AlbumView.CurrentAlbum = (Album)Model.Albums.albumsList[rawAlbumName];
+            this.AlbumView.CurrentAlbum = (Album)Model.Albums.AlbumList[rawAlbumName];
             this.ShowView(this.AlbumView);
         }
 
@@ -253,7 +253,7 @@ namespace PhotoBuddy
         {
             if (this.AlbumView.CurrentAlbum != null)
             {
-                this.CreateAlbumView.ResetForm(false, this.AlbumView.CurrentAlbum.albumID);
+                this.CreateAlbumView.ResetForm(false, this.AlbumView.CurrentAlbum.AlbumID);
                 this.ShowView(this.CreateAlbumView);
             }
         }
@@ -275,7 +275,7 @@ namespace PhotoBuddy
                 fileBrowser.FilterIndex = 1;
                 fileBrowser.RestoreDirectory = true;
                 fileBrowser.Multiselect = false;
-                fileBrowser.Title = string.Format("Add to {0} - Photo Buddy", this.AlbumView.CurrentAlbum.albumID);
+                fileBrowser.Title = string.Format("Add to {0} - Photo Buddy", this.AlbumView.CurrentAlbum.AlbumID);
                 DialogResult result = fileBrowser.ShowDialog();
                 if (result == DialogResult.OK)
                 {
@@ -309,9 +309,9 @@ namespace PhotoBuddy
                 if (result == DialogResult.OK)
                 {
                     // User approved so upload the photo to the album.
-                    string name = uploadPhoto.PhotoName;
+                    string name = uploadPhoto.DisplayName;
                     string file = photoFilename;
-                    Model.AddPhotoToAlbum(this.AlbumView.CurrentAlbum.albumID, name, file);
+                    Model.AddPhotoToAlbum(this.AlbumView.CurrentAlbum.AlbumID, name, file);
                 }
             }
         }
@@ -372,7 +372,7 @@ namespace PhotoBuddy
         /// </remarks>
         private void HandleAppNameLabelMouseEnter(object sender, EventArgs e)
         {
-            AppNameLabel.ForeColor = Color.Azure;
+            this.AppNameLabel.ForeColor = Color.Azure;
         }
 
         /// <summary>
@@ -385,7 +385,7 @@ namespace PhotoBuddy
         /// </remarks>
         private void HandleAppNameLabelMouseLeave(object sender, EventArgs e)
         {
-            AppNameLabel.ForeColor = Color.Black;
+            this.AppNameLabel.ForeColor = Color.Black;
         }
 
         /// <summary>

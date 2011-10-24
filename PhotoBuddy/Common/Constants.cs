@@ -38,6 +38,6 @@ namespace PhotoBuddy.Common.CommonClass
       /// <summary>
       /// This is the maximum length for the name of albums and photos
       /// </summary>
-    public static readonly int MaxAlbumLength = Settings.Default.MaxAlbumLength;
+    public static readonly int MaxNameLength = Settings.Default.MaxAlbumLength;
   }
 }

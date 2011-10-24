@@ -7,14 +7,14 @@
 // Modified date: Oct 9 2011
 // Description: this class is responsible for the use control in create album which 
 //             is called from mainForm to do the state changes.
-using PhotoBuddy.Common.CommonClass;
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Screens
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Windows.Forms;
-    using System.Collections.Generic;
+    using PhotoBuddy.Common.CommonClass;
 
     /// <summary>
     /// The create album view
@@ -67,6 +67,17 @@ namespace PhotoBuddy.Screens
         /// The name of the album.
         /// </value>
         public string AlbumName { get; private set; }
+        
+        /// <summary>
+        /// Gets the continue button.
+        /// </summary>
+        public Button ContinueButton
+        {
+            get
+            {
+                return this.continueButton;
+            }
+        }
 
         /// <summary>
         /// Gets the control managed by this view.
@@ -100,6 +111,17 @@ namespace PhotoBuddy.Screens
         /// The display name.
         /// </value>
         public string DisplayName { get; set; }
+        
+        /// <summary>
+        /// Gets the album name text box.
+        /// </summary>
+        public TextBox AlbumNameTextBox
+        {
+            get
+            {
+                return this.albumNameTextBox;
+            }
+        }
 
         /// <summary>
         /// Resets the form.
@@ -123,19 +145,19 @@ namespace PhotoBuddy.Screens
             if (this.InCreateMode)
             {
                 // Creating a new album.
-                createAlbumLabel.Text = "Please enter the name of the new album:";
-                albumNameTextBox.Text = string.Empty;
+                this.createAlbumLabel.Text = "Please enter the name of the new album:";
+                this.albumNameTextBox.Text = string.Empty;
                 this.createHeaderLabel.Text = this.DisplayName;
             }
             else
             {
                 // Editing an existing album.
-                albumNameTextBox.Text = theAlbumName;
-                createAlbumLabel.Text = "Please enter the new album name for: " + this.AlbumName;
+                this.albumNameTextBox.Text = theAlbumName;
+                this.createAlbumLabel.Text = "Please enter the new album name for: " + this.AlbumName;
                 this.createHeaderLabel.Text = "Edit Album: " + theAlbumName;
             }
 
-            albumNameTextBox.Focus();
+            this.albumNameTextBox.Focus();
         }
 
         /// <summary>
@@ -185,7 +207,7 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandleContinueButtonClick(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(albumNameTextBox.Text))
+            if (string.IsNullOrWhiteSpace(this.albumNameTextBox.Text))
             {
                 MessageBox.Show(
                     "Album name must not be empty!",
@@ -195,10 +217,10 @@ namespace PhotoBuddy.Screens
                 return;
             }
 
-            if (albumNameTextBox.Text.Length > Constants.MaxAlbumLength)
+            if (this.albumNameTextBox.Text.Length > Constants.MaxNameLength)
             {
                 MessageBox.Show(
-                    "Album name is too long.  Please enter a name less than " + Constants.MaxAlbumLength,
+                    "Album name is too long.  Please enter a name less than " + Constants.MaxNameLength,
                     "Album Name Length Issue",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -208,7 +230,7 @@ namespace PhotoBuddy.Screens
             if (!this.InCreateMode)
             {
                 // Renaming album - user entered the existing name so cancel the rename
-                if (this.AlbumName == albumNameTextBox.Text)
+                if (this.AlbumName == this.albumNameTextBox.Text)
                 {
                     this.CancelEvent(this, e);
                     return;
@@ -216,34 +238,12 @@ namespace PhotoBuddy.Screens
             }
 
             // Store the text that the user entered.
-            this.UserEnteredText = albumNameTextBox.Text;
+            this.UserEnteredText = this.albumNameTextBox.Text;
 
             // raise the create event
             if (this.ContinueEvent != null)
             {
                 this.ContinueEvent(this, e);
-            }
-        }
-
-        /// <summary>
-        /// Gets the continue button.
-        /// </summary>
-        public Button ContinueButton
-        {
-            get
-            {
-                return this.continueButton;
-            }
-        }
-
-        /// <summary>
-        /// Gets the album name text box.
-        /// </summary>
-        public TextBox AlbumNameTextBox
-        {
-            get
-            {
-                return this.albumNameTextBox;
             }
         }
 

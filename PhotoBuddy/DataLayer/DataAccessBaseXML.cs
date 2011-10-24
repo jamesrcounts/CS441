@@ -1,70 +1,63 @@
-﻿/***********************************************************************************
- * Author(s): Miguel Gonzales and Andrea Tan
- * Date: Sept 28 2011
- * Modified date: Oct 9 2011
- * Description: this class is responsible to read xml data elements and data attributes.
- *              in addition it provides a feature to
- *              initialized the xml data when the file xml does not exist.
- * 
- ************************************************************************************/
-
-using System;
-using System.Xml.Linq;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="DataAccessBaseXML.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+// Author(s): Miguel Gonzales and Andrea Tan
+// Date: Sept 28 2011
+// Modified date: Oct 9 2011
+// Description: this class is responsible to read xml data elements and data attributes.
+//              in addition it provides a feature to
+//              initialized the xml data when the file xml does not exist.
+//-----------------------------------------------------------------------
 namespace PhotoBuddy.DataAccessLayer
 {
+    using System;
+    using System.Xml.Linq;
+
+    /// <summary>
+    /// Loads or creates the XML.
+    /// </summary>
     public class DataAccessBaseXML
     {
+        /// <summary>
+        /// Provides API access to the XML Document.
+        /// </summary>
         private XDocument doc;
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// this function either load the existing file into xdocument
-        /// OR
-        /// if the info file cannot be found then we will create the infoxml
-        /// and load
-        /// preCondition : takes in predifined file path from another function and if the file does not exists,
-        ///                it will make one :)
-        /// postCondition: return the xmlDocument to whichever function invoked this method.
+        /// Loads the XML.
         /// </summary>
-        /// <param name="filepath"></param>
-        /// <returns></returns>
-        public XDocument loadORinitializeInfoXML(String filepath)
+        /// <param name="xmlFilePath">The xml file path.</param>
+        /// <returns>A reference to the <see cref="XDocument"/> which provides access to the XML.</returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public XDocument LoadXml(string xmlFilePath)
         {
             try
             {
-               doc = XDocument.Load(@filepath);
+                this.doc = XDocument.Load(xmlFilePath);
             }
             catch
-            { 
-                initializedInfoDataXMl(@filepath);
-
-                doc = XDocument.Load(@filepath);
+            {
+                CreateNewXmlStore(xmlFilePath);
+                this.doc = XDocument.Load(xmlFilePath);
             }
 
-            return doc;
-        } 
-
+            return this.doc;
+        }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// initialized xml when the date is not there
-        /// precondition: file name gets passed in from constructor
-        /// postCondition: create an body template and save it into xml.
+        /// Creates the new XML store.
         /// </summary>
-        /// <returns>XDocument with the Starbuzz data</returns>
-        static void initializedInfoDataXMl(String filename)
+        /// <param name="xmlFilePath">The XML file path.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private static void CreateNewXmlStore(string xmlFilePath)
         {
-
-
-            XDocument doc = new XDocument(
-                new XElement("photo_buddy",
-                    new XElement("albums"
-                        )));
-
-            doc.Save(filename);
+            XDocument doc = new XDocument(new XElement("photo_buddy", new XElement("albums")));
+            doc.Save(xmlFilePath);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace PhotoBuddy.Tests
       [TestMethod]
       public void ShouldReadMaxAlbumLengthFromConfig()
       {
-          int actual = Constants.MaxAlbumLength;
+          int actual = Constants.MaxNameLength;
           Assert.AreEqual(32, actual);
       }
 

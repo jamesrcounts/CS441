@@ -2,10 +2,11 @@
 // <copyright file="ClickLabel.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
+//
 // Author(s): Miguel Gonzales and Andrea Tan
 // Date: Sept 28 2011
 // Modified date: Oct 22 2011
-// High level Description: this class is a label control used to display the names of albums & photos 
+// High level Description: this class is a label control used to display the names of albums and photos 
 //                         in the albums and photo lists. It defines mouseover effects of the label 
 //                         so each label properties do not need to be set individually.
 //-----------------------------------------------------------------------

@@ -1,123 +1,86 @@
-﻿/***********************************************************************************************
- * Author(s): Miguel Gonzales and Andrea Tan
- * Date: Sept 28 2011
- * Modified date: Oct 9 2011
- * High Level Description: this class is responsible for numerous collections 
- *                         of Album objects. In addition, providing the mean to remove and add 
- *                         specific album that its looking for. 
- *                         as well as to search a specific album that is being requested from 
- *                         the presenter.
- *           
- *
- **********************************************************************************************/
-
-using System;
-using System.Collections;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="Albums.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+// Author(s): Miguel Gonzales and Andrea Tan
+// Date: Sept 28 2011
+// Modified date: Oct 9 2011
+// High Level Description: this class is responsible for numerous collections 
+//                         of Album objects. In addition, providing the mean to remove and add 
+//                         specific album that its looking for. 
+//                         as well as to search a specific album that is being requested from 
+//                         the presenter.
+//-----------------------------------------------------------------------
 namespace PhotoBuddy.BussinessRule
 {
+    using System;
+    using System.Collections;
+
+    /// <summary>
+    /// A collection of <see cref="Album"/> objects.
+    /// </summary>
     public class Albums 
     {
-        private readonly Hashtable AlbumTable;
+        /// <summary>
+        /// Backing store for member items.
+        /// </summary>
+        private readonly Hashtable AlbumTable = new Hashtable();
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// Albums constructor which initialized the hash table to keep
-        /// album objects.
+        /// Gets the albums list.
         /// </summary>
-        public Albums()
-        {
-            this.AlbumTable = new Hashtable();
-        }
-
-        /// <summary>
+        /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// get method which return the hashtable when it is being requested
-        /// precondition: hash table is initialized and not empty.
-        /// postcondition: return the collections of album objects from hashtable
-        /// </summary>
-        public Hashtable albumsList
+        /// </remarks>
+        public Hashtable AlbumList
         {
             get { return this.AlbumTable; }
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// a search function which to return a specific album that is being requested
-        /// from a presenter.
-        /// 
-        /// preCondition : hashtable is not empty, and the key that is being passed is a valid key
-        /// postCondition: return the album object from the hashtable.
+        /// Gets the album.
         /// </summary>
         /// <param name="key">The album id (name).</param>
-        /// <returns>the album object.</returns>
-        public Album getAlbum(String key)
+        /// <returns>
+        /// the album object.
+        /// </returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public Album GetAlbum(string key)
         {
-            return (Album) this.AlbumTable[key];
+            return (Album)this.AlbumTable[key];
         }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// add album method which adding an album objects into a hashtable
-        /// preCondition : the album object that is being passed must contain the necessary data without any null variables
-        ///                the album object must be a unique key and if the object already existed in the hash table, it will get rejected.
-        ///               
-        /// postCondition: when album object is sucessfully added to hash table, the function will return a boolean true otherwise
-        ///                it will return boolean false.
+        /// Adds the album to the collection.
         /// </summary>
-        /// <param name="newAlbum"></param>
-        /// <returns></returns>
-        public bool addAlbum(Album newAlbum)
+        /// <param name="albumToAdd">The new album.</param>
+        /// <returns>true if a new album was added to the collection; otherwise false.</returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public bool AddAlbum(Album albumToAdd)
         {
-            if (!this.AlbumTable.ContainsKey(newAlbum.albumID))
+            if (!this.AlbumTable.ContainsKey(albumToAdd.AlbumID))
             {
-                this.AlbumTable.Add(newAlbum.albumID, newAlbum);
+                this.AlbumTable.Add(albumToAdd.AlbumID, albumToAdd);
                 return true;
             }
 
             return false;
         }
 
-        /////// <remarks>
-        /////// Author(s): Miguel Gonzales and Andrea Tan
-        /////// 
-        /////// a delete album method which adding an album objects into a hashtable
-        /////// preCondition : the album object that is being passed must contain the necessary data without any null variables
-        ///////                the album object must be a unique key and if the object already existed in the hash table, it will not be processed.
-        ///////               
-        /////// postCondition: when album object is sucessfully deletedd from hash table, the function will return a boolean true otherwise
-        ///////                it will return boolean false.
-        /////// </remarks>
-        /////// <param name="existingAlbum"></param>
-        /////// <returns></returns>
-        ////public bool deleteAlbum(Album existingAlbum)
-        ////{
-        ////    if (AlbumObjectHashtable.ContainsKey(existingAlbum.albumID))
-        ////    {
-        ////        AlbumObjectHashtable.Remove(existingAlbum.albumID);
-        ////        return true;
-        ////    }
-        ////    else
-        ////    {
-        ////        //cannot find this album id probably has been deleted?
-        ////        return false;
-        ////    }
-        ////}
-
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// this method is for checking wether the album alraedy exist
-        /// in the hash table
-        /// preCondition : The input parameter string albumName
-        /// postCondition: it returns the true/false boolean wether it exists or not
+        /// Determines whether the specified album name is already used.
         /// </summary>
-        /// <param name="albumName"></param>
-        /// <returns></returns>
+        /// <param name="albumName">Name of the album.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified album name is already used; otherwise, <c>false</c>.
+        /// </returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         public bool IsExistingAlbumName(string albumName)
         {
             return this.AlbumTable.ContainsKey(albumName);

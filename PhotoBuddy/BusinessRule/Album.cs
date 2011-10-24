@@ -1,82 +1,86 @@
-﻿/***********************************************************************************
- * Author(s): Miguel Gonzales and Andrea Tan
- * Date: Sept 28 2011
- * Modified date: Oct 9 2011
- * Description: this class is responsible in instantiation of the album objects.
- *              this class also provides the mean of accessing the album contents
- *              as well as updating its contents as well
- * 
- *
- ************************************************************************************/
-using System;
-using System.Diagnostics;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="Album.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+// Author(s): Miguel Gonzales and Andrea Tan
+// Date: Sept 28 2011
+// Modified date: Oct 23 2011
+// Description: this class is responsible in instantiation of the album objects.
+//              this class also provides the mean of accessing the album contents
+//              as well as updating its contents as well
+//-----------------------------------------------------------------------
 namespace PhotoBuddy.BussinessRule
 {
-    /// <summary>
-    /// Author(s): Miguel Gonzales and Andrea Tan
-    /// 
-    /// Album Object Class this constructor initialize an album object.
-    /// this class also contains public functions to set and get the following below:
-    /// 1. AlbumID.
-    /// 2. CoverPhoto.
-    /// 3. a collections of photo lists.
-    /// </summary>
-    [DebuggerDisplay("{albumID}")]
-    public class Album 
-    {
+    using System;
+    using System.Diagnostics;
 
+    /// <summary>
+    /// An album contains an album id and a list of photos.
+    /// </summary>
+    /// <remarks>
+    /// Author(s): Miguel Gonzales and Andrea Tan
+    /// </remarks>
+    [DebuggerDisplay("{albumID}")]
+    public class Album
+    {
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// constructor which initialized the variables album id, cover photo, and photo list
-        /// precondition: none
-        /// postcondition: initialized objects and variables such as album id and cover photo
+        /// Initializes a new instance of the <see cref="Album"/> class.
         /// </summary>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         public Album()
+            : this(string.Empty)
         {
-            albumID = "";
-            photoObjects = new Photos();
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Album"/> class.
+        /// </summary>
+        /// <param name="albumName">Name of the album.</param>
+        /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// overloading constructor which initialized the variables albumid, coverphoto, and photolist
-        /// precondition: parameter albumName must be passed into this constructor.
-        /// postcondition: initialized objects and variables such as albumid and cover photo
-        /// </summary>C:\Documents and Settings\andrea.tan\My Documents\Downloads\TheNewPhotoBuddy-1-0-0-5-Source\TheNewPhotoBuddy\TheNewPhotoBuddy\Controls\
-        /// <param name="albumName"></param>
+        /// </remarks>
         public Album(string albumName)
         {
-            this.albumID = albumName;
-            photoObjects = new Photos();
+            this.AlbumID = albumName;
+            this.PhotoList = new Photos();
         }
-       
-        /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// get and set albumID from instantiated album object.
-        /// </summary>
-        public String albumID { get; set; }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// get and set photoObjects from instantiated album object.
+        /// Gets or sets the album ID.
         /// </summary>
-        public Photos photoObjects { get; set; }
+        /// <value>
+        /// The album ID.
+        /// </value>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public string AlbumID { get; set; }
 
         /// <summary>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// 
-        /// overidde method to return album id in string type 
-        /// for a generic get of the album object.
+        /// Gets or sets the photo objects.
         /// </summary>
-        /// <returns></returns>
+        /// <value>
+        /// The photo objects.
+        /// </value>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public Photos PhotoList { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         public override string ToString()
         {
-            return albumID;
+            return this.AlbumID;
         }
     }
 }
