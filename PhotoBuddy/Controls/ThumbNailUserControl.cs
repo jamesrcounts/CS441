@@ -61,7 +61,17 @@ namespace PhotoBuddy.Controls
         /// <value>
         /// The thumbnail.
         /// </value>
-        public PictureBox Thumbnail { get; set; }
+        public PictureBox Thumbnail
+        {
+            get
+            {
+                return thumbnail;
+            }
+            set
+            {
+                thumbnail = value;
+            }
+        }
 
         /// <summary>
         /// Highlights the photo when the mouse is over it.
