@@ -2,7 +2,7 @@
 // <copyright file="UploadViewForm.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales and Andrea Tan
+// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
 // Date: Sept 28 2011
 // Modified date: Oct 23 2011
 // Description: this class is responsible to show the upload photo in particular album that is
@@ -15,36 +15,35 @@ namespace PhotoBuddy
     using System.IO;
     using System.Windows.Forms;
     using PhotoBuddy.Common.CommonClass;
-    using PhotoBuddy.Resources;
+    using PhotoBuddy.Screens;
 
     /// <summary>
     /// Allows the user to see the photo they propose to add to ensure that it is the correct photo.
     /// </summary>
     public partial class UploadViewForm : Form
     {
-        /////// <summary>
-        /////// The photo path.
-        /////// </summary>
-        ////private readonly string photoFilename;
+        /// <summary>
+        /// Presents message boxes.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-25</para>
+        ///   <para>Modified: 2011-10-25</para>
+        /// </remarks>
+        private readonly IMessageService MessageService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadViewForm"/> class.
         /// </summary>
-        public UploadViewForm()
-        {
-            this.InitializeComponent();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UploadViewForm"/> class.
-        /// </summary>
+        /// <param name="messageService">The message service.</param>
         /// <param name="photoFileName">The photo to verify.</param>
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        public UploadViewForm(string photoFileName)
+        public UploadViewForm(IMessageService messageService, string photoFileName)
         {
             this.InitializeComponent();
+            this.MessageService = messageService;
             this.Text = Format.Culture("Upload {0} - Photo Buddy", Path.GetFileName(photoFileName));
 
             // Try to open the image.
@@ -55,11 +54,7 @@ namespace PhotoBuddy
             catch (OutOfMemoryException)
             {
                 // File was not a valid image so abort the upload & warn the user.
-                MessageBox.Show(
-                    Strings.ErrorNotPictureFile,
-                    Strings.AppName,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                this.MessageService.ShowMessage(this.MessageService.NotPictureFile);
                 this.HandleCancelButtonClick(this, new EventArgs());
             }
 
@@ -113,11 +108,7 @@ namespace PhotoBuddy
             // Did user enter too long of a name?
             if (this.DisplayName.Length > Constants.MaxNameLength)
             {
-                MessageBox.Show(
-                    "Photo name is too long.  Please enter a name less than " + Constants.MaxNameLength,
-                    "Photo Name Length Issue",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                this.MessageService.ShowMessage(this.MessageService.NameTooLong);
                 return;
             }
 

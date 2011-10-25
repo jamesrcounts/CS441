@@ -20,6 +20,7 @@ namespace PhotoBuddy
     using System.Threading;
     using System.Windows.Forms;
     using PhotoBuddy.Resources;
+    using PhotoBuddy.Screens;
 
     /// <summary>
     /// Container for the main entry point for the application.
@@ -51,7 +52,7 @@ namespace PhotoBuddy
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm());
+                Application.Run(new MainForm(new MessageService()));
             }
         }
     }

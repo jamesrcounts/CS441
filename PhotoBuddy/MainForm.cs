@@ -26,6 +26,15 @@ namespace PhotoBuddy
     public partial class MainForm : Form
     {
         /// <summary>
+        /// Presents message boxes.
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: Jim Counts</para>
+        /// <para>Created: 2011-10-25</para>
+        /// </remarks>
+        private readonly IMessageService MessageService;
+
+        /// <summary>
         /// Stores the history of previous views.
         /// </summary>
         /// <remarks>
@@ -58,17 +67,19 @@ namespace PhotoBuddy
         /// The import folder path.
         /// </summary>
         private string importFolderPath;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
+        /// <param name="messageService">The message service.</param>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
         /// </remarks>
-        public MainForm()
+        public MainForm(IMessageService messageService)
         {
             this.InitializeComponent();
             this.InitializeUIScreens();
+            this.MessageService = messageService;
             this.importFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             this.CurrentView = this.HomeView;
             this.ShowView(this.HomeView);
@@ -234,9 +245,7 @@ namespace PhotoBuddy
             string rawAlbumName = this.CreateAlbumView.UserEnteredText;
             if (Model.Albums.IsExistingAlbumName(rawAlbumName))
             {
-                IMessage message = new InvalidAlbumNameMessage();
-                IMessageView messageView = new MessageBoxProxy();
-                messageView.Show(message.Text, message.Caption, message.Buttons, message.Icon);
+                this.MessageService.ShowMessage(this.MessageService.InvalidAlbumName);
                 return;
             }
 
@@ -317,7 +326,7 @@ namespace PhotoBuddy
         /// </remarks>
         private void VerifyIncomingPhoto(string photoFileName)
         {
-            using (UploadViewForm uploadPhoto = new UploadViewForm(photoFileName))
+            using (UploadViewForm uploadPhoto = new UploadViewForm(this.MessageService, photoFileName))
             {
                 // Need this check to see if the user attempted an invalid file type.
                 if (uploadPhoto.IsDisposed)
@@ -425,13 +434,7 @@ namespace PhotoBuddy
         {
             if (this.CurrentView == this.HomeView)
             {
-                StringBuilder aboutPhotoBuddy = new StringBuilder();
-                aboutPhotoBuddy.AppendLine("Photo Buddy by GOLD RUSH.");
-                aboutPhotoBuddy.AppendFormat("Version: {0}", Application.ProductVersion).AppendLine();
-                string caption = Strings.AppName;
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                string messageText = aboutPhotoBuddy.ToString();
-                new MessageBoxProxy().Show(messageText, caption, buttons);
+                this.MessageService.ShowMessage(this.MessageService.AboutPhotoBuddy);
                 return;
             }
 

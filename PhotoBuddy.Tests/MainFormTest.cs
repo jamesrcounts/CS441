@@ -13,7 +13,6 @@ namespace PhotoBuddy.Tests
     using ApprovalTests.Reporters;
     using ApprovalTests.WinForms;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using PhotoBuddy;
     using PhotoBuddy.Common.CommonClass;
     using PhotoBuddy.Screens;
 
@@ -45,7 +44,7 @@ namespace PhotoBuddy.Tests
                 data.Delete();
             }
 
-            using (var mainForm = new MainForm())
+            using (var mainForm = new MainForm(new MessageService()))
             {
                 // Approve
                 Approvals.Approve(mainForm);
@@ -65,7 +64,7 @@ namespace PhotoBuddy.Tests
                 data.Delete();
             }
 
-            using (var mainForm = new MainFormAccessor())
+            using (var mainForm = new MainFormAccessor(new MessageService()))
             {
                 mainForm.ShowScreenAccessor(mainForm.CreateAlbumView);
 
@@ -87,7 +86,7 @@ namespace PhotoBuddy.Tests
                 data.Delete();
             }
 
-            using (var mainForm = new MainFormAccessor())
+            using (var mainForm = new MainFormAccessor(new MessageService()))
             {
                 mainForm.ShowScreenAccessor(mainForm.AlbumView);
 
@@ -106,7 +105,7 @@ namespace PhotoBuddy.Tests
         public void SetPreviousScreenWhenShowingNewScreen()
         {
             // Arrange
-            using (MainFormAccessor target = new MainFormAccessor())
+            using (MainFormAccessor target = new MainFormAccessor(new MessageService()))
             {
                 // Act
                 target.ShowScreenAccessor(target.HomeView);
@@ -130,7 +129,7 @@ namespace PhotoBuddy.Tests
         public void SkipSetPreviousScreenWhenCurrentScreenIsCreateAlbumView()
         {
             // Arrange
-            using (var target = new MainFormAccessor())
+            using (var target = new MainFormAccessor(new MessageService()))
             {
                 // Act
                 target.ShowScreenAccessor(target.HomeView);
@@ -155,7 +154,7 @@ namespace PhotoBuddy.Tests
         public void SetCurrentViewWhenShowingView()
         {
             // Arrange
-            using (var target = new MainFormAccessor())
+            using (var target = new MainFormAccessor(new MessageService()))
             {
                 // Act
                 target.ShowScreenAccessor(target.AlbumView);
@@ -173,6 +172,18 @@ namespace PhotoBuddy.Tests
         /// </remarks>
         private class MainFormAccessor : MainForm
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="MainFormAccessor"/> class.
+            /// </summary>
+            /// <param name="messageService">The message service.</param>
+            /// <remarks>
+            /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+            /// </remarks>
+            public MainFormAccessor(IMessageService messageService)
+                : base(messageService)
+            {                
+            }
+
             /// <summary>
             /// Provides unit tests with a method to call <see cref="MainForm.ShowScreen"/> directly.
             /// </summary>
