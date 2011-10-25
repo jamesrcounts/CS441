@@ -45,8 +45,7 @@ namespace PhotoBuddy
         public UploadViewForm(string photoFileName)
         {
             this.InitializeComponent();
-            ////this.photoFilename = photoFileName;
-            this.Text = string.Format("Upload {0} - Photo Buddy", Path.GetFileName(photoFileName));
+            this.Text = Format.Culture("Upload {0} - Photo Buddy", Path.GetFileName(photoFileName));
 
             // Try to open the image.
             try
@@ -64,7 +63,7 @@ namespace PhotoBuddy
                 this.HandleCancelButtonClick(this, new EventArgs());
             }
 
-            this.displayNameTextbox.Text = Path.GetFileName(photoFileName);
+            this.displayNameTextBox.Text = Path.GetFileName(photoFileName);
         }
 
         /// <summary>
@@ -98,7 +97,7 @@ namespace PhotoBuddy
         /// </remarks>
         private void HandleContinueButtonClick(object sender, EventArgs e)
         {
-            this.DisplayName = this.displayNameTextbox.Text;
+            this.DisplayName = this.displayNameTextBox.Text;
 
             // Did user enter a blank name?
             if (string.IsNullOrWhiteSpace(this.DisplayName))

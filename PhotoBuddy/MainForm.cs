@@ -12,6 +12,7 @@ namespace PhotoBuddy
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.IO;
     using System.Text;
     using System.Windows.Forms;
     using PhotoBuddy.BusinessRule;
@@ -54,6 +55,11 @@ namespace PhotoBuddy
         private readonly CreateAlbumUserControl createAlbumScreen = new CreateAlbumUserControl();
 
         /// <summary>
+        /// The import folder path.
+        /// </summary>
+        private string importFolderPath;
+        
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         /// <remarks>
@@ -63,6 +69,7 @@ namespace PhotoBuddy
         {
             this.InitializeComponent();
             this.InitializeUIScreens();
+            this.importFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             this.CurrentView = this.HomeView;
             this.ShowView(this.HomeView);
             this.Text = Strings.AppName;
@@ -227,12 +234,9 @@ namespace PhotoBuddy
             string rawAlbumName = this.CreateAlbumView.UserEnteredText;
             if (Model.Albums.IsExistingAlbumName(rawAlbumName))
             {
-                const string MessageText = "Invalid album name! Please enter a new album name.";
-                const string MessageCaption = "Album Name Invalid";
-                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
-                MessageBoxIcon messageIcon = MessageBoxIcon.Warning;
-                MessageBoxProxy message = new MessageBoxProxy();
-                message.Show(MessageText, MessageCaption, messageButtons, messageIcon);
+                IMessage message = new InvalidAlbumNameMessage();
+                IMessageView messageView = new MessageBoxProxy();
+                messageView.Show(message.Text, message.Caption, message.Buttons, message.Icon);
                 return;
             }
 
@@ -276,13 +280,13 @@ namespace PhotoBuddy
         /// <param name="sender">The finish button.</param>
         /// <param name="e">The event args.</param>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
         /// </remarks>
         private void AddPhotos(object sender, EventArgs e)
         {
             using (OpenFileDialog fileBrowser = new OpenFileDialog())
             {
-                fileBrowser.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+                fileBrowser.InitialDirectory = this.importFolderPath;
                 fileBrowser.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png|bmp files (*.bmp)|*.bmp|gif files (*.gif)|*.gif";
                 fileBrowser.FilterIndex = 1;
                 fileBrowser.RestoreDirectory = true;
@@ -291,6 +295,7 @@ namespace PhotoBuddy
                 DialogResult result = fileBrowser.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    this.importFolderPath = Path.GetDirectoryName(fileBrowser.FileName);
                     foreach (string fileName in fileBrowser.FileNames)
                     {
                         this.VerifyIncomingPhoto(fileName);

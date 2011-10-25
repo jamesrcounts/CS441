@@ -167,6 +167,7 @@
     <Compile Include="Screens\IMessageView.cs" />
     <Compile Include="Screens\IScreen.cs" />
     <Compile Include="Format.cs" />
+    <Compile Include="Screens\MessageBoxProxy.cs" />
     <Compile Include="UploadViewForm.cs">
       <SubType>Form</SubType>
     </Compile>

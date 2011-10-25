@@ -8,7 +8,6 @@ namespace PhotoBuddy.Screens
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Windows.Forms;
 
     /// <summary>
@@ -77,68 +76,95 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// Gets the text.
         /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-24</para>
+        /// </remarks>
         string Text { get; }
         
         /// <summary>
         /// Gets the caption.
         /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-24</para>
+        /// </remarks>
         string Caption { get; }
         
         /// <summary>
         /// Gets the buttons.
         /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-24</para>
+        /// </remarks>
         MessageBoxButtons Buttons { get; }
 
         /// <summary>
         /// Gets the icon.
         /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-24</para>
+        /// </remarks>
         MessageBoxIcon Icon { get; }
     }
 
     /// <summary>
-    /// Provides an implementation of <see cref="IMessageView"/> which wraps <see cref="MessageBox"/>.
+    /// Provides data for an invalid album name message.
     /// </summary>
     /// <remarks>
     ///   <para>Author: Jim Counts</para>
     ///   <para>Created: 2011-10-24</para>
     /// </remarks>
-    public class MessageBoxProxy : IMessageView
+    public sealed class InvalidAlbumNameMessage : IMessage
     {
         /// <summary>
-        /// Shows the specified text, caption, buttons, and icon.
+        /// Gets the text.
         /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="icon">The icon.</param>
-        /// <returns>
-        /// A <see cref="DialogResult"/> value
-        /// </returns>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-24</para>
         /// </remarks>
-        public DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon)
+        public string Text
         {
-             return MessageBox.Show(text, caption, buttons, icon);
+            get { return "Invalid album name! Please enter a new album name."; }
         }
 
         /// <summary>
-        /// Shows the specified text, caption, buttons, and icon.
+        /// Gets the caption.
         /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <returns>
-        /// A <see cref="DialogResult"/> value
-        /// </returns>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-24</para>
         /// </remarks>
-        public DialogResult Show(string text, string caption, MessageBoxButtons buttons)
+        public string Caption
         {
-            return MessageBox.Show(text, caption, buttons);
+            get { return "Album Name Invalid"; }
+        }
+
+        /// <summary>
+        /// Gets the buttons.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-24</para>
+        /// </remarks>
+        public MessageBoxButtons Buttons
+        {
+            get { return MessageBoxButtons.OK; }
+        }
+
+        /// <summary>
+        /// Gets the icon.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-24</para>
+        /// </remarks>
+        public MessageBoxIcon Icon
+        {
+            get { return MessageBoxIcon.Warning; }
         }
     }
 }

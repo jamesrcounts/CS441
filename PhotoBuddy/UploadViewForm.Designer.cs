@@ -37,7 +37,7 @@ namespace PhotoBuddy
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.displayNameTextbox = new System.Windows.Forms.TextBox();
+            this.displayNameTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -154,7 +154,7 @@ namespace PhotoBuddy
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 229F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.displayNameTextbox, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.displayNameTextBox, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -167,14 +167,14 @@ namespace PhotoBuddy
             // 
             // textBox1
             // 
-            this.displayNameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.displayNameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displayNameTextbox.Location = new System.Drawing.Point(180, 11);
-            this.displayNameTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.displayNameTextbox.Name = "textBox1";
-            this.displayNameTextbox.Size = new System.Drawing.Size(225, 26);
-            this.displayNameTextbox.TabIndex = 0;
-            this.displayNameTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleDisplayNameTextBoxKeyDown);
+            this.displayNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.displayNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.displayNameTextBox.Location = new System.Drawing.Point(180, 11);
+            this.displayNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.displayNameTextBox.Name = "textBox1";
+            this.displayNameTextBox.Size = new System.Drawing.Size(225, 26);
+            this.displayNameTextBox.TabIndex = 0;
+            this.displayNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleDisplayNameTextBoxKeyDown);
             // 
             // label2
             // 
@@ -219,7 +219,7 @@ namespace PhotoBuddy
         private System.Windows.Forms.Button continueButton;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox displayNameTextbox;
+        private System.Windows.Forms.TextBox displayNameTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
