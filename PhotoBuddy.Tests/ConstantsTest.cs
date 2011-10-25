@@ -64,7 +64,7 @@ namespace PhotoBuddy.Tests
       string expected = Environment.ExpandEnvironmentVariables(@"%APPDATA%\PhotoBuddy\PhotoBuddyData.xml");
 
       // Act
-      string actual = Environment.ExpandEnvironmentVariables(Constants.XMLDataFilePath);
+      string actual = Environment.ExpandEnvironmentVariables(Constants.XmlDataFilePath);
 
       // Assert
       Assert.AreEqual(expected, actual);

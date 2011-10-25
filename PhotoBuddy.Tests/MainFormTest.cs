@@ -39,7 +39,7 @@ namespace PhotoBuddy.Tests
         public void ApproveOpeningView()
         {
             // Do
-            var data = new FileInfo(Constants.XMLDataFilePath);
+            var data = new FileInfo(Constants.XmlDataFilePath);
             if (data.Exists)
             {
                 data.Delete();
@@ -59,7 +59,7 @@ namespace PhotoBuddy.Tests
         public void ApproveCreateAlbumView()
         {
             // Do
-            var data = new FileInfo(Constants.XMLDataFilePath);
+            var data = new FileInfo(Constants.XmlDataFilePath);
             if (data.Exists)
             {
                 data.Delete();
@@ -81,7 +81,7 @@ namespace PhotoBuddy.Tests
         public void ApproveAlbumView()
         {
             // Do
-            var data = new FileInfo(Constants.XMLDataFilePath);
+            var data = new FileInfo(Constants.XmlDataFilePath);
             if (data.Exists)
             {
                 data.Delete();

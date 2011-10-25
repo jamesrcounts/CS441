@@ -10,7 +10,7 @@
 //              as well as updating its contents as well. additional feature for this is
 //              creating a unique hashkey for a unique picture filename.
 //-----------------------------------------------------------------------
-namespace PhotoBuddy.BussinessRule
+namespace PhotoBuddy.BusinessRule
 {
     using System;
     using System.IO;

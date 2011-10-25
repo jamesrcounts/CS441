@@ -15,7 +15,7 @@ namespace PhotoBuddy.Screens
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Windows.Forms;
-    using PhotoBuddy.BussinessRule;
+    using PhotoBuddy.BusinessRule;
     using PhotoBuddy.Controls;
     using PhotoBuddy.EventObjects;
 

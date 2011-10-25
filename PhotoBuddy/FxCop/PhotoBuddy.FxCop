@@ -1,0 +1,620 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="10.0" Name="PhotoBuddy">
+ <ProjectOptions>
+  <SharedProject>True</SharedProject>
+  <Stylesheet Apply="True">$(FxCopDir)\Xml\FxCopReport.xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded" NewOnly="False" />
+   <Report Status="Active" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="True" />
+  <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
+  <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>10</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>1</RuleExceptionsThreshold>
+  <Spelling Locale="en-US" />
+  <OverrideRuleVisibilities>True</OverrideRuleVisibilities>
+  <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
+  <SearchGlobalAssemblyCache>True</SearchGlobalAssemblyCache>
+  <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
+  <IgnoreGeneratedCode>True</IgnoreGeneratedCode>
+ </ProjectOptions>
+ <Targets>
+  <Target Name="$(ProjectDir)/../bin/x86/Debug/PhotoBuddy.exe" Analyze="True" AnalyzeAllChildren="True" />
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\InteroperabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\MobilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PortabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityTransparencyRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="10.0">
+  <Targets>
+   <Target Name="$(ProjectDir)/../bin/x86/Debug/PhotoBuddy.exe">
+    <Modules>
+     <Module Name="photobuddy.exe">
+      <Namespaces>
+       <Namespace Name="PhotoBuddy">
+        <Types>
+         <Type Name="ProcessChecker">
+          <Members>
+           <Member Name="#EnumWindowsProc(System.IntPtr,System.Int32)">
+            <Messages>
+             <Message Id="PhotoBuddy.ProcessChecker+NativeMethods.GetWindowThreadProcessId(System.IntPtr,System.Int32@)" TypeName="DoNotIgnoreMethodResults" Category="Microsoft.Usage" CheckId="CA1806" Created="2011-10-24 03:27:27Z">
+              <Issue Name="HResultOrErrorCode">
+               <Item>'ProcessChecker.EnumWindowsProc(IntPtr, int)'</Item>
+               <Item>'ProcessChecker.NativeMethods.GetWindowThreadProcessId(IntPtr, ref int)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ProcessChecker+NativeMethods">
+          <Members>
+           <Member Name="#EnumWindows(PhotoBuddy.ProcessChecker+NativeMethods+EnumWindowsProcDel,System.Int32)">
+            <Messages>
+             <Message Id="Param" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberParameter">
+               <Item>'ProcessChecker.NativeMethods.EnumWindows(ProcessChecker.NativeMethods.EnumWindowsProcDel, int)'</Item>
+               <Item>Param</Item>
+               <Item>'lParam'</Item>
+              </Issue>
+             </Message>
+             <Message Id="l" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberParameter">
+               <Item>'ProcessChecker.NativeMethods.EnumWindows(ProcessChecker.NativeMethods.EnumWindowsProcDel, int)'</Item>
+               <Item>l</Item>
+               <Item>'lParam'</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2011-10-24 03:27:27Z">
+              <Issue Name="Return">
+               <Item>'ProcessChecker.NativeMethods.EnumWindows(ProcessChecker.NativeMethods.EnumWindowsProcDel, int)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="1" TypeName="PInvokeDeclarationsShouldBePortable" Category="Microsoft.Portability" CheckId="CA1901" Created="2011-10-24 03:27:27Z" FixCategory="NonBreaking">
+              <Issue Name="Parameter">
+               <Item>'lParam'</Item>
+               <Item>'ProcessChecker.NativeMethods.EnumWindows(ProcessChecker.NativeMethods.EnumWindowsProcDel, int)'</Item>
+               <Item>4</Item>
+               <Item>64-bit</Item>
+               <Item>8</Item>
+               <Item>'int'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetWindowThreadProcessId(System.IntPtr,System.Int32&amp;)">
+            <Messages>
+             <Message Id="1#" TypeName="DoNotPassTypesByReference" Category="Microsoft.Design" CheckId="CA1045" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Certainty="50">
+               <Item>'lpdwProcessId'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Wnd" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberParameter">
+               <Item>'ProcessChecker.NativeMethods.GetWindowThreadProcessId(IntPtr, ref int)'</Item>
+               <Item>Wnd</Item>
+               <Item>'hWnd'</Item>
+              </Issue>
+             </Message>
+             <Message Id="h" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberParameter">
+               <Item>'ProcessChecker.NativeMethods.GetWindowThreadProcessId(IntPtr, ref int)'</Item>
+               <Item>h</Item>
+               <Item>'hWnd'</Item>
+              </Issue>
+             </Message>
+             <Message Id="lpdw" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberParameter">
+               <Item>'ProcessChecker.NativeMethods.GetWindowThreadProcessId(IntPtr, ref int)'</Item>
+               <Item>lpdw</Item>
+               <Item>'lpdwProcessId'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetForegroundWindow(System.IntPtr)">
+            <Messages>
+             <Message Id="Wnd" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberParameter">
+               <Item>'ProcessChecker.NativeMethods.SetForegroundWindow(IntPtr)'</Item>
+               <Item>Wnd</Item>
+               <Item>'hWnd'</Item>
+              </Issue>
+             </Message>
+             <Message Id="h" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberParameter">
+               <Item>'ProcessChecker.NativeMethods.SetForegroundWindow(IntPtr)'</Item>
+               <Item>h</Item>
+               <Item>'hWnd'</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2011-10-24 03:27:27Z">
+              <Issue Name="Return">
+               <Item>'ProcessChecker.NativeMethods.SetForegroundWindow(IntPtr)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ShowWindowAsync(System.IntPtr,System.Int32)">
+            <Messages>
+             <Message Id="Wnd" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberParameter">
+               <Item>'ProcessChecker.NativeMethods.ShowWindowAsync(IntPtr, int)'</Item>
+               <Item>Wnd</Item>
+               <Item>'hWnd'</Item>
+              </Issue>
+             </Message>
+             <Message Id="h" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberParameter">
+               <Item>'ProcessChecker.NativeMethods.ShowWindowAsync(IntPtr, int)'</Item>
+               <Item>h</Item>
+               <Item>'hWnd'</Item>
+              </Issue>
+             </Message>
+             <Message Id="n" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberParameter">
+               <Item>'ProcessChecker.NativeMethods.ShowWindowAsync(IntPtr, int)'</Item>
+               <Item>n</Item>
+               <Item>'nCmdShow'</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2011-10-24 03:27:27Z">
+              <Issue Name="Return">
+               <Item>'ProcessChecker.NativeMethods.ShowWindowAsync(IntPtr, int)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ProcessChecker+NativeMethods+EnumWindowsProcDel">
+          <Messages>
+           <Message Id="Param" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+            <Issue Name="DelegateParameter">
+             <Item>'ProcessChecker.NativeMethods.EnumWindowsProcDel'</Item>
+             <Item>Param</Item>
+             <Item>'lParam'</Item>
+            </Issue>
+           </Message>
+           <Message Id="Wnd" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+            <Issue Name="DelegateParameter">
+             <Item>'ProcessChecker.NativeMethods.EnumWindowsProcDel'</Item>
+             <Item>Wnd</Item>
+             <Item>'hWnd'</Item>
+            </Issue>
+           </Message>
+           <Message Id="h" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+            <Issue Name="DelegateParameter">
+             <Item>'ProcessChecker.NativeMethods.EnumWindowsProcDel'</Item>
+             <Item>h</Item>
+             <Item>'hWnd'</Item>
+            </Issue>
+           </Message>
+           <Message Id="l" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+            <Issue Name="DelegateParameter">
+             <Item>'ProcessChecker.NativeMethods.EnumWindowsProcDel'</Item>
+             <Item>l</Item>
+             <Item>'lParam'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="UploadViewForm">
+          <Members>
+           <Member Name="#.ctor(System.String)">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2011-10-24 03:27:27Z">
+              <Issue Name="IFormatProviderAlternateString">
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'UploadViewForm.UploadViewForm(string)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+               <Item>'CultureInfo.CurrentCulture'</Item>
+               <Item>'CultureInfo.InvariantCulture'</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-10-24 03:27:27Z">
+              <Issue>
+               <Item>'UploadViewForm.UploadViewForm(string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#displayNameTextbox">
+            <Messages>
+             <Message Id="Textbox" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberShouldBeCompoundWord">
+               <Item>Textbox</Item>
+               <Item>'UploadViewForm.displayNameTextbox'</Item>
+               <Item>TextBox</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#HandleContinueButtonClick(System.Object,System.EventArgs)">
+            <Messages>
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-10-24 03:27:27Z">
+              <Issue>
+               <Item>'UploadViewForm.HandleContinueButtonClick(object, EventArgs)'</Item>
+              </Issue>
+              <Issue>
+               <Item>'UploadViewForm.HandleContinueButtonClick(object, EventArgs)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#photoFilename">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2011-10-24 03:27:27Z">
+              <Issue>
+               <Item>'UploadViewForm.photoFilename'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Filename" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2011-10-24 14:25:25Z" FixCategory="NonBreaking">
+              <Issue Name="MemberShouldBeCompoundWord">
+               <Item>Filename</Item>
+               <Item>'UploadViewForm.photoFilename'</Item>
+               <Item>FileName</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="PhotoBuddy.BusinessRule">
+        <Types>
+         <Type Name="Album">
+          <Members>
+           <Member Name="#AlbumID">
+            <Messages>
+             <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-10-24 03:27:27Z">
+              <Issue Name="MemberAbbreviation">
+               <Item>ID</Item>
+               <Item>'Album.AlbumID'</Item>
+               <Item>Id</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="AlbumRespository">
+          <Messages>
+           <Message Id="Respository" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-10-24 03:27:27Z">
+            <Issue Name="Type">
+             <Item>Respository</Item>
+             <Item>'AlbumRespository'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#AddPhotoToAlbum(System.String,System.String,System.String)">
+            <Messages>
+             <Message Id="Filename" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2011-10-24 03:27:27Z">
+              <Issue Name="MemberParameterShouldBeCompoundWord">
+               <Item>'AlbumRespository.AddPhotoToAlbum(string, string, string)'</Item>
+               <Item>Filename</Item>
+               <Item>'photoFilename'</Item>
+               <Item>FileName</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Photo">
+          <Members>
+           <Member Name="#GeneratePhotoKey(System.String)">
+            <Messages>
+             <Message Id="System.Byte.ToString(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2011-10-24 03:27:27Z">
+              <Issue Name="IFormatProviderAlternateString">
+               <Item>'byte.ToString(string)'</Item>
+               <Item>'Photo.GeneratePhotoKey(string)'</Item>
+               <Item>'byte.ToString(string, IFormatProvider)'</Item>
+               <Item>'CultureInfo.CurrentCulture'</Item>
+               <Item>'CultureInfo.InvariantCulture'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="PhotoBuddy.Controls">
+        <Types>
+         <Type Name="ThumbNailUserControl">
+          <Messages>
+           <Message Id="ThumbNail" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2011-10-24 03:27:27Z">
+            <Issue Name="TypeShouldBeDiscreteTerm">
+             <Item>ThumbNail</Item>
+             <Item>'ThumbNailUserControl'</Item>
+             <Item>Thumbnail</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="PhotoBuddy.DataAccessLayer">
+        <Types>
+         <Type Name="DataAccessBaseXML">
+          <Messages>
+           <Message Id="XML" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-10-24 03:27:27Z">
+            <Issue Name="Type">
+             <Item>XML</Item>
+             <Item>'DataAccessBaseXML'</Item>
+             <Item>Xml</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#LoadXml(System.String)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2011-10-24 03:27:27Z">
+              <Issue>
+               <Item>'DataAccessBaseXML.LoadXml(string)'</Item>
+               <Item>'object'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="PhotoBuddy.Screens">
+        <Types>
+         <Type Name="AlbumViewUserControl">
+          <Members>
+           <Member Name="#ShowView(System.Collections.Generic.Stack`1&lt;System.Windows.Forms.UserControl&gt;)">
+            <Messages>
+             <Message Id="0#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Created="2011-10-24 03:27:27Z">
+              <Issue>
+               <Item>'AlbumViewUserControl.ShowView(Stack&lt;UserControl&gt;)'</Item>
+               <Item>'history'</Item>
+               <Item>'caller'</Item>
+               <Item>'IScreen.ShowView(Stack&lt;UserControl&gt;)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="CreateAlbumUserControl">
+          <Members>
+           <Member Name="#HandleContinueButtonClick(System.Object,System.EventArgs)">
+            <Messages>
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-10-24 03:27:27Z">
+              <Issue>
+               <Item>'CreateAlbumUserControl.HandleContinueButtonClick(object, EventArgs)'</Item>
+              </Issue>
+              <Issue>
+               <Item>'CreateAlbumUserControl.HandleContinueButtonClick(object, EventArgs)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#InCreateMode">
+            <Messages>
+             <Message Id="InCreate" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2011-10-24 03:27:27Z">
+              <Issue Name="MemberShouldBeDiscreteTerm">
+               <Item>InCreate</Item>
+               <Item>'CreateAlbumUserControl.InCreateMode'</Item>
+               <Item>Increate</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ShowView(System.Collections.Generic.Stack`1&lt;System.Windows.Forms.UserControl&gt;)">
+            <Messages>
+             <Message Id="0#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Created="2011-10-24 03:27:27Z">
+              <Issue>
+               <Item>'CreateAlbumUserControl.ShowView(Stack&lt;UserControl&gt;)'</Item>
+               <Item>'history'</Item>
+               <Item>'caller'</Item>
+               <Item>'IScreen.ShowView(Stack&lt;UserControl&gt;)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="CreateAlbumUserControl+CancelEventHandler">
+          <Messages>
+           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2011-10-24 03:27:27Z">
+            <Issue>
+             <Item>'CreateAlbumUserControl.CancelEventHandler'</Item>
+            </Issue>
+           </Message>
+           <Message TypeName="UseGenericEventHandlerInstances" Category="Microsoft.Design" CheckId="CA1003" Created="2011-10-24 03:27:27Z">
+            <Issue>
+             <Item>'CreateAlbumUserControl.CancelEventHandler'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="CreateAlbumUserControl+ContinueEventHandler">
+          <Messages>
+           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2011-10-24 03:27:27Z">
+            <Issue>
+             <Item>'CreateAlbumUserControl.ContinueEventHandler'</Item>
+            </Issue>
+           </Message>
+           <Message TypeName="UseGenericEventHandlerInstances" Category="Microsoft.Design" CheckId="CA1003" Created="2011-10-24 03:27:27Z">
+            <Issue>
+             <Item>'CreateAlbumUserControl.ContinueEventHandler'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="HomeScreenUserControl">
+          <Members>
+           <Member Name="#ShowView(System.Collections.Generic.Stack`1&lt;System.Windows.Forms.UserControl&gt;)">
+            <Messages>
+             <Message Id="0#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Created="2011-10-24 03:27:27Z">
+              <Issue>
+               <Item>'HomeScreenUserControl.ShowView(Stack&lt;UserControl&gt;)'</Item>
+               <Item>'history'</Item>
+               <Item>'caller'</Item>
+               <Item>'IScreen.ShowView(Stack&lt;UserControl&gt;)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CreateButtonEvent" Kind="Event">
+            <Messages>
+             <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2011-10-24 03:27:27Z">
+              <Issue>
+               <Item>'HomeScreenUserControl.CreateButtonClicked'</Item>
+               <Item>EventHandler</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="HomeScreenUserControl+AlbumSelectedEventHandler">
+          <Messages>
+           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2011-10-24 03:27:27Z">
+            <Issue>
+             <Item>'HomeScreenUserControl.AlbumSelectedEventHandler'</Item>
+            </Issue>
+           </Message>
+           <Message TypeName="UseGenericEventHandlerInstances" Category="Microsoft.Design" CheckId="CA1003" Created="2011-10-24 03:27:27Z">
+            <Issue>
+             <Item>'HomeScreenUserControl.AlbumSelectedEventHandler'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="HomeScreenUserControl+CreateButtonClicked">
+          <Messages>
+           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2011-10-24 03:27:27Z">
+            <Issue>
+             <Item>'HomeScreenUserControl.CreateButtonClicked'</Item>
+            </Issue>
+           </Message>
+           <Message TypeName="UseGenericEventHandlerInstances" Category="Microsoft.Design" CheckId="CA1003" Created="2011-10-24 03:27:27Z">
+            <Issue>
+             <Item>'HomeScreenUserControl.CreateButtonClicked'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="MessageBoxProxy">
+          <Members>
+           <Member Name="#Show(System.String,System.String,System.Windows.Forms.MessageBoxButtons)">
+            <Messages>
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-10-24 19:26:00Z">
+              <Issue>
+               <Item>'MessageBoxProxy.Show(string, string, MessageBoxButtons)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Show(System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon)">
+            <Messages>
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-10-24 19:26:00Z">
+              <Issue>
+               <Item>'MessageBoxProxy.Show(string, string, MessageBoxButtons, MessageBoxIcon)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+      <Resources>
+       <Resource Name="PhotoBuddy.Resources.Strings.resources">
+        <Messages>
+         <Message Id="png" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Created="2011-10-24 03:27:27Z">
+          <Issue Name="StringResource">
+           <Item>'PhotoBuddy.Resources.Strings.resx'</Item>
+           <Item>ErrorNotPictureFile</Item>
+           <Item>png</Item>
+           <Item>The chosen file is not a picture! Please select a photo file of type jpg, png, bmp, or gif.</Item>
+          </Issue>
+         </Message>
+        </Messages>
+       </Resource>
+      </Resources>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Rules>
+   <Rule TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823">
+    <Resolution Name="Default">It appears that field {0} is never used or is only ever assigned to. Use this field or remove it.</Resolution>
+   </Rule>
+   <Rule TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702">
+    <Resolution Name="MemberParameterShouldBeCompoundWord">In member {0}, the discrete term '{1}' in parameter name {2} should be expressed as a compound word, '{3}'.</Resolution>
+    <Resolution Name="MemberShouldBeCompoundWord">The discrete term '{0}' in member name {1} should be expressed as a compound word, '{2}'.</Resolution>
+    <Resolution Name="MemberShouldBeDiscreteTerm">The compound word '{0}' in member name {1} exists as a discrete term. If your usage is intended to be single word, case it as '{2}' or strip the first token entirely if it represents any sort of Hungarian notation.</Resolution>
+    <Resolution Name="TypeShouldBeDiscreteTerm">The compound word '{0}' in type name {1} exists as a discrete term. If your usage is intended to be single word, case it as '{2}'.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+    <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotIgnoreMethodResults" Category="Microsoft.Usage" CheckId="CA1806">
+    <Resolution Name="HResultOrErrorCode">{0} calls {1} but does not use the HRESULT or error code that the method returns. This could lead to unexpected behavior in error conditions or low-resource situations. Use the result in a conditional statement, assign the result to a variable, or pass it as an argument to another method.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotPassTypesByReference" Category="Microsoft.Design" CheckId="CA1045">
+    <Resolution Name="Default">Consider a design that does not require that {0} be a reference parameter.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+    <Resolution Name="MemberAbbreviation">Correct the casing of '{0}' in member name {1} by changing it to '{2}'. '{2}' is an abbreviation and therefore is not subject to acronym casing guidelines.</Resolution>
+    <Resolution Name="Type">Correct the casing of '{0}' in type name {1} by changing it to '{2}'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+    <Resolution Name="DelegateParameter">In delegate {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+    <Resolution Name="MemberParameter">In method {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+    <Resolution Name="Type">Correct the spelling of '{0}' in type name {1}.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710">
+    <Resolution Name="Default">Rename {0} to end in '{1}'.</Resolution>
+   </Rule>
+   <Rule TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414">
+    <Resolution Name="Return">Add the MarshalAsAttribute to the return type of P/Invoke {0}. If the corresponding unmanaged return type is a 4-byte Win32 'BOOL', use MarshalAs(UnmanagedType.Bool). For a 1-byte C++ 'bool', use MarshalAs(UnmanagedType.U1).</Resolution>
+   </Rule>
+   <Rule TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034">
+    <Resolution Name="Default">Do not nest type {0}. Alternatively, change its accessibility so that it is not externally visible.</Resolution>
+   </Rule>
+   <Rule TypeName="PInvokeDeclarationsShouldBePortable" Category="Microsoft.Portability" CheckId="CA1901">
+    <Resolution Name="Parameter">As it is declared in your code, parameter {0} of P/Invoke {1} will be {2} bytes wide on {3} platforms. This is not correct, as the actual native declaration of this API indicates it should be {4} bytes wide on {3} platforms. Consult the MSDN Platform SDK documentation for help determining what data type should be used instead of {5}.</Resolution>
+   </Rule>
+   <Rule TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725">
+    <Resolution Name="Default">In member {0}, change parameter name {1} to {2} in order to match the identifier as it has been declared in {3}.</Resolution>
+   </Rule>
+   <Rule TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703">
+    <Resolution Name="StringResource">In resource {0}, referenced by name '{1}', correct the spelling of '{2}' in string value '{3}'.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+    <Resolution Name="IFormatProviderAlternateString">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify {3} as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify {4}.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300">
+    <Resolution Name="Default">Change {0} to call the MessageBox.Show overload that specifies MessageBoxOptions, and make sure to set MessageBoxOptions.RightAlign and MessageBoxOptions.RtlReading if RightToLeft is set to RightToLeft.Yes on the parent control.</Resolution>
+   </Rule>
+   <Rule TypeName="UseGenericEventHandlerInstances" Category="Microsoft.Design" CheckId="CA1003">
+    <Resolution Name="Default">Remove {0} and replace its usage with EventHandler&lt;T&gt;</Resolution>
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>

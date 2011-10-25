@@ -41,12 +41,11 @@ namespace PhotoBuddy
         private static void Main()
         {
             bool firstUserInstance;
-            string title = string.Format("{0}: {1}", Environment.UserName, Strings.AppName);
-            using (Mutex mutex = new Mutex(true, string.Format(@"Local\{0}", title), out firstUserInstance))
+            using (Mutex mutex = new Mutex(true, Format.Invariant(@"Local\{0}:{1}", Strings.AppName, Environment.UserName), out firstUserInstance))
             {
                 if (!firstUserInstance)
                 {
-                    PhotoBuddy.ProcessChecker.ShowWindow(title);
+                    PhotoBuddy.ProcessChecker.ShowWindow();
                     return;
                 }
 

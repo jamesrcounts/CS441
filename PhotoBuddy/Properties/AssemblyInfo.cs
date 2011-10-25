@@ -3,6 +3,7 @@
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
+using System;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
@@ -39,3 +40,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("2.0.*")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
+[assembly: CLSCompliant(true)]

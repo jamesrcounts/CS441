@@ -50,12 +50,12 @@ namespace PhotoBuddy.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("32")]
-        public int MaxAlbumLength {
+        public int MaxNameLength {
             get {
-                return ((int)(this["MaxAlbumLength"]));
+                return ((int)(this["MaxNameLength"]));
             }
             set {
-                this["MaxAlbumLength"] = value;
+                this["MaxNameLength"] = value;
             }
         }
     }

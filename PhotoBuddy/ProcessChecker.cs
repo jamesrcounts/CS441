@@ -21,44 +21,17 @@ namespace PhotoBuddy
     internal static class ProcessChecker
     {
         /// <summary>
-        /// The window title assigned to photo buddy for this user.
+        /// Tries to show the PhotoBuddy window with a different process id than the current process.
         /// </summary>
-        private static string photoBuddyTitle;
-
-        /// <summary>
-        /// Gets a value indicating whether we are the only instance of photo buddy 
-        /// for the current user.  If another instance exists, bring it to the front.
-        /// </summary>
-        /// <param name="forceTitle">The photo buddy title text.</param>
-        /// <returns>false if no previous process was activated; true if another  process
-        /// exists and should exit the current one.</returns>
-        /// <remarks>Authors: Jim Counts and Eric Wei</remarks>
-        public static bool IsOnlyProcess(string forceTitle)
+        /// <remarks>
+        /// Authors: Jim Counts and Eric Wei
+        /// </remarks>
+        public static void ShowWindow()
         {
-            ProcessChecker.photoBuddyTitle = forceTitle;
+            int currentProcessId = Process.GetCurrentProcess().Id;
             foreach (Process proc in Process.GetProcessesByName(Application.ProductName))
             {
-                if (proc.Id != Process.GetCurrentProcess().Id)
-                {
-                    NativeMethods.EnumWindows(EnumWindowsProc, proc.Id);
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Tries to show the PhotoBuddy window with the same window title as the current process.
-        /// </summary>
-        /// <param name="title">The title to search for.</param>
-        /// <remarks>Authors: Jim Counts and Eric Wei</remarks>
-        public static void ShowWindow(string title)
-        {
-            ProcessChecker.photoBuddyTitle = title;
-            foreach (Process proc in Process.GetProcessesByName(Application.ProductName))
-            {
-                if (proc.Id != Process.GetCurrentProcess().Id)
+                if (proc.Id != currentProcessId)
                 {
                     NativeMethods.EnumWindows(EnumWindowsProc, proc.Id);
                 }
@@ -69,32 +42,29 @@ namespace PhotoBuddy
         /// Find and show a running window.
         /// </summary>
         /// <param name="windowHandle">The window handle.</param>
-        /// <param name="state">An argument that may be passed to the predicate.</param>
+        /// <param name="otherProcessId">The process id of the other instance of PhotoBuddy, which we are looking for.</param>
         /// <returns>
-        /// true if the function completed without errors; otherwise false
+        /// true if the caller should continue to enumerate windows; otherwise false
         /// </returns>
         /// <remarks>
         /// Authors: Jim Counts and Eric Wei
         /// </remarks>
-        private static bool EnumWindowsProc(IntPtr windowHandle, int state)
+        private static bool EnumWindowsProc(IntPtr windowHandle, int otherProcessId)
         {
             int processId = 0;
             NativeMethods.GetWindowThreadProcessId(windowHandle, ref processId);
-
-            StringBuilder caption = new StringBuilder(1024);
-            NativeMethods.GetWindowText(windowHandle, caption, 1024);
-
-            // Use IndexOf to make sure our required string is in the title.
-            if (processId == state &&
-                (caption.ToString().IndexOf(ProcessChecker.photoBuddyTitle, StringComparison.OrdinalIgnoreCase) != -1))
+            if (processId != otherProcessId)
             {
-                // Restore the window.
-                NativeMethods.ShowWindowAsync(windowHandle, NativeMethods.SW_SHOWNORMAL);
-                NativeMethods.SetForegroundWindow(windowHandle);
-                return false;
+                // Check the next process.
+                return true;
             }
 
-            return true; // Keep this.
+            // Restore the window.
+            NativeMethods.ShowWindowAsync(windowHandle, NativeMethods.SW_SHOWNORMAL);
+            NativeMethods.SetForegroundWindow(windowHandle);
+
+            // Found what we were looking for, stop looking.
+            return false;
         }
 
         /// <summary>
@@ -151,22 +121,11 @@ namespace PhotoBuddy
             /// Retrieves the identifier of the thread that created the specified window.
             /// </summary>
             /// <param name="hWnd">A user handle.</param>
-            /// <param name="lpdwProcessId">Receives the address of the thread that created the window.</param>
-            /// <returns>Address of the process that created the window.</returns>
+            /// <param name="lpdwProcessId">Receives the address of the process that created the window.</param>
+            /// <returns>ID of the thread that created the window.</returns>
             /// <remarks>Authors: Jim Counts and Eric Wei</remarks>
             [DllImport("user32.dll")]
             public static extern int GetWindowThreadProcessId(IntPtr hWnd, ref int lpdwProcessId);
-
-            /// <summary>
-            /// Copies the text of the windows title bar into a buffer.
-            /// </summary>
-            /// <param name="hWnd">A window handle.</param>
-            /// <param name="lpString">A buffer that will receive the text.</param>
-            /// <param name="nMaxCount">Max number of characters to copy.</param>
-            /// <returns>Number of characters copied, if successful; otherwise 0</returns>
-            /// <remarks>Authors: Jim Counts and Eric Wei</remarks>
-            [DllImport("user32.dll")]
-            public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
         }
     }
 }

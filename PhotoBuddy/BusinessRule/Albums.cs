@@ -11,7 +11,7 @@
 //                         as well as to search a specific album that is being requested from 
 //                         the presenter.
 //-----------------------------------------------------------------------
-namespace PhotoBuddy.BussinessRule
+namespace PhotoBuddy.BusinessRule
 {
     using System;
     using System.Collections;

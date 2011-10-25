@@ -12,8 +12,9 @@ namespace PhotoBuddy
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Text;
     using System.Windows.Forms;
-    using PhotoBuddy.BussinessRule;
+    using PhotoBuddy.BusinessRule;
     using PhotoBuddy.EventObjects;
     using PhotoBuddy.Resources;
     using PhotoBuddy.Screens;
@@ -24,9 +25,18 @@ namespace PhotoBuddy
     public partial class MainForm : Form
     {
         /// <summary>
+        /// Stores the history of previous views.
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: Jim Counts</para>
+        /// <para>Created: 2011-10-24</para>
+        /// </remarks>
+        private readonly Stack<UserControl> previousViews = new Stack<UserControl>();
+
+        /// <summary>
         /// The album model
         /// </summary>
-        public static readonly AlbumRespository Model = new AlbumRespository();
+        private static readonly AlbumRespository Model = new AlbumRespository();
 
         /// <summary>
         /// The Opening View shows a list of albums; allows user to create new albums.
@@ -52,12 +62,10 @@ namespace PhotoBuddy
         public MainForm()
         {
             this.InitializeComponent();
-            this.PreviousViews = new Stack<UserControl>();
             this.InitializeUIScreens();
             this.CurrentView = this.HomeView;
             this.ShowView(this.HomeView);
-
-            this.Text = string.Format("{0}: {1}", Environment.UserName, Strings.AppName);
+            this.Text = Strings.AppName;
         }
 
         /// <summary>
@@ -114,15 +122,18 @@ namespace PhotoBuddy
         }
 
         /// <summary>
-        /// Gets or sets the previous View.
+        /// Gets the previous view history.
         /// </summary>
-        /// <value>
-        /// The previous screen.
-        /// </value>
         /// <remarks>
         /// <para>Author: Jim Counts</para>
         /// </remarks>
-        public Stack<UserControl> PreviousViews { get; protected set; }
+        public Stack<UserControl> PreviousViews
+        {
+            get
+            {
+                return this.previousViews;
+            }
+        }
 
         /// <summary>
         /// Shows the view.
@@ -209,18 +220,19 @@ namespace PhotoBuddy
         /// <param name="sender">The continue button from the createScreen.</param>
         /// <param name="e">The event args.</param>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
         /// </remarks>
         private void CreateOrEditAlbum(object sender, EventArgs e)
         {
             string rawAlbumName = this.CreateAlbumView.UserEnteredText;
             if (Model.Albums.IsExistingAlbumName(rawAlbumName))
             {
-                MessageBox.Show(
-                    "Invalid album name! Please enter a new album name.",
-                    "Album Name Invalid",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                const string MessageText = "Invalid album name! Please enter a new album name.";
+                const string MessageCaption = "Album Name Invalid";
+                MessageBoxButtons messageButtons = MessageBoxButtons.OK;
+                MessageBoxIcon messageIcon = MessageBoxIcon.Warning;
+                MessageBoxProxy message = new MessageBoxProxy();
+                message.Show(MessageText, MessageCaption, messageButtons, messageIcon);
                 return;
             }
 
@@ -274,12 +286,15 @@ namespace PhotoBuddy
                 fileBrowser.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png|bmp files (*.bmp)|*.bmp|gif files (*.gif)|*.gif";
                 fileBrowser.FilterIndex = 1;
                 fileBrowser.RestoreDirectory = true;
-                fileBrowser.Multiselect = false;
-                fileBrowser.Title = string.Format("Add to {0} - Photo Buddy", this.AlbumView.CurrentAlbum.AlbumID);
+                fileBrowser.Multiselect = true;
+                fileBrowser.Title = Format.Culture("Add to {0} - Photo Buddy", this.AlbumView.CurrentAlbum.AlbumID);
                 DialogResult result = fileBrowser.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    this.VerifyIncomingPhoto(fileBrowser.FileName);
+                    foreach (string fileName in fileBrowser.FileNames)
+                    {
+                        this.VerifyIncomingPhoto(fileName);
+                    }
                 }
             }
 
@@ -289,15 +304,15 @@ namespace PhotoBuddy
         /// <summary>
         /// Verifies the incoming photo.
         /// </summary>
-        /// <param name="photoFilename">The name of the photo the user is uploading.</param>
+        /// <param name="photoFileName">The name of the photo the user is uploading.</param>
         /// <remarks>
         ///   <para>Author(s): Miguel Gonzales and Andrea Tan</para>
         ///   <para>When the user selects a photo to import, we want to show them the photo so they can confirm
         /// that they selected the correct photo.</para>
         /// </remarks>
-        private void VerifyIncomingPhoto(string photoFilename)
+        private void VerifyIncomingPhoto(string photoFileName)
         {
-            using (UploadViewForm uploadPhoto = new UploadViewForm(photoFilename))
+            using (UploadViewForm uploadPhoto = new UploadViewForm(photoFileName))
             {
                 // Need this check to see if the user attempted an invalid file type.
                 if (uploadPhoto.IsDisposed)
@@ -310,7 +325,7 @@ namespace PhotoBuddy
                 {
                     // User approved so upload the photo to the album.
                     string name = uploadPhoto.DisplayName;
-                    string file = photoFilename;
+                    string file = photoFileName;
                     Model.AddPhotoToAlbum(this.AlbumView.CurrentAlbum.AlbumID, name, file);
                 }
             }
@@ -405,10 +420,13 @@ namespace PhotoBuddy
         {
             if (this.CurrentView == this.HomeView)
             {
-                System.Text.StringBuilder aboutPhotoBuddy = new System.Text.StringBuilder();
+                StringBuilder aboutPhotoBuddy = new StringBuilder();
                 aboutPhotoBuddy.AppendLine("Photo Buddy by GOLD RUSH.");
                 aboutPhotoBuddy.AppendFormat("Version: {0}", Application.ProductVersion).AppendLine();
-                MessageBox.Show(aboutPhotoBuddy.ToString(), Strings.AppName, MessageBoxButtons.OK);
+                string caption = Strings.AppName;
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                string messageText = aboutPhotoBuddy.ToString();
+                new MessageBoxProxy().Show(messageText, caption, buttons);
                 return;
             }
 

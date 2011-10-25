@@ -10,7 +10,7 @@
 //             removing the photo from hash,  and last but not least is to return the
 //             collections of the photos when requested.
 //-----------------------------------------------------------------------
-namespace PhotoBuddy.BussinessRule
+namespace PhotoBuddy.BusinessRule
 {
     using System;
     using System.Collections;

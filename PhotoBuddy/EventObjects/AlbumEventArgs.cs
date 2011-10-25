@@ -11,7 +11,7 @@
 namespace PhotoBuddy.EventObjects
 {
     using System;
-    using PhotoBuddy.BussinessRule;
+    using PhotoBuddy.BusinessRule;
 
     /// <summary>
     /// Pass an album using events.

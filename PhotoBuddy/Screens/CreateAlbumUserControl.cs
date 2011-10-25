@@ -30,7 +30,7 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         public CreateAlbumUserControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.Dock = DockStyle.Fill;
             this.DisplayName = "Create New Album";
             this.createHeaderLabel.Text = this.DisplayName;
@@ -67,7 +67,7 @@ namespace PhotoBuddy.Screens
         /// The name of the album.
         /// </value>
         public string AlbumName { get; private set; }
-        
+
         /// <summary>
         /// Gets the continue button.
         /// </summary>
@@ -111,7 +111,7 @@ namespace PhotoBuddy.Screens
         /// The display name.
         /// </value>
         public string DisplayName { get; set; }
-        
+
         /// <summary>
         /// Gets the album name text box.
         /// </summary>

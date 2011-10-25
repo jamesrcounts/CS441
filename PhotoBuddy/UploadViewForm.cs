@@ -22,10 +22,10 @@ namespace PhotoBuddy
     /// </summary>
     public partial class UploadViewForm : Form
     {
-        /// <summary>
-        /// The photo path.
-        /// </summary>
-        private readonly string photoFilename;
+        /////// <summary>
+        /////// The photo path.
+        /////// </summary>
+        ////private readonly string photoFilename;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadViewForm"/> class.
@@ -38,22 +38,22 @@ namespace PhotoBuddy
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadViewForm"/> class.
         /// </summary>
-        /// <param name="photoFilename">The photo to verify.</param>
+        /// <param name="photoFileName">The photo to verify.</param>
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        public UploadViewForm(string photoFilename)
+        public UploadViewForm(string photoFileName)
         {
             this.InitializeComponent();
-            this.photoFilename = photoFilename;
-            this.Text = string.Format("Upload {0} - Photo Buddy", Path.GetFileName(photoFilename));
+            ////this.photoFilename = photoFileName;
+            this.Text = string.Format("Upload {0} - Photo Buddy", Path.GetFileName(photoFileName));
 
             // Try to open the image.
             try
             {
-                this.pictureBox1.Image = Image.FromFile(photoFilename);
+                this.pictureBox1.Image = Image.FromFile(photoFileName);
             }
-            catch
+            catch (OutOfMemoryException)
             {
                 // File was not a valid image so abort the upload & warn the user.
                 MessageBox.Show(
@@ -64,7 +64,7 @@ namespace PhotoBuddy
                 this.HandleCancelButtonClick(this, new EventArgs());
             }
 
-            this.displayNameTextbox.Text = Path.GetFileName(photoFilename);
+            this.displayNameTextbox.Text = Path.GetFileName(photoFileName);
         }
 
         /// <summary>

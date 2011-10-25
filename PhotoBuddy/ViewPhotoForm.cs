@@ -16,7 +16,7 @@ namespace PhotoBuddy
     using System.IO;
     using System.Linq;
     using System.Windows.Forms;
-    using PhotoBuddy.BussinessRule;
+    using PhotoBuddy.BusinessRule;
     using PhotoBuddy.Common.CommonClass;
 
     /// <summary>
@@ -29,10 +29,10 @@ namespace PhotoBuddy
         /// </summary>
         private readonly Album album;
 
-        /// <summary>
-        /// The photo id.
-        /// </summary>
-        private readonly string photoID;
+        /////// <summary>
+        /////// The photo id.
+        /////// </summary>
+        ////private readonly string photoID;
 
         /// <summary>
         /// The photo
@@ -42,7 +42,7 @@ namespace PhotoBuddy
         /// <summary>
         /// All photos in the album.
         /// </summary>
-        private List<Photo> allPhotosInAlbum;
+        private readonly List<Photo> allPhotosInAlbum;
 
         /// <summary>
         /// The current photo's index.
@@ -73,7 +73,7 @@ namespace PhotoBuddy
             this.InitializeComponent();
             this.Text = "Photo Display - Photo Buddy";
             this.album = currentAlbum;
-            this.photoID = photoToDisplay.PhotoId;
+            ////this.photoID = photoToDisplay.PhotoId;
             this.picture = photoToDisplay;
             this.currentAlbumLabel.Text = this.album.AlbumID;
             this.allPhotosInAlbum = this.album.PhotoList.PhotoTable.Values.Cast<Photo>().ToList();

@@ -9,7 +9,7 @@
 //              this class also provides the mean of accessing the album contents
 //              as well as updating its contents as well
 //-----------------------------------------------------------------------
-namespace PhotoBuddy.BussinessRule
+namespace PhotoBuddy.BusinessRule
 {
     using System;
     using System.Diagnostics;

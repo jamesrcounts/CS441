@@ -10,7 +10,7 @@
 //                         collectors are the one that's responsible as a global object holders of
 //                         everything in the bussienss rule.
 //-----------------------------------------------------------------------
-namespace PhotoBuddy.BussinessRule
+namespace PhotoBuddy.BusinessRule
 {
     using System.IO;
     using System.Linq;
@@ -41,7 +41,7 @@ namespace PhotoBuddy.BussinessRule
 
             this.document = new XDocument();
             DataAccessBaseXML dataAccessXML = new DataAccessBaseXML();
-            this.document = dataAccessXML.LoadXml(Constants.XMLDataFilePath);
+            this.document = dataAccessXML.LoadXml(Constants.XmlDataFilePath);
 
             Albums = new Albums();
             this.LoadAlbums();
@@ -179,7 +179,7 @@ namespace PhotoBuddy.BussinessRule
                 albumsNode.AppendChild(albumNode);
             }
 
-            doc.Save(Constants.XMLDataFilePath);
+            doc.Save(Constants.XmlDataFilePath);
         }
 
         /// <summary>

@@ -30,6 +30,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -163,7 +164,9 @@
     <Compile Include="Screens\HomeScreenUserControl.Designer.cs">
       <DependentUpon>HomeScreenUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\IMessageView.cs" />
     <Compile Include="Screens\IScreen.cs" />
+    <Compile Include="Format.cs" />
     <Compile Include="UploadViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,6 +219,8 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="FxCop\FxCop.bat" />
+    <None Include="FxCop\PhotoBuddy.FxCop" />
     <None Include="GoldRush.snk" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -253,11 +258,13 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <PropertyGroup>
+    <SlowCheetahTargets Condition=" '$(SlowCheetahTargets)'=='' ">$(LOCALAPPDATA)\Microsoft\MSBuild\SlowCheetah\v1\SlowCheetah.Transforms.targets</SlowCheetahTargets>
+    <StyleCopTargets Condition=" '$(StyleCopTargets)'=='' ">$(ProgramFiles)\MSBuild\StyleCop\v4.5\StyleCop.targets</StyleCopTargets>
+  </PropertyGroup>
+  <Import Condition="Exists('$(SlowCheetahTargets)')" Project="$(SlowCheetahTargets)" />
+  <Import Condition="Exists('$(StyleCopTargets)')" Project="$(StyleCopTargets)" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Debug "$(ProjectDir)FxCop\FxCop.bat" "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

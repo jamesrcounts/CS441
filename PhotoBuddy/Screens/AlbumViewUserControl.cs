@@ -2,9 +2,9 @@
 // <copyright file="AlbumViewUserControl.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales and Andrea Tan
+// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
 // Date: Sept 28 2011
-// Modified date: Oct 19 2011
+// Modified date: Oct 24 2011
 // Description: this class is responsible for the use control in album view which 
 //              is called from mainForm to do the state changes.
 //-----------------------------------------------------------------------
@@ -15,7 +15,7 @@ namespace PhotoBuddy.Screens
     using System.Diagnostics;
     using System.Drawing;
     using System.Windows.Forms;
-    using PhotoBuddy.BussinessRule;
+    using PhotoBuddy.BusinessRule;
     using PhotoBuddy.Common.CommonClass;
     using PhotoBuddy.Controls;
 
@@ -36,50 +36,50 @@ namespace PhotoBuddy.Screens
         /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
         public AlbumViewUserControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.Dock = DockStyle.Fill;
             this.DisplayName = "Album";
         }
 
-        /// <summary>
-        /// Defines a delegate to handle "Rename Album" events.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /// <remarks>Rename Album events are typically fired by the rename album button, which indicates the user wants to rename
-        /// an album.</remarks>
-        public delegate void RenameAlbumHandler(object sender, EventArgs e);
+        /////// <summary>
+        /////// Defines a delegate to handle "Rename Album" events.
+        /////// </summary>
+        /////// <param name="sender">The sender.</param>
+        /////// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /////// <remarks>Rename Album events are typically fired by the rename album button, which indicates the user wants to rename
+        /////// an album.</remarks>
+        ////public delegate void RenameAlbumHandler(object sender, EventArgs e);
 
-        /// <summary>
-        /// Defines a delegate to handle "Back" events.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /// <remarks>Back events are typically fired by back buttons, which return the user to the previous view.</remarks>
-        public delegate void BackEventHandler(object sender, EventArgs e);
+        /////// <summary>
+        /////// Defines a delegate to handle "Back" events.
+        /////// </summary>
+        /////// <param name="sender">The sender.</param>
+        /////// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /////// <remarks>Back events are typically fired by back buttons, which return the user to the previous view.</remarks>
+        ////public delegate void BackEventHandler(object sender, EventArgs e);
 
-        /// <summary>
-        /// Defines a delegate to handle "Add Photo" events.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /// <remarks>Add Photos events are typically fired by the Add Photos button, which indicates the user wants to add photos.</remarks>
-        public delegate void AddPhotosEventHandler(object sender, EventArgs e);
+        /////// <summary>
+        /////// Defines a delegate to handle "Add Photo" events.
+        /////// </summary>
+        /////// <param name="sender">The sender.</param>
+        /////// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /////// <remarks>Add Photos events are typically fired by the Add Photos button, which indicates the user wants to add photos.</remarks>
+        ////public delegate void AddPhotosEventHandler(object sender, EventArgs e);
 
         /// <summary>
         /// Occurs when the back button is clicked.
         /// </summary>
-        public event BackEventHandler BackEvent;
+        public event EventHandler BackEvent;
 
         /// <summary>
         /// Occurs when the rename album button is clicked.
         /// </summary>
-        public event RenameAlbumHandler RenameAlbumEvent;
+        public event EventHandler RenameAlbumEvent;
 
         /// <summary>
         /// Occurs when the add photo button is clicked.
         /// </summary>
-        public event AddPhotosEventHandler AddPhotosEvent;
+        public event EventHandler AddPhotosEvent;
 
         /// <summary>
         /// Gets the control managed by this view.
@@ -111,7 +111,7 @@ namespace PhotoBuddy.Screens
                 this.currentAlbum = value;
                 if (this.currentAlbum != null)
                 {
-                    labelAlbumName.Text = this.currentAlbum.AlbumID.Replace("&", "&&");
+                    this.labelAlbumName.Text = this.currentAlbum.AlbumID.Replace("&", "&&");
                     this.RefreshPhotoList();
                 }
             }
