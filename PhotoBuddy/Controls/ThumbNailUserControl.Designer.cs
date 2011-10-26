@@ -41,6 +41,7 @@ namespace PhotoBuddy.Controls
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.Window;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
@@ -88,6 +89,7 @@ namespace PhotoBuddy.Controls
             // 
             // NameTextBox
             // 
+            this.NameTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.NameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.NameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -97,7 +99,6 @@ namespace PhotoBuddy.Controls
             this.NameTextBox.ReadOnly = true;
             this.NameTextBox.Size = new System.Drawing.Size(162, 13);
             this.NameTextBox.TabIndex = 1;
-            this.NameTextBox.Text = "Name";
             this.NameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ThumbNailUserControl

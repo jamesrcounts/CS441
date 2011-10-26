@@ -46,7 +46,7 @@ namespace PhotoBuddy.BusinessRule
             Albums = new Albums();
             this.LoadAlbums();
         }
-        
+
         /// <summary>
         /// Gets or sets the albums.
         /// </summary>
@@ -97,11 +97,11 @@ namespace PhotoBuddy.BusinessRule
         /// <param name="albumName">The album ID</param>
         /// <param name="newName">The new display name for the photo</param>
         /// <param name="photoId">The photo ID</param>
-         public void RenamePhotoInAlbum(string albumName, string newName, string photoId)
+        public void RenamePhotoInAlbum(string albumName, string newName, string photoId)
         {
             Album tempAlbum = Albums.GetAlbum(albumName);
             Albums.AlbumList.Remove(albumName);
-            Photo tempPhoto = (Photo) tempAlbum.PhotoList.PhotoTable[photoId];
+            Photo tempPhoto = (Photo)tempAlbum.PhotoList.PhotoTable[photoId];
             tempAlbum.PhotoList.PhotoTable.Remove(photoId);
             tempPhoto.DisplayName = newName;
             tempAlbum.PhotoList.Add(tempPhoto);
@@ -269,7 +269,7 @@ namespace PhotoBuddy.BusinessRule
             Photo.StoreFile(@tempPhoto.CopiedPath, path);
 
             tempPhoto.CopiedPath = tempPhoto.PhotoId + fileExtension;
-            
+
             // query for album from album list
             Album currentAlbum = Albums.GetAlbum(albumId);
 

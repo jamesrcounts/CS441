@@ -65,11 +65,12 @@ namespace PhotoBuddy.Controls
         {
             get
             {
-                return thumbnail;
+                return this.thumbnail;
             }
+ 
             set
             {
-                thumbnail = value;
+                this.thumbnail = value;
             }
         }
 

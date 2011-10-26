@@ -33,7 +33,7 @@ namespace PhotoBuddy
         private readonly IMessageService MessageService;
 
         /// <summary>
-        /// Creates an instance of the UploadViewForm that is configured to rename a photo.
+        /// Initializes a new instance of the <see cref="UploadViewForm"/> class.
         /// </summary>
         /// <param name="messageService">Shows message boxes.</param>
         /// <param name="photo">The photo to display.</param>
@@ -41,6 +41,9 @@ namespace PhotoBuddy
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-25</para>
         ///   <para>Modified: 2011-10-25</para>
+        ///   <para>
+        /// Creates an instance of the UploadViewForm that is configured to rename a photo.
+        ///   </para>
         /// </remarks>
         public UploadViewForm(IMessageService messageService, PhotoBuddy.BusinessRule.Photo photo)
         {

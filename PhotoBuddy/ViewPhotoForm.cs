@@ -198,6 +198,8 @@ namespace PhotoBuddy
         /// <summary>
         /// Handles the request to rename a photo.
         /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         /// <remarks>
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-25</para>
@@ -207,25 +209,23 @@ namespace PhotoBuddy
         {
             // Givens:
             //  We have the album name from the form
-            string albumName = currentAlbumLabel.Text.Replace("&&", "&");
-            //  We have the photo display name from the form.
-            string displayName = photoNameLabel.Text.Replace("&&", "&");
+            var albumName = this.currentAlbumLabel.Text.Replace("&&", "&");
 
-            // First we need to find the secrect file name
-            string filename = Path.GetFileName(this.allPhotosInAlbum[photoIndex].CopiedPath);
-            string path = Path.Combine(Constants.PhotosFolderPath, filename);
-            
+            // First we need to find the secret file name
+            var currentPhoto = this.allPhotosInAlbum[this.photoIndex];
+
             // Give the full secret path to the UploadView Form here...
-            UploadViewForm RenamePhoto = new UploadViewForm(new MessageService(), this.allPhotosInAlbum[photoIndex]);
-            
-            DialogResult result = RenamePhoto.ShowDialog();
-            if (result == DialogResult.OK)
+            using (var renamePhotoView = new UploadViewForm(new MessageService(), currentPhoto))
             {
-                // User approved so upload the photo to the album.
-                string newName = RenamePhoto.DisplayName;
-                string file = path;
-                this.album.Repository.RenamePhotoInAlbum(albumName, newName, this.allPhotosInAlbum[photoIndex].PhotoId);
-                this.DisplayPhoto(photoIndex);
+                var result = renamePhotoView.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    // User approved so rename the photo.
+                    this.album.Repository.RenamePhotoInAlbum(albumName, renamePhotoView.DisplayName, currentPhoto.PhotoId);
+                    
+                    // Important to update the new name on the view.
+                    this.DisplayPhoto(this.photoIndex);
+                }
             }
         }
     }

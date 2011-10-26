@@ -84,7 +84,7 @@ namespace PhotoBuddy
             // 
             // RenamePhotoButton
             // 
-            this.RenamePhotoButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.RenamePhotoButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RenamePhotoButton.AutoSize = true;
             this.RenamePhotoButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.RenamePhotoButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
@@ -92,7 +92,7 @@ namespace PhotoBuddy
             this.RenamePhotoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RenamePhotoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RenamePhotoButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.RenamePhotoButton.Location = new System.Drawing.Point(158, 25);
+            this.RenamePhotoButton.Location = new System.Drawing.Point(176, 25);
             this.RenamePhotoButton.Margin = new System.Windows.Forms.Padding(38, 2, 2, 2);
             this.RenamePhotoButton.Name = "RenamePhotoButton";
             this.RenamePhotoButton.Size = new System.Drawing.Size(100, 25);
