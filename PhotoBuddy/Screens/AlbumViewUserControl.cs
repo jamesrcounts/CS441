@@ -236,6 +236,7 @@ namespace PhotoBuddy.Screens
             using (ViewPhotoForm photoForm = new ViewPhotoForm(this.currentAlbum, (Photo)uc.Tag))
             {
                 photoForm.ShowDialog();
+                this.RefreshPhotoList();
             }
         }
 

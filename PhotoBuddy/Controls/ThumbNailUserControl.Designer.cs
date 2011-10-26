@@ -94,8 +94,10 @@ namespace PhotoBuddy.Controls
             this.NameTextBox.Location = new System.Drawing.Point(1, 125);
             this.NameTextBox.Margin = new System.Windows.Forms.Padding(1);
             this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.ReadOnly = true;
             this.NameTextBox.Size = new System.Drawing.Size(162, 13);
             this.NameTextBox.TabIndex = 1;
+            this.NameTextBox.Text = "Name";
             this.NameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ThumbNailUserControl

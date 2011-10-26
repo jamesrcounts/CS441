@@ -92,6 +92,24 @@ namespace PhotoBuddy.BusinessRule
         }
 
         /// <summary>
+        /// Rename the photo in the album.
+        /// </summary>
+        /// <param name="albumName">The album ID</param>
+        /// <param name="newName">The new display name for the photo</param>
+        /// <param name="photoId">The photo ID</param>
+         public void RenamePhotoInAlbum(string albumName, string newName, string photoId)
+        {
+            Album tempAlbum = Albums.GetAlbum(albumName);
+            Albums.AlbumList.Remove(albumName);
+            Photo tempPhoto = (Photo) tempAlbum.PhotoList.PhotoTable[photoId];
+            tempAlbum.PhotoList.PhotoTable.Remove(photoId);
+            tempPhoto.DisplayName = newName;
+            tempAlbum.PhotoList.Add(tempPhoto);
+            Albums.AddAlbum(tempAlbum);
+            this.SaveAlbums();
+        }
+
+        /// <summary>
         /// Adds the specified album to the repository.
         /// </summary>
         /// <param name="albumToAdd">The album to add.</param>
@@ -200,7 +218,7 @@ namespace PhotoBuddy.BusinessRule
 
             foreach (var albumInfo in albumNodes)
             {
-                var album = new Album() { AlbumID = albumInfo.id_tag };
+                var album = new Album() { AlbumID = albumInfo.id_tag, Repository = this };
 
                 // traverse through all the photos in particular album
                 var photoList = new Photos();

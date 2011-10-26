@@ -70,6 +70,14 @@ namespace PhotoBuddy.BusinessRule
         public Photos PhotoList { get; set; }
 
         /// <summary>
+        /// Gets or sets a reference to the repository this album belongs to.
+        /// </summary>
+        /// <remarks>
+        /// <para>Authors(s): Jim Counts and Eric Wei</para>
+        /// <para>Created: 2011-10-25</para></remarks>
+        public AlbumRespository Repository { get; set; }
+
+        /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
         /// </summary>
         /// <returns>

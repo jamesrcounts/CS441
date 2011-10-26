@@ -33,6 +33,41 @@ namespace PhotoBuddy
         private readonly IMessageService MessageService;
 
         /// <summary>
+        /// Creates an instance of the UploadViewForm that is configured to rename a photo.
+        /// </summary>
+        /// <param name="messageService">Shows message boxes.</param>
+        /// <param name="photo">The photo to display.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-25</para>
+        ///   <para>Modified: 2011-10-25</para>
+        /// </remarks>
+        public UploadViewForm(IMessageService messageService, PhotoBuddy.BusinessRule.Photo photo)
+        {
+            this.InitializeComponent();
+            this.MessageService = messageService;
+
+            string titleText = Format.Culture("{0} {1} - Photo Buddy", "Rename", photo.DisplayName);
+            this.Text = titleText;
+
+            // Try to open the image.
+            string path = Path.Combine(Constants.PhotosFolderPath, photo.CopiedPath);
+            try
+            {
+                this.pictureBox1.Image = Image.FromFile(path);
+            }
+            catch (OutOfMemoryException)
+            {
+                // File was not a valid image so abort the upload & warn the user.
+                this.MessageService.ShowMessage(this.MessageService.NotPictureFile);
+                this.HandleCancelButtonClick(this, new EventArgs());
+            }
+
+            this.displayNameTextBox.Text = photo.DisplayName;
+            this.messageLabel.Text = "This is the photo you have selected to rename.";
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="UploadViewForm"/> class.
         /// </summary>
         /// <param name="messageService">The message service.</param>
@@ -44,7 +79,9 @@ namespace PhotoBuddy
         {
             this.InitializeComponent();
             this.MessageService = messageService;
-            this.Text = Format.Culture("Upload {0} - Photo Buddy", Path.GetFileName(photoFileName));
+            string modeText = "Upload";
+            string titleText = Path.GetFileName(photoFileName);
+            this.Text = Format.Culture("{0} {1} - Photo Buddy", modeText, titleText);
 
             // Try to open the image.
             try

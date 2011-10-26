@@ -31,6 +31,7 @@ namespace PhotoBuddy
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.RenamePhotoButton = new System.Windows.Forms.Button();
             this.photoNameLabel = new System.Windows.Forms.Label();
             this.AppNameLabel = new System.Windows.Forms.Label();
             this.currentAlbumLabel = new System.Windows.Forms.Label();
@@ -68,6 +69,7 @@ namespace PhotoBuddy
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.RenamePhotoButton);
             this.panel1.Controls.Add(this.photoNameLabel);
             this.panel1.Controls.Add(this.AppNameLabel);
             this.panel1.Controls.Add(this.currentAlbumLabel);
@@ -79,6 +81,25 @@ namespace PhotoBuddy
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(582, 61);
             this.panel1.TabIndex = 0;
+            // 
+            // RenamePhotoButton
+            // 
+            this.RenamePhotoButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.RenamePhotoButton.AutoSize = true;
+            this.RenamePhotoButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.RenamePhotoButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.RenamePhotoButton.FlatAppearance.BorderSize = 0;
+            this.RenamePhotoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RenamePhotoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RenamePhotoButton.ForeColor = System.Drawing.Color.DarkGray;
+            this.RenamePhotoButton.Location = new System.Drawing.Point(158, 25);
+            this.RenamePhotoButton.Margin = new System.Windows.Forms.Padding(38, 2, 2, 2);
+            this.RenamePhotoButton.Name = "RenamePhotoButton";
+            this.RenamePhotoButton.Size = new System.Drawing.Size(100, 25);
+            this.RenamePhotoButton.TabIndex = 11;
+            this.RenamePhotoButton.Text = "Rename Photo";
+            this.RenamePhotoButton.UseVisualStyleBackColor = false;
+            this.RenamePhotoButton.Click += new System.EventHandler(this.HandleRenamePhotoButtonClick);
             // 
             // photoNameLabel
             // 
@@ -220,9 +241,9 @@ namespace PhotoBuddy
             this.backButton.Location = new System.Drawing.Point(38, 2);
             this.backButton.Margin = new System.Windows.Forms.Padding(38, 2, 2, 2);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(55, 28);
+            this.backButton.Size = new System.Drawing.Size(59, 28);
             this.backButton.TabIndex = 1;
-            this.backButton.Text = "Back";
+            this.backButton.Text = "Close";
             this.backButton.UseVisualStyleBackColor = false;
             this.backButton.Click += new System.EventHandler(this.HandleBackButtonClick);
             this.backButton.MouseEnter += new System.EventHandler(this.HandleButtonMouseEnter);
@@ -262,5 +283,6 @@ namespace PhotoBuddy
         private System.Windows.Forms.Label AppNameLabel;
         private System.Windows.Forms.Label photoNameLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button RenamePhotoButton;
     }
 }

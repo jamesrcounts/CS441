@@ -18,6 +18,7 @@ namespace PhotoBuddy
     using System.Windows.Forms;
     using PhotoBuddy.BusinessRule;
     using PhotoBuddy.Common.CommonClass;
+    using PhotoBuddy.Screens;
 
     /// <summary>
     /// Displays photos full size (up to the limit of the screen size).
@@ -72,7 +73,7 @@ namespace PhotoBuddy
         {
             this.InitializeComponent();
             this.Text = "Photo Display - Photo Buddy";
-            this.album = currentAlbum;
+            this.album = currentAlbum;            
             ////this.photoID = photoToDisplay.PhotoId;
             this.picture = photoToDisplay;
             this.currentAlbumLabel.Text = this.album.AlbumID;
@@ -192,6 +193,40 @@ namespace PhotoBuddy
         {
             Button button = sender as Button;
             button.ForeColor = Color.DarkGray;
+        }
+
+        /// <summary>
+        /// Handles the request to rename a photo.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-25</para>
+        ///   <para>Modified: 2011-10-25</para>
+        /// </remarks>
+        private void HandleRenamePhotoButtonClick(object sender, EventArgs e)
+        {
+            // Givens:
+            //  We have the album name from the form
+            string albumName = currentAlbumLabel.Text.Replace("&&", "&");
+            //  We have the photo display name from the form.
+            string displayName = photoNameLabel.Text.Replace("&&", "&");
+
+            // First we need to find the secrect file name
+            string filename = Path.GetFileName(this.allPhotosInAlbum[photoIndex].CopiedPath);
+            string path = Path.Combine(Constants.PhotosFolderPath, filename);
+            
+            // Give the full secret path to the UploadView Form here...
+            UploadViewForm RenamePhoto = new UploadViewForm(new MessageService(), this.allPhotosInAlbum[photoIndex]);
+            
+            DialogResult result = RenamePhoto.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // User approved so upload the photo to the album.
+                string newName = RenamePhoto.DisplayName;
+                string file = path;
+                this.album.Repository.RenamePhotoInAlbum(albumName, newName, this.allPhotosInAlbum[photoIndex].PhotoId);
+                this.DisplayPhoto(photoIndex);
+            }
         }
     }
 }
