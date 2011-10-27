@@ -121,6 +121,12 @@
     <Compile Include="BusinessRule\Photo.cs" />
     <Compile Include="BusinessRule\Photos.cs" />
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Controls\AlbumThumnailUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AlbumThumnailUserControl.Designer.cs">
+      <DependentUpon>AlbumThumnailUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ClickLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     <Compile Include="ViewPhotoForm.Designer.cs">
       <DependentUpon>ViewPhotoForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\AlbumThumnailUserControl.resx">
+      <DependentUpon>AlbumThumnailUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ClickLabel.resx">
       <DependentUpon>ClickLabel.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,7 +273,10 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="MissingImageIcon.ico" />
+    <None Include="Resources\FolderIcon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <SlowCheetahTargets Condition=" '$(SlowCheetahTargets)'=='' ">$(LOCALAPPDATA)\Microsoft\MSBuild\SlowCheetah\v1\SlowCheetah.Transforms.targets</SlowCheetahTargets>

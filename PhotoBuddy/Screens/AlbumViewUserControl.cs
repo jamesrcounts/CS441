@@ -14,6 +14,7 @@ namespace PhotoBuddy.Screens
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
+    using System.IO;
     using System.Windows.Forms;
     using PhotoBuddy.BusinessRule;
     using PhotoBuddy.Common.CommonClass;
@@ -128,7 +129,9 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// Refreshes the list of photos in the current album.
         /// </summary>
-        /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
         public void RefreshPhotoList()
         {
             if (this.currentAlbum == null)
@@ -153,10 +156,19 @@ namespace PhotoBuddy.Screens
                 thumb.Thumbnail.Tag = photo;
 
                 // Combine the secret location with the secret name to get the full file path.
-                string path = System.IO.Path.Combine(Constants.PhotosFolderPath, photo.CopiedPath);
+                string path = Path.Combine(Constants.PhotosFolderPath, photo.CopiedPath);
 
                 // Load the file
-                thumb.Thumbnail.Image = Image.FromFile(path);
+                try
+                {
+                    thumb.Thumbnail.Image = File.Exists(path) ?
+                        Image.FromFile(path) :
+                        PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
+                }
+                catch (OutOfMemoryException)
+                {
+                    thumb.Thumbnail.Image = PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
+                }
 
                 // Wire the click event to the picturebox
                 thumb.Thumbnail.Click += this.HandlePhotoClick;

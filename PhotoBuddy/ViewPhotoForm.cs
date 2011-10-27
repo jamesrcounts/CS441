@@ -93,7 +93,9 @@ namespace PhotoBuddy
         {
             string filename = Path.GetFileName(this.allPhotosInAlbum[index].CopiedPath);
             string path = Path.Combine(Constants.PhotosFolderPath, filename);
-            this.pictureBox1.Image = Image.FromFile(path);
+            this.pictureBox1.Image = File.Exists(path) ?
+                Image.FromFile(path) :
+                PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
             this.photoNameLabel.Text = this.allPhotosInAlbum[index].DisplayName;
             this.Text = this.allPhotosInAlbum[index].DisplayName + " - Photo Buddy";
         }

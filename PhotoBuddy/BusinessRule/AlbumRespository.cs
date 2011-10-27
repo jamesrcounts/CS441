@@ -8,7 +8,7 @@
 // High level Description: this class is responsible for populating the objects from the xmls,
 //                         holding the of overall album and photos objects.
 //                         collectors are the one that's responsible as a global object holders of
-//                         everything in the bussienss rule.
+//                         everything in the business rule.
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.BusinessRule
 {
@@ -76,7 +76,7 @@ namespace PhotoBuddy.BusinessRule
 
         /// <summary>
         /// Edits the name of the album.
-        /// </summary>
+        /// </summary>`
         /// <param name="name">The old name.</param>
         /// <param name="updateName">The new name.</param>
         /// <remarks>
@@ -110,20 +110,24 @@ namespace PhotoBuddy.BusinessRule
         }
 
         /// <summary>
-        /// Adds the specified album to the repository.
+        /// Adds an album with the specified album name to the repository, then returns the new album to the caller.
         /// </summary>
-        /// <param name="albumToAdd">The album to add.</param>
+        /// <param name="albumName">Name of the album.</param>
+        /// <returns>The newly created album.</returns>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        ///   <para>Modified: 2011-10-26</para>
         /// </remarks>
-        public void Add(Album albumToAdd)
+        public Album AddAlbum(string albumName)
         {
-            if (albumToAdd == null)
+            if (string.IsNullOrWhiteSpace(albumName) || Constants.MaxNameLength < albumName.Length)
             {
-                return;
+                throw new System.ArgumentException("albumName", "albumName is invalid.");
             }
 
-            this.Albums.AddAlbum(albumToAdd);
+            var album = new Album(this, albumName);
+            this.Albums.AddAlbum(album);
+            return album;
         }
 
         /// <summary>
@@ -201,6 +205,22 @@ namespace PhotoBuddy.BusinessRule
         }
 
         /// <summary>
+        /// Gets the specified album.
+        /// </summary>
+        /// <param name="albumId">The album id.</param>
+        /// <returns>
+        /// An album.
+        /// </returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-26</para>
+        /// </remarks>
+        public Album GetAlbum(string albumId)
+        {
+            return this.Albums.GetAlbum(albumId);
+        }
+
+        /// <summary>
         /// Loads the albums.
         /// </summary>
         /// <remarks>
@@ -218,7 +238,7 @@ namespace PhotoBuddy.BusinessRule
 
             foreach (var albumInfo in albumNodes)
             {
-                var album = new Album() { AlbumID = albumInfo.id_tag, Repository = this };
+                var album = new Album(this, albumInfo.id_tag);
 
                 // traverse through all the photos in particular album
                 var photoList = new Photos();

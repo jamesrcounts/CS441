@@ -228,7 +228,8 @@ namespace PhotoBuddy
         /// </remarks>
         private void ShowSelectedAlbum(object sender, AlbumEventArgs e)
         {
-            this.AlbumView.CurrentAlbum = (Album)Model.Albums.AlbumList[e.TheAlbum.AlbumID.Replace("&&", "&")];
+            this.AlbumView.CurrentAlbum = Model.GetAlbum(e.AlbumName);
+           //// this.AlbumView.CurrentAlbum = (Album)Model.Albums.AlbumList[e.TheAlbum.AlbumID.Replace("&&", "&")];
             this.ShowView(this.AlbumView);
         }
 
@@ -252,7 +253,7 @@ namespace PhotoBuddy
             if (this.CreateAlbumView.InCreateMode)
             {
                 // Creating a new album
-                Model.Add(new Album(rawAlbumName));
+                Model.AddAlbum(rawAlbumName);
                 Model.SaveAlbums();
             }
             else

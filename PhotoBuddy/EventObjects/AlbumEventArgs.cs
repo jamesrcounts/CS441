@@ -26,49 +26,38 @@ namespace PhotoBuddy.EventObjects
         /// <summary>
         /// The album to pass.
         /// </summary>
-        private readonly Album album;
+        private readonly string albumId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AlbumEventArgs"/> class.
         /// </summary>
-        /// <param name="albumName">The name of the album to pass.</param>
+        /// <param name="albumId">The name of the album to pass.</param>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
         /// Date: Sept 28 2011
-        /// Modified date: Oct 23 2011
+        /// Modified date: Oct 26 2011
         /// </remarks>
-        public AlbumEventArgs(string albumName)
+        public AlbumEventArgs(string albumId)
         {
-            this.album = new Album(albumName);
+            this.albumId = albumId;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AlbumEventArgs"/> class.
+        /// Gets the album name.
         /// </summary>
-        /// <param name="theAlbum">The album object to pass</param>
+        /// <value>
+        /// The name of the album.
+        /// </value>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
         /// Date: Sept 28 2011
         /// Modified date: Oct 23 2011
         /// </remarks>
-        public AlbumEventArgs(Album theAlbum)
-        {
-            this.album = theAlbum;
-        }
-
-        /// <summary>
-        /// Gets the album.
-        /// </summary>
-        /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// Date: Sept 28 2011
-        /// Modified date: Oct 23 2011
-        /// </remarks>
-        public Album TheAlbum
+        public string AlbumName
         {
             get
             {
-                return this.album;
+                return this.albumId;
             }
         }
     }

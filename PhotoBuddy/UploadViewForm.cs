@@ -57,7 +57,9 @@ namespace PhotoBuddy
             string path = Path.Combine(Constants.PhotosFolderPath, photo.CopiedPath);
             try
             {
-                this.pictureBox1.Image = Image.FromFile(path);
+                this.pictureBox1.Image = File.Exists(path) ?
+                    Image.FromFile(path) :
+                    PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
             }
             catch (OutOfMemoryException)
             {
@@ -82,9 +84,8 @@ namespace PhotoBuddy
         {
             this.InitializeComponent();
             this.MessageService = messageService;
-            string modeText = "Upload";
             string titleText = Path.GetFileName(photoFileName);
-            this.Text = Format.Culture("{0} {1} - Photo Buddy", modeText, titleText);
+            this.Text = Format.Culture("{0} {1} - Photo Buddy", "Upload", titleText);
 
             // Try to open the image.
             try

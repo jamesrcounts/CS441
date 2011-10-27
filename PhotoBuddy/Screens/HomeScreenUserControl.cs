@@ -62,9 +62,9 @@ namespace PhotoBuddy.Screens
         public event CreateButtonClicked CreateButtonEvent;
 
         /// <summary>
-        /// Occurs when an album is clicked.
+        /// Occurs when an album is selected event.
         /// </summary>
-        public event AlbumSelectedEventHandler AlbumSelectedEvent;
+        public event EventHandler<AlbumEventArgs> AlbumSelectedEvent;
 
         /// <summary>
         /// Gets or sets the albums.
@@ -112,10 +112,16 @@ namespace PhotoBuddy.Screens
 
             foreach (Album album in albums.AlbumList.Values)
             {
-                ClickLabel label = new ClickLabel() { Text = album.AlbumID.Replace("&", "&&") };
+                ////ClickLabel label = new ClickLabel() { Text = album.AlbumID.Replace("&", "&&") };
+                AlbumThumnailUserControl albumControl = new AlbumThumnailUserControl();
+                albumControl.AlbumName = album.AlbumID;
+                albumControl.Count = album.Count;
+                albumControl.Image = album.CoverPhoto;
 
-                label.Click += this.HandleAlbumClick;
-                this.albumsFlowPanel.Controls.Add(label);
+                albumControl.AlbumSelectedEvent += this.OnAlbumSelectedEvent;
+
+                ////this.albumsFlowPanel.Controls.Add(label);
+                this.albumsFlowPanel.Controls.Add(albumControl);
             }
         }
 
@@ -138,20 +144,23 @@ namespace PhotoBuddy.Screens
             // Important for focusing text boxes.
             this.Focus();
         }
-
+        
         /// <summary>
-        /// Handles the Click event of the album control.
+        /// Called when album selected event fires on a album thumbnail control.
         /// </summary>
-        /// <param name="sender">The label displaying the name of the album.</param>
-        /// <param name="e">The event args.</param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventObjects.AlbumEventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        private void HandleAlbumClick(object sender, EventArgs e)
+        protected virtual void OnAlbumSelectedEvent(object sender, AlbumEventArgs e)
         {
-            ClickLabel albumLabel = sender as ClickLabel;
-            AlbumEventArgs args = new AlbumEventArgs(albumLabel.Text);
-            this.AlbumSelectedEvent(this, args);
+            EventHandler<AlbumEventArgs> handler = this.AlbumSelectedEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
         }
 
         /// <summary>

@@ -59,5 +59,19 @@ namespace PhotoBuddy.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Icon FolderIcon {
+            get {
+                object obj = ResourceManager.GetObject("FolderIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon MissingImageIcon {
+            get {
+                object obj = ResourceManager.GetObject("MissingImageIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

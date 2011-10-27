@@ -93,7 +93,7 @@ namespace PhotoBuddy
             this.RenamePhotoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RenamePhotoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RenamePhotoButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.RenamePhotoButton.Location = new System.Drawing.Point(83, 2);
+            this.RenamePhotoButton.Location = new System.Drawing.Point(152, 2);
             this.RenamePhotoButton.Margin = new System.Windows.Forms.Padding(38, 2, 2, 2);
             this.RenamePhotoButton.Name = "RenamePhotoButton";
             this.RenamePhotoButton.Size = new System.Drawing.Size(100, 25);
@@ -109,10 +109,11 @@ namespace PhotoBuddy
             this.photoNameLabel.ForeColor = System.Drawing.Color.White;
             this.photoNameLabel.Location = new System.Drawing.Point(2, 0);
             this.photoNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.photoNameLabel.MaximumSize = new System.Drawing.Size(300, 0);
             this.photoNameLabel.Name = "photoNameLabel";
-            this.photoNameLabel.Size = new System.Drawing.Size(41, 15);
+            this.photoNameLabel.Size = new System.Drawing.Size(110, 15);
             this.photoNameLabel.TabIndex = 9;
-            this.photoNameLabel.Text = "label1";
+            this.photoNameLabel.Text = "displayNameLabel";
             // 
             // AppNameLabel
             // 

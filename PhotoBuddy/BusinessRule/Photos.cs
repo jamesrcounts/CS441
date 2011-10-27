@@ -14,6 +14,7 @@ namespace PhotoBuddy.BusinessRule
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
 
     /// <summary>
     /// A collection of photos.
@@ -23,7 +24,7 @@ namespace PhotoBuddy.BusinessRule
         /// <summary>
         /// Photo collection backing store.
         /// </summary>
-        private readonly Hashtable photoTable = new Hashtable();
+        private readonly IDictionary<string, Photo> photoTable = new Dictionary<string, Photo>();
 
         /// <summary>
         /// Gets the photo table.
@@ -31,7 +32,7 @@ namespace PhotoBuddy.BusinessRule
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        public Hashtable PhotoTable
+        public IDictionary<string, Photo> PhotoTable
         {
             get { return this.photoTable; }
         }
