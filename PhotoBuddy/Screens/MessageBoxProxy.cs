@@ -17,6 +17,7 @@ namespace PhotoBuddy.Screens
     ///   <para>Author: Jim Counts</para>
     ///   <para>Created: 2011-10-24</para>
     /// </remarks>
+    /// <seealso cref="http://msdn.microsoft.com/en-us/library/ms182191.aspx"/>
     public class MessageBoxProxy : IMessageView
     {
         /// <summary>

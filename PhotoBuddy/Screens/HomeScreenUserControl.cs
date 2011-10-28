@@ -26,14 +26,31 @@ namespace PhotoBuddy.Screens
     public partial class HomeScreenUserControl : UserControl, IScreen
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HomeScreenUserControl"/> class.
+        /// The album manager.
         /// </summary>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        public HomeScreenUserControl()
+        private readonly AlbumRespository albums;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HomeScreenUserControl"/> class.
+        /// </summary>
+        /// <param name="albumRespository">The collection of albums.</param>
+        /// <remarks>
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        ///   <para>Modified: 2011-28-10</para>
+        /// </remarks>
+        public HomeScreenUserControl(AlbumRespository albumRespository)
         {
+            if (albumRespository == null)
+            {
+                throw new ArgumentNullException("albumRespository", "albumRespository is null.");
+            }
+
             this.InitializeComponent();
+            this.albums = albumRespository;
             this.Dock = DockStyle.Fill;
             this.DisplayName = "Albums";
         }
@@ -74,15 +91,21 @@ namespace PhotoBuddy.Screens
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
         public event EventHandler<AlbumEventArgs> DeleteAlbumEvent;
-        
+
         /// <summary>
-        /// Gets or sets the albums.
+        /// Gets the a reference to the album repository.
         /// </summary>
-        /// <value>
-        /// The albums.
-        /// </value>
-        /// <remarks>Author: Jim Counts</remarks>
-        public Albums Albums { get; set; }
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-28</para>
+        /// </remarks>
+        public AlbumRespository Repository
+        {
+            get
+            {
+                return this.albums;
+            }
+        }
 
         /// <summary>
         /// Gets the control managed by this view.
@@ -107,30 +130,30 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// Refreshes the album view list.
         /// </summary>
-        /// <param name="albums">The list of all the albums.</param>
         /// <remarks>
-        /// <para>Author(s): Miguel Gonzales and Andrea Tan</para>
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        ///   <para>Modified: 2011-10-28</para>
         /// </remarks>
-        public void RefreshAlbumViewList(Albums albums)
+        public void RefreshAlbumViewList()
         {
             this.albumsFlowPanel.Controls.Clear();
-            if (albums.AlbumList.Count == 0)
+            if (this.Repository.Count == 0)
             {
                 return;
             }
 
-            foreach (Album album in albums.AlbumList.Values)
+            foreach (var album in this.Repository.Albums)
             {
-                ////ClickLabel label = new ClickLabel() { Text = album.AlbumID.Replace("&", "&&") };
-                AlbumThumnailUserControl albumControl = new AlbumThumnailUserControl();
-                albumControl.AlbumName = album.AlbumId;
-                albumControl.Count = album.Count;
-                albumControl.Image = album.CoverPhoto;
+                var albumControl = new AlbumThumnailUserControl()
+                                {
+                                    AlbumName = album.AlbumId,
+                                    Count = album.Count,
+                                    Image = album.CoverPhoto
+                                };
 
                 albumControl.AlbumSelectedEvent += this.OnAlbumSelectedEvent;
                 albumControl.DeleteAlbumEvent += this.OnDeleteAlbumEvent;
 
-                ////this.albumsFlowPanel.Controls.Add(label);
                 this.albumsFlowPanel.Controls.Add(albumControl);
             }
         }
@@ -143,7 +166,7 @@ namespace PhotoBuddy.Screens
         public void ShowView(Stack<UserControl> history)
         {
             // Refresh the list of Albums.
-            this.RefreshAlbumViewList(this.Albums);
+            this.RefreshAlbumViewList();
 
             // Push myself onto the history.
             history.Push(this);
@@ -154,7 +177,7 @@ namespace PhotoBuddy.Screens
             // Important for focusing text boxes.
             this.Focus();
         }
-        
+
         /// <summary>
         /// Called when album selected event fires on a album thumbnail control.
         /// </summary>

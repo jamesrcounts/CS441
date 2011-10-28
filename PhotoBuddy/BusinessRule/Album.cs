@@ -20,11 +20,21 @@ namespace PhotoBuddy.BusinessRule
     /// An album contains an album id and a list of photos.
     /// </summary>
     /// <remarks>
-    /// Author(s): Miguel Gonzales and Andrea Tan.
+    ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+    ///   <para>Modified: 2011-10-28</para>
     /// </remarks>
     [DebuggerDisplay("{AlbumId}")]
     public class Album
     {
+        /// <summary>
+        /// Backing store for indexed photo list.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-28</para>
+        /// </remarks>
+        private readonly IDictionary<string, Photo> photos = new Dictionary<string, Photo>();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Album"/> class.
         /// </summary>
@@ -38,7 +48,6 @@ namespace PhotoBuddy.BusinessRule
         {
             this.AlbumId = name;
             this.Repository = repository;
-            this.PhotoList = new Photos();
         }
 
         /// <summary>
@@ -51,7 +60,7 @@ namespace PhotoBuddy.BusinessRule
         /// Author(s): Miguel Gonzales and Andrea Tan.
         /// </remarks>
         public string AlbumId { get; set; }
-        
+
         /// <summary>
         /// Gets the photos in the album.
         /// </summary>
@@ -63,12 +72,12 @@ namespace PhotoBuddy.BusinessRule
         {
             get
             {
-                if (this.PhotoList == null || this.PhotoList.PhotoTable == null)
+                if (this.photos == null)
                 {
                     return Enumerable.Empty<Photo>();
                 }
 
-                return this.PhotoList.PhotoTable.Values;
+                return this.photos.Values;
             }
         }
 
@@ -79,7 +88,7 @@ namespace PhotoBuddy.BusinessRule
         /// <para>Authors(s): Jim Counts and Eric Wei</para>
         /// <para>Created: 2011-10-25</para></remarks>
         public AlbumRespository Repository { get; private set; }
-        
+
         /// <summary>
         /// Gets the count.
         /// </summary>
@@ -91,7 +100,7 @@ namespace PhotoBuddy.BusinessRule
         {
             get
             {
-                return this.PhotoList.PhotoTable.Count;
+                return this.photos.Count;
             }
         }
 
@@ -106,37 +115,29 @@ namespace PhotoBuddy.BusinessRule
         {
             get
             {
-                if (this.PhotoList.PhotoTable.Count <= 0)
+                if (this.photos.Count <= 0)
                 {
                     return PhotoBuddy.Properties.Resources.FolderIcon.ToBitmap();
                 }
 
-                return this.PhotoList.PhotoTable.Values.First().GetImage();
+                return this.photos.Values.First().GetImage();
             }
         }
-        
-        /// <summary>
-        /// Gets or sets the photo objects.
-        /// </summary>
-        /// <value>
-        /// The photo objects.
-        /// </value>
-        /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// </remarks>
-        private Photos PhotoList { get; set; }
 
         /// <summary>
-        /// Adds the photo.
+        /// Adds the specified photo.
         /// </summary>
-        /// <param name="photo">The photo.</param>
+        /// <param name="photoToAdd">The photo to add.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-27</para>
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        public void AddPhoto(Photo photo)
+        public void AddPhoto(Photo photoToAdd)
         {
-            this.PhotoList.Add(photo);
+            if (!this.photos.ContainsKey(photoToAdd.PhotoId))
+            {
+                this.photos.Add(photoToAdd.PhotoId, photoToAdd);
+            }
         }
 
         /// <summary>
@@ -151,7 +152,7 @@ namespace PhotoBuddy.BusinessRule
         public Photo GetPhoto(string photoId)
         {
             Photo photo = null;
-            return this.PhotoList.PhotoTable.TryGetValue(photoId, out photo) ? photo : null;
+            return this.photos.TryGetValue(photoId, out photo) ? photo : null;
         }
 
         /// <summary>
@@ -164,20 +165,7 @@ namespace PhotoBuddy.BusinessRule
         /// </remarks>
         public void RemovePhoto(string photoId)
         {
-            this.PhotoList.PhotoTable.Remove(photoId);
-        }
-
-        /// <summary>
-        /// Replaces the photos.
-        /// </summary>
-        /// <param name="photos">The photos.</param>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-27</para>
-        /// </remarks>
-        public void ReplacePhotos(Photos photos)
-        {
-            this.PhotoList = photos;
+            this.photos.Remove(photoId);
         }
 
         /// <summary>

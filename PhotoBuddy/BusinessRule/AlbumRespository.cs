@@ -5,13 +5,15 @@
 // Author(s): Miguel Gonzales and Andrea Tan
 // Date: Sept 28 2011
 // Modified date: Oct 9 2011
-// High level Description: this class is responsible for populating the objects from the xmls,
+// High level Description: this class is responsible for populating the objects from the XMLs,
 //                         holding the of overall album and photos objects.
 //                         collectors are the one that's responsible as a global object holders of
 //                         everything in the business rule.
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.BusinessRule
 {
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Security.Cryptography;
@@ -22,14 +24,23 @@ namespace PhotoBuddy.BusinessRule
     using PhotoBuddy.DataAccessLayer;
 
     /// <summary>
-    /// Handles album and photo data storage and retrieval.
+    /// Manages create, read, update and delete functions a collection of albums.
     /// </summary>
     public class AlbumRespository
     {
         /// <summary>
         /// Provides API access to the data storage XML.
         /// </summary>
-        private readonly XDocument document;
+        private readonly XDocument document = new XDocument();
+
+        /// <summary>
+        /// Backing store for indexed album list.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-28</para>
+        /// </remarks>
+        private readonly IDictionary<string, Album> albums = new Dictionary<string, Album>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AlbumRespository"/> class.
@@ -41,25 +52,47 @@ namespace PhotoBuddy.BusinessRule
         {
             AllocatePhotoStorage();
 
-            this.document = new XDocument();
             DataAccessBaseXML dataAccessXML = new DataAccessBaseXML();
             this.document = dataAccessXML.LoadXml(Constants.XmlDataFilePath);
 
-            Albums = new Albums();
             this.LoadAlbums();
         }
 
         /// <summary>
-        /// Gets or sets the albums.
+        /// Gets the collection of albums.
         /// </summary>
-        /// <value>
-        /// The albums.
-        /// </value>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        public Albums Albums { get; set; }
+        public IEnumerable<Album> Albums
+        {
+            get
+            {
+                if (this.albums == null)
+                {
+                    return Enumerable.Empty<Album>();
+                }
 
+                return this.albums.Values;
+            }
+        }
+
+        /// <summary>
+        /// Gets the album count.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-28</para>
+        /// </remarks>
+        public int Count
+        {
+            get
+            {
+                return this.albums.Count;
+            }
+        }
+        
         /// <summary>
         /// Allocates the photo storage folder.
         /// </summary>
@@ -86,8 +119,10 @@ namespace PhotoBuddy.BusinessRule
         /// </remarks>
         public void DeleteAlbum(string albumName)
         {
-            Albums.AlbumList.Remove(albumName);
-            this.SaveAlbums();
+            if (this.albums.Remove(albumName))
+            {
+                this.SaveAlbums();
+            }
         }
 
         /// <summary>
@@ -101,25 +136,33 @@ namespace PhotoBuddy.BusinessRule
         /// </remarks>
         public void DeletePhoto(Album enclosingAlbum, Photo photoToDelete)
         {
-            Album album = Albums.GetAlbum(enclosingAlbum.AlbumId);
-            album.RemovePhoto(photoToDelete.PhotoId);
-            this.SaveAlbums();
+            Album album = null;
+            if (this.albums.TryGetValue(enclosingAlbum.AlbumId, out album))
+            {
+                album.RemovePhoto(photoToDelete.PhotoId);
+                this.SaveAlbums();
+            }
         }
-        
+
         /// <summary>
         /// Edits the name of the album.
         /// </summary>`
         /// <param name="name">The old name.</param>
         /// <param name="updateName">The new name.</param>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        /// <para>Modified: 2011-10-28</para>
         /// </remarks>
         public void RenameAlbum(string name, string updateName)
         {
-            Album tempAlbum = Albums.GetAlbum(name);
-            Albums.AlbumList.Remove(name);
-            tempAlbum.AlbumId = updateName;
-            Albums.AddAlbum(tempAlbum);
+            Album album = this.DetatchAlbum(name);
+            if (album == null)
+            {
+                return;
+            }
+
+            album.AlbumId = updateName;
+            this.albums.Add(album.AlbumId, album);
             this.SaveAlbums();
         }
 
@@ -127,17 +170,26 @@ namespace PhotoBuddy.BusinessRule
         /// Rename the photo in the album.
         /// </summary>
         /// <param name="albumName">The album ID</param>
-        /// <param name="newName">The new display name for the photo</param>
+        /// <param name="displayName">The new display name for the photo</param>
         /// <param name="photoId">The photo ID</param>
-        public void RenamePhotoInAlbum(string albumName, string newName, string photoId)
+        public void RenamePhotoInAlbum(string albumName, string displayName, string photoId)
         {
-            Album tempAlbum = Albums.GetAlbum(albumName);
-            Albums.AlbumList.Remove(albumName);
-            Photo tempPhoto = tempAlbum.GetPhoto(photoId);
-            tempAlbum.RemovePhoto(photoId);
-            tempPhoto.DisplayName = newName;
-            tempAlbum.AddPhoto(tempPhoto);
-            Albums.AddAlbum(tempAlbum);
+            Album album = this.DetatchAlbum(albumName);
+            if (album == null)
+            {
+                return;
+            }
+
+            Photo photo = album.GetPhoto(photoId);
+            if (photo == null)
+            {
+                return;
+            }
+
+            album.RemovePhoto(photoId);
+            photo.DisplayName = displayName;
+            album.AddPhoto(photo);
+            this.albums.Add(album.AlbumId, album);
             this.SaveAlbums();
         }
 
@@ -148,37 +200,25 @@ namespace PhotoBuddy.BusinessRule
         /// <returns>The newly created album.</returns>
         /// <remarks>
         ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
-        ///   <para>Modified: 2011-10-26</para>
+        ///   <para>Modified: 2011-10-28</para>
         /// </remarks>
         public Album AddAlbum(string albumName)
         {
             if (string.IsNullOrWhiteSpace(albumName) || Constants.MaxNameLength < albumName.Length)
             {
-                throw new System.ArgumentException("albumName", "albumName is invalid.");
+                throw new ArgumentException("albumName", "albumName is invalid.");
             }
 
-            var album = new Album(this, albumName);
-            this.Albums.AddAlbum(album);
-            return album;
-        }
-
-        /// <summary>
-        /// Adds or replaces a collection of photos to an album.
-        /// </summary>
-        /// <param name="albumId">The album id.</param>
-        /// <param name="photosToAdd">The photos to add.</param>
-        /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// </remarks>
-        public void ReplaceAlbumPhotos(string albumId, Photos photosToAdd)
-        {
-            if (string.IsNullOrWhiteSpace(albumId) || photosToAdd == null)
+            if (!this.albums.ContainsKey(albumName))
             {
-                return;
+                var album = new Album(this, albumName);
+                this.albums.Add(album.AlbumId, album);
+                return album;
             }
-
-            var album = Albums.GetAlbum(albumId);
-            album.ReplacePhotos(photosToAdd);
+            else
+            {
+                throw new ArgumentException("albumName", "Album name already used in the repository.");
+            }
         }
 
         /// <summary>
@@ -197,7 +237,7 @@ namespace PhotoBuddy.BusinessRule
             XmlNode albumsNode = doc.CreateElement("albums");
             productsNode.AppendChild(albumsNode);
 
-            foreach (Album albumObj in Albums.AlbumList.Values)
+            foreach (Album albumObj in this.Albums)
             {
                 XmlNode albumNode = doc.CreateElement("album");
                 XmlAttribute albumIDAttr = albumNode.OwnerDocument.CreateAttribute("id_tag");
@@ -207,8 +247,6 @@ namespace PhotoBuddy.BusinessRule
 
                 XmlNode photosNode = doc.CreateElement("photos");
 
-                ////if (albumObj.PhotoList != null)
-                ////{
                 foreach (Photo photoObj in albumObj.Photos)
                 {
                     XmlNode photoNode = doc.CreateElement("photo");
@@ -227,7 +265,6 @@ namespace PhotoBuddy.BusinessRule
                     photoNode.AppendChild(photoCopiedPathNode);
                     photoNode.AppendChild(photoDisplayNameELem);
                 }
-                ////}
 
                 albumNode.AppendChild(photosNode);
                 albumsNode.AppendChild(albumNode);
@@ -249,7 +286,28 @@ namespace PhotoBuddy.BusinessRule
         /// </remarks>
         public Album GetAlbum(string albumId)
         {
-            return this.Albums.GetAlbum(albumId);
+            Album album = null;
+            if (this.albums.TryGetValue(albumId, out album))
+            {
+                return album;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Determines whether the specified album name is already used.
+        /// </summary>
+        /// <param name="albumName">Name of the album.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified album name is already used; otherwise, <c>false</c>.
+        /// </returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        public bool IsExistingAlbumName(string albumName)
+        {
+            return this.albums.ContainsKey(albumName);
         }
 
         /// <summary>
@@ -273,7 +331,7 @@ namespace PhotoBuddy.BusinessRule
                 var album = new Album(this, albumInfo.id_tag);
 
                 // traverse through all the photos in particular album
-                var photoList = new Photos();
+                ////var photoList = new Photos();
                 foreach (var photoInfo in albumInfo.photos.Descendants("photo"))
                 {
                     // photo
@@ -282,11 +340,12 @@ namespace PhotoBuddy.BusinessRule
                         photoInfo.Element("display_name").Value,
                         photoInfo.Element("copied_path").Value);
 
-                    photoList.Add(photo);
+                    ////photoList.Add(photo);
+                    album.AddPhoto(photo);
                 }
 
-                album.ReplacePhotos(photoList);
-                Albums.AddAlbum(album);
+                ////album.ReplacePhotos(photoList);
+                this.albums.Add(album.AlbumId, album);
             }
         }
 
@@ -308,7 +367,7 @@ namespace PhotoBuddy.BusinessRule
             string storageName = Path.GetFileName(storagePath);
 
             // Put the photo in the album data structure.
-            Album currentAlbum = Albums.GetAlbum(albumId);
+            Album currentAlbum = this.GetAlbum(albumId);
             Photo photo = new Photo(photoId, displayName, storageName);
             ////currentAlbum.PhotoList.Add(photo);
             currentAlbum.AddPhoto(photo);
@@ -367,6 +426,27 @@ namespace PhotoBuddy.BusinessRule
 
                 return hashString.ToString();
             }
+        }
+
+        /// <summary>
+        /// Removes the album with the specified name from the album collection and returns the detached album to the caller.
+        /// </summary>
+        /// <param name="name">The album name.</param>
+        /// <returns>If an album exists with the specified name it is returned; otherwise null.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-28</para>
+        /// </remarks>
+        private Album DetatchAlbum(string name)
+        {
+            var album = this.GetAlbum(name);
+            if (album == null)
+            {
+                return null;
+            }
+
+            this.albums.Remove(name);
+            return album;
         }
     }
 }

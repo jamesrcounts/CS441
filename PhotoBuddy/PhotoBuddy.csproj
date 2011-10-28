@@ -116,10 +116,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessRule\Album.cs" />
-    <Compile Include="BusinessRule\Albums.cs" />
     <Compile Include="BusinessRule\AlbumRespository.cs" />
     <Compile Include="BusinessRule\Photo.cs" />
-    <Compile Include="BusinessRule\Photos.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controls\AlbumThumnailUserControl.cs">
       <SubType>UserControl</SubType>

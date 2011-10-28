@@ -127,7 +127,7 @@
     <value>Create</value>
   </data>
   <data name="ErrorNotPictureFile" xml:space="preserve">
-    <value>The chosen file is not a picture! Please select a photo file of type jpg, png, bmp, or gif.</value>
+    <value>The chosen file is not a picture! Please select a photo file of type .jpg, .png, .bmp, or .gif.</value>
   </data>
   <data name="StartViewTitle" xml:space="preserve">
     <value>Albums</value>

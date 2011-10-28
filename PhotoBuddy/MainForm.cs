@@ -51,7 +51,7 @@ namespace PhotoBuddy
         /// <summary>
         /// The Opening View shows a list of albums; allows user to create new albums.
         /// </summary>
-        private readonly HomeScreenUserControl homeScreen = new HomeScreenUserControl();
+        private readonly HomeScreenUserControl homeScreen;
 
         /// <summary>
         /// The Album View shows list of photos in album; allows new photos to be added.
@@ -78,6 +78,7 @@ namespace PhotoBuddy
         public MainForm(IMessageService messageService)
         {
             this.InitializeComponent();
+            this.homeScreen = new HomeScreenUserControl(Model);
             this.InitializeUIScreens();
             this.MessageService = messageService;
             this.importFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
@@ -193,7 +194,7 @@ namespace PhotoBuddy
         /// </remarks>
         private void InitializeUIScreens()
         {
-            this.HomeView.Albums = MainForm.Model.Albums;
+            //// this.HomeView.AlbumCollection = MainForm.Model.AlbumCollection;
             this.AttachEventsToScreens();
             this.panelScreenHolder.Controls.Add(this.HomeView);
             this.panelScreenHolder.Controls.Add(this.AlbumView);
@@ -260,7 +261,7 @@ namespace PhotoBuddy
         private void CreateOrEditAlbum(object sender, EventArgs e)
         {
             string rawAlbumName = this.CreateAlbumView.UserEnteredText;
-            if (Model.Albums.IsExistingAlbumName(rawAlbumName))
+            if (Model.IsExistingAlbumName(rawAlbumName))
             {
                 this.MessageService.ShowMessage(this.MessageService.InvalidAlbumName);
                 return;
@@ -279,7 +280,7 @@ namespace PhotoBuddy
             }
 
             // Return to the album view screen, showing the current album.
-            this.AlbumView.CurrentAlbum = (Album)Model.Albums.AlbumList[rawAlbumName];
+            this.AlbumView.CurrentAlbum = Model.GetAlbum(rawAlbumName);
             this.ShowView(this.AlbumView);
         }
 
