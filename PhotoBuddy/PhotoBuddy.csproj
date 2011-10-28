@@ -136,6 +136,7 @@
     <Compile Include="Controls\ThumbNailUserControl.Designer.cs">
       <DependentUpon>ThumbNailUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="EventObjects\Class1.cs" />
     <Compile Include="NameTooLongMessage.cs" />
     <Compile Include="NotPictureFileMessage.cs" />
     <Compile Include="ProcessChecker.cs" />

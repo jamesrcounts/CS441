@@ -30,13 +30,17 @@ namespace PhotoBuddy.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.thumbnail = new System.Windows.Forms.PictureBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnail)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -76,6 +80,7 @@ namespace PhotoBuddy.Controls
             // thumbnail
             // 
             this.thumbnail.BackColor = System.Drawing.Color.White;
+            this.thumbnail.ContextMenuStrip = this.contextMenuStrip1;
             this.thumbnail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.thumbnail.Location = new System.Drawing.Point(2, 2);
             this.thumbnail.Margin = new System.Windows.Forms.Padding(5);
@@ -101,6 +106,20 @@ namespace PhotoBuddy.Controls
             this.NameTextBox.TabIndex = 1;
             this.NameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // ThumbNailUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -113,6 +132,7 @@ namespace PhotoBuddy.Controls
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.thumbnail)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -123,5 +143,7 @@ namespace PhotoBuddy.Controls
         private System.Windows.Forms.Panel panel1;
         private PictureBox thumbnail;
         private System.Windows.Forms.TextBox NameTextBox;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

@@ -12,6 +12,7 @@ namespace PhotoBuddy.Controls
     using System;
     using System.Drawing;
     using System.Windows.Forms;
+    using PhotoBuddy.EventObjects;
 
     /// <summary>
     /// Displays a photo thumbnail with its name.
@@ -35,6 +36,8 @@ namespace PhotoBuddy.Controls
         {
             this.InitializeComponent();
         }
+
+        public event EventHandler<PhotoEventArgs> DeletePhotoEvent;
 
         /// <summary>
         /// Gets or sets the display name.
@@ -102,6 +105,23 @@ namespace PhotoBuddy.Controls
         private void RemovePhotoHighlight(object sender, EventArgs e)
         {
             this.panel1.BackColor = Color.White;
+        }
+        
+        public virtual void onDeletePhotoEvent(object sender, PhotoEventArgs e)
+        {
+            EventHandler<PhotoEventArgs> handler = this.DeletePhotoEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
+
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.onDeletePhotoEvent(this, new PhotoEventArgs(this.NameTextBox.Text.Replace("&&", "&")));
+
         }
     }
 }

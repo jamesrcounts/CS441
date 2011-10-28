@@ -81,6 +81,13 @@ namespace PhotoBuddy.BusinessRule
             Albums.AlbumList.Remove(albumName);
             this.SaveAlbums();
         }
+
+        public void DeletePhoto(Album currentAlbum, Photo photoToDelete)
+        {
+            Album album = Albums.GetAlbum(currentAlbum.AlbumId);
+            album.RemovePhoto(photoToDelete.PhotoId);
+            this.SaveAlbums();
+        }
         
         /// <summary>
         /// Edits the name of the album.

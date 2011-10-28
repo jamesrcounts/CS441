@@ -19,6 +19,8 @@ namespace PhotoBuddy.Screens
     using PhotoBuddy.BusinessRule;
     using PhotoBuddy.Common.CommonClass;
     using PhotoBuddy.Controls;
+    using PhotoBuddy.EventObjects;
+    using System.Linq;
 
     /// <summary>
     /// Displays an album
@@ -41,6 +43,8 @@ namespace PhotoBuddy.Screens
             this.Dock = DockStyle.Fill;
             this.DisplayName = "Album";
         }
+
+        
 
         /////// <summary>
         /////// Defines a delegate to handle "Rename Album" events.
@@ -173,6 +177,7 @@ namespace PhotoBuddy.Screens
 
                 // Wire the click event to the picturebox
                 thumb.Thumbnail.Click += this.HandlePhotoClick;
+                thumb.DeletePhotoEvent += this.HandleDeletePhotoEvent;
 
                 // Add the thumb control to the flow panel.
                 this.photosFlowPanel.Controls.Add(thumb);
@@ -280,5 +285,17 @@ namespace PhotoBuddy.Screens
         {
             this.photosFlowPanel.Focus();
         }
+
+        public virtual void HandleDeletePhotoEvent(object sender, PhotoEventArgs e)
+        {
+            string photoDisplayName = e.PhotoName;
+            Album currentAlbum = this.CurrentAlbum;
+
+            Photo photoToDelete = currentAlbum.Photos.Where(photo => photo.DisplayName == photoDisplayName).Single();
+            currentAlbum.Repository.DeletePhoto(currentAlbum, photoToDelete);
+            this.RefreshPhotoList();
+        }
+
+        
     }
 }
