@@ -14,6 +14,8 @@ namespace PhotoBuddy.BusinessRule
 {
     using System.IO;
     using System.Linq;
+    using System.Security.Cryptography;
+    using System.Text;
     using System.Xml;
     using System.Xml.Linq;
     using PhotoBuddy.Common.CommonClass;
@@ -74,6 +76,12 @@ namespace PhotoBuddy.BusinessRule
             Directory.CreateDirectory(Constants.PhotosFolderPath);
         }
 
+        public void DeleteAlbum(string albumName)
+        {
+            Albums.AlbumList.Remove(albumName);
+            this.SaveAlbums();
+        }
+        
         /// <summary>
         /// Edits the name of the album.
         /// </summary>`
@@ -86,7 +94,7 @@ namespace PhotoBuddy.BusinessRule
         {
             Album tempAlbum = Albums.GetAlbum(name);
             Albums.AlbumList.Remove(name);
-            tempAlbum.AlbumID = updateName;
+            tempAlbum.AlbumId = updateName;
             Albums.AddAlbum(tempAlbum);
             this.SaveAlbums();
         }
@@ -101,10 +109,10 @@ namespace PhotoBuddy.BusinessRule
         {
             Album tempAlbum = Albums.GetAlbum(albumName);
             Albums.AlbumList.Remove(albumName);
-            Photo tempPhoto = (Photo)tempAlbum.PhotoList.PhotoTable[photoId];
-            tempAlbum.PhotoList.PhotoTable.Remove(photoId);
+            Photo tempPhoto = tempAlbum.GetPhoto(photoId);
+            tempAlbum.RemovePhoto(photoId);
             tempPhoto.DisplayName = newName;
-            tempAlbum.PhotoList.Add(tempPhoto);
+            tempAlbum.AddPhoto(tempPhoto);
             Albums.AddAlbum(tempAlbum);
             this.SaveAlbums();
         }
@@ -146,7 +154,7 @@ namespace PhotoBuddy.BusinessRule
             }
 
             var album = Albums.GetAlbum(albumId);
-            album.PhotoList = photosToAdd;
+            album.ReplacePhotos(photosToAdd);
         }
 
         /// <summary>
@@ -169,33 +177,33 @@ namespace PhotoBuddy.BusinessRule
             {
                 XmlNode albumNode = doc.CreateElement("album");
                 XmlAttribute albumIDAttr = albumNode.OwnerDocument.CreateAttribute("id_tag");
-                string id = albumObj.AlbumID;
+                string id = albumObj.AlbumId;
                 albumIDAttr.Value = id;
                 albumNode.Attributes.Append(albumIDAttr);
 
                 XmlNode photosNode = doc.CreateElement("photos");
 
-                if (albumObj.PhotoList != null)
+                ////if (albumObj.PhotoList != null)
+                ////{
+                foreach (Photo photoObj in albumObj.Photos)
                 {
-                    foreach (Photo photoObj in albumObj.PhotoList.PhotoTable.Values)
-                    {
-                        XmlNode photoNode = doc.CreateElement("photo");
+                    XmlNode photoNode = doc.CreateElement("photo");
 
-                        XmlAttribute photoIDAttr = photoNode.OwnerDocument.CreateAttribute("id_tag");
-                        photoIDAttr.Value = photoObj.PhotoId;
-                        photoNode.Attributes.Append(photoIDAttr);
+                    XmlAttribute photoIDAttr = photoNode.OwnerDocument.CreateAttribute("id_tag");
+                    photoIDAttr.Value = photoObj.PhotoId;
+                    photoNode.Attributes.Append(photoIDAttr);
 
-                        XmlElement photoCopiedPathNode = doc.CreateElement("copied_path");
-                        photoCopiedPathNode.InnerText = photoObj.CopiedPath;
+                    XmlElement photoCopiedPathNode = doc.CreateElement("copied_path");
+                    photoCopiedPathNode.InnerText = photoObj.FileName;
 
-                        XmlElement photoDisplayNameELem = doc.CreateElement("display_name");
-                        photoDisplayNameELem.InnerText = photoObj.DisplayName;
+                    XmlElement photoDisplayNameELem = doc.CreateElement("display_name");
+                    photoDisplayNameELem.InnerText = photoObj.DisplayName;
 
-                        photosNode.AppendChild(photoNode);
-                        photoNode.AppendChild(photoCopiedPathNode);
-                        photoNode.AppendChild(photoDisplayNameELem);
-                    }
+                    photosNode.AppendChild(photoNode);
+                    photoNode.AppendChild(photoCopiedPathNode);
+                    photoNode.AppendChild(photoDisplayNameELem);
                 }
+                ////}
 
                 albumNode.AppendChild(photosNode);
                 albumsNode.AppendChild(albumNode);
@@ -245,17 +253,15 @@ namespace PhotoBuddy.BusinessRule
                 foreach (var photoInfo in albumInfo.photos.Descendants("photo"))
                 {
                     // photo
-                    var tempPhoto = new Photo()
-                                        {
-                                            PhotoId = photoInfo.Attribute("id_tag").Value,
-                                            DisplayName = photoInfo.Element("display_name").Value,
-                                            CopiedPath = photoInfo.Element("copied_path").Value
-                                        };
+                    var photo = new Photo(
+                        photoInfo.Attribute("id_tag").Value,
+                        photoInfo.Element("display_name").Value,
+                        photoInfo.Element("copied_path").Value);
 
-                    photoList.Add(tempPhoto);
+                    photoList.Add(photo);
                 }
 
-                album.PhotoList = photoList;
+                album.ReplacePhotos(photoList);
                 Albums.AddAlbum(album);
             }
         }
@@ -267,34 +273,76 @@ namespace PhotoBuddy.BusinessRule
         /// <param name="displayName">The display name.</param>
         /// <param name="photoFilename">The photo filename.</param>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        ///   <para>Modified: 2011-10-27</para>
         /// </remarks>
         public void AddPhotoToAlbum(string albumId, string displayName, string photoFilename)
         {
-            Photo tempPhoto = new Photo()
-            {
-                PhotoId = Photo.GeneratePhotoKey(photoFilename),
-                DisplayName = displayName,
-                CopiedPath = photoFilename
-            };
+            // Copies the file to the secret location.
+            string photoId = AlbumRespository.GeneratePhotoKey(photoFilename);
+            string storagePath = AlbumRespository.StoreFile(photoFilename, photoId);
+            string storageName = Path.GetFileName(storagePath);
 
+            // Put the photo in the album data structure.
+            Album currentAlbum = Albums.GetAlbum(albumId);
+            Photo photo = new Photo(photoId, displayName, storageName);
+            ////currentAlbum.PhotoList.Add(photo);
+            currentAlbum.AddPhoto(photo);
+            this.SaveAlbums();
+        }
+
+        /// <summary>
+        /// Stores the file.
+        /// </summary>
+        /// <param name="sourcePath">The source path.</param>
+        /// <param name="photoId">The photo id.</param>
+        /// <returns>The path to the file's location in storage.</returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei
+        /// </remarks>
+        private static string StoreFile(string sourcePath, string photoId)
+        {
             // Combines two paths without having to worry about whether path1 ends with a '\' character
-            string path = Path.Combine(Constants.PhotosFolderPath, tempPhoto.PhotoId);
+            string destinationPath = Path.Combine(Constants.PhotosFolderPath, photoId);
 
             // Changes or adds the original file extension to the new path
-            string fileExtension = Path.GetExtension(photoFilename);
-            path = Path.ChangeExtension(path, fileExtension);
+            string fileExtension = Path.GetExtension(sourcePath);
+            destinationPath = Path.ChangeExtension(destinationPath, fileExtension);
+            if (!File.Exists(destinationPath))
+            {
+                File.Copy(sourceFileName: sourcePath, destFileName: destinationPath, overwrite: true);
+            }
 
-            // Copies the file to the secret location.
-            Photo.StoreFile(@tempPhoto.CopiedPath, path);
+            return destinationPath;
+        }
 
-            tempPhoto.CopiedPath = tempPhoto.PhotoId + fileExtension;
+        /// <summary>
+        /// Generates the photo key for the specified file.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <returns>A unique string which identifies the file by its contents.</returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei
+        /// </remarks>
+        private static string GeneratePhotoKey(string filePath)
+        {
+            // Reading the bytes of the actual file contents
+            byte[] source = File.ReadAllBytes(filePath);
 
-            // query for album from album list
-            Album currentAlbum = Albums.GetAlbum(albumId);
+            // Computing the SHA 256 Hash value
+            using (SHA256Managed hashAlgorithm = new SHA256Managed())
+            {
+                byte[] hash = hashAlgorithm.ComputeHash(source);
 
-            currentAlbum.PhotoList.Add(tempPhoto);
-            this.SaveAlbums();
+                // Convert to HEX encoded string
+                StringBuilder hashString = new StringBuilder();
+                for (int i = 0; i < hash.Length; i++)
+                {
+                    hashString.Append(hash[i].ToString("X2"));
+                }
+
+                return hashString.ToString();
+            }
         }
     }
 }

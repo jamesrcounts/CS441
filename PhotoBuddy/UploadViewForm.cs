@@ -14,6 +14,7 @@ namespace PhotoBuddy
     using System.Drawing;
     using System.IO;
     using System.Windows.Forms;
+    using PhotoBuddy.BusinessRule;
     using PhotoBuddy.Common.CommonClass;
     using PhotoBuddy.Screens;
 
@@ -45,29 +46,13 @@ namespace PhotoBuddy
         /// Creates an instance of the UploadViewForm that is configured to rename a photo.
         ///   </para>
         /// </remarks>
-        public UploadViewForm(IMessageService messageService, PhotoBuddy.BusinessRule.Photo photo)
+        public UploadViewForm(IMessageService messageService, Photo photo)
         {
             this.InitializeComponent();
             this.MessageService = messageService;
 
-            string titleText = Format.Culture("{0} {1} - Photo Buddy", "Rename", photo.DisplayName);
-            this.Text = titleText;
-
-            // Try to open the image.
-            string path = Path.Combine(Constants.PhotosFolderPath, photo.CopiedPath);
-            try
-            {
-                this.pictureBox1.Image = File.Exists(path) ?
-                    Image.FromFile(path) :
-                    PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
-            }
-            catch (OutOfMemoryException)
-            {
-                // File was not a valid image so abort the upload & warn the user.
-                this.MessageService.ShowMessage(this.MessageService.NotPictureFile);
-                this.HandleCancelButtonClick(this, new EventArgs());
-            }
-
+            this.Text = Format.Culture("{0} {1} - Photo Buddy", "Rename", photo.DisplayName);
+            this.pictureBox1.Image = photo.GetImage();
             this.displayNameTextBox.Text = photo.DisplayName;
             this.messageLabel.Text = "This is the photo you have selected to rename.";
         }

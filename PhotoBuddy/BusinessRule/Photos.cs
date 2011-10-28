@@ -12,8 +12,6 @@
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.BusinessRule
 {
-    using System;
-    using System.Collections;
     using System.Collections.Generic;
 
     /// <summary>
@@ -52,7 +50,7 @@ namespace PhotoBuddy.BusinessRule
                 this.photoTable.Add(photoToAdd.PhotoId, photoToAdd);
                 return true;
             }
-            
+
             return false;
         }
     }

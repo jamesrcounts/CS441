@@ -66,6 +66,9 @@ namespace PhotoBuddy.Screens
         /// </summary>
         public event EventHandler<AlbumEventArgs> AlbumSelectedEvent;
 
+        public event EventHandler<AlbumEventArgs> DeleteAlbumEvent;
+        
+
         /// <summary>
         /// Gets or sets the albums.
         /// </summary>
@@ -114,11 +117,12 @@ namespace PhotoBuddy.Screens
             {
                 ////ClickLabel label = new ClickLabel() { Text = album.AlbumID.Replace("&", "&&") };
                 AlbumThumnailUserControl albumControl = new AlbumThumnailUserControl();
-                albumControl.AlbumName = album.AlbumID;
+                albumControl.AlbumName = album.AlbumId;
                 albumControl.Count = album.Count;
                 albumControl.Image = album.CoverPhoto;
 
                 albumControl.AlbumSelectedEvent += this.OnAlbumSelectedEvent;
+                albumControl.DeleteAlbumEvent += this.OnDeleteAlbumEvent;
 
                 ////this.albumsFlowPanel.Controls.Add(label);
                 this.albumsFlowPanel.Controls.Add(albumControl);
@@ -157,6 +161,15 @@ namespace PhotoBuddy.Screens
         protected virtual void OnAlbumSelectedEvent(object sender, AlbumEventArgs e)
         {
             EventHandler<AlbumEventArgs> handler = this.AlbumSelectedEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
+        public virtual void OnDeleteAlbumEvent(object sender, AlbumEventArgs e)
+        {
+            EventHandler<AlbumEventArgs> handler = this.DeleteAlbumEvent;
             if (handler != null)
             {
                 handler(sender, e);

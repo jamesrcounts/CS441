@@ -112,7 +112,7 @@ namespace PhotoBuddy.Screens
                 this.currentAlbum = value;
                 if (this.currentAlbum != null)
                 {
-                    this.labelAlbumName.Text = this.currentAlbum.AlbumID.Replace("&", "&&");
+                    this.labelAlbumName.Text = this.currentAlbum.AlbumId.Replace("&", "&&");
                     this.RefreshPhotoList();
                 }
             }
@@ -141,34 +141,35 @@ namespace PhotoBuddy.Screens
 
             // Clear out the photos is the panel.
             this.photosFlowPanel.Controls.Clear();
-            if (this.currentAlbum.PhotoList.PhotoTable.Count == 0)
+            if (this.currentAlbum.Count == 0)
             {
                 return;
             }
 
-            foreach (Photo photo in this.currentAlbum.PhotoList.PhotoTable.Values)
+            foreach (Photo photo in this.currentAlbum.Photos)
             {
                 // Create a thumbnail control for the current photo
                 ThumbNailUserControl thumb = new ThumbNailUserControl() { DisplayName = photo.DisplayName };
 
                 // Store the photo object in the thumbnail tag.
-                // thumbnail is a public property to set the picturebox on the thumbnailUserControl.
+                // thumbnail is a public property to set the picture box on the thumbnailUserControl.
                 thumb.Thumbnail.Tag = photo;
 
-                // Combine the secret location with the secret name to get the full file path.
-                string path = Path.Combine(Constants.PhotosFolderPath, photo.CopiedPath);
+                ////// Combine the secret location with the secret name to get the full file path.
+                ////string path = Path.Combine(Constants.PhotosFolderPath, photo.CopiedPath);
 
-                // Load the file
-                try
-                {
-                    thumb.Thumbnail.Image = File.Exists(path) ?
-                        Image.FromFile(path) :
-                        PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
-                }
-                catch (OutOfMemoryException)
-                {
-                    thumb.Thumbnail.Image = PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
-                }
+                ////// Load the file
+                ////try
+                ////{
+                ////    thumb.Thumbnail.Image = File.Exists(path) ?
+                ////        Image.FromFile(path) :
+                ////        PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
+                ////}
+                ////catch (OutOfMemoryException)
+                ////{
+                ////    thumb.Thumbnail.Image = PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
+                ////}
+                thumb.Thumbnail.Image = photo.GetImage();
 
                 // Wire the click event to the picturebox
                 thumb.Thumbnail.Click += this.HandlePhotoClick;

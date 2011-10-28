@@ -211,6 +211,7 @@ namespace PhotoBuddy
         {
             this.HomeView.CreateButtonEvent += this.HandleCreateButtonClick;
             this.HomeView.AlbumSelectedEvent += this.ShowSelectedAlbum;
+            this.HomeView.DeleteAlbumEvent += this.DeleteAlbum;
             this.CreateAlbumView.CancelEvent += this.GoBack;
             this.CreateAlbumView.ContinueEvent += this.CreateOrEditAlbum;
             this.AlbumView.BackEvent += this.ReturnToHomeView;
@@ -231,6 +232,12 @@ namespace PhotoBuddy
             this.AlbumView.CurrentAlbum = Model.GetAlbum(e.AlbumName);
            //// this.AlbumView.CurrentAlbum = (Album)Model.Albums.AlbumList[e.TheAlbum.AlbumID.Replace("&&", "&")];
             this.ShowView(this.AlbumView);
+        }
+
+        private void DeleteAlbum(object sender, AlbumEventArgs e)
+        {
+            Model.DeleteAlbum(e.AlbumName);
+            this.ShowView(this.HomeView);
         }
 
         /// <summary>
@@ -279,7 +286,7 @@ namespace PhotoBuddy
         {
             if (this.AlbumView.CurrentAlbum != null)
             {
-                this.CreateAlbumView.ResetForm(false, this.AlbumView.CurrentAlbum.AlbumID);
+                this.CreateAlbumView.ResetForm(false, this.AlbumView.CurrentAlbum.AlbumId);
                 this.ShowView(this.CreateAlbumView);
             }
         }
@@ -301,7 +308,7 @@ namespace PhotoBuddy
                 fileBrowser.FilterIndex = 1;
                 fileBrowser.RestoreDirectory = true;
                 fileBrowser.Multiselect = true;
-                fileBrowser.Title = Format.Culture("Add to {0} - Photo Buddy", this.AlbumView.CurrentAlbum.AlbumID);
+                fileBrowser.Title = Format.Culture("Add to {0} - Photo Buddy", this.AlbumView.CurrentAlbum.AlbumId);
                 DialogResult result = fileBrowser.ShowDialog();
                 if (result == DialogResult.OK)
                 {
@@ -341,7 +348,7 @@ namespace PhotoBuddy
                     // User approved so upload the photo to the album.
                     string name = uploadPhoto.DisplayName;
                     string file = photoFileName;
-                    Model.AddPhotoToAlbum(this.AlbumView.CurrentAlbum.AlbumID, name, file);
+                    Model.AddPhotoToAlbum(this.AlbumView.CurrentAlbum.AlbumId, name, file);
                 }
             }
         }

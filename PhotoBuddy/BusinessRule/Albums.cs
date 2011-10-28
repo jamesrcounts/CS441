@@ -62,9 +62,9 @@ namespace PhotoBuddy.BusinessRule
         /// </remarks>
         public bool AddAlbum(Album albumToAdd)
         {
-            if (!this.AlbumTable.ContainsKey(albumToAdd.AlbumID))
+            if (!this.AlbumTable.ContainsKey(albumToAdd.AlbumId))
             {
-                this.AlbumTable.Add(albumToAdd.AlbumID, albumToAdd);
+                this.AlbumTable.Add(albumToAdd.AlbumId, albumToAdd);
                 return true;
             }
 

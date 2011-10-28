@@ -13,11 +13,9 @@ namespace PhotoBuddy
     using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.IO;
     using System.Linq;
     using System.Windows.Forms;
     using PhotoBuddy.BusinessRule;
-    using PhotoBuddy.Common.CommonClass;
     using PhotoBuddy.Screens;
 
     /// <summary>
@@ -43,7 +41,7 @@ namespace PhotoBuddy
         /// <summary>
         /// All photos in the album.
         /// </summary>
-        private readonly List<Photo> allPhotosInAlbum;
+        private readonly IList<Photo> allPhotosInAlbum;
 
         /// <summary>
         /// The current photo's index.
@@ -73,11 +71,11 @@ namespace PhotoBuddy
         {
             this.InitializeComponent();
             this.Text = "Photo Display - Photo Buddy";
-            this.album = currentAlbum;            
-            ////this.photoID = photoToDisplay.PhotoId;
+            this.album = currentAlbum;
             this.picture = photoToDisplay;
-            this.currentAlbumLabel.Text = this.album.AlbumID;
-            this.allPhotosInAlbum = this.album.PhotoList.PhotoTable.Values.Cast<Photo>().ToList();
+            this.currentAlbumLabel.Text = this.album.AlbumId.Replace("&", "&&");
+            /////this.allPhotosInAlbum = this.album.PhotoList.PhotoTable.Values.Cast<Photo>().ToList();
+            this.allPhotosInAlbum = this.album.Photos.ToList();
             this.photoIndex = this.allPhotosInAlbum.IndexOf(this.picture);
             this.DisplayPhoto(this.photoIndex);
         }
@@ -87,17 +85,15 @@ namespace PhotoBuddy
         /// </summary>
         /// <param name="index">The photo index in the list of photos.</param>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei</para>
+        ///   <para>Modified: 2011-10-27</para>
         /// </remarks>
         private void DisplayPhoto(int index)
         {
-            string filename = Path.GetFileName(this.allPhotosInAlbum[index].CopiedPath);
-            string path = Path.Combine(Constants.PhotosFolderPath, filename);
-            this.pictureBox1.Image = File.Exists(path) ?
-                Image.FromFile(path) :
-                PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
-            this.photoNameLabel.Text = this.allPhotosInAlbum[index].DisplayName;
-            this.Text = this.allPhotosInAlbum[index].DisplayName + " - Photo Buddy";
+            Photo photo = this.allPhotosInAlbum[index];
+            this.pictureBox1.Image = photo.GetImage();
+            this.photoNameLabel.Text = photo.DisplayName.Replace("&", "&&");
+            this.Text = photo.DisplayName + " - Photo Buddy";
         }
 
         /// <summary>
@@ -224,7 +220,7 @@ namespace PhotoBuddy
                 {
                     // User approved so rename the photo.
                     this.album.Repository.RenamePhotoInAlbum(albumName, renamePhotoView.DisplayName, currentPhoto.PhotoId);
-                    
+
                     // Important to update the new name on the view.
                     this.DisplayPhoto(this.photoIndex);
                 }

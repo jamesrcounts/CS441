@@ -30,7 +30,7 @@ namespace PhotoBuddy.Controls
         {
             this.InitializeComponent();
         }
-        
+
         /// <summary>
         /// Occurs when an album is clicked.
         /// </summary>
@@ -39,6 +39,8 @@ namespace PhotoBuddy.Controls
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         public event EventHandler<AlbumEventArgs> AlbumSelectedEvent;
+
+        public event EventHandler<AlbumEventArgs> DeleteAlbumEvent;
 
         /// <summary>
         /// Gets or sets the name of the album.
@@ -127,6 +129,15 @@ namespace PhotoBuddy.Controls
             }
         }
 
+        public virtual void OnDeleteAlbumEvent(object sender, AlbumEventArgs e)
+        {
+            EventHandler<AlbumEventArgs> handler = this.DeleteAlbumEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
         /// <summary>
         /// Handles the cover image picture box click.
         /// </summary>
@@ -139,6 +150,11 @@ namespace PhotoBuddy.Controls
         private void HandleCoverImagePictureBoxClick(object sender, EventArgs e)
         {
             this.OnAlbumSelectedEvent(this, new AlbumEventArgs(this.AlbumName));
+        }
+
+        private void HandleDeleteToolStripItemClick(object sender, EventArgs e)
+        {
+            this.OnDeleteAlbumEvent(this, new AlbumEventArgs(this.AlbumName));
         }
     }
 }

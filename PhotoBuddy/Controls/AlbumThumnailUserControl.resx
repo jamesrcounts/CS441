@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="coverImagePictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAACjSURBVFhH7ZaBCsAgCET99P68rbFCIuMKdRszCKKge1xW
+        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAACjSURBVFhH7ZaBCsAgCET99P68rbFCIuMKdRszCKKge1xW
         RxTtAw7kk7F2N9wmmhLl2hlIWTdrTZCL9+MbRh0CEu8cUYNYEteGuM58Zrm01tUFL9il4t0SR4GRW2QK
         gByXC0ABkW6PG4AE8S+AkQuuDgRAOBAOvNKBEirc3oLH/4NZnDN3AcmSZhCIeA2Y2xFtlJKQRCQlWynj
         rc6rJefYSN2BA/WNlMfCa7aUAAAAAElFTkSuQmCC
