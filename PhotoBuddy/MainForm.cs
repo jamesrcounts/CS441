@@ -234,6 +234,15 @@ namespace PhotoBuddy
             this.ShowView(this.AlbumView);
         }
 
+        /// <summary>
+        /// Deletes the album specified in the event data.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventObjects.AlbumEventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-27</para>
+        /// </remarks>
         private void DeleteAlbum(object sender, AlbumEventArgs e)
         {
             Model.DeleteAlbum(e.AlbumName);

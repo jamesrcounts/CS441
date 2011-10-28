@@ -37,6 +37,13 @@ namespace PhotoBuddy.Controls
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Occurs when the user selects the delete action for a photo.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Authors: Jim Counts and Eric Wei.</para>
+        ///   <para>Created: 2011-10-27</para>
+        /// </remarks>
         public event EventHandler<PhotoEventArgs> DeletePhotoEvent;
 
         /// <summary>
@@ -78,6 +85,24 @@ namespace PhotoBuddy.Controls
         }
 
         /// <summary>
+        /// Called when the delete photo event is triggered.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventObjects.PhotoEventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-27</para>
+        /// </remarks>
+        public virtual void OnDeletePhotoEvent(object sender, PhotoEventArgs e)
+        {
+            EventHandler<PhotoEventArgs> handler = this.DeletePhotoEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+        
+        /// <summary>
         /// Highlights the photo when the mouse is over it.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -107,21 +132,18 @@ namespace PhotoBuddy.Controls
             this.panel1.BackColor = Color.White;
         }
         
-        public virtual void onDeletePhotoEvent(object sender, PhotoEventArgs e)
+        /// <summary>
+        /// Handles the delete tool strip menu item click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-26</para>
+        /// </remarks>
+        private void HandleDeleteToolStripMenuItemClick(object sender, EventArgs e)
         {
-            EventHandler<PhotoEventArgs> handler = this.DeletePhotoEvent;
-            if (handler != null)
-            {
-                handler(sender, e);
-            }
-        }
-
-
-
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.onDeletePhotoEvent(this, new PhotoEventArgs(this.NameTextBox.Text.Replace("&&", "&")));
-
+            this.OnDeletePhotoEvent(this, new PhotoEventArgs(this.NameTextBox.Text.Replace("&&", "&")));
         }
     }
 }

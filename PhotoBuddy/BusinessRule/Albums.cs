@@ -2,14 +2,14 @@
 // <copyright file="Albums.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales and Andrea Tan
+// <summary>Author(s): Miguel Gonzales and Andrea Tan
 // Date: Sept 28 2011
 // Modified date: Oct 9 2011
 // High Level Description: this class is responsible for numerous collections 
 //                         of Album objects. In addition, providing the mean to remove and add 
 //                         specific album that its looking for. 
 //                         as well as to search a specific album that is being requested from 
-//                         the presenter.
+//                         the presenter.</summary>
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.BusinessRule
 {

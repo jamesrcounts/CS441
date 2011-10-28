@@ -76,15 +76,32 @@ namespace PhotoBuddy.BusinessRule
             Directory.CreateDirectory(Constants.PhotosFolderPath);
         }
 
+        /// <summary>
+        /// Deletes the specified album.
+        /// </summary>
+        /// <param name="albumName">Name of the album.</param>
+        /// <remarks>
+        ///   <para>Authors: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-27</para>
+        /// </remarks>
         public void DeleteAlbum(string albumName)
         {
             Albums.AlbumList.Remove(albumName);
             this.SaveAlbums();
         }
 
-        public void DeletePhoto(Album currentAlbum, Photo photoToDelete)
+        /// <summary>
+        /// Deletes the photo.
+        /// </summary>
+        /// <param name="enclosingAlbum">The current album.</param>
+        /// <param name="photoToDelete">The photo to delete.</param>
+        /// <remarks>
+        ///   <para>Authors: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-27</para>
+        /// </remarks>
+        public void DeletePhoto(Album enclosingAlbum, Photo photoToDelete)
         {
-            Album album = Albums.GetAlbum(currentAlbum.AlbumId);
+            Album album = Albums.GetAlbum(enclosingAlbum.AlbumId);
             album.RemovePhoto(photoToDelete.PhotoId);
             this.SaveAlbums();
         }

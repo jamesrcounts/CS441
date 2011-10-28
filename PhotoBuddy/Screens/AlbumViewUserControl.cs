@@ -13,14 +13,11 @@ namespace PhotoBuddy.Screens
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Drawing;
-    using System.IO;
+    using System.Linq;
     using System.Windows.Forms;
     using PhotoBuddy.BusinessRule;
-    using PhotoBuddy.Common.CommonClass;
     using PhotoBuddy.Controls;
     using PhotoBuddy.EventObjects;
-    using System.Linq;
 
     /// <summary>
     /// Displays an album
@@ -43,33 +40,6 @@ namespace PhotoBuddy.Screens
             this.Dock = DockStyle.Fill;
             this.DisplayName = "Album";
         }
-
-        
-
-        /////// <summary>
-        /////// Defines a delegate to handle "Rename Album" events.
-        /////// </summary>
-        /////// <param name="sender">The sender.</param>
-        /////// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /////// <remarks>Rename Album events are typically fired by the rename album button, which indicates the user wants to rename
-        /////// an album.</remarks>
-        ////public delegate void RenameAlbumHandler(object sender, EventArgs e);
-
-        /////// <summary>
-        /////// Defines a delegate to handle "Back" events.
-        /////// </summary>
-        /////// <param name="sender">The sender.</param>
-        /////// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /////// <remarks>Back events are typically fired by back buttons, which return the user to the previous view.</remarks>
-        ////public delegate void BackEventHandler(object sender, EventArgs e);
-
-        /////// <summary>
-        /////// Defines a delegate to handle "Add Photo" events.
-        /////// </summary>
-        /////// <param name="sender">The sender.</param>
-        /////// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /////// <remarks>Add Photos events are typically fired by the Add Photos button, which indicates the user wants to add photos.</remarks>
-        ////public delegate void AddPhotosEventHandler(object sender, EventArgs e);
 
         /// <summary>
         /// Occurs when the back button is clicked.
@@ -286,16 +256,19 @@ namespace PhotoBuddy.Screens
             this.photosFlowPanel.Focus();
         }
 
-        public virtual void HandleDeletePhotoEvent(object sender, PhotoEventArgs e)
+        /// <summary>
+        /// Handles the delete photo event.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventObjects.PhotoEventArgs"/> instance containing the event data.</param>
+        private void HandleDeletePhotoEvent(object sender, PhotoEventArgs e)
         {
-            string photoDisplayName = e.PhotoName;
+            string photoDisplayName = e.PhotoDisplayName;
             Album currentAlbum = this.CurrentAlbum;
 
             Photo photoToDelete = currentAlbum.Photos.Where(photo => photo.DisplayName == photoDisplayName).Single();
             currentAlbum.Repository.DeletePhoto(currentAlbum, photoToDelete);
             this.RefreshPhotoList();
-        }
-
-        
+        }        
     }
 }

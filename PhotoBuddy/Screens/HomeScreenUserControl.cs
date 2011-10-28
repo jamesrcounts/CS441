@@ -66,9 +66,15 @@ namespace PhotoBuddy.Screens
         /// </summary>
         public event EventHandler<AlbumEventArgs> AlbumSelectedEvent;
 
+        /// <summary>
+        /// Occurs when the delete event is selected for an album.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-27</para>
+        /// </remarks>
         public event EventHandler<AlbumEventArgs> DeleteAlbumEvent;
         
-
         /// <summary>
         /// Gets or sets the albums.
         /// </summary>
@@ -167,7 +173,16 @@ namespace PhotoBuddy.Screens
             }
         }
 
-        public virtual void OnDeleteAlbumEvent(object sender, AlbumEventArgs e)
+        /// <summary>
+        /// Called when delete album event is triggered.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventObjects.AlbumEventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-26</para>
+        /// </remarks>
+        protected virtual void OnDeleteAlbumEvent(object sender, AlbumEventArgs e)
         {
             EventHandler<AlbumEventArgs> handler = this.DeleteAlbumEvent;
             if (handler != null)

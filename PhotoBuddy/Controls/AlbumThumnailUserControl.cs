@@ -40,6 +40,13 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         public event EventHandler<AlbumEventArgs> AlbumSelectedEvent;
 
+        /// <summary>
+        /// Occurs when the user makes a request to delete an album.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-27</para>
+        /// </remarks>
         public event EventHandler<AlbumEventArgs> DeleteAlbumEvent;
 
         /// <summary>
@@ -129,6 +136,15 @@ namespace PhotoBuddy.Controls
             }
         }
 
+        /// <summary>
+        /// Called when the delete album event is triggered.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventObjects.AlbumEventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-27</para>
+        /// </remarks>
         public virtual void OnDeleteAlbumEvent(object sender, AlbumEventArgs e)
         {
             EventHandler<AlbumEventArgs> handler = this.DeleteAlbumEvent;
@@ -152,6 +168,15 @@ namespace PhotoBuddy.Controls
             this.OnAlbumSelectedEvent(this, new AlbumEventArgs(this.AlbumName));
         }
 
+        /// <summary>
+        /// Handles the delete tool strip item click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-27</para>
+        /// </remarks>
         private void HandleDeleteToolStripItemClick(object sender, EventArgs e)
         {
             this.OnDeleteAlbumEvent(this, new AlbumEventArgs(this.AlbumName));

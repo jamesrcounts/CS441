@@ -20,7 +20,7 @@ namespace PhotoBuddy.BusinessRule
     /// An album contains an album id and a list of photos.
     /// </summary>
     /// <remarks>
-    /// Author(s): Miguel Gonzales and Andrea Tan
+    /// Author(s): Miguel Gonzales and Andrea Tan.
     /// </remarks>
     [DebuggerDisplay("{AlbumId}")]
     public class Album
@@ -48,7 +48,7 @@ namespace PhotoBuddy.BusinessRule
         /// The album ID.
         /// </value>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// Author(s): Miguel Gonzales and Andrea Tan.
         /// </remarks>
         public string AlbumId { get; set; }
         
