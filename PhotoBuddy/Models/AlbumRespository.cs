@@ -18,7 +18,6 @@ namespace PhotoBuddy.Models
     using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
-    using System.Xml;
     using System.Xml.Linq;
     using PhotoBuddy.Common;
 
@@ -113,7 +112,7 @@ namespace PhotoBuddy.Models
         public void DeleteAlbum(string albumName)
         {
             if (this.albums.Remove(albumName))
-            {                
+            {
                 this.SaveAlbums();
             }
         }
@@ -179,10 +178,10 @@ namespace PhotoBuddy.Models
                 return;
             }
 
-     ////       album.RemovePhoto(photoId);
+            ////       album.RemovePhoto(photoId);
             photo.DisplayName = displayName;
-         ////   album.AddPhoto(photo);
-          ////  this.albums.Add(album.AlbumId, album);
+            ////   album.AddPhoto(photo);
+            ////  this.albums.Add(album.AlbumId, album);
             this.SaveAlbums();
         }
 
@@ -223,52 +222,12 @@ namespace PhotoBuddy.Models
         /// Saves changes to the albums since the last time SaveAlbums was called.
         /// </summary>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        /// <para>Modified: 2011-10-29</para>
         /// </remarks>
         public void SaveAlbums()
         {
-            XmlDocument doc = new XmlDocument();
-            XmlNode docNode = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            doc.AppendChild(docNode);
-            XmlNode productsNode = doc.CreateElement("photo_buddy");
-            doc.AppendChild(productsNode);
-            XmlNode albumsNode = doc.CreateElement("albums");
-            productsNode.AppendChild(albumsNode);
-
-            foreach (Album albumObj in this.Albums)
-            {
-                XmlNode albumNode = doc.CreateElement("album");
-                XmlAttribute albumIDAttr = albumNode.OwnerDocument.CreateAttribute("id_tag");
-                string id = albumObj.AlbumId;
-                albumIDAttr.Value = id;
-                albumNode.Attributes.Append(albumIDAttr);
-
-                XmlNode photosNode = doc.CreateElement("photos");
-
-                foreach (Photo photoObj in albumObj.Photos)
-                {
-                    XmlNode photoNode = doc.CreateElement("photo");
-
-                    XmlAttribute photoIDAttr = photoNode.OwnerDocument.CreateAttribute("id_tag");
-                    photoIDAttr.Value = photoObj.PhotoId;
-                    photoNode.Attributes.Append(photoIDAttr);
-
-                    XmlElement photoCopiedPathNode = doc.CreateElement("copied_path");
-                    photoCopiedPathNode.InnerText = photoObj.FileName;
-
-                    XmlElement photoDisplayNameELem = doc.CreateElement("display_name");
-                    photoDisplayNameELem.InnerText = photoObj.DisplayName;
-
-                    photosNode.AppendChild(photoNode);
-                    photoNode.AppendChild(photoCopiedPathNode);
-                    photoNode.AppendChild(photoDisplayNameELem);
-                }
-
-                albumNode.AppendChild(photosNode);
-                albumsNode.AppendChild(albumNode);
-            }
-
-            doc.Save(Constants.XmlDataFilePath);
+            this.document.Save(Constants.XmlDataFilePath);
         }
 
         /// <summary>
