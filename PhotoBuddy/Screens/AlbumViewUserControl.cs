@@ -263,6 +263,13 @@ namespace PhotoBuddy.Screens
         /// <param name="e">The <see cref="PhotoBuddy.EventObjects.PhotoEventArgs"/> instance containing the event data.</param>
         private void HandleDeletePhotoEvent(object sender, PhotoEventArgs e)
         {
+            DialogResult result;
+            result = MessageBox.Show("Are you sure you want to delete this photo?", "Delete Photo?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            { 
+                return;
+            }
+
             string photoDisplayName = e.PhotoDisplayName;
             Album currentAlbum = this.CurrentAlbum;
 

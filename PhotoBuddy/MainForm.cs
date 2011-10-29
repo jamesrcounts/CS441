@@ -245,6 +245,12 @@ namespace PhotoBuddy
         /// </remarks>
         private void DeleteAlbum(object sender, AlbumEventArgs e)
         {
+            DialogResult result;
+            result = MessageBox.Show("Are you sure you want to delete this album?", "Delete Album?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
             Album album = Model.GetAlbum(e.AlbumName);
             album.Delete();
             this.ShowView(this.HomeView);
