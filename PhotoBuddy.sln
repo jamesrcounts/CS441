@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoBuddy", "PhotoBuddy\Ph
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoBuddy.Tests", "PhotoBuddy.Tests\PhotoBuddy.Tests.csproj", "{3CC230F3-87D6-4422-A4C6-26F565E20E82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoBuddy.Test2", "PhotoBuddy.Test2\PhotoBuddy.Test2.csproj", "{AC635BCB-46EB-4E09-B203-9AB6FB90F7A0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B2D9ED6B-6A93-4975-ADD8-2959097AA06C}"
 	ProjectSection(SolutionItems) = preProject
 		Local.testsettings = Local.testsettings
@@ -46,16 +44,6 @@ Global
 		{3CC230F3-87D6-4422-A4C6-26F565E20E82}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{3CC230F3-87D6-4422-A4C6-26F565E20E82}.Release|Mixed Platforms.Build.0 = Release|x86
 		{3CC230F3-87D6-4422-A4C6-26F565E20E82}.Release|x86.ActiveCfg = Release|x86
-		{AC635BCB-46EB-4E09-B203-9AB6FB90F7A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC635BCB-46EB-4E09-B203-9AB6FB90F7A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC635BCB-46EB-4E09-B203-9AB6FB90F7A0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{AC635BCB-46EB-4E09-B203-9AB6FB90F7A0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{AC635BCB-46EB-4E09-B203-9AB6FB90F7A0}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AC635BCB-46EB-4E09-B203-9AB6FB90F7A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC635BCB-46EB-4E09-B203-9AB6FB90F7A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC635BCB-46EB-4E09-B203-9AB6FB90F7A0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{AC635BCB-46EB-4E09-B203-9AB6FB90F7A0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{AC635BCB-46EB-4E09-B203-9AB6FB90F7A0}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

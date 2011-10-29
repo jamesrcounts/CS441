@@ -243,16 +243,21 @@ namespace PhotoBuddy
         /// <remarks>
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
+        ///   <para>Modified: 2011-10-28</para>
         /// </remarks>
         private void DeleteAlbum(object sender, AlbumEventArgs e)
         {
-            DialogResult result;
-            result = MessageBox.Show("Are you sure you want to delete this album?", "Delete Album?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show(
+                "Are you sure you want to delete this album?", 
+                "Delete Album?", 
+                MessageBoxButtons.YesNo, 
+                MessageBoxIcon.Question);
             if (result == DialogResult.No)
             {
                 return;
             }
-            Album album = Model.GetAlbum(e.AlbumName);
+
+            var album = Model.GetAlbum(e.AlbumName);
             album.Delete();
             this.ShowView(this.HomeView);
         }
@@ -320,24 +325,24 @@ namespace PhotoBuddy
         {
             using (OpenFileDialog fileBrowser = new OpenFileDialog())
             {
-                this.photoBrowserOpenFileDialog.InitialDirectory = this.importFolderPath;
-
+                fileBrowser.InitialDirectory = this.importFolderPath;
                 fileBrowser.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png|bmp files (*.bmp)|*.bmp|gif files (*.gif)|*.gif";
                 fileBrowser.FilterIndex = 1;
                 fileBrowser.RestoreDirectory = true;
                 fileBrowser.Multiselect = true;
                 fileBrowser.Title = Format.Culture("Add to {0} - Photo Buddy", this.AlbumView.CurrentAlbum.AlbumId);
-                DialogResult result = fileBrowser.ShowDialog();
+                var result = fileBrowser.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    MultiPhotoImportForm multiPhotoImportForm = new MultiPhotoImportForm();
+                    var multiPhotoImportForm = new MultiPhotoImportForm();
                     this.importFolderPath = Path.GetDirectoryName(fileBrowser.FileName);
                     foreach (string fileName in fileBrowser.FileNames)
                     {
                         multiPhotoImportForm.AddImageFromFile(fileName);
                         ////     this.VerifyIncomingPhoto(fileName);
                     }
-                    DialogResult importResult = multiPhotoImportForm.ShowDialog();
+
+                    var importResult = multiPhotoImportForm.ShowDialog();
                     if (importResult == DialogResult.OK)
                     {
                         foreach (var importFile in multiPhotoImportForm.SelectedFiles)
@@ -347,6 +352,7 @@ namespace PhotoBuddy
                             string file = importFile.Value;
                             Model.AddPhotoToAlbum(this.AlbumView.CurrentAlbum.AlbumId, name, file);
                         }
+                        
                         this.AlbumView.RefreshPhotoList();
                     }
                 }
