@@ -3,7 +3,7 @@
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace PhotoBuddy.Screens
+namespace PhotoBuddy.Models
 {
     using System;
     using System.Collections.Generic;

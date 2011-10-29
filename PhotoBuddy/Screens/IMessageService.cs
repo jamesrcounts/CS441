@@ -6,6 +6,7 @@
 namespace PhotoBuddy.Screens
 {
     using System.Windows.Forms;
+    using PhotoBuddy.Models;
 
     /// <summary>
     /// Describes a service which displays canned messages.

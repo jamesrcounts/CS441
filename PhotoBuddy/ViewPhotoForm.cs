@@ -15,7 +15,7 @@ namespace PhotoBuddy
     using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
-    using PhotoBuddy.BusinessRule;
+    using PhotoBuddy.Models;
     using PhotoBuddy.Screens;
 
     /// <summary>

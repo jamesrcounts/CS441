@@ -97,6 +97,6 @@ namespace PhotoBuddy.Controls
         private void HandleClickableLabelMouseLeave(object sender, EventArgs e)
         {
             this.ForeColor = Color.Black;
-        }
+        }        
     }
 }

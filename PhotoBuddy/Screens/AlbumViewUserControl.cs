@@ -15,9 +15,9 @@ namespace PhotoBuddy.Screens
     using System.Diagnostics;
     using System.Linq;
     using System.Windows.Forms;
-    using PhotoBuddy.BusinessRule;
     using PhotoBuddy.Controls;
     using PhotoBuddy.EventObjects;
+    using PhotoBuddy.Models;
 
     /// <summary>
     /// Displays an album

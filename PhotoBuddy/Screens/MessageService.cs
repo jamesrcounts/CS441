@@ -9,6 +9,7 @@ namespace PhotoBuddy.Screens
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Forms;
+    using PhotoBuddy.Models;
 
     /// <summary>
     /// Provides a presenter for message boxes.

@@ -1,33 +1,31 @@
 //-----------------------------------------------------------------------
-// <copyright file="NameTooLongMessage.cs" company="Gold Rush">
+// <copyright file="InvalidAlbumNameMessage.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace PhotoBuddy
+namespace PhotoBuddy.Models
 {
     using System.Windows.Forms;
-    using PhotoBuddy.Common.CommonClass;
-    using PhotoBuddy.Screens;
 
     /// <summary>
-    /// Provides a message when the name entered is too long.
+    /// Provides data for an invalid album name message.
     /// </summary>
     /// <remarks>
     ///   <para>Author: Jim Counts</para>
-    ///   <para>Created: 2011-10-25</para>
+    ///   <para>Created: 2011-10-24</para>
     /// </remarks>
-    public sealed class NameTooLongMessage : IMessage
+    public sealed class InvalidAlbumNameMessage : IMessage
     {
         /// <summary>
         /// Gets the text.
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-25</para>
+        ///   <para>Created: 2011-10-24</para>
         /// </remarks>
         public string Text
         {
-            get { return "Name is too long.  Please enter a name less than " + Constants.MaxNameLength; }
+            get { return "Invalid album name! Please enter a new album name."; }
         }
 
         /// <summary>
@@ -35,11 +33,11 @@ namespace PhotoBuddy
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-25</para>
+        ///   <para>Created: 2011-10-24</para>
         /// </remarks>
         public string Caption
         {
-            get { return "Name Length Issue"; }
+            get { return "Album Name Invalid"; }
         }
 
         /// <summary>
@@ -47,7 +45,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-25</para>
+        ///   <para>Created: 2011-10-24</para>
         /// </remarks>
         public MessageBoxButtons Buttons
         {
@@ -59,7 +57,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-25</para>
+        ///   <para>Created: 2011-10-24</para>
         /// </remarks>
         public MessageBoxIcon Icon
         {

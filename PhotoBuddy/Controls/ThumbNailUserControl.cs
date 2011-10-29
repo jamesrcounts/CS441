@@ -143,7 +143,7 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void HandleDeleteToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.OnDeletePhotoEvent(this, new PhotoEventArgs(this.NameTextBox.Text.Replace("&&", "&")));
+            this.OnDeletePhotoEvent(this, new PhotoEventArgs(this.NameTextBox.Text));
         }
     }
 }

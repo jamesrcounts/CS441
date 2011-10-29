@@ -13,7 +13,7 @@ namespace PhotoBuddy.Tests
     using ApprovalTests.Reporters;
     using ApprovalTests.WinForms;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using PhotoBuddy.Common.CommonClass;
+    using PhotoBuddy.Common;
     using PhotoBuddy.Screens;
 
     /// <summary>

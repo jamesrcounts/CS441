@@ -115,9 +115,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessRule\Album.cs" />
-    <Compile Include="BusinessRule\AlbumRespository.cs" />
-    <Compile Include="BusinessRule\Photo.cs" />
+    <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\AlbumRespository.cs" />
+    <Compile Include="Models\Photo.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controls\AlbumThumnailUserControl.cs">
       <SubType>UserControl</SubType>
@@ -135,15 +135,14 @@
       <DependentUpon>ThumbNailUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="EventObjects\PhotoEventArgs.cs" />
-    <Compile Include="NameTooLongMessage.cs" />
-    <Compile Include="NotPictureFileMessage.cs" />
+    <Compile Include="Models\NameTooLongMessage.cs" />
+    <Compile Include="Models\NotPictureFileMessage.cs" />
     <Compile Include="ProcessChecker.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="DataLayer\DataAccessBaseXML.cs" />
     <Compile Include="EventObjects\AlbumEventArgs.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -153,7 +152,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screens\AboutPhotoBuddyMessage.cs" />
+    <Compile Include="Models\AboutPhotoBuddyMessage.cs" />
     <Compile Include="Screens\AlbumViewUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,10 +171,10 @@
     <Compile Include="Screens\HomeScreenUserControl.Designer.cs">
       <DependentUpon>HomeScreenUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\IMessage.cs" />
+    <Compile Include="Models\IMessage.cs" />
     <Compile Include="Screens\IMessageService.cs" />
     <Compile Include="Screens\IMessageView.cs" />
-    <Compile Include="Screens\InvalidAlbumNameMessage.cs" />
+    <Compile Include="Models\InvalidAlbumNameMessage.cs" />
     <Compile Include="Screens\IScreen.cs" />
     <Compile Include="Format.cs" />
     <Compile Include="Screens\MessageBoxProxy.cs" />
@@ -248,7 +247,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="TheNewPhotoBuddy_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

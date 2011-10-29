@@ -10,7 +10,7 @@
 //                         collectors are the one that's responsible as a global object holders of
 //                         everything in the business rule.
 //-----------------------------------------------------------------------
-namespace PhotoBuddy.BusinessRule
+namespace PhotoBuddy.Models
 {
     using System;
     using System.Collections.Generic;
@@ -20,8 +20,7 @@ namespace PhotoBuddy.BusinessRule
     using System.Text;
     using System.Xml;
     using System.Xml.Linq;
-    using PhotoBuddy.Common.CommonClass;
-    using PhotoBuddy.DataAccessLayer;
+    using PhotoBuddy.Common;
 
     /// <summary>
     /// Manages create, read, update and delete functions a collection of albums.
@@ -50,10 +49,20 @@ namespace PhotoBuddy.BusinessRule
         /// </remarks>
         public AlbumRespository()
         {
-            AllocatePhotoStorage();
+            if (!Directory.Exists(Constants.PhotosFolderPath))
+            {
+                Directory.CreateDirectory(Constants.PhotosFolderPath);
+            }
 
-            DataAccessBaseXML dataAccessXML = new DataAccessBaseXML();
-            this.document = dataAccessXML.LoadXml(Constants.XmlDataFilePath);
+            if (File.Exists(Constants.XmlDataFilePath))
+            {
+                this.document = XDocument.Load(Constants.XmlDataFilePath);
+            }
+            else
+            {
+                this.document = new XDocument(new XElement("photo_buddy", new XElement("albums")));
+                this.document.Save(Constants.XmlDataFilePath);
+            }
 
             this.LoadAlbums();
         }
@@ -92,25 +101,9 @@ namespace PhotoBuddy.BusinessRule
                 return this.albums.Count;
             }
         }
-        
-        /// <summary>
-        /// Allocates the photo storage folder.
-        /// </summary>
-        /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// </remarks>
-        public static void AllocatePhotoStorage()
-        {
-            if (Directory.Exists(Constants.PhotosFolderPath))
-            {
-                return;
-            }
-
-            Directory.CreateDirectory(Constants.PhotosFolderPath);
-        }
 
         /// <summary>
-        /// Deletes the specified album.
+        /// Deletes the specified album form the index.
         /// </summary>
         /// <param name="albumName">Name of the album.</param>
         /// <remarks>
@@ -120,7 +113,7 @@ namespace PhotoBuddy.BusinessRule
         public void DeleteAlbum(string albumName)
         {
             if (this.albums.Remove(albumName))
-            {
+            {                
                 this.SaveAlbums();
             }
         }
@@ -174,7 +167,7 @@ namespace PhotoBuddy.BusinessRule
         /// <param name="photoId">The photo ID</param>
         public void RenamePhotoInAlbum(string albumName, string displayName, string photoId)
         {
-            Album album = this.DetatchAlbum(albumName);
+            Album album = this.GetAlbum(albumName);
             if (album == null)
             {
                 return;
@@ -186,10 +179,10 @@ namespace PhotoBuddy.BusinessRule
                 return;
             }
 
-            album.RemovePhoto(photoId);
+     ////       album.RemovePhoto(photoId);
             photo.DisplayName = displayName;
-            album.AddPhoto(photo);
-            this.albums.Add(album.AlbumId, album);
+         ////   album.AddPhoto(photo);
+          ////  this.albums.Add(album.AlbumId, album);
             this.SaveAlbums();
         }
 
@@ -211,7 +204,12 @@ namespace PhotoBuddy.BusinessRule
 
             if (!this.albums.ContainsKey(albumName))
             {
-                var album = new Album(this, albumName);
+                // Update XML
+                XElement albumElement = Album.CreateAlbumElement(albumName);
+                this.document.Descendants("albums").First().Add(albumElement);
+                var album = new Album(this, albumElement);
+
+                // Update Album Index
                 this.albums.Add(album.AlbumId, album);
                 return album;
             }
@@ -319,30 +317,30 @@ namespace PhotoBuddy.BusinessRule
         public void LoadAlbums()
         {
             // look through album node.
-            var albumNodes = from node in this.document.Descendants("album")
-                             select new
-                             {
-                                 id_tag = node.Attribute("id_tag").Value,
-                                 photos = node.Element("photos")
-                             };
+            var albumNodes = this.document.Descendants("album");
+            ////select new
+            ////{
+            ////    id_tag = node.Attribute("id_tag").Value,
+            ////    photos = node.Element("photos")
+            ////};
 
             foreach (var albumInfo in albumNodes)
             {
-                var album = new Album(this, albumInfo.id_tag);
+                var album = new Album(this, albumInfo);
 
                 // traverse through all the photos in particular album
                 ////var photoList = new Photos();
-                foreach (var photoInfo in albumInfo.photos.Descendants("photo"))
-                {
-                    // photo
-                    var photo = new Photo(
-                        photoInfo.Attribute("id_tag").Value,
-                        photoInfo.Element("display_name").Value,
-                        photoInfo.Element("copied_path").Value);
+                ////foreach (var photoInfo in albumInfo.Descendants("photo"))
+                ////{
+                ////    // photo
+                ////    var photo = new Photo(
+                ////        photoInfo.Attribute("id_tag").Value,
+                ////        photoInfo.Element("display_name").Value,
+                ////        photoInfo.Element("copied_path").Value);
 
-                    ////photoList.Add(photo);
-                    album.AddPhoto(photo);
-                }
+                ////    ////photoList.Add(photo);
+                ////    album.AddPhoto(photo);
+                ////}
 
                 ////album.ReplacePhotos(photoList);
                 this.albums.Add(album.AlbumId, album);
@@ -368,9 +366,9 @@ namespace PhotoBuddy.BusinessRule
 
             // Put the photo in the album data structure.
             Album currentAlbum = this.GetAlbum(albumId);
-            Photo photo = new Photo(photoId, displayName, storageName);
+            ////Photo photo = new Photo(photoId, displayName, storageName);
             ////currentAlbum.PhotoList.Add(photo);
-            currentAlbum.AddPhoto(photo);
+            currentAlbum.AddPhoto(photoId, displayName, storageName);
             this.SaveAlbums();
         }
 

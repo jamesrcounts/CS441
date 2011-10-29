@@ -14,7 +14,7 @@ namespace PhotoBuddy.Screens
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Windows.Forms;
-    using PhotoBuddy.Common.CommonClass;
+    using PhotoBuddy.Common;
 
     /// <summary>
     /// The create album view

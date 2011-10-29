@@ -1,23 +1,35 @@
 //-----------------------------------------------------------------------
-// <copyright file="NotPictureFileMessage.cs" company="Gold Rush">
+// <copyright file="NameTooLongMessage.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace PhotoBuddy
+namespace PhotoBuddy.Models
 {
     using System.Windows.Forms;
-    using PhotoBuddy.Resources;
+    using PhotoBuddy.Common;
     using PhotoBuddy.Screens;
 
     /// <summary>
-    /// Provides a message to use when the user selects a file that is not an image.
+    /// Provides a message when the name entered is too long.
     /// </summary>
     /// <remarks>
     ///   <para>Author: Jim Counts</para>
     ///   <para>Created: 2011-10-25</para>
     /// </remarks>
-    public sealed class NotPictureFileMessage : IMessage
+    public sealed class NameTooLongMessage : IMessage
     {
+        /// <summary>
+        /// Gets the text.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-25</para>
+        /// </remarks>
+        public string Text
+        {
+            get { return "Name is too long.  Please enter a name less than " + Constants.MaxNameLength; }
+        }
+
         /// <summary>
         /// Gets the caption.
         /// </summary>
@@ -27,7 +39,7 @@ namespace PhotoBuddy
         /// </remarks>
         public string Caption
         {
-            get { return Strings.AppName; }
+            get { return "Name Length Issue"; }
         }
 
         /// <summary>
@@ -52,18 +64,6 @@ namespace PhotoBuddy
         public MessageBoxIcon Icon
         {
             get { return MessageBoxIcon.Warning; }
-        }
-
-        /// <summary>
-        /// Gets the text.
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-25</para>
-        /// </remarks>
-        public string Text
-        {
-            get { return Strings.ErrorNotPictureFile; }
         }
     }
 }

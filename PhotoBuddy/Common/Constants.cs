@@ -7,7 +7,7 @@
 // Modified date: Oct 18 2011
 // Description: this class is responsible of the defined global static strings
 //-----------------------------------------------------------------------
-namespace PhotoBuddy.Common.CommonClass
+namespace PhotoBuddy.Common
 {
     using System;
     using PhotoBuddy.Properties;

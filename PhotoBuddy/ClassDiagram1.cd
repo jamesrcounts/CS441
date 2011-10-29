@@ -1,167 +1,107 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="TheNewPhotoBuddy.BussinessRule.Album" Collapsed="true">
-    <Position X="10" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ABAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
-      <FileName>BusinessRule\Album.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.BussinessRule.Albums">
+  <Class Name="PhotoBuddy.Program" Collapsed="true">
     <Position X="7.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAIAAAQAAAAAAAAAAIACAAAAAAAAAAAAAAAAAAAQA=</HashCode>
-      <FileName>BusinessRule\Albums.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="albumsList" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.BussinessRule.Collectors" Collapsed="true">
-    <Position X="13.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AgIAAABAAAIAEEAAAAAAAAAAAAIAAAAAAAAACAAABAA=</HashCode>
-      <FileName>BusinessRule\Collectors.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.BussinessRule.Photo" Collapsed="true">
-    <Position X="10" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAEAEAAAAAAAAQCAAAAAAAAACAAAAAAA=</HashCode>
-      <FileName>BusinessRule\Photo.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.BussinessRule.Photos" Collapsed="true">
-    <Position X="11.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAACAAIAA=</HashCode>
-      <FileName>BusinessRule\Photos.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.Common.CommonClass.Constants" Collapsed="true">
-    <Position X="15.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAAAAgAAQAAAAAAAAACAAAAAAAAAAA=</HashCode>
-      <FileName>Common\Constants.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.Controls.PB_ClickLabel" Collapsed="true">
-    <Position X="13.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAEAAAACAAAAAAAgAAAAAAAAAAA=</HashCode>
-      <FileName>Controls\PB_ClickLabel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.Controls.PB_ThumbNailUserControl" Collapsed="true">
-    <Position X="15.25" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAEAAAADAAAAAIAACAAAACAAAAAAAAEAAAQwAAACA=</HashCode>
-      <FileName>Controls\PB_ThumbNailUserControl.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.DataAccessLayer.DataAccessBaseXML" Collapsed="true">
-    <Position X="10" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAQAAIAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>DataLayer\DataAccessBaseXML.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.EventObjects.AlbumEventArgs" Collapsed="true">
-    <Position X="11.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAA=</HashCode>
-      <FileName>EventObjects\AlbumEventArgs.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.MainForm">
-    <Position X="0.5" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAAAQQFCAiAIAAARARCAAAgCACAABCEAAAAAQAQIICA=</HashCode>
-      <FileName>MainForm.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="AlbumView" />
-      <Property Name="CreateAlbumView" />
-      <Property Name="CurrentView" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.Program" Collapsed="true">
-    <Position X="13.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TheNewPhotoBuddy.UploadViewForm" Collapsed="true">
-    <Position X="13.5" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAEAAAQACQAAJAAAACAAgACAAAAAAAAEAgQAQBIACA=</HashCode>
-      <FileName>UploadViewForm.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TheNewPhotoBuddy.ViewPhotoForm" Collapsed="true">
-    <Position X="15.25" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>QCEAAAAQAKgAAAAAAICEAgAKAQQACAAIEBASIQREACg=</HashCode>
-      <FileName>ViewPhotoForm.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="PhotoBuddy.Properties.Resources" Collapsed="true">
-    <Position X="15.25" Y="2.5" Width="1.5" />
+    <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AAAAAAAAAAAQAAAAAAABEAAAAQAAAAAAAAAAAAAAAMA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="PhotoBuddy.Properties.Settings" Collapsed="true">
-    <Position X="10" Y="3.5" Width="1.5" />
+    <Position X="7.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQEAAAAAAAIQAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAIQAAAAABAAAAAAAAAAAAIAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="PhotoBuddy.Resources.Strings" Collapsed="true">
-    <Position X="11.75" Y="3.5" Width="1.5" />
+    <Position X="9.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACIAAAAQAAAAAAAAAAABEAAAAQAAAEAAAIAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="TheNewPhotoBuddy.Screens.AlbumViewUserControl" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="11.25" Width="1.5" />
+  <Class Name="PhotoBuddy.Screens.AlbumViewUserControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>wEAAEIAEACAAIAAABQCAAQASCYACAAAAJAEQASABACg=</HashCode>
+      <HashCode>wEAAEIAEACAAIAAABQCAAQASCYACAAAAJAkQASABACg=</HashCode>
       <FileName>Screens\AlbumViewUserControl.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="TheNewPhotoBuddy.Screens.CreateAlbumUserControl" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="1.25" Width="1.5" />
+  <Class Name="PhotoBuddy.Screens.CreateAlbumUserControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAEkCQMQJQAAQCRAAACAAEIAAAAIAEAAQAABCA=</HashCode>
       <FileName>Screens\CreateAlbumUserControl.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="TheNewPhotoBuddy.Screens.HomeScreenUserControl" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.75" Y="1.5" Width="1.5" />
+  <Class Name="PhotoBuddy.Screens.HomeScreenUserControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAIAEEAEgCAgAAAQAwCAgAACAAAAQAAAAAAACSAAACA=</HashCode>
+      <HashCode>CAIAEAIEgCAgAAAQAwDBgAACAAAAQAAIAAAAASQAACA=</HashCode>
       <FileName>Screens\HomeScreenUserControl.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="System.Collections.Hashtable" Collapsed="true">
-    <Position X="4.5" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="System.Windows.Forms.UserControl" Collapsed="true">
-    <Position X="4" Y="3" Width="1.5" />
+    <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Interface Name="TheNewPhotoBuddy.Screens.IScreen" Collapsed="true">
-    <Position X="10" Y="4.75" Width="1.5" />
+  <Class Name="PhotoBuddy.Models.AboutPhotoBuddyMessage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAACAAACAEAAAA=</HashCode>
+      <FileName>Models\AboutPhotoBuddyMessage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PhotoBuddy.Models.Album" Collapsed="true">
+    <Position X="3.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAIAAAAiAEAAAAAASAgAAAAAAAAACAQAAAAAA=</HashCode>
+      <FileName>Models\Album.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhotoBuddy.Models.AlbumRespository" Collapsed="true">
+    <Position X="5.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAFIABAAAIAAAAAABAACAQAAAIgAEBIAAAAiIAQAAA=</HashCode>
+      <FileName>Models\AlbumRespository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PhotoBuddy.Models.InvalidAlbumNameMessage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAACAAACAEAAAA=</HashCode>
+      <FileName>Models\InvalidAlbumNameMessage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PhotoBuddy.Models.Photo" Collapsed="true">
+    <Position X="3.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAAAEAAAAAAAAAAEAAAAAAAQAAAAAAAAAAACAABAAAA=</HashCode>
+      <FileName>Models\Photo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="PhotoBuddy.Screens.IScreen" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAEAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Screens\IScreen.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PhotoBuddy.Models.IMessage" Collapsed="true">
+    <Position X="2" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAACAAACAEAAAA=</HashCode>
+      <FileName>Models\IMessage.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

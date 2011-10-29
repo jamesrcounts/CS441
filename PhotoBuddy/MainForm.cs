@@ -13,10 +13,9 @@ namespace PhotoBuddy
     using System.Collections.Generic;
     using System.Drawing;
     using System.IO;
-    using System.Text;
     using System.Windows.Forms;
-    using PhotoBuddy.BusinessRule;
     using PhotoBuddy.EventObjects;
+    using PhotoBuddy.Models;
     using PhotoBuddy.Resources;
     using PhotoBuddy.Screens;
 
@@ -246,7 +245,8 @@ namespace PhotoBuddy
         /// </remarks>
         private void DeleteAlbum(object sender, AlbumEventArgs e)
         {
-            Model.DeleteAlbum(e.AlbumName);
+            Album album = Model.GetAlbum(e.AlbumName);
+            album.Delete();
             this.ShowView(this.HomeView);
         }
 

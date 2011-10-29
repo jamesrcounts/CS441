@@ -3,11 +3,12 @@
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace PhotoBuddy.Screens
+namespace PhotoBuddy.Models
 {
     using System.Text;
     using System.Windows.Forms;
     using PhotoBuddy.Resources;
+    using PhotoBuddy.Screens;
 
     /// <summary>
     /// Provides data for a message about PhotoBuddy.

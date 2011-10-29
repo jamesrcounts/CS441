@@ -1,43 +1,33 @@
 //-----------------------------------------------------------------------
-// <copyright file="InvalidAlbumNameMessage.cs" company="Gold Rush">
+// <copyright file="NotPictureFileMessage.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace PhotoBuddy.Screens
+namespace PhotoBuddy.Models
 {
     using System.Windows.Forms;
+    using PhotoBuddy.Resources;
+    using PhotoBuddy.Screens;
 
     /// <summary>
-    /// Provides data for an invalid album name message.
+    /// Provides a message to use when the user selects a file that is not an image.
     /// </summary>
     /// <remarks>
     ///   <para>Author: Jim Counts</para>
-    ///   <para>Created: 2011-10-24</para>
+    ///   <para>Created: 2011-10-25</para>
     /// </remarks>
-    public sealed class InvalidAlbumNameMessage : IMessage
+    public sealed class NotPictureFileMessage : IMessage
     {
-        /// <summary>
-        /// Gets the text.
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-24</para>
-        /// </remarks>
-        public string Text
-        {
-            get { return "Invalid album name! Please enter a new album name."; }
-        }
-
         /// <summary>
         /// Gets the caption.
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-24</para>
+        ///   <para>Created: 2011-10-25</para>
         /// </remarks>
         public string Caption
         {
-            get { return "Album Name Invalid"; }
+            get { return Strings.AppName; }
         }
 
         /// <summary>
@@ -45,7 +35,7 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-24</para>
+        ///   <para>Created: 2011-10-25</para>
         /// </remarks>
         public MessageBoxButtons Buttons
         {
@@ -57,11 +47,23 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-24</para>
+        ///   <para>Created: 2011-10-25</para>
         /// </remarks>
         public MessageBoxIcon Icon
         {
             get { return MessageBoxIcon.Warning; }
+        }
+
+        /// <summary>
+        /// Gets the text.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-25</para>
+        /// </remarks>
+        public string Text
+        {
+            get { return Strings.ErrorNotPictureFile; }
         }
     }
 }

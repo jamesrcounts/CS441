@@ -11,7 +11,7 @@ namespace PhotoBuddy.Tests
 {
   using System;
   using Microsoft.VisualStudio.TestTools.UnitTesting;
-  using PhotoBuddy.Common.CommonClass;
+  using PhotoBuddy.Common;
 
   /// <summary>
   /// A container for tests related to <see cref="Constants"/>
