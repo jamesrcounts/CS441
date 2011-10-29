@@ -81,6 +81,7 @@ namespace PhotoBuddy
             this.InitializeUIScreens();
             this.MessageService = messageService;
             this.importFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+
             this.CurrentView = this.HomeView;
             this.ShowView(this.HomeView);
             this.Text = Strings.AppName;
@@ -230,7 +231,7 @@ namespace PhotoBuddy
         private void ShowSelectedAlbum(object sender, AlbumEventArgs e)
         {
             this.AlbumView.CurrentAlbum = Model.GetAlbum(e.AlbumName);
-           //// this.AlbumView.CurrentAlbum = (Album)Model.Albums.AlbumList[e.TheAlbum.AlbumID.Replace("&&", "&")];
+            //// this.AlbumView.CurrentAlbum = (Album)Model.Albums.AlbumList[e.TheAlbum.AlbumID.Replace("&&", "&")];
             this.ShowView(this.AlbumView);
         }
 
@@ -319,7 +320,8 @@ namespace PhotoBuddy
         {
             using (OpenFileDialog fileBrowser = new OpenFileDialog())
             {
-                fileBrowser.InitialDirectory = this.importFolderPath;
+                this.photoBrowserOpenFileDialog.InitialDirectory = this.importFolderPath;
+
                 fileBrowser.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png|bmp files (*.bmp)|*.bmp|gif files (*.gif)|*.gif";
                 fileBrowser.FilterIndex = 1;
                 fileBrowser.RestoreDirectory = true;
@@ -328,15 +330,27 @@ namespace PhotoBuddy
                 DialogResult result = fileBrowser.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    MultiPhotoImportForm multiPhotoImportForm = new MultiPhotoImportForm();
                     this.importFolderPath = Path.GetDirectoryName(fileBrowser.FileName);
                     foreach (string fileName in fileBrowser.FileNames)
                     {
-                        this.VerifyIncomingPhoto(fileName);
+                        multiPhotoImportForm.AddImageFromFile(fileName);
+                        ////     this.VerifyIncomingPhoto(fileName);
+                    }
+                    DialogResult importResult = multiPhotoImportForm.ShowDialog();
+                    if (importResult == DialogResult.OK)
+                    {
+                        foreach (var importFile in multiPhotoImportForm.SelectedFiles)
+                        {
+                            // User approved so upload the photo to the album.
+                            string name = importFile.Key;
+                            string file = importFile.Value;
+                            Model.AddPhotoToAlbum(this.AlbumView.CurrentAlbum.AlbumId, name, file);
+                        }
+                        this.AlbumView.RefreshPhotoList();
                     }
                 }
             }
-
-            this.AlbumView.RefreshPhotoList();
         }
 
         /// <summary>

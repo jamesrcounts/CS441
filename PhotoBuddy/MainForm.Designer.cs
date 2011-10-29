@@ -32,6 +32,7 @@ namespace PhotoBuddy
             this.panelScreenHolder = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AppNameLabel = new System.Windows.Forms.Label();
+            this.photoBrowserOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,7 +85,7 @@ namespace PhotoBuddy
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeScreenForm";
@@ -99,5 +100,6 @@ namespace PhotoBuddy
         private System.Windows.Forms.Panel panelScreenHolder;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label AppNameLabel;
+        private System.Windows.Forms.OpenFileDialog photoBrowserOpenFileDialog;
     }
 }
