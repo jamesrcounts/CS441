@@ -100,6 +100,28 @@ namespace PhotoBuddy.Screens
                                  select new KeyValuePair<string, string>(
                                      listItem.SubItems[0].Text,
                                      listItem.SubItems[1].Text);
+
+            var tooLong = this.SelectedFiles.Where(file => PhotoBuddy.Common.Constants.MaxNameLength < file.Key.Length);
+            if (tooLong.Any())
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.AppendLine("The list of selected photos contains names that are too long:");
+                foreach (var file in tooLong)
+                {
+                    sb.AppendLine(file.Key);
+                }
+
+                sb.AppendLine("Please use names up to 32 characters long.");
+
+                MessageBox.Show(
+                    sb.ToString(),
+                    "Could Not Add Photos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
+            }
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -2,9 +2,9 @@
 // <copyright file="AlbumRespository.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales and Andrea Tan
+// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
 // Date: Sept 28 2011
-// Modified date: Oct 9 2011
+// Modified date: Oct 31 2011
 // High level Description: this class is responsible for populating the objects from the XMLs,
 //                         holding the of overall album and photos objects.
 //                         collectors are the one that's responsible as a global object holders of

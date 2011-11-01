@@ -165,6 +165,12 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public static XElement CreatePhotoElement(string photoId, string displayName, string fileName)
         {
+            if (Constants.MaxNameLength < displayName.Length)
+            {
+                var nameTooLongMessage = new NameTooLongMessage();
+                throw new ArgumentException("displayName", nameTooLongMessage.Text);
+            }
+
             XElement photoElement = new XElement("photo");
             photoElement.Add(new XAttribute("id_tag", photoId));
             photoElement.Add(new XElement("copied_path", fileName));
