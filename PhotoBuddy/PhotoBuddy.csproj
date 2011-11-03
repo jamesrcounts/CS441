@@ -115,8 +115,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\CropBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\AlbumEventArgs.cs" />
     <Compile Include="Models\AlbumRepository.cs" />
+    <Compile Include="Models\IAlbum.cs" />
+    <Compile Include="Models\IPhoto.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controls\AlbumThumbnailUserControl.cs">
@@ -137,13 +143,15 @@
     <Compile Include="EventObjects\PhotoEventArgs.cs" />
     <Compile Include="Models\NameTooLongMessage.cs" />
     <Compile Include="Models\NotPictureFileMessage.cs" />
+    <Compile Include="Models\XmlAlbum.cs" />
+    <Compile Include="Models\XmlPhoto.cs" />
     <Compile Include="ProcessChecker.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="EventObjects\AlbumEventArgs.cs" />
+    <Compile Include="Models\AlbumNameEventArgs.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ClickLabel.resx">
       <DependentUpon>ClickLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CropBox.resx">
+      <DependentUpon>CropBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ThumbnailUserControl.resx">
       <DependentUpon>ThumbnailUserControl.cs</DependentUpon>

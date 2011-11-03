@@ -35,7 +35,7 @@ namespace PhotoBuddy
         /// Creates an instance of the UploadViewForm that is configured to rename a photo.
         ///   </para>
         /// </remarks>
-        public UploadViewForm(Photo photo)
+        public UploadViewForm(IPhoto photo)
         {
             this.InitializeComponent();
 

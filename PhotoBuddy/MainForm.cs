@@ -194,11 +194,23 @@ namespace PhotoBuddy
             this.HomeView.CreateButtonEvent += this.HandleCreateButtonClick;
             this.HomeView.AlbumSelectedEvent += this.ShowSelectedAlbum;
             this.HomeView.DeleteAlbumEvent += this.DeleteAlbum;
+            this.HomeView.SearchCompleteEvent += this.ShowSearchResults;
             this.CreateAlbumView.CancelEvent += this.GoBack;
             this.CreateAlbumView.ContinueEvent += this.CreateOrEditAlbum;
             this.AlbumView.BackEvent += this.ReturnToHomeView;
             ////this.AlbumView.AddPhotosEvent += this.AddPhotos;
             this.AlbumView.RenameAlbumEvent += this.RenameAlbum;
+        }
+
+        /// <summary>
+        /// Shows the selected album.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.Models.AlbumEventArgs"/> instance containing the event data.</param>
+        private void ShowSearchResults(object sender, AlbumEventArgs e)
+        {
+            this.AlbumView.CurrentAlbum = e.Album;
+            this.ShowView(this.AlbumView);
         }
 
         /// <summary>
@@ -209,7 +221,7 @@ namespace PhotoBuddy
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        private void ShowSelectedAlbum(object sender, AlbumEventArgs e)
+        private void ShowSelectedAlbum(object sender, AlbumNameEventArgs e)
         {
             this.AlbumView.CurrentAlbum = Model.GetAlbum(e.AlbumName);
             //// this.AlbumView.CurrentAlbum = (Album)Model.Albums.AlbumList[e.TheAlbum.AlbumID.Replace("&&", "&")];
@@ -226,7 +238,7 @@ namespace PhotoBuddy
         ///   <para>Created: 2011-10-27</para>
         ///   <para>Modified: 2011-10-28</para>
         /// </remarks>
-        private void DeleteAlbum(object sender, AlbumEventArgs e)
+        private void DeleteAlbum(object sender, AlbumNameEventArgs e)
         {
             var result = CultureAwareMessageBox.Show(
                 this,

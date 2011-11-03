@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="AlbumEventArgs.cs" company="Gold Rush">
+// <copyright file="AlbumNameEventArgs.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 // Author(s): Miguel Gonzales and Andrea Tan
@@ -8,10 +8,9 @@
 // Description: An event args object that enables the passing of an album object after 
 //              an event occurs.
 //-----------------------------------------------------------------------
-namespace PhotoBuddy.EventObjects
+namespace PhotoBuddy.Models
 {
     using System;
-    using PhotoBuddy.Models;
 
     /// <summary>
     /// Pass an album using events.
@@ -21,7 +20,7 @@ namespace PhotoBuddy.EventObjects
     /// Date: Sept 28 2011
     /// Modified date: Oct 23 2011
     /// </remarks>
-    public class AlbumEventArgs : EventArgs
+    public class AlbumNameEventArgs : EventArgs
     {
         /// <summary>
         /// The album to pass.
@@ -29,7 +28,7 @@ namespace PhotoBuddy.EventObjects
         private readonly string albumId;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AlbumEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="AlbumNameEventArgs"/> class.
         /// </summary>
         /// <param name="albumId">The name of the album to pass.</param>
         /// <remarks>
@@ -37,7 +36,7 @@ namespace PhotoBuddy.EventObjects
         /// Date: Sept 28 2011
         /// Modified date: Oct 26 2011
         /// </remarks>
-        public AlbumEventArgs(string albumId)
+        public AlbumNameEventArgs(string albumId)
         {
             this.albumId = albumId;
         }

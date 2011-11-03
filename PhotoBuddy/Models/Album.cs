@@ -16,7 +16,6 @@ namespace PhotoBuddy.Models
     using System.Diagnostics;
     using System.Drawing;
     using System.Linq;
-    using System.Xml.Linq;
 
     /// <summary>
     /// An album contains an album id and a list of photos.
@@ -26,66 +25,35 @@ namespace PhotoBuddy.Models
     ///   <para>Modified: 2011-10-28</para>
     /// </remarks>
     [DebuggerDisplay("{AlbumId}")]
-    public class Album
+    public sealed class Album : IAlbum
     {
         /// <summary>
-        /// string literal: id_tag
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-02</para>
-        /// </remarks>
-        private const string IdTag = "id_tag";
-
-        /// <summary>
-        /// string literal: album
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-02</para>
-        /// </remarks>
-        private const string AlbumTag = "album";
-
-        /// <summary>
-        /// string literal: photo
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-02</para>
-        /// </remarks>
-        private const string PhotoTag = "photo";
-
-        /// <summary>
-        /// A reference to the XML element this album is derived from.
+        /// Backing store for indexed photo list.
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        private readonly XElement albumElement;
-
-        /////// <summary>
-        /////// Backing store for indexed photo list.
-        /////// </summary>
-        /////// <remarks>
-        ///////   <para>Author: Jim Counts</para>
-        ///////   <para>Created: 2011-10-28</para>
-        /////// </remarks>
-        ////private readonly IDictionary<string, Photo> photos = new Dictionary<string, Photo>();
+        private readonly IDictionary<string, IPhoto> photos = new Dictionary<string, IPhoto>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Album"/> class.
         /// </summary>
         /// <param name="repository">The album repository.</param>
-        /// <param name="albumElement">The album element.</param>
+        /// <param name="albumId">The album id.</param>
+        /// <param name="photos">The photos.</param>
         /// <remarks>
         ///   <para>Authors: Jim Counts</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        public Album(AlbumRepository repository, XElement albumElement)
+        public Album(AlbumRepository repository, string albumId, IEnumerable<IPhoto> photos)
         {
             this.Repository = repository;
-            this.albumElement = albumElement;
+            this.AlbumId = albumId;
+            foreach (var photo in photos)
+            {
+                this.photos.Add(photo.PhotoId, photo);
+            }
         }
 
         /// <summary>
@@ -97,18 +65,7 @@ namespace PhotoBuddy.Models
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan.
         /// </remarks>
-        public string AlbumId
-        {
-            get
-            {
-                return this.albumElement.Attribute(IdTag).Value;
-            }
-
-            set
-            {
-                this.albumElement.Attribute(IdTag).Value = value;
-            }
-        }
+        public string AlbumId { get; set; }
 
         /// <summary>
         /// Gets the photos in the album.
@@ -118,12 +75,11 @@ namespace PhotoBuddy.Models
         ///   <para>Created: 2011-10-27</para>
         ///   <para>Modified: 2011-10-28</para>
         /// </remarks>
-        public IEnumerable<Photo> Photos
+        public IEnumerable<IPhoto> Photos
         {
             get
             {
-                return from photoElement in this.albumElement.Descendants(PhotoTag)
-                       select new Photo(this, photoElement);
+                return this.photos.Values;
             }
         }
 
@@ -146,7 +102,7 @@ namespace PhotoBuddy.Models
         {
             get
             {
-                return this.Photos.Count();
+                return this.photos.Count;
             }
         }
 
@@ -161,27 +117,13 @@ namespace PhotoBuddy.Models
         {
             get
             {
-                if (this.Photos.Count() <= 0)
+                if (this.Count <= 0)
                 {
                     return PhotoBuddy.Properties.Resources.FolderIcon.ToBitmap();
                 }
 
                 return this.Photos.First().Image;
             }
-        }
-
-        /// <summary>
-        /// Creates a new album element.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns>A new XML element which describes an empty album.</returns>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-28</para>
-        /// </remarks>
-        public static XElement CreateAlbumElement(string name)
-        {
-            return new XElement(AlbumTag, new XAttribute(IdTag, name));
         }
 
         /// <summary>
@@ -196,47 +138,62 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public void AddPhoto(string photoId, string displayName, string fileName)
         {
-            if (this.ContainsPhoto(photoId))
-            {
-                throw new ArgumentException("Photo already exists in the album.", "photoId");
-            }
-
-            if (this.ContainsName(displayName))
-            {
-                throw new ArgumentException("Name already exists in the album.", "displayName");
-            }
-
-            // Update XML
-            XElement photoElement = Photo.CreatePhotoElement(photoId, displayName, fileName);
-            this.albumElement.Add(photoElement);
+            this.AddPhoto(new Photo(this, photoId, displayName, fileName));
         }
 
         /// <summary>
-        /// Determines whether the album contains a photo with the specified photoId.
+        /// Adds the photo.
+        /// </summary>
+        /// <param name="photoToAdd">The photo to add.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>
+        public void AddPhoto(IPhoto photoToAdd)
+        {
+            if (this.ContainsPhoto(photoToAdd.PhotoId))
+            {
+                throw new ArgumentException("Photo with the same id already exists in the album.", "photoToAdd");
+            }
+
+            if (this.ContainsName(photoToAdd.DisplayName))
+            {
+                throw new ArgumentException("Photo with the same display name already exists in the album.", "photoToAdd");
+            }
+
+            this.photos.Add(photoToAdd.PhotoId, photoToAdd);
+        }
+
+        /// <summary>
+        /// Determines whether the album contains the specified photo id.
         /// </summary>
         /// <param name="photoId">The photo id.</param>
         /// <returns>
-        ///   <c>true</c> if the specified photo id exists; otherwise, <c>false</c>.
+        ///   <c>true</c> if the album contains the specified photo id; otherwise, <c>false</c>.
         /// </returns>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-02</para>
+        ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public bool ContainsPhoto(string photoId)
         {
-            return this.Photos.Any(photo => photo.PhotoId == photoId);
+            return this.photos.ContainsKey(photoId);
         }
 
         /// <summary>
-        /// Determines whether the album contains a photo with specified display name.
+        /// Determines whether the album contains the specified display name.
         /// </summary>
         /// <param name="displayName">The display name.</param>
         /// <returns>
-        ///   <c>true</c> if the specified display name exists; otherwise, <c>false</c>.
+        ///   <c>true</c> if the album contains the specified display name; otherwise, <c>false</c>.
         /// </returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>
         public bool ContainsName(string displayName)
         {
-            return this.Photos.Any(photo => photo.DisplayName == displayName);
+            return this.photos.Values.Any(photo => photo.DisplayName == displayName);
         }
 
         /// <summary>
@@ -248,9 +205,10 @@ namespace PhotoBuddy.Models
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
-        public Photo GetPhoto(string photoId)
+        public IPhoto GetPhoto(string photoId)
         {
-            return this.Photos.SingleOrDefault(photo => photo.PhotoId == photoId);
+            IPhoto photo = null;
+            return this.photos.TryGetValue(photoId, out photo) ? photo : null;
         }
 
         /// <summary>
@@ -263,7 +221,6 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public void Delete()
         {
-            this.albumElement.Remove();
             this.Repository.DeleteAlbum(this.AlbumId);
         }
 
@@ -279,6 +236,7 @@ namespace PhotoBuddy.Models
         public void RemovePhoto(string photoId)
         {
             this.GetPhoto(photoId).Delete();
+            this.photos.Remove(photoId);
         }
 
         /// <summary>

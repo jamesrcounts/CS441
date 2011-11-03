@@ -14,13 +14,12 @@ namespace PhotoBuddy.Models
     using System;
     using System.Drawing;
     using System.IO;
-    using System.Xml.Linq;
     using PhotoBuddy.Common;
 
     /// <summary>
     /// Provides methods for working with Album photos.
     /// </summary>
-    public class Photo
+    public sealed class Photo : IPhoto
     {
         /// <summary>
         /// Image to display any time there is a problem fetching the intended photo.
@@ -38,16 +37,25 @@ namespace PhotoBuddy.Models
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        private readonly Album parentAlbum;
+        private readonly IAlbum parentAlbum;
 
         /// <summary>
-        /// The XML element which describes this photo.
+        /// Identifies the photo.
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-28</para>
+        ///   <para>Created: 2011-11-03</para>
         /// </remarks>
-        private readonly XElement photoElement;
+        private readonly string photoId;
+
+        /// <summary>
+        /// Name of the photo.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>
+        private readonly string fileName;
 
         /// <summary>
         /// Cached instance of the photo.
@@ -62,15 +70,34 @@ namespace PhotoBuddy.Models
         /// Initializes a new instance of the <see cref="Photo"/> class.
         /// </summary>
         /// <param name="album">The album.</param>
-        /// <param name="photoElement">The photo element.</param>
+        /// <param name="photoId">The photo id.</param>
+        /// <param name="displayName">The display name.</param>
+        /// <param name="fileName">Name of the file.</param>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        public Photo(Album album, XElement photoElement)
+        public Photo(IAlbum album, string photoId, string displayName, string fileName)
         {
             this.parentAlbum = album;
-            this.photoElement = photoElement;
+            this.photoId = photoId;
+            this.DisplayName = displayName;
+            this.fileName = fileName;
+        }
+
+        /// <summary>
+        /// Gets the album.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>
+        public IAlbum Album
+        {
+            get
+            {
+                return this.parentAlbum;
+            }
         }
 
         /// <summary>
@@ -86,7 +113,7 @@ namespace PhotoBuddy.Models
         {
             get
             {
-                return this.photoElement.Attribute("id_tag").Value;
+                return this.photoId;
             }
         }
 
@@ -99,18 +126,7 @@ namespace PhotoBuddy.Models
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        public string DisplayName
-        {
-            get
-            {
-                return this.photoElement.Element("display_name").Value;
-            }
-
-            set
-            {
-                this.photoElement.Element("display_name").Value = value;
-            }
-        }
+        public string DisplayName { get; set; }
 
         /// <summary>
         /// Gets the file name.
@@ -125,7 +141,7 @@ namespace PhotoBuddy.Models
         {
             get
             {
-                return this.photoElement.Element("copied_path").Value;
+                return this.fileName;
             }
         }
 
@@ -181,33 +197,7 @@ namespace PhotoBuddy.Models
                 return this.photoImage;
             }
         }
-
-        /// <summary>
-        /// Creates a new photo element.
-        /// </summary>
-        /// <param name="photoId">The photo id.</param>
-        /// <param name="displayName">The display name.</param>
-        /// <param name="fileName">Name of the file.</param>
-        /// <returns>An XML element which describes the photo.</returns>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-28</para>
-        /// </remarks>
-        public static XElement CreatePhotoElement(string photoId, string displayName, string fileName)
-        {
-            if (Constants.MaxNameLength < displayName.Length)
-            {
-                var nameTooLongMessage = new NameTooLongMessage();
-                throw new ArgumentException(nameTooLongMessage.Text, "displayName");
-            }
-
-            XElement photoElement = new XElement("photo");
-            photoElement.Add(new XAttribute("id_tag", photoId));
-            photoElement.Add(new XElement("copied_path", fileName));
-            photoElement.Add(new XElement("display_name", displayName));
-            return photoElement;
-        }
-
+        
         /// <summary>
         /// Deletes this photo from the album.
         /// </summary>
@@ -219,7 +209,6 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public void Delete()
         {
-            this.photoElement.Remove();
             this.parentAlbum.Repository.CollectGarbage(this.PhotoId, this.FullPath);
         }
 

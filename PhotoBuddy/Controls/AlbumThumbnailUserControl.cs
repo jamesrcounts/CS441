@@ -9,7 +9,7 @@ namespace PhotoBuddy.Controls
     using System.Drawing;
     using System.Globalization;
     using System.Windows.Forms;
-    using PhotoBuddy.EventObjects;
+    using PhotoBuddy.Models;
 
     /// <summary>
     /// Displays an album on the home screen.
@@ -39,7 +39,7 @@ namespace PhotoBuddy.Controls
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        public event EventHandler<AlbumEventArgs> AlbumSelectedEvent;
+        public event EventHandler<AlbumNameEventArgs> AlbumSelectedEvent;
 
         /// <summary>
         /// Occurs when the user makes a request to delete an album.
@@ -48,7 +48,7 @@ namespace PhotoBuddy.Controls
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
-        public event EventHandler<AlbumEventArgs> DeleteAlbumEvent;
+        public event EventHandler<AlbumNameEventArgs> DeleteAlbumEvent;
 
         /// <summary>
         /// Gets or sets the name of the album.
@@ -128,9 +128,9 @@ namespace PhotoBuddy.Controls
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        public virtual void OnAlbumSelectedEvent(object sender, AlbumEventArgs e)
+        public virtual void OnAlbumSelectedEvent(object sender, AlbumNameEventArgs e)
         {
-            EventHandler<AlbumEventArgs> handler = this.AlbumSelectedEvent;
+            EventHandler<AlbumNameEventArgs> handler = this.AlbumSelectedEvent;
             if (handler != null)
             {
                 handler(sender, e);
@@ -146,9 +146,9 @@ namespace PhotoBuddy.Controls
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
-        public virtual void OnDeleteAlbumEvent(object sender, AlbumEventArgs e)
+        public virtual void OnDeleteAlbumEvent(object sender, AlbumNameEventArgs e)
         {
-            EventHandler<AlbumEventArgs> handler = this.DeleteAlbumEvent;
+            EventHandler<AlbumNameEventArgs> handler = this.DeleteAlbumEvent;
             if (handler != null)
             {
                 handler(sender, e);
@@ -166,7 +166,7 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void HandleCoverImagePictureBoxClick(object sender, EventArgs e)
         {
-            this.OnAlbumSelectedEvent(this, new AlbumEventArgs(this.AlbumName));
+            this.OnAlbumSelectedEvent(this, new AlbumNameEventArgs(this.AlbumName));
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void HandleDeleteToolStripItemClick(object sender, EventArgs e)
         {
-            this.OnDeleteAlbumEvent(this, new AlbumEventArgs(this.AlbumName));
+            this.OnDeleteAlbumEvent(this, new AlbumNameEventArgs(this.AlbumName));
         }
     }
 }

@@ -55,24 +55,6 @@ namespace PhotoBuddy.Screens
             this.DisplayName = "Albums";
         }
 
-        /////// <summary>
-        /////// Defines a delegate to handle "Create Album" events.
-        /////// </summary>
-        /////// <param name="sender">The sender.</param>
-        /////// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /////// <remarks>Create Album events are typically fired by the "Create Album" button, and indicate that the user wants to 
-        /////// create an album.</remarks>
-        ////public delegate void CreateButtonClicked(object sender, EventArgs e);
-
-        /////// <summary>
-        /////// Defines a delegate to handle the "Album Selected" event.
-        /////// </summary>
-        /////// <param name="sender">The sender.</param>
-        /////// <param name="e">The <see cref="TheNewPhotoBuddy.EventObjects.AlbumEventArgs"/> instance containing the event data.</param>
-        /////// <remarks>Album selected events are typically fired when the user clicks on an album, and indicate that the user wants to 
-        /////// view an album.</remarks>
-        ////public delegate void AlbumSelectedEventHandler(object sender, AlbumEventArgs e);
-
         /// <summary>
         /// Occurs when the user clicks the create button.
         /// </summary>
@@ -81,7 +63,7 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// Occurs when an album is selected event.
         /// </summary>
-        public event EventHandler<AlbumEventArgs> AlbumSelectedEvent;
+        public event EventHandler<AlbumNameEventArgs> AlbumSelectedEvent;
 
         /// <summary>
         /// Occurs when the delete event is selected for an album.
@@ -90,7 +72,12 @@ namespace PhotoBuddy.Screens
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
-        public event EventHandler<AlbumEventArgs> DeleteAlbumEvent;
+        public event EventHandler<AlbumNameEventArgs> DeleteAlbumEvent;
+
+        /// <summary>
+        /// Occurs when a search completes.
+        /// </summary>
+        public event EventHandler<AlbumEventArgs> SearchCompleteEvent;
 
         /// <summary>
         /// Gets the a reference to the album repository.
@@ -179,6 +166,24 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
+        /// Called when [search complete event].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.Models.AlbumEventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>  
+        public virtual void OnSearchCompleteEvent(object sender, AlbumEventArgs e)
+        {
+            EventHandler<AlbumEventArgs> handler = this.SearchCompleteEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
+        /// <summary>
         /// Called when album selected event fires on a album thumbnail control.
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -187,9 +192,9 @@ namespace PhotoBuddy.Screens
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        protected virtual void OnAlbumSelectedEvent(object sender, AlbumEventArgs e)
+        protected virtual void OnAlbumSelectedEvent(object sender, AlbumNameEventArgs e)
         {
-            EventHandler<AlbumEventArgs> handler = this.AlbumSelectedEvent;
+            EventHandler<AlbumNameEventArgs> handler = this.AlbumSelectedEvent;
             if (handler != null)
             {
                 handler(sender, e);
@@ -205,9 +210,9 @@ namespace PhotoBuddy.Screens
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        protected virtual void OnDeleteAlbumEvent(object sender, AlbumEventArgs e)
+        protected virtual void OnDeleteAlbumEvent(object sender, AlbumNameEventArgs e)
         {
-            EventHandler<AlbumEventArgs> handler = this.DeleteAlbumEvent;
+            EventHandler<AlbumNameEventArgs> handler = this.DeleteAlbumEvent;
             if (handler != null)
             {
                 handler(sender, e);
@@ -240,6 +245,27 @@ namespace PhotoBuddy.Screens
             // raise the create event
             EventArgs args = new EventArgs();
             this.CreateButtonEvent(this, args);
+        }
+
+        /// <summary>
+        /// Handles the search button click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>
+        private void HandleSearchButtonClick(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(this.searchTextBox.Text))
+            {
+                return;
+            }
+
+            var terms = this.searchTextBox.Text.Split(' ');
+            var searchReults = this.Repository.Search(terms);
+            this.OnSearchCompleteEvent(this, new AlbumEventArgs(searchReults));
         }
     }
 }

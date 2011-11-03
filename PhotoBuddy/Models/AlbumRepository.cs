@@ -27,6 +27,13 @@ namespace PhotoBuddy.Models
     /// </summary>
     public class AlbumRepository
     {
+        ////private const string AlbumsTag = "albums";
+
+        /// <summary>
+        /// string literal: photo_buddy
+        /// </summary>
+        private const string PhotoBuddyTag = "photo_buddy";
+
         /// <summary>
         /// Provides API access to the data storage XML.
         /// </summary>
@@ -39,7 +46,7 @@ namespace PhotoBuddy.Models
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        private readonly IDictionary<string, Album> albums = new Dictionary<string, Album>();
+        private readonly IDictionary<string, IAlbum> albums = new Dictionary<string, IAlbum>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AlbumRepository"/> class.
@@ -60,7 +67,7 @@ namespace PhotoBuddy.Models
             }
             else
             {
-                this.document = new XDocument(new XElement("photo_buddy", new XElement("albums")));
+                this.document = new XDocument(new XElement(PhotoBuddyTag));
                 this.document.Save(Constants.XmlDataFilePath);
             }
 
@@ -74,13 +81,13 @@ namespace PhotoBuddy.Models
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        public IEnumerable<Album> Albums
+        public IEnumerable<IAlbum> Albums
         {
             get
             {
                 if (this.albums == null)
                 {
-                    return Enumerable.Empty<Album>();
+                    return Enumerable.Empty<IAlbum>();
                 }
 
                 return this.albums.Values;
@@ -127,9 +134,9 @@ namespace PhotoBuddy.Models
         ///   <para>Authors: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
-        public void DeletePhoto(Album enclosingAlbum, Photo photoToDelete)
+        public void DeletePhoto(IAlbum enclosingAlbum, IPhoto photoToDelete)
         {
-            Album album = null;
+            IAlbum album = null;
             if (this.albums.TryGetValue(enclosingAlbum.AlbumId, out album))
             {
                 album.RemovePhoto(photoToDelete.PhotoId);
@@ -148,7 +155,7 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public void RenameAlbum(string name, string updateName)
         {
-            Album album = this.DetachAlbum(name);
+            IAlbum album = this.DetachAlbum(name);
             if (album == null)
             {
                 return;
@@ -167,13 +174,13 @@ namespace PhotoBuddy.Models
         /// <param name="photoId">The photo ID</param>
         public void RenamePhotoInAlbum(string albumName, string displayName, string photoId)
         {
-            Album album = this.GetAlbum(albumName);
+            IAlbum album = this.GetAlbum(albumName);
             if (album == null)
             {
                 return;
             }
 
-            Photo photo = album.GetPhoto(photoId);
+            IPhoto photo = album.GetPhoto(photoId);
             if (photo == null)
             {
                 return;
@@ -195,7 +202,7 @@ namespace PhotoBuddy.Models
         ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
         ///   <para>Modified: 2011-10-28</para>
         /// </remarks>
-        public Album AddAlbum(string albumName)
+        public IAlbum AddAlbum(string albumName)
         {
             if (string.IsNullOrWhiteSpace(albumName) || Constants.MaxNameLength < albumName.Length)
             {
@@ -205,9 +212,9 @@ namespace PhotoBuddy.Models
             if (!this.albums.ContainsKey(albumName))
             {
                 // Update XML
-                XElement albumElement = Album.CreateAlbumElement(albumName);
-                this.document.Descendants("albums").First().Add(albumElement);
-                var album = new Album(this, albumElement);
+                XElement albumElement = XmlAlbum.CreateAlbumElement(albumName);
+                this.document.Descendants().First().Add(albumElement);
+                var album = new XmlAlbum(this, albumElement);
 
                 // Update Album Index
                 this.albums.Add(album.AlbumId, album);
@@ -269,6 +276,23 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
+        /// Searches for photos that match the specified terms.
+        /// </summary>
+        /// <param name="terms">The terms.</param>
+        /// <returns>A detached album containing the photos.</returns>
+        public IAlbum Search(params string[] terms)
+        {
+            var matches = from term in terms
+                          from album in this.Albums
+                          from photo in album.Photos
+                          where photo.DisplayName.Contains(term)
+                          select photo;
+
+            var searchResults = new Album(this, "Search Results", matches.Distinct());
+            return searchResults;
+        }
+
+        /// <summary>
         /// Gets the specified album.
         /// </summary>
         /// <param name="albumId">The album id.</param>
@@ -279,9 +303,9 @@ namespace PhotoBuddy.Models
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        public Album GetAlbum(string albumId)
+        public IAlbum GetAlbum(string albumId)
         {
-            Album album = null;
+            IAlbum album = null;
             if (this.albums.TryGetValue(albumId, out album))
             {
                 return album;
@@ -316,7 +340,7 @@ namespace PhotoBuddy.Models
             var albumNodes = this.document.Descendants("album");
             foreach (var albumInfo in albumNodes)
             {
-                var album = new Album(this, albumInfo);
+                var album = new XmlAlbum(this, albumInfo);
                 this.albums.Add(album.AlbumId, album);
             }
         }
@@ -339,7 +363,7 @@ namespace PhotoBuddy.Models
             string storageName = Path.GetFileName(storagePath);
 
             // Put the photo in the album data structure.
-            Album currentAlbum = this.GetAlbum(albumId);
+            IAlbum currentAlbum = this.GetAlbum(albumId);
             currentAlbum.AddPhoto(photoId, displayName, storageName);
             this.SaveAlbums();
         }
@@ -407,7 +431,7 @@ namespace PhotoBuddy.Models
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        private Album DetachAlbum(string name)
+        private IAlbum DetachAlbum(string name)
         {
             var album = this.GetAlbum(name);
             if (album == null)

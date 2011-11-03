@@ -31,7 +31,7 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// The current album.
         /// </summary>
-        private Album currentAlbum;
+        private IAlbum currentAlbum;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AlbumViewUserControl"/> class.
@@ -77,7 +77,7 @@ namespace PhotoBuddy.Screens
         /// <value>
         /// The current album.
         /// </value>
-        public Album CurrentAlbum
+        public IAlbum CurrentAlbum
         {
             get
             {
@@ -123,7 +123,7 @@ namespace PhotoBuddy.Screens
                 return;
             }
 
-            foreach (Photo photo in this.currentAlbum.Photos)
+            foreach (IPhoto photo in this.currentAlbum.Photos)
             {
                 // Create a thumbnail control for the current photo
                 ThumbnailUserControl thumb = new ThumbnailUserControl() { DisplayName = photo.DisplayName };
@@ -276,7 +276,7 @@ namespace PhotoBuddy.Screens
         private void HandlePhotoClick(object sender, EventArgs e)
         {
             PictureBox uc = sender as PictureBox;
-            using (ViewPhotoForm photoForm = new ViewPhotoForm(this.currentAlbum, (Photo)uc.Tag))
+            using (ViewPhotoForm photoForm = new ViewPhotoForm(this.currentAlbum, (IPhoto)uc.Tag))
             {
                 photoForm.ShowDialog();
                 this.RefreshPhotoList();
@@ -330,9 +330,9 @@ namespace PhotoBuddy.Screens
             }
 
             string photoDisplayName = e.PhotoDisplayName;
-            Album currentAlbum = this.CurrentAlbum;
+            IAlbum currentAlbum = this.CurrentAlbum;
 
-            Photo photoToDelete = currentAlbum.Photos.Where(photo => photo.DisplayName == photoDisplayName).Single();
+            IPhoto photoToDelete = currentAlbum.Photos.Where(photo => photo.DisplayName == photoDisplayName).Single();
             currentAlbum.Repository.DeletePhoto(currentAlbum, photoToDelete);
             this.RefreshPhotoList();
         }

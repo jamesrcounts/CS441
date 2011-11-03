@@ -26,7 +26,7 @@ namespace PhotoBuddy
         /// <summary>
         /// The album the photo belongs to.
         /// </summary>
-        private readonly Album album;
+        private readonly IAlbum album;
 
         /////// <summary>
         /////// The photo id.
@@ -36,12 +36,12 @@ namespace PhotoBuddy
         /// <summary>
         /// The photo
         /// </summary>
-        private readonly Photo picture;
+        private readonly IPhoto picture;
 
         /// <summary>
         /// All photos in the album.
         /// </summary>
-        private readonly IList<Photo> allPhotosInAlbum;
+        private readonly IList<IPhoto> allPhotosInAlbum;
 
         /// <summary>
         /// The current photo's index.
@@ -67,7 +67,7 @@ namespace PhotoBuddy
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        public ViewPhotoForm(Album currentAlbum, Photo photoToDisplay)
+        public ViewPhotoForm(IAlbum currentAlbum, IPhoto photoToDisplay)
         {
             this.InitializeComponent();
             this.Text = "Photo Display - Photo Buddy";
@@ -90,7 +90,7 @@ namespace PhotoBuddy
         /// </remarks>
         private void DisplayPhoto(int index)
         {
-            Photo photo = this.allPhotosInAlbum[index];
+            IPhoto photo = this.allPhotosInAlbum[index];
             this.pictureBox1.Image = photo.Image;
             this.photoNameLabel.Text = photo.DisplayName.Replace("&", "&&");
             this.Text = photo.DisplayName + " - Photo Buddy";
@@ -201,27 +201,21 @@ namespace PhotoBuddy
         /// <remarks>
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-25</para>
-        ///   <para>Modified: 2011-10-25</para>
+        ///   <para>Modified: 2011-11-03</para>
         /// </remarks>
         private void HandleRenamePhotoButtonClick(object sender, EventArgs e)
         {
-            // Givens:
-            //  We have the album name from the form
-            var albumName = this.currentAlbumLabel.Text.Replace("&&", "&");
-
-            // First we need to find the secret file name
             var currentPhoto = this.allPhotosInAlbum[this.photoIndex];
-
-            // Give the full secret path to the UploadView Form here...
             using (var renamePhotoView = new UploadViewForm(currentPhoto))
             {
                 var result = renamePhotoView.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     // User approved so rename the photo.
-                    this.album.Repository.RenamePhotoInAlbum(albumName, renamePhotoView.DisplayName, currentPhoto.PhotoId);
+                    currentPhoto.DisplayName = renamePhotoView.DisplayName;
+                    currentPhoto.Album.Repository.SaveAlbums();
 
-                    // Important to update the new name on the view.
+                    // Important to update the new name on the view.                    
                     this.DisplayPhoto(this.photoIndex);
                 }
             }
