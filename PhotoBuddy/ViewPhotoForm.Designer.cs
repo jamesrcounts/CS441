@@ -116,8 +116,8 @@ namespace PhotoBuddy
             this.RenamePhotoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RenamePhotoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RenamePhotoButton.ForeColor = System.Drawing.Color.DarkGray;
-            this.RenamePhotoButton.Location = new System.Drawing.Point(152, 2);
-            this.RenamePhotoButton.Margin = new System.Windows.Forms.Padding(38, 2, 2, 2);
+            this.RenamePhotoButton.Location = new System.Drawing.Point(122, 2);
+            this.RenamePhotoButton.Margin = new System.Windows.Forms.Padding(8, 2, 2, 2);
             this.RenamePhotoButton.Name = "RenamePhotoButton";
             this.RenamePhotoButton.Size = new System.Drawing.Size(100, 25);
             this.RenamePhotoButton.TabIndex = 11;

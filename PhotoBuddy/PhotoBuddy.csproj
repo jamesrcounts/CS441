@@ -116,23 +116,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Album.cs" />
-    <Compile Include="Models\AlbumRespository.cs" />
+    <Compile Include="Models\AlbumRepository.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="Controls\AlbumThumnailUserControl.cs">
+    <Compile Include="Controls\AlbumThumbnailUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\AlbumThumnailUserControl.Designer.cs">
-      <DependentUpon>AlbumThumnailUserControl.cs</DependentUpon>
+    <Compile Include="Controls\AlbumThumbnailUserControl.Designer.cs">
+      <DependentUpon>AlbumThumbnailUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ClickLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\ThumbNailUserControl.cs">
+    <Compile Include="Controls\ThumbnailUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ThumbNailUserControl.Designer.cs">
-      <DependentUpon>ThumbNailUserControl.cs</DependentUpon>
+    <Compile Include="Controls\ThumbnailUserControl.Designer.cs">
+      <DependentUpon>ThumbnailUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="EventObjects\PhotoEventArgs.cs" />
     <Compile Include="Models\NameTooLongMessage.cs" />
@@ -172,19 +172,11 @@
       <DependentUpon>HomeScreenUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\IMessage.cs" />
-    <Compile Include="Screens\IMessageService.cs" />
     <Compile Include="Screens\IMessageView.cs" />
     <Compile Include="Models\InvalidAlbumNameMessage.cs" />
     <Compile Include="Screens\IScreen.cs" />
     <Compile Include="Format.cs" />
-    <Compile Include="Screens\MessageBoxProxy.cs" />
-    <Compile Include="Screens\MessageService.cs" />
-    <Compile Include="Screens\MultiPhotoImportForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\MultiPhotoImportForm.Designer.cs">
-      <DependentUpon>MultiPhotoImportForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Screens\CultureAwareMessageBox.cs" />
     <Compile Include="UploadViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,14 +189,14 @@
     <Compile Include="ViewPhotoForm.Designer.cs">
       <DependentUpon>ViewPhotoForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Controls\AlbumThumnailUserControl.resx">
-      <DependentUpon>AlbumThumnailUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\AlbumThumbnailUserControl.resx">
+      <DependentUpon>AlbumThumbnailUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ClickLabel.resx">
       <DependentUpon>ClickLabel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ThumbNailUserControl.resx">
-      <DependentUpon>ThumbNailUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ThumbnailUserControl.resx">
+      <DependentUpon>ThumbnailUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -232,9 +224,6 @@
     <EmbeddedResource Include="Screens\HomeScreenUserControl.resx">
       <DependentUpon>HomeScreenUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\MultiPhotoImportForm.resx">
-      <DependentUpon>MultiPhotoImportForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UploadViewForm.resx">
       <DependentUpon>UploadViewForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,8 +231,6 @@
       <DependentUpon>ViewPhotoForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="FxCop\FxCop.bat" />
     <None Include="FxCop\PhotoBuddy.FxCop" />
     <None Include="GoldRush.snk" />

@@ -7,8 +7,8 @@ namespace PhotoBuddy
 {
     using System;
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
-    using System.Text;
     using System.Windows.Forms;
 
     /// <summary>
@@ -33,7 +33,7 @@ namespace PhotoBuddy
             {
                 if (proc.Id != currentProcessId)
                 {
-                    NativeMethods.EnumWindows(EnumWindowsProc, proc.Id);
+                    NativeMethods.EnumWindows(EnumWindowsProc, new IntPtr(proc.Id));
                 }
             }
         }
@@ -49,6 +49,11 @@ namespace PhotoBuddy
         /// <remarks>
         /// Authors: Jim Counts and Eric Wei
         /// </remarks>
+        [SuppressMessage(
+            "Microsoft.Usage",
+            "CA1806:DoNotIgnoreMethodResults",
+            MessageId = "PhotoBuddy.ProcessChecker+NativeMethods.GetWindowThreadProcessId(System.IntPtr,System.Int32@)",
+            Justification = "The threadId returned by this method is not important to the program logic.")]
         private static bool EnumWindowsProc(IntPtr windowHandle, int otherProcessId)
         {
             int processId = 0;
@@ -95,6 +100,7 @@ namespace PhotoBuddy
             /// <returns>False if the window was not hidden; otherwise true.</returns>
             /// <remarks>Authors: Jim Counts and Eric Wei</remarks>
             [DllImport("user32.dll")]
+            [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
 
             /// <summary>
@@ -105,17 +111,19 @@ namespace PhotoBuddy
             /// <returns>true if the window was brought to the foreground; otherwise false.</returns>
             /// <remarks>Authors: Jim Counts and Eric Wei</remarks>
             [DllImport("user32.dll")]
+            [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool SetForegroundWindow(IntPtr hWnd);
 
             /// <summary>
             /// Enumerates all the top level windows on screen until <paramref name="lpEnumFunc"/> returns false.
             /// </summary>
             /// <param name="lpEnumFunc">A predicate used to determine when to stop enumerating.</param>
-            /// <param name="lParam">An argument that may be passed to the predicate.</param>
+            /// <param name="lParam">Pointer to an argument that may be passed to the predicate.</param>
             /// <returns>true if the function completed without errors; otherwise false</returns>
             /// <remarks>Authors: Jim Counts and Eric Wei</remarks>
             [DllImport("user32.dll")]
-            public static extern bool EnumWindows(EnumWindowsProcDel lpEnumFunc, int lParam);
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool EnumWindows(EnumWindowsProcDel lpEnumFunc, IntPtr lParam);
 
             /// <summary>
             /// Retrieves the identifier of the thread that created the specified window.

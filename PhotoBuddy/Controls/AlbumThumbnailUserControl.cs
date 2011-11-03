@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="AlbumThumnailUserControl.cs" company="Gold Rush">
+// <copyright file="AlbumThumbnailUserControl.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -7,6 +7,7 @@ namespace PhotoBuddy.Controls
 {
     using System;
     using System.Drawing;
+    using System.Globalization;
     using System.Windows.Forms;
     using PhotoBuddy.EventObjects;
 
@@ -17,16 +18,16 @@ namespace PhotoBuddy.Controls
     ///   <para>Author: Jim Counts</para>
     ///   <para>Created: 2011-10-26</para>
     /// </remarks>
-    public partial class AlbumThumnailUserControl : UserControl
+    public partial class AlbumThumbnailUserControl : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AlbumThumnailUserControl"/> class.
+        /// Initializes a new instance of the <see cref="AlbumThumbnailUserControl"/> class.
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        public AlbumThumnailUserControl()
+        public AlbumThumbnailUserControl()
         {
             this.InitializeComponent();
         }
@@ -86,12 +87,12 @@ namespace PhotoBuddy.Controls
         {
             get
             {
-                return Convert.ToInt32(this.AlbumCountLabel.Text);
+                return Convert.ToInt32(this.AlbumCountLabel.Text, CultureInfo.CurrentCulture);
             }
 
             set
             {
-                this.AlbumCountLabel.Text = value.ToString();
+                this.AlbumCountLabel.Text = value.ToString(CultureInfo.CurrentCulture);
             }
         }
 

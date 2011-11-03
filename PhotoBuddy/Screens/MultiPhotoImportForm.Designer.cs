@@ -46,7 +46,7 @@ namespace PhotoBuddy.Screens
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.93058F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.06943F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.Controls.Add(this.SelectedImageListView, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
@@ -66,7 +66,7 @@ namespace PhotoBuddy.Screens
             this.SelectedImageListView.LargeImageList = this.SelectedImageList;
             this.SelectedImageListView.Location = new System.Drawing.Point(68, 50);
             this.SelectedImageListView.Name = "SelectedImageListView";
-            this.SelectedImageListView.Size = new System.Drawing.Size(528, 416);
+            this.SelectedImageListView.Size = new System.Drawing.Size(526, 416);
             this.SelectedImageListView.TabIndex = 0;
             this.SelectedImageListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -89,14 +89,14 @@ namespace PhotoBuddy.Screens
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(528, 34);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(526, 34);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // cancelButton
             // 
             this.cancelButton.Location = new System.Drawing.Point(3, 3);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.Size = new System.Drawing.Size(74, 23);
             this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -104,7 +104,7 @@ namespace PhotoBuddy.Screens
             // 
             // continueButton
             // 
-            this.continueButton.Location = new System.Drawing.Point(447, 3);
+            this.continueButton.Location = new System.Drawing.Point(445, 3);
             this.continueButton.Name = "continueButton";
             this.continueButton.Size = new System.Drawing.Size(75, 23);
             this.continueButton.TabIndex = 0;
@@ -119,7 +119,7 @@ namespace PhotoBuddy.Screens
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(68, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(528, 47);
+            this.label1.Size = new System.Drawing.Size(526, 47);
             this.label1.TabIndex = 2;
             this.label1.Text = "Check Photos to Import";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

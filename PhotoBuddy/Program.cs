@@ -52,7 +52,7 @@ namespace PhotoBuddy
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm(new MessageService()));
+                Application.Run(new MainForm());
             }
         }
     }

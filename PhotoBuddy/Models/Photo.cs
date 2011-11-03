@@ -50,6 +50,15 @@ namespace PhotoBuddy.Models
         private readonly XElement photoElement;
 
         /// <summary>
+        /// Cached instance of the photo.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-02</para>
+        /// </remarks>
+        private Image photoImage;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Photo"/> class.
         /// </summary>
         /// <param name="album">The album.</param>
@@ -63,23 +72,6 @@ namespace PhotoBuddy.Models
             this.parentAlbum = album;
             this.photoElement = photoElement;
         }
-
-        /////// <summary>
-        /////// Initializes a new instance of the <see cref="Photo"/> class.
-        /////// </summary>
-        /////// <param name="photoId">The photo id.</param>
-        /////// <param name="displayName">The display name.</param>
-        /////// <param name="fileName">Name of the file.</param>
-        /////// <remarks>
-        ///////   <para>Author: Jim Counts</para>
-        ///////   <para>Created: 2011-10-27</para>
-        /////// </remarks>
-        ////public Photo(string photoId, string displayName, string fileName)
-        ////{
-        ////    this.PhotoId = photoId;
-        ////    this.DisplayName = displayName;
-        ////    this.FileName = fileName;
-        ////}
 
         /// <summary>
         /// Gets the photo id.
@@ -153,6 +145,44 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
+        /// Gets the image.
+        /// </summary>
+        /// <returns>The photo image if there are no errors; otherwise the default image.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-27</para>
+        /// </remarks>
+        public Image Image
+        {
+            get
+            {
+                if (this.photoImage == null)
+                {
+                    if (!File.Exists(this.FullPath))
+                    {
+                        this.photoImage = Photo.DefaultImage;
+                        return this.photoImage;
+                    }
+
+                    // Load the file
+                    try
+                    {
+                        using (MemoryStream stream = new MemoryStream(File.ReadAllBytes(this.FullPath)))
+                        {
+                            this.photoImage = Image.FromStream(stream);
+                        }
+                    }
+                    catch (OutOfMemoryException)
+                    {
+                        this.photoImage = Photo.DefaultImage;
+                    }
+                }
+
+                return this.photoImage;
+            }
+        }
+
+        /// <summary>
         /// Creates a new photo element.
         /// </summary>
         /// <param name="photoId">The photo id.</param>
@@ -168,7 +198,7 @@ namespace PhotoBuddy.Models
             if (Constants.MaxNameLength < displayName.Length)
             {
                 var nameTooLongMessage = new NameTooLongMessage();
-                throw new ArgumentException("displayName", nameTooLongMessage.Text);
+                throw new ArgumentException(nameTooLongMessage.Text, "displayName");
             }
 
             XElement photoElement = new XElement("photo");
@@ -179,29 +209,18 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
-        /// Gets the image.
+        /// Deletes this photo from the album.
         /// </summary>
-        /// <returns>The photo image if there are no errors; otherwise the default image.</returns>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-27</para>
+        ///   <para>Created: 2011-11-02</para>
+        ///   <para>After removing itself from the repository data, the photo triggers the repository's
+        /// garbage collector.</para>
         /// </remarks>
-        public Image GetImage()
+        public void Delete()
         {
-            if (!File.Exists(this.FullPath))
-            {
-                return Photo.DefaultImage;
-            }
-
-            // Load the file
-            try
-            {
-                return Image.FromFile(this.FullPath);
-            }
-            catch (OutOfMemoryException)
-            {
-                return Photo.DefaultImage;
-            }
+            this.photoElement.Remove();
+            this.parentAlbum.Repository.CollectGarbage(this.PhotoId, this.FullPath);
         }
 
         /// <summary>

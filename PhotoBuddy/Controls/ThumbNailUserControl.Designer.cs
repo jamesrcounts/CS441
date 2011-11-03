@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 namespace PhotoBuddy.Controls
 {
-    partial class ThumbNailUserControl
+    partial class ThumbnailUserControl
     {
         /// <summary> 
         /// Required designer variable.

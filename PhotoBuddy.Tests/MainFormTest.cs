@@ -44,7 +44,7 @@ namespace PhotoBuddy.Tests
                 data.Delete();
             }
 
-            using (var mainForm = new MainForm(new MessageService()))
+            using (var mainForm = new MainForm())
             {
                 // Approve
                 Approvals.Approve(mainForm);
@@ -64,7 +64,7 @@ namespace PhotoBuddy.Tests
                 data.Delete();
             }
 
-            using (var mainForm = new MainFormAccessor(new MessageService()))
+            using (var mainForm = new MainFormAccessor())
             {
                 mainForm.ShowScreenAccessor(mainForm.CreateAlbumView);
 
@@ -86,7 +86,7 @@ namespace PhotoBuddy.Tests
                 data.Delete();
             }
 
-            using (var mainForm = new MainFormAccessor(new MessageService()))
+            using (var mainForm = new MainFormAccessor())
             {
                 mainForm.ShowScreenAccessor(mainForm.AlbumView);
 
@@ -105,7 +105,7 @@ namespace PhotoBuddy.Tests
         public void SetPreviousScreenWhenShowingNewScreen()
         {
             // Arrange
-            using (MainFormAccessor target = new MainFormAccessor(new MessageService()))
+            using (MainFormAccessor target = new MainFormAccessor())
             {
                 // Act
                 target.ShowScreenAccessor(target.HomeView);
@@ -129,7 +129,7 @@ namespace PhotoBuddy.Tests
         public void SkipSetPreviousScreenWhenCurrentScreenIsCreateAlbumView()
         {
             // Arrange
-            using (var target = new MainFormAccessor(new MessageService()))
+            using (var target = new MainFormAccessor())
             {
                 // Act
                 target.ShowScreenAccessor(target.HomeView);
@@ -154,7 +154,7 @@ namespace PhotoBuddy.Tests
         public void SetCurrentViewWhenShowingView()
         {
             // Arrange
-            using (var target = new MainFormAccessor(new MessageService()))
+            using (var target = new MainFormAccessor())
             {
                 // Act
                 target.ShowScreenAccessor(target.AlbumView);
@@ -175,13 +175,11 @@ namespace PhotoBuddy.Tests
             /// <summary>
             /// Initializes a new instance of the <see cref="MainFormAccessor"/> class.
             /// </summary>
-            /// <param name="messageService">The message service.</param>
             /// <remarks>
             /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
             /// </remarks>
-            public MainFormAccessor(IMessageService messageService)
-                : base(messageService)
-            {                
+            public MainFormAccessor()
+            {
             }
 
             /// <summary>

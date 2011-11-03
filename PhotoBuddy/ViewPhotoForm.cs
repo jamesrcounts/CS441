@@ -72,10 +72,10 @@ namespace PhotoBuddy
             this.InitializeComponent();
             this.Text = "Photo Display - Photo Buddy";
             this.album = currentAlbum;
-            this.picture = photoToDisplay;
             this.currentAlbumLabel.Text = this.album.AlbumId.Replace("&", "&&");
             /////this.allPhotosInAlbum = this.album.PhotoList.PhotoTable.Values.Cast<Photo>().ToList();
             this.allPhotosInAlbum = this.album.Photos.ToList();
+            this.picture = this.allPhotosInAlbum.SingleOrDefault(photo => photo.PhotoId == photoToDisplay.PhotoId);
             this.photoIndex = this.allPhotosInAlbum.IndexOf(this.picture);
             this.DisplayPhoto(this.photoIndex);
         }
@@ -91,7 +91,7 @@ namespace PhotoBuddy
         private void DisplayPhoto(int index)
         {
             Photo photo = this.allPhotosInAlbum[index];
-            this.pictureBox1.Image = photo.GetImage();
+            this.pictureBox1.Image = photo.Image;
             this.photoNameLabel.Text = photo.DisplayName.Replace("&", "&&");
             this.Text = photo.DisplayName + " - Photo Buddy";
         }
@@ -213,7 +213,7 @@ namespace PhotoBuddy
             var currentPhoto = this.allPhotosInAlbum[this.photoIndex];
 
             // Give the full secret path to the UploadView Form here...
-            using (var renamePhotoView = new UploadViewForm(new MessageService(), currentPhoto))
+            using (var renamePhotoView = new UploadViewForm(currentPhoto))
             {
                 var result = renamePhotoView.ShowDialog();
                 if (result == DialogResult.OK)

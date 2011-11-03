@@ -13,11 +13,14 @@ namespace PhotoBuddy.Screens
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Globalization;
+    using System.IO;
     using System.Linq;
     using System.Windows.Forms;
     using PhotoBuddy.Controls;
     using PhotoBuddy.EventObjects;
     using PhotoBuddy.Models;
+    using PhotoBuddy.Properties;
 
     /// <summary>
     /// Displays an album
@@ -51,10 +54,10 @@ namespace PhotoBuddy.Screens
         /// </summary>
         public event EventHandler RenameAlbumEvent;
 
-        /// <summary>
-        /// Occurs when the add photo button is clicked.
-        /// </summary>
-        public event EventHandler AddPhotosEvent;
+        ///// <summary>
+        ///// Occurs when the add photo button is clicked.
+        ///// </summary>
+        //// public event EventHandler AddPhotosEvent;
 
         /// <summary>
         /// Gets the control managed by this view.
@@ -123,7 +126,7 @@ namespace PhotoBuddy.Screens
             foreach (Photo photo in this.currentAlbum.Photos)
             {
                 // Create a thumbnail control for the current photo
-                ThumbNailUserControl thumb = new ThumbNailUserControl() { DisplayName = photo.DisplayName };
+                ThumbnailUserControl thumb = new ThumbnailUserControl() { DisplayName = photo.DisplayName };
 
                 // Store the photo object in the thumbnail tag.
                 // thumbnail is a public property to set the picture box on the thumbnailUserControl.
@@ -143,7 +146,7 @@ namespace PhotoBuddy.Screens
                 ////{
                 ////    thumb.Thumbnail.Image = PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
                 ////}
-                thumb.Thumbnail.Image = photo.GetImage();
+                thumb.Thumbnail.Image = photo.Image;
 
                 // Wire the click event to the picturebox
                 thumb.Thumbnail.Click += this.HandlePhotoClick;
@@ -196,7 +199,59 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandleAddPhotosButtonClick(object sender, EventArgs e)
         {
-            this.AddPhotosEvent(this, e);
+            // Get the startup directory from the settings file
+            this.addPhotosFileDialog.InitialDirectory = Environment.ExpandEnvironmentVariables(Settings.Default.LastImportDirectory);
+            DialogResult fileDialogResult = this.addPhotosFileDialog.ShowDialog();
+            if (fileDialogResult == DialogResult.OK)
+            {
+                // Cache the directory the user just picked a file from.
+                Settings.Default.LastImportDirectory = Path.GetDirectoryName(this.addPhotosFileDialog.FileName);
+                Settings.Default.Save();
+
+                // Put the selected files a collection of anonymous objects
+                //      o := displayName, fileName
+                int maxLen = Settings.Default.MaxNameLength;
+                var selectedItems = from file in this.addPhotosFileDialog.FileNames
+                                    select new
+                                    {
+                                        DisplayName = Path.GetFileNameWithoutExtension(file),
+                                        Path = file
+                                    };
+
+                var selectedItemsIndex = new Dictionary<string, string>();
+
+                // Loop through the anon-objs 
+                foreach (var item in selectedItems)
+                {
+                    // select count of each displayname - 4 from dictionary.
+                    int subKeyLen = Math.Min(maxLen - 4, item.DisplayName.Length);
+                    string subKey = item.DisplayName.Substring(0, subKeyLen);
+                    var prefixMatches = from key in selectedItemsIndex.Keys
+                                        where key.StartsWith(subKey, StringComparison.OrdinalIgnoreCase)
+                                        select key;
+
+                    int prefixMatchesCount = prefixMatches.Count();
+                    int keyLen = Math.Min(maxLen, item.DisplayName.Length);
+                    string displayName = item.DisplayName.Substring(0, keyLen);
+                    if (prefixMatchesCount != 0)
+                    {
+                        // replace last 4 digits with count of prefix matches and add to dictionary.
+                        displayName = subKey + prefixMatchesCount;
+                    }
+
+                    selectedItemsIndex.Add(displayName, item.Path);
+                }
+
+                foreach (var item in selectedItemsIndex)
+                {
+                    this.CurrentAlbum.Repository.AddPhotoToAlbum(
+                        this.CurrentAlbum.AlbumId,
+                        item.Key,
+                        item.Value);
+                }
+
+                this.RefreshPhotoList();
+            }
         }
 
         /// <summary>  
@@ -263,10 +318,14 @@ namespace PhotoBuddy.Screens
         /// <param name="e">The <see cref="PhotoBuddy.EventObjects.PhotoEventArgs"/> instance containing the event data.</param>
         private void HandleDeletePhotoEvent(object sender, PhotoEventArgs e)
         {
-            DialogResult result;
-            result = MessageBox.Show("Are you sure you want to delete this photo?", "Delete Photo?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = CultureAwareMessageBox.Show(
+                this,
+                "Are you sure you want to delete this photo?", 
+                "Delete Photo?", 
+                MessageBoxButtons.YesNo, 
+                MessageBoxIcon.Question);
             if (result == DialogResult.No)
-            { 
+            {
                 return;
             }
 
@@ -276,6 +335,6 @@ namespace PhotoBuddy.Screens
             Photo photoToDelete = currentAlbum.Photos.Where(photo => photo.DisplayName == photoDisplayName).Single();
             currentAlbum.Repository.DeletePhoto(currentAlbum, photoToDelete);
             this.RefreshPhotoList();
-        }        
+        }
     }
 }

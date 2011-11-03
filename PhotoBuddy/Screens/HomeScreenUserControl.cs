@@ -32,51 +32,51 @@ namespace PhotoBuddy.Screens
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        private readonly AlbumRespository albums;
+        private readonly AlbumRepository albums;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HomeScreenUserControl"/> class.
         /// </summary>
-        /// <param name="albumRespository">The collection of albums.</param>
+        /// <param name="albumRepository">The collection of albums.</param>
         /// <remarks>
         ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
         ///   <para>Modified: 2011-28-10</para>
         /// </remarks>
-        public HomeScreenUserControl(AlbumRespository albumRespository)
+        public HomeScreenUserControl(AlbumRepository albumRepository)
         {
-            if (albumRespository == null)
+            if (albumRepository == null)
             {
-                throw new ArgumentNullException("albumRespository", "albumRespository is null.");
+                throw new ArgumentNullException("albumRepository", "albumRespository is null.");
             }
 
             this.InitializeComponent();
-            this.albums = albumRespository;
+            this.albums = albumRepository;
             this.Dock = DockStyle.Fill;
             this.DisplayName = "Albums";
         }
 
-        /// <summary>
-        /// Defines a delegate to handle "Create Album" events.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /// <remarks>Create Album events are typically fired by the "Create Album" button, and indicate that the user wants to 
-        /// create an album.</remarks>
-        public delegate void CreateButtonClicked(object sender, EventArgs e);
+        /////// <summary>
+        /////// Defines a delegate to handle "Create Album" events.
+        /////// </summary>
+        /////// <param name="sender">The sender.</param>
+        /////// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /////// <remarks>Create Album events are typically fired by the "Create Album" button, and indicate that the user wants to 
+        /////// create an album.</remarks>
+        ////public delegate void CreateButtonClicked(object sender, EventArgs e);
 
-        /// <summary>
-        /// Defines a delegate to handle the "Album Selected" event.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="TheNewPhotoBuddy.EventObjects.AlbumEventArgs"/> instance containing the event data.</param>
-        /// <remarks>Album selected events are typically fired when the user clicks on an album, and indicate that the user wants to 
-        /// view an album.</remarks>
-        public delegate void AlbumSelectedEventHandler(object sender, AlbumEventArgs e);
+        /////// <summary>
+        /////// Defines a delegate to handle the "Album Selected" event.
+        /////// </summary>
+        /////// <param name="sender">The sender.</param>
+        /////// <param name="e">The <see cref="TheNewPhotoBuddy.EventObjects.AlbumEventArgs"/> instance containing the event data.</param>
+        /////// <remarks>Album selected events are typically fired when the user clicks on an album, and indicate that the user wants to 
+        /////// view an album.</remarks>
+        ////public delegate void AlbumSelectedEventHandler(object sender, AlbumEventArgs e);
 
         /// <summary>
         /// Occurs when the user clicks the create button.
         /// </summary>
-        public event CreateButtonClicked CreateButtonEvent;
+        public event EventHandler CreateButtonEvent;
 
         /// <summary>
         /// Occurs when an album is selected event.
@@ -99,7 +99,7 @@ namespace PhotoBuddy.Screens
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
-        public AlbumRespository Repository
+        public AlbumRepository Repository
         {
             get
             {
@@ -144,7 +144,7 @@ namespace PhotoBuddy.Screens
 
             foreach (var album in this.Repository.Albums)
             {
-                var albumControl = new AlbumThumnailUserControl()
+                var albumControl = new AlbumThumbnailUserControl()
                                 {
                                     AlbumName = album.AlbumId,
                                     Count = album.Count,

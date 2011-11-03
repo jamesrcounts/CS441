@@ -22,17 +22,17 @@ namespace PhotoBuddy.Controls
     /// Date: Oct 13 2011
     /// Modified date: Oct 14 2011
     /// </remarks>
-    public partial class ThumbNailUserControl : UserControl
+    public partial class ThumbnailUserControl : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ThumbNailUserControl"/> class.
+        /// Initializes a new instance of the <see cref="ThumbnailUserControl"/> class.
         /// </summary>
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// Date: Oct 13 2011
         /// Modified date: Oct 23 2011
         /// </remarks>
-        public ThumbNailUserControl()
+        public ThumbnailUserControl()
         {
             this.InitializeComponent();
         }

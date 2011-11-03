@@ -24,19 +24,8 @@ namespace PhotoBuddy
     public partial class UploadViewForm : Form
     {
         /// <summary>
-        /// Presents message boxes.
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-25</para>
-        ///   <para>Modified: 2011-10-25</para>
-        /// </remarks>
-        private readonly IMessageService MessageService;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="UploadViewForm"/> class.
         /// </summary>
-        /// <param name="messageService">Shows message boxes.</param>
         /// <param name="photo">The photo to display.</param>
         /// <remarks>
         ///   <para>Author: Jim Counts and Eric Wei</para>
@@ -46,13 +35,12 @@ namespace PhotoBuddy
         /// Creates an instance of the UploadViewForm that is configured to rename a photo.
         ///   </para>
         /// </remarks>
-        public UploadViewForm(IMessageService messageService, Photo photo)
+        public UploadViewForm(Photo photo)
         {
             this.InitializeComponent();
-            this.MessageService = messageService;
 
             this.Text = Format.Culture("{0} {1} - Photo Buddy", "Rename", photo.DisplayName);
-            this.pictureBox1.Image = photo.GetImage();
+            this.pictureBox1.Image = photo.Image;
             this.displayNameTextBox.Text = photo.DisplayName;
             this.messageLabel.Text = "This is the photo you have selected to rename.";
         }
@@ -60,27 +48,34 @@ namespace PhotoBuddy
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadViewForm"/> class.
         /// </summary>
-        /// <param name="messageService">The message service.</param>
         /// <param name="photoFileName">The photo to verify.</param>
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        public UploadViewForm(IMessageService messageService, string photoFileName)
+        public UploadViewForm(string photoFileName)
         {
             this.InitializeComponent();
-            this.MessageService = messageService;
             string titleText = Path.GetFileName(photoFileName);
             this.Text = Format.Culture("{0} {1} - Photo Buddy", "Upload", titleText);
 
             // Try to open the image.
             try
             {
-                this.pictureBox1.Image = Image.FromFile(photoFileName);
+                using (MemoryStream imageStream = new MemoryStream(File.ReadAllBytes(photoFileName)))
+                {
+                    this.pictureBox1.Image = Image.FromStream(imageStream);
+                }
             }
             catch (OutOfMemoryException)
             {
                 // File was not a valid image so abort the upload & warn the user.
-                this.MessageService.ShowMessage(this.MessageService.NotPictureFile);
+                var notPictureFileMessage = new NotPictureFileMessage();
+                CultureAwareMessageBox.Show(
+                    this,
+                    notPictureFileMessage.Text,
+                    notPictureFileMessage.Caption,
+                    notPictureFileMessage.Buttons,
+                    notPictureFileMessage.Icon);
                 this.HandleCancelButtonClick(this, new EventArgs());
             }
 
@@ -123,7 +118,8 @@ namespace PhotoBuddy
             // Did user enter a blank name?
             if (string.IsNullOrWhiteSpace(this.DisplayName))
             {
-                MessageBox.Show(
+                CultureAwareMessageBox.Show(
+                    this,
                     "Photo name must not be empty!",
                     "Empty Photo Name Issue",
                     MessageBoxButtons.OK,
@@ -134,7 +130,13 @@ namespace PhotoBuddy
             // Did user enter too long of a name?
             if (this.DisplayName.Length > Constants.MaxNameLength)
             {
-                this.MessageService.ShowMessage(this.MessageService.NameTooLong);
+                var nameTooLongMessage = new NameTooLongMessage();
+                CultureAwareMessageBox.Show(
+                    this,
+                    nameTooLongMessage.Text,
+                    nameTooLongMessage.Caption,
+                    nameTooLongMessage.Buttons,
+                    nameTooLongMessage.Icon);
                 return;
             }
 
