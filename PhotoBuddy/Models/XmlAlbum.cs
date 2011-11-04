@@ -185,6 +185,19 @@ namespace PhotoBuddy.Models
             albumElement.Add(new XAttribute(IdTag, name));
             return albumElement;
         }
+            
+        /// <summary>
+        /// Adds the photo.
+        /// </summary>
+        /// <param name="photo">The photo.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>
+        public void AddPhoto(IPhoto photo)
+        {
+            AddPhoto(photo.PhotoId, photo.DisplayName, photo.FullPath);
+        }
 
         /// <summary>
         /// Adds the photo.
@@ -213,7 +226,7 @@ namespace PhotoBuddy.Models
             this.albumElement.Add(photoElement);
 
             // Update Indexes
-            this.decoratedAlbum.AddPhoto(photoId, displayName, fileName);
+            this.decoratedAlbum.AddPhoto(new XmlPhoto(this, photoElement));
         }
 
         /// <summary>

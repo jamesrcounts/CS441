@@ -68,6 +68,16 @@ namespace PhotoBuddy.Models
         /// <summary>
         /// Adds the photo.
         /// </summary>
+        /// <param name="photo">The photo.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created On: 2011-11-03</para>
+        /// </remarks>
+        void AddPhoto(IPhoto photo);
+ 
+        /// <summary>
+        /// Adds the photo.
+        /// </summary>
         /// <param name="photoId">The photo id.</param>
         /// <param name="displayName">The display name.</param>
         /// <param name="fileName">Name of the file.</param>

@@ -143,6 +143,7 @@
     <Compile Include="EventObjects\PhotoEventArgs.cs" />
     <Compile Include="Models\NameTooLongMessage.cs" />
     <Compile Include="Models\NotPictureFileMessage.cs" />
+    <Compile Include="Models\SearchResultAlbum.cs" />
     <Compile Include="Models\XmlAlbum.cs" />
     <Compile Include="Models\XmlPhoto.cs" />
     <Compile Include="ProcessChecker.cs" />

@@ -142,8 +142,22 @@ namespace PhotoBuddy.Controls
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         private void HandleDeleteToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            this.OnDeletePhotoEvent(this, new PhotoEventArgs(this.NameTextBox.Text));
+        {  
+            ////DialogResult result = CultureAwareMessageBox.Show(
+            ////    this,
+            ////    "Are you sure you want to delete this photo?", 
+            ////    "Delete Photo?", 
+            ////    MessageBoxButtons.YesNo, 
+            ////    MessageBoxIcon.Question);
+            ////if (result == DialogResult.No)
+            ////{
+            ////    return;
+            ////}
+
+            var photo = (PhotoBuddy.Models.IPhoto)this.Thumbnail.Tag;
+            photo.Album.Repository.DeletePhoto(photo.Album, photo);
+  
+            this.OnDeletePhotoEvent(this, new PhotoEventArgs(photo.PhotoId));
         }
     }
 }

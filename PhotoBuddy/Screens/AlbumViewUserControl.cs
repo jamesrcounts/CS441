@@ -219,6 +219,8 @@ namespace PhotoBuddy.Screens
                                     };
 
                 var selectedItemsIndex = new Dictionary<string, string>();
+                foreach (var photo in this.currentAlbum.Photos)
+                    selectedItemsIndex.Add(photo.DisplayName, photo.FullPath);
 
                 // Loop through the anon-objs 
                 foreach (var item in selectedItems)
@@ -318,23 +320,14 @@ namespace PhotoBuddy.Screens
         /// <param name="e">The <see cref="PhotoBuddy.EventObjects.PhotoEventArgs"/> instance containing the event data.</param>
         private void HandleDeletePhotoEvent(object sender, PhotoEventArgs e)
         {
-            DialogResult result = CultureAwareMessageBox.Show(
-                this,
-                "Are you sure you want to delete this photo?", 
-                "Delete Photo?", 
-                MessageBoxButtons.YesNo, 
-                MessageBoxIcon.Question);
-            if (result == DialogResult.No)
-            {
-                return;
-            }
-
-            string photoDisplayName = e.PhotoDisplayName;
-            IAlbum currentAlbum = this.CurrentAlbum;
-
-            IPhoto photoToDelete = currentAlbum.Photos.Where(photo => photo.DisplayName == photoDisplayName).Single();
-            currentAlbum.Repository.DeletePhoto(currentAlbum, photoToDelete);
-            this.RefreshPhotoList();
+            this.photosFlowPanel.Controls.Remove((Control)sender);
+           
+            ////string photoDisplayName = e.PhotoDisplayName;
+            ////IAlbum currentAlbum = this.CurrentAlbum;
+       
+            ////IPhoto photoToDelete = currentAlbum.Photos.Where(photo => photo.DisplayName == photoDisplayName).Single();
+            ////currentAlbum.Repository.DeletePhoto(currentAlbum, photoToDelete);
+            ////this.RefreshPhotoList();
         }
     }
 }

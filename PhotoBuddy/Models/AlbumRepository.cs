@@ -239,7 +239,6 @@ namespace PhotoBuddy.Models
         {
             if (!this.ContainsPhoto(photoId))
             {
-                // Does not work because something is locking the photo.
                 File.Delete(filePath);
             }
         }
@@ -288,7 +287,7 @@ namespace PhotoBuddy.Models
                           where photo.DisplayName.Contains(term)
                           select photo;
 
-            var searchResults = new Album(this, "Search Results", matches.Distinct());
+            var searchResults = new SearchResultAlbum(this, "Search Results", matches.Distinct());
             return searchResults;
         }
 
@@ -364,8 +363,11 @@ namespace PhotoBuddy.Models
 
             // Put the photo in the album data structure.
             IAlbum currentAlbum = this.GetAlbum(albumId);
-            currentAlbum.AddPhoto(photoId, displayName, storageName);
-            this.SaveAlbums();
+            if (!currentAlbum.ContainsPhoto(photoId))
+            {
+                currentAlbum.AddPhoto(photoId, displayName, storageName);
+                this.SaveAlbums();
+            }
         }
 
         /// <summary>
