@@ -49,10 +49,10 @@ namespace PhotoBuddy.Screens
         /// </summary>
         public event EventHandler BackEvent;
 
-        /// <summary>
-        /// Occurs when the rename album button is clicked.
-        /// </summary>
-        public event EventHandler RenameAlbumEvent;
+        /////// <summary>
+        /////// Occurs when the rename album button is clicked.
+        /////// </summary>
+        ////public event EventHandler RenameAlbumEvent;
 
         ///// <summary>
         ///// Occurs when the add photo button is clicked.
@@ -131,21 +131,6 @@ namespace PhotoBuddy.Screens
                 // Store the photo object in the thumbnail tag.
                 // thumbnail is a public property to set the picture box on the thumbnailUserControl.
                 thumb.Thumbnail.Tag = photo;
-
-                ////// Combine the secret location with the secret name to get the full file path.
-                ////string path = Path.Combine(Constants.PhotosFolderPath, photo.CopiedPath);
-
-                ////// Load the file
-                ////try
-                ////{
-                ////    thumb.Thumbnail.Image = File.Exists(path) ?
-                ////        Image.FromFile(path) :
-                ////        PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
-                ////}
-                ////catch (OutOfMemoryException)
-                ////{
-                ////    thumb.Thumbnail.Image = PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
-                ////}
                 thumb.Thumbnail.Image = photo.Image;
 
                 // Wire the click event to the picturebox
@@ -220,7 +205,9 @@ namespace PhotoBuddy.Screens
 
                 var selectedItemsIndex = new Dictionary<string, string>();
                 foreach (var photo in this.currentAlbum.Photos)
+                {
                     selectedItemsIndex.Add(photo.DisplayName, photo.FullPath);
+                }
 
                 // Loop through the anon-objs 
                 foreach (var item in selectedItems)
@@ -246,25 +233,11 @@ namespace PhotoBuddy.Screens
 
                 foreach (var item in selectedItemsIndex)
                 {
-                    this.CurrentAlbum.Repository.AddPhotoToAlbum(
-                        this.CurrentAlbum.AlbumId,
-                        item.Key,
-                        item.Value);
+                    this.CurrentAlbum.AddPhoto(item.Key, item.Value);
                 }
 
                 this.RefreshPhotoList();
             }
-        }
-
-        /// <summary>  
-        /// Handles the click of the rename album button.
-        /// </summary>
-        /// <param name="sender">Rename album button</param>
-        /// <param name="e">the event args.</param>
-        /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
-        private void HandleRenameAlbumButtonClick(object sender, EventArgs e)
-        {
-            this.RenameAlbumEvent(this, e);
         }
 
         /// <summary>
@@ -281,7 +254,6 @@ namespace PhotoBuddy.Screens
             using (ViewPhotoForm photoForm = new ViewPhotoForm(this.currentAlbum, (IPhoto)uc.Tag))
             {
                 photoForm.ShowDialog();
-                this.RefreshPhotoList();
             }
         }
 

@@ -15,6 +15,7 @@ namespace PhotoBuddy.Models
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
+    using System.IO;
     using System.Linq;
 
     /// <summary>
@@ -144,26 +145,46 @@ namespace PhotoBuddy.Models
         /// <summary>
         /// Adds the photo.
         /// </summary>
-        /// <param name="photoToAdd">The photo to add.</param>
+        /// <param name="photo">The photo to add.</param>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
-        public void AddPhoto(IPhoto photoToAdd)
+        public void AddPhoto(IPhoto photo)
         {
-            if (this.ContainsPhoto(photoToAdd.PhotoId))
+            if (this.ContainsPhoto(photo.PhotoId))
             {
-                throw new ArgumentException("Photo with the same id already exists in the album.", "photoToAdd");
+                throw new ArgumentException("Photo with the same id already exists in the album.", "photo");
             }
 
-            if (this.ContainsName(photoToAdd.DisplayName))
+            if (this.ContainsName(photo.DisplayName))
             {
-                throw new ArgumentException("Photo with the same display name already exists in the album.", "photoToAdd");
+                throw new ArgumentException("Photo with the same display name already exists in the album.", "photo");
             }
 
-            this.photos.Add(photoToAdd.PhotoId, photoToAdd);
+            this.photos.Add(photo.PhotoId, photo);
         }
 
+        /// <summary>
+        /// Adds the photo to an album.
+        /// </summary>
+        /// <param name="displayName">The display name.</param>
+        /// <param name="filePath">The file path.</param>
+        /// <remarks>
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        ///   <para>Modified: 2011-11-04</para>
+        /// </remarks>
+        public void AddPhoto(string displayName, string filePath)
+        {
+            // Copies the file to the secret location.
+            string photoId = Photo.GeneratePhotoKey(filePath);
+            string storagePath = AlbumRepository.StoreFile(filePath, photoId);
+            string storageName = Path.GetFileName(storagePath);
+
+            // Put the photo in the album data structure.
+            this.AddPhoto(photoId, displayName, storageName);           
+        }
+        
         /// <summary>
         /// Determines whether the album contains the specified photo id.
         /// </summary>

@@ -69,13 +69,12 @@ namespace PhotoBuddy
             catch (OutOfMemoryException)
             {
                 // File was not a valid image so abort the upload & warn the user.
-                var notPictureFileMessage = new NotPictureFileMessage();
                 CultureAwareMessageBox.Show(
                     this,
-                    notPictureFileMessage.Text,
-                    notPictureFileMessage.Caption,
-                    notPictureFileMessage.Buttons,
-                    notPictureFileMessage.Icon);
+                    PhotoBuddy.Properties.Resources.ErrorNotPictureFile,
+                    PhotoBuddy.Properties.Resources.AppName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 this.HandleCancelButtonClick(this, new EventArgs());
             }
 

@@ -142,7 +142,6 @@
     </Compile>
     <Compile Include="EventObjects\PhotoEventArgs.cs" />
     <Compile Include="Models\NameTooLongMessage.cs" />
-    <Compile Include="Models\NotPictureFileMessage.cs" />
     <Compile Include="Models\SearchResultAlbum.cs" />
     <Compile Include="Models\XmlAlbum.cs" />
     <Compile Include="Models\XmlPhoto.cs" />
@@ -161,7 +160,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\AboutPhotoBuddyMessage.cs" />
     <Compile Include="Screens\AlbumViewUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -246,6 +244,7 @@
     <None Include="FxCop\FxCop.bat" />
     <None Include="FxCop\PhotoBuddy.FxCop" />
     <None Include="GoldRush.snk" />
+    <None Include="Models\ModelClasses.cd" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

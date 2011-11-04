@@ -9,6 +9,7 @@ namespace PhotoBuddy.Models
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
+    using System.IO;
     using System.Linq;
     using System.Xml.Linq;
 
@@ -196,9 +197,28 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public void AddPhoto(IPhoto photo)
         {
-            AddPhoto(photo.PhotoId, photo.DisplayName, photo.FullPath);
+            this.AddPhoto(photo.PhotoId, photo.DisplayName, photo.FullPath);
         }
 
+        /// <summary>
+        /// Adds a new photo.
+        /// </summary>
+        /// <param name="displayName">The display name.</param>
+        /// <param name="filePath">The file path.</param>
+        /// <remarks>
+        ///   <para>Authors: Jim Counts.</para>
+        ///   <para>Created: 2011-11-04</para>
+        /// </remarks>
+        public void AddPhoto(string displayName, string filePath)
+        {
+            // Copies the file to the secret location.
+            string photoId = Photo.GeneratePhotoKey(filePath);
+            string storagePath = AlbumRepository.StoreFile(filePath, photoId);
+            string storageName = Path.GetFileName(storagePath);
+
+            this.AddPhoto(photoId, displayName, storageName);
+        }
+        
         /// <summary>
         /// Adds the photo.
         /// </summary>
@@ -224,6 +244,7 @@ namespace PhotoBuddy.Models
             // Update XML
             XElement photoElement = XmlPhoto.CreatePhotoElement(photoId, displayName, fileName);
             this.albumElement.Add(photoElement);
+            this.Repository.SaveAlbums();
 
             // Update Indexes
             this.decoratedAlbum.AddPhoto(new XmlPhoto(this, photoElement));

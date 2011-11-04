@@ -14,9 +14,9 @@ namespace PhotoBuddy.Screens
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Linq;
     using System.Windows.Forms;
     using PhotoBuddy.Controls;
-    using PhotoBuddy.EventObjects;
     using PhotoBuddy.Models;
 
     /// <summary>
@@ -80,6 +80,15 @@ namespace PhotoBuddy.Screens
         public event EventHandler<AlbumEventArgs> SearchCompleteEvent;
 
         /// <summary>
+        /// Occurs when a request is made to rename an album.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-04</para>
+        /// </remarks>
+        public event EventHandler<AlbumEventArgs> RenameAlbumEvent;
+
+        /// <summary>
         /// Gets the a reference to the album repository.
         /// </summary>
         /// <remarks>
@@ -115,6 +124,21 @@ namespace PhotoBuddy.Screens
         public string DisplayName { get; set; }
 
         /// <summary>
+        /// Gets the album thumbnails.
+        /// </summary>
+        /// <remarks>
+        /// Author: Jim Counts
+        /// Created: 2011-11-04
+        /// </remarks>
+        public IEnumerable<AlbumThumbnailUserControl> Thumbnails
+        {
+            get
+            {
+                return this.albumsFlowPanel.Controls.OfType<AlbumThumbnailUserControl>();
+            }
+        }
+
+        /// <summary>
         /// Refreshes the album view list.
         /// </summary>
         /// <remarks>
@@ -133,6 +157,7 @@ namespace PhotoBuddy.Screens
             {
                 var albumControl = new AlbumThumbnailUserControl()
                                 {
+                                    Album = album,
                                     AlbumName = album.AlbumId,
                                     Count = album.Count,
                                     Image = album.CoverPhoto
@@ -140,6 +165,7 @@ namespace PhotoBuddy.Screens
 
                 albumControl.AlbumSelectedEvent += this.OnAlbumSelectedEvent;
                 albumControl.DeleteAlbumEvent += this.OnDeleteAlbumEvent;
+                albumControl.RenameAlbumEvent += this.OnRenameAlbumEvent;
 
                 this.albumsFlowPanel.Controls.Add(albumControl);
             }
@@ -213,6 +239,24 @@ namespace PhotoBuddy.Screens
         protected virtual void OnDeleteAlbumEvent(object sender, AlbumNameEventArgs e)
         {
             EventHandler<AlbumNameEventArgs> handler = this.DeleteAlbumEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// Called when an album rename is requested.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.Models.AlbumEventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-04</para>
+        /// </remarks>
+        protected virtual void OnRenameAlbumEvent(object sender, AlbumEventArgs e)
+        {
+            EventHandler<AlbumEventArgs> handler = this.RenameAlbumEvent;
             if (handler != null)
             {
                 handler(sender, e);

@@ -29,121 +29,58 @@ namespace PhotoBuddy.Screens
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.AlbumsLabel = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.CreateButton = new System.Windows.Forms.Button();
-            this.ExitButton = new System.Windows.Forms.Button();
-            this.albumsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.searchButton = new System.Windows.Forms.Button();
+            this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.headerPanel = new System.Windows.Forms.Panel();
             this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.albumsLabel = new System.Windows.Forms.Label();
+            this.footerPanel = new System.Windows.Forms.Panel();
+            this.createButton = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.albumsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.foundationTableLayoutPanel.SuspendLayout();
+            this.headerPanel.SuspendLayout();
+            this.footerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // foundationTableLayoutPanel
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.albumsFlowPanel, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 244);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.foundationTableLayoutPanel.BackColor = System.Drawing.Color.Transparent;
+            this.foundationTableLayoutPanel.ColumnCount = 1;
+            this.foundationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.foundationTableLayoutPanel.Controls.Add(this.headerPanel, 0, 0);
+            this.foundationTableLayoutPanel.Controls.Add(this.footerPanel, 0, 2);
+            this.foundationTableLayoutPanel.Controls.Add(this.albumsFlowPanel, 0, 1);
+            this.foundationTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.foundationTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
+            this.foundationTableLayoutPanel.RowCount = 3;
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(300, 244);
+            this.foundationTableLayoutPanel.TabIndex = 1;
             // 
-            // panel1
+            // headerPanel
             // 
-            this.panel1.Controls.Add(this.searchTextBox);
-            this.panel1.Controls.Add(this.searchButton);
-            this.panel1.Controls.Add(this.AlbumsLabel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(2, 2);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(296, 45);
-            this.panel1.TabIndex = 0;
+            this.headerPanel.Controls.Add(this.searchTextBox);
+            this.headerPanel.Controls.Add(this.searchButton);
+            this.headerPanel.Controls.Add(this.albumsLabel);
+            this.headerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.headerPanel.Location = new System.Drawing.Point(2, 2);
+            this.headerPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.headerPanel.Name = "headerPanel";
+            this.headerPanel.Size = new System.Drawing.Size(296, 45);
+            this.headerPanel.TabIndex = 0;
             // 
-            // AlbumsLabel
+            // searchTextBox
             // 
-            this.AlbumsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AlbumsLabel.AutoSize = true;
-            this.AlbumsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AlbumsLabel.ForeColor = System.Drawing.Color.Black;
-            this.AlbumsLabel.Location = new System.Drawing.Point(32, 14);
-            this.AlbumsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.AlbumsLabel.Name = "AlbumsLabel";
-            this.AlbumsLabel.Size = new System.Drawing.Size(93, 29);
-            this.AlbumsLabel.TabIndex = 0;
-            this.AlbumsLabel.Text = "Albums";
-            this.AlbumsLabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.CreateButton);
-            this.panel2.Controls.Add(this.ExitButton);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 179);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(300, 65);
-            this.panel2.TabIndex = 1;
-            // 
-            // CreateButton
-            // 
-            this.CreateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.CreateButton.FlatAppearance.BorderSize = 0;
-            this.CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(225)))), ((int)(((byte)(237)))));
-            this.CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CreateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateButton.Location = new System.Drawing.Point(170, 17);
-            this.CreateButton.Margin = new System.Windows.Forms.Padding(8, 8, 38, 8);
-            this.CreateButton.Name = "CreateButton";
-            this.CreateButton.Size = new System.Drawing.Size(92, 40);
-            this.CreateButton.TabIndex = 0;
-            this.CreateButton.Text = "Create";
-            this.CreateButton.UseVisualStyleBackColor = false;
-            this.CreateButton.Click += new System.EventHandler(this.HandleCreateButtonClick);
-            // 
-            // ExitButton
-            // 
-            this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ExitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ExitButton.FlatAppearance.BorderSize = 0;
-            this.ExitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(225)))), ((int)(((byte)(237)))));
-            this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExitButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ExitButton.Location = new System.Drawing.Point(39, 17);
-            this.ExitButton.Margin = new System.Windows.Forms.Padding(38, 8, 8, 8);
-            this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(92, 40);
-            this.ExitButton.TabIndex = 1;
-            this.ExitButton.Text = "Exit";
-            this.ExitButton.UseVisualStyleBackColor = false;
-            this.ExitButton.Click += new System.EventHandler(this.HandleExitButtonClick);
-            // 
-            // albumsFlowPanel
-            // 
-            this.albumsFlowPanel.AutoScroll = true;
-            this.albumsFlowPanel.BackColor = System.Drawing.Color.White;
-            this.albumsFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.albumsFlowPanel.Location = new System.Drawing.Point(38, 57);
-            this.albumsFlowPanel.Margin = new System.Windows.Forms.Padding(38, 8, 38, 3);
-            this.albumsFlowPanel.Name = "albumsFlowPanel";
-            this.albumsFlowPanel.Size = new System.Drawing.Size(224, 119);
-            this.albumsFlowPanel.TabIndex = 2;
+            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchTextBox.Location = new System.Drawing.Point(57, 24);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(100, 20);
+            this.searchTextBox.TabIndex = 3;
             // 
             // searchButton
             // 
@@ -162,39 +99,102 @@ namespace PhotoBuddy.Screens
             this.searchButton.UseVisualStyleBackColor = false;
             this.searchButton.Click += new System.EventHandler(this.HandleSearchButtonClick);
             // 
-            // searchTextBox
+            // albumsLabel
             // 
-            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchTextBox.Location = new System.Drawing.Point(57, 24);
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(100, 20);
-            this.searchTextBox.TabIndex = 3;
+            this.albumsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.albumsLabel.AutoSize = true;
+            this.albumsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.albumsLabel.ForeColor = System.Drawing.Color.Black;
+            this.albumsLabel.Location = new System.Drawing.Point(32, 14);
+            this.albumsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.albumsLabel.Name = "albumsLabel";
+            this.albumsLabel.Size = new System.Drawing.Size(93, 29);
+            this.albumsLabel.TabIndex = 0;
+            this.albumsLabel.Text = "Albums";
+            this.albumsLabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // footerPanel
+            // 
+            this.footerPanel.Controls.Add(this.createButton);
+            this.footerPanel.Controls.Add(this.exitButton);
+            this.footerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.footerPanel.Location = new System.Drawing.Point(0, 179);
+            this.footerPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.footerPanel.Name = "footerPanel";
+            this.footerPanel.Size = new System.Drawing.Size(300, 65);
+            this.footerPanel.TabIndex = 1;
+            // 
+            // createButton
+            // 
+            this.createButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.createButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.createButton.FlatAppearance.BorderSize = 0;
+            this.createButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(225)))), ((int)(((byte)(237)))));
+            this.createButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createButton.Location = new System.Drawing.Point(170, 17);
+            this.createButton.Margin = new System.Windows.Forms.Padding(8, 8, 38, 8);
+            this.createButton.Name = "createButton";
+            this.createButton.Size = new System.Drawing.Size(92, 40);
+            this.createButton.TabIndex = 0;
+            this.createButton.Text = "Create";
+            this.createButton.UseVisualStyleBackColor = false;
+            this.createButton.Click += new System.EventHandler(this.HandleCreateButtonClick);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.exitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.exitButton.FlatAppearance.BorderSize = 0;
+            this.exitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(225)))), ((int)(((byte)(237)))));
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.exitButton.Location = new System.Drawing.Point(39, 17);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(38, 8, 8, 8);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(92, 40);
+            this.exitButton.TabIndex = 1;
+            this.exitButton.Text = "Exit";
+            this.exitButton.UseVisualStyleBackColor = false;
+            this.exitButton.Click += new System.EventHandler(this.HandleExitButtonClick);
+            // 
+            // albumsFlowPanel
+            // 
+            this.albumsFlowPanel.AutoScroll = true;
+            this.albumsFlowPanel.BackColor = System.Drawing.Color.White;
+            this.albumsFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.albumsFlowPanel.Location = new System.Drawing.Point(38, 57);
+            this.albumsFlowPanel.Margin = new System.Windows.Forms.Padding(38, 8, 38, 3);
+            this.albumsFlowPanel.Name = "albumsFlowPanel";
+            this.albumsFlowPanel.Size = new System.Drawing.Size(224, 119);
+            this.albumsFlowPanel.TabIndex = 2;
             // 
             // HomeScreenUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.foundationTableLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "HomeScreenUserControl";
             this.Size = new System.Drawing.Size(300, 244);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
+            this.foundationTableLayoutPanel.ResumeLayout(false);
+            this.headerPanel.ResumeLayout(false);
+            this.headerPanel.PerformLayout();
+            this.footerPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label AlbumsLabel;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button ExitButton;
-        private System.Windows.Forms.Button CreateButton;
+        private System.Windows.Forms.TableLayoutPanel foundationTableLayoutPanel;
+        private System.Windows.Forms.Panel headerPanel;
+        private System.Windows.Forms.Label albumsLabel;
+        private System.Windows.Forms.Panel footerPanel;
+        private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Button createButton;
         private System.Windows.Forms.FlowLayoutPanel albumsFlowPanel;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox searchTextBox;

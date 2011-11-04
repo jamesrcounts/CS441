@@ -13,7 +13,10 @@ namespace PhotoBuddy.Models
 {
     using System;
     using System.Drawing;
+    using System.Globalization;
     using System.IO;
+    using System.Security.Cryptography;
+    using System.Text;
     using PhotoBuddy.Common;
 
     /// <summary>
@@ -197,7 +200,36 @@ namespace PhotoBuddy.Models
                 return this.photoImage;
             }
         }
-        
+
+        /// <summary>
+        /// Generates the photo key for the specified file.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <returns>A unique string which identifies the file by its contents.</returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei
+        /// </remarks>
+        public static string GeneratePhotoKey(string filePath)
+        {
+            // Reading the bytes of the actual file contents
+            byte[] source = File.ReadAllBytes(filePath);
+
+            // Computing the SHA 256 Hash value
+            using (SHA256Managed hashAlgorithm = new SHA256Managed())
+            {
+                byte[] hash = hashAlgorithm.ComputeHash(source);
+
+                // Convert to HEX encoded string
+                StringBuilder hashString = new StringBuilder();
+                for (int i = 0; i < hash.Length; i++)
+                {
+                    hashString.Append(hash[i].ToString("X2", CultureInfo.InvariantCulture));
+                }
+
+                return hashString.ToString();
+            }
+        }
+
         /// <summary>
         /// Deletes this photo from the album.
         /// </summary>

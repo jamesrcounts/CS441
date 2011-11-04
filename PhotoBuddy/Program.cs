@@ -19,8 +19,6 @@ namespace PhotoBuddy
     using System;
     using System.Threading;
     using System.Windows.Forms;
-    using PhotoBuddy.Resources;
-    using PhotoBuddy.Screens;
 
     /// <summary>
     /// Container for the main entry point for the application.
@@ -42,7 +40,7 @@ namespace PhotoBuddy
         private static void Main()
         {
             bool firstUserInstance;
-            using (Mutex mutex = new Mutex(true, Format.Invariant(@"Local\{0}:{1}", Strings.AppName, Environment.UserName), out firstUserInstance))
+            using (Mutex mutex = new Mutex(true, Format.Invariant(@"Local\{0}:{1}", PhotoBuddy.Properties.Resources.AppName, Environment.UserName), out firstUserInstance))
             {
                 if (!firstUserInstance)
                 {

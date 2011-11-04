@@ -36,20 +36,6 @@ namespace PhotoBuddy.Screens
             this.createHeaderLabel.Text = this.DisplayName;
         }
 
-        /////// <summary>
-        /////// Defines a delegate to handle the Cancel Event.
-        /////// </summary>
-        /////// <param name="sender">The sender.</param>
-        /////// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        ////public delegate void CancelEventHandler(object sender, EventArgs e);
-
-        /////// <summary>
-        /////// Defines a delegate to handle the Continue Event.
-        /////// </summary>
-        /////// <param name="sender">The sender.</param>
-        /////// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        ////public delegate void ContinueEventHandler(object sender, EventArgs e);
-
         /// <summary>
         /// Occurs when the user cancels album create/edit
         /// </summary>

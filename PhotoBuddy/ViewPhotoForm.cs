@@ -192,33 +192,5 @@ namespace PhotoBuddy
             Button button = sender as Button;
             button.ForeColor = Color.DarkGray;
         }
-
-        /// <summary>
-        /// Handles the request to rename a photo.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /// <remarks>
-        ///   <para>Author: Jim Counts and Eric Wei</para>
-        ///   <para>Created: 2011-10-25</para>
-        ///   <para>Modified: 2011-11-03</para>
-        /// </remarks>
-        private void HandleRenamePhotoButtonClick(object sender, EventArgs e)
-        {
-            var currentPhoto = this.allPhotosInAlbum[this.photoIndex];
-            using (var renamePhotoView = new UploadViewForm(currentPhoto))
-            {
-                var result = renamePhotoView.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    // User approved so rename the photo.
-                    currentPhoto.DisplayName = renamePhotoView.DisplayName;
-                    currentPhoto.Album.Repository.SaveAlbums();
-
-                    // Important to update the new name on the view.                    
-                    this.DisplayPhoto(this.photoIndex);
-                }
-            }
-        }
     }
 }

@@ -35,17 +35,15 @@ namespace PhotoBuddy.Controls
             this.coverImagePictureBox = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.AlbumNameLabel = new System.Windows.Forms.Label();
             this.AlbumCountLabel = new System.Windows.Forms.Label();
-            this.staticLabel = new System.Windows.Forms.Label();
+            this.AlbumNameLabel = new System.Windows.Forms.Label();
+            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.primarySplitContainer)).BeginInit();
             this.primarySplitContainer.Panel1.SuspendLayout();
             this.primarySplitContainer.Panel2.SuspendLayout();
             this.primarySplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.coverImagePictureBox)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // primarySplitContainer
@@ -61,11 +59,12 @@ namespace PhotoBuddy.Controls
             // primarySplitContainer.Panel1
             // 
             this.primarySplitContainer.Panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.primarySplitContainer.Panel1.Controls.Add(this.AlbumCountLabel);
             this.primarySplitContainer.Panel1.Controls.Add(this.coverImagePictureBox);
             // 
             // primarySplitContainer.Panel2
             // 
-            this.primarySplitContainer.Panel2.Controls.Add(this.flowLayoutPanel1);
+            this.primarySplitContainer.Panel2.Controls.Add(this.AlbumNameLabel);
             this.primarySplitContainer.Panel2MinSize = 13;
             this.primarySplitContainer.Size = new System.Drawing.Size(150, 150);
             this.primarySplitContainer.SplitterDistance = 121;
@@ -79,7 +78,7 @@ namespace PhotoBuddy.Controls
             this.coverImagePictureBox.Location = new System.Drawing.Point(0, 0);
             this.coverImagePictureBox.Name = "coverImagePictureBox";
             this.coverImagePictureBox.Size = new System.Drawing.Size(150, 121);
-            this.coverImagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.coverImagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.coverImagePictureBox.TabIndex = 0;
             this.coverImagePictureBox.TabStop = false;
             this.coverImagePictureBox.Click += new System.EventHandler(this.HandleCoverImagePictureBoxClick);
@@ -87,9 +86,10 @@ namespace PhotoBuddy.Controls
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem});
+            this.deleteToolStripMenuItem,
+            this.renameToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
             // 
             // deleteToolStripMenuItem
             // 
@@ -98,60 +98,50 @@ namespace PhotoBuddy.Controls
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.HandleDeleteToolStripItemClick);
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Window;
-            this.flowLayoutPanel1.Controls.Add(this.AlbumNameLabel);
-            this.flowLayoutPanel1.Controls.Add(this.AlbumCountLabel);
-            this.flowLayoutPanel1.Controls.Add(this.staticLabel);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(150, 25);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // AlbumNameLabel
-            // 
-            this.AlbumNameLabel.AutoSize = true;
-            this.AlbumNameLabel.Location = new System.Drawing.Point(3, 0);
-            this.AlbumNameLabel.MaximumSize = new System.Drawing.Size(125, 0);
-            this.AlbumNameLabel.Name = "AlbumNameLabel";
-            this.AlbumNameLabel.Size = new System.Drawing.Size(35, 13);
-            this.AlbumNameLabel.TabIndex = 0;
-            this.AlbumNameLabel.Text = "Name";
-            // 
             // AlbumCountLabel
             // 
             this.AlbumCountLabel.AutoSize = true;
-            this.AlbumCountLabel.Location = new System.Drawing.Point(44, 0);
+            this.AlbumCountLabel.Font = new System.Drawing.Font("Magneto", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AlbumCountLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.AlbumCountLabel.Location = new System.Drawing.Point(92, 0);
             this.AlbumCountLabel.Name = "AlbumCountLabel";
-            this.AlbumCountLabel.Size = new System.Drawing.Size(13, 13);
+            this.AlbumCountLabel.Size = new System.Drawing.Size(55, 24);
             this.AlbumCountLabel.TabIndex = 1;
-            this.AlbumCountLabel.Text = "0";
+            this.AlbumCountLabel.Text = "000";
+            this.AlbumCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // staticLabel
+            // AlbumNameLabel
             // 
-            this.staticLabel.AutoSize = true;
-            this.staticLabel.Location = new System.Drawing.Point(63, 0);
-            this.staticLabel.Name = "staticLabel";
-            this.staticLabel.Size = new System.Drawing.Size(39, 13);
-            this.staticLabel.TabIndex = 2;
-            this.staticLabel.Text = "photos";
+            this.AlbumNameLabel.AutoEllipsis = true;
+            this.AlbumNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AlbumNameLabel.Location = new System.Drawing.Point(0, 0);
+            this.AlbumNameLabel.MaximumSize = new System.Drawing.Size(125, 0);
+            this.AlbumNameLabel.Name = "AlbumNameLabel";
+            this.AlbumNameLabel.Size = new System.Drawing.Size(125, 25);
+            this.AlbumNameLabel.TabIndex = 1;
+            this.AlbumNameLabel.Text = "Name";
+            this.AlbumNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // AlbumThumnailUserControl
+            // renameToolStripMenuItem
+            // 
+            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.renameToolStripMenuItem.Text = "Rename";
+            this.renameToolStripMenuItem.Click += new System.EventHandler(this.HandleRenameAlbumClick);
+            // 
+            // AlbumThumbnailUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.primarySplitContainer);
-            this.Name = "AlbumThumnailUserControl";
+            this.Name = "AlbumThumbnailUserControl";
             this.primarySplitContainer.Panel1.ResumeLayout(false);
+            this.primarySplitContainer.Panel1.PerformLayout();
             this.primarySplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.primarySplitContainer)).EndInit();
             this.primarySplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.coverImagePictureBox)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -159,13 +149,12 @@ namespace PhotoBuddy.Controls
         #endregion
 
         private System.Windows.Forms.SplitContainer primarySplitContainer;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label AlbumNameLabel;
         private System.Windows.Forms.Label AlbumCountLabel;
         private System.Windows.Forms.PictureBox coverImagePictureBox;
-        private System.Windows.Forms.Label staticLabel;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.Label AlbumNameLabel;
+        private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
 
     }
 }

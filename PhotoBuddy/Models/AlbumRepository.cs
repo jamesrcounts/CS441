@@ -14,11 +14,8 @@ namespace PhotoBuddy.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
     using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
     using System.Xml.Linq;
     using PhotoBuddy.Common;
 
@@ -27,8 +24,6 @@ namespace PhotoBuddy.Models
     /// </summary>
     public class AlbumRepository
     {
-        ////private const string AlbumsTag = "albums";
-
         /// <summary>
         /// string literal: photo_buddy
         /// </summary>
@@ -107,6 +102,30 @@ namespace PhotoBuddy.Models
             {
                 return this.albums.Count;
             }
+        }
+        
+        /// <summary>
+        /// Stores the file.
+        /// </summary>
+        /// <param name="sourcePath">The source path.</param>
+        /// <param name="photoId">The photo id.</param>
+        /// <returns>The path to the file's location in storage.</returns>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei
+        /// </remarks>
+        public static string StoreFile(string sourcePath, string photoId)
+        {
+            // Combines two paths without having to worry about whether path1 ends with a '\' character
+            string destinationPath = Path.Combine(Constants.PhotosFolderPath, photoId);
+
+            // Changes or adds the original file extension to the new path
+            destinationPath = Path.ChangeExtension(destinationPath, Path.GetExtension(sourcePath));
+            if (!File.Exists(destinationPath))
+            {
+                File.Copy(sourceFileName: sourcePath, destFileName: destinationPath, overwrite: true);
+            }
+
+            return destinationPath;
         }
 
         /// <summary>
@@ -204,26 +223,16 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public IAlbum AddAlbum(string albumName)
         {
-            if (string.IsNullOrWhiteSpace(albumName) || Constants.MaxNameLength < albumName.Length)
-            {
-                throw new ArgumentException("albumName is invalid.", "albumName");
-            }
+            this.ThrowOnInvalidAlbumName(albumName);
 
-            if (!this.albums.ContainsKey(albumName))
-            {
-                // Update XML
-                XElement albumElement = XmlAlbum.CreateAlbumElement(albumName);
-                this.document.Descendants().First().Add(albumElement);
-                var album = new XmlAlbum(this, albumElement);
+            // Update XML
+            XElement albumElement = XmlAlbum.CreateAlbumElement(albumName);
+            this.document.Descendants().First().Add(albumElement);
+            var album = new XmlAlbum(this, albumElement);
 
-                // Update Album Index
-                this.albums.Add(album.AlbumId, album);
-                return album;
-            }
-            else
-            {
-                throw new ArgumentException("Album name already used in the repository.", "albumName");
-            }
+            // Update Album Index
+            this.albums.Add(album.AlbumId, album);
+            return album;
         }
 
         /// <summary>
@@ -345,82 +354,23 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
-        /// Adds the photo to an album.
+        /// Throws an exception when the name the album is invalid.
         /// </summary>
-        /// <param name="albumId">The album id.</param>
-        /// <param name="displayName">The display name.</param>
-        /// <param name="photoFileName">The photo filename.</param>
+        /// <param name="albumName">Name of the album.</param>
         /// <remarks>
-        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
-        ///   <para>Modified: 2011-10-27</para>
+        /// Author: Jim Counts
+        /// Created: 2011-11-04
         /// </remarks>
-        public void AddPhotoToAlbum(string albumId, string displayName, string photoFileName)
+        private void ThrowOnInvalidAlbumName(string albumName)
         {
-            // Copies the file to the secret location.
-            string photoId = AlbumRepository.GeneratePhotoKey(photoFileName);
-            string storagePath = AlbumRepository.StoreFile(photoFileName, photoId);
-            string storageName = Path.GetFileName(storagePath);
-
-            // Put the photo in the album data structure.
-            IAlbum currentAlbum = this.GetAlbum(albumId);
-            if (!currentAlbum.ContainsPhoto(photoId))
+            if (string.IsNullOrWhiteSpace(albumName) || Constants.MaxNameLength < albumName.Length)
             {
-                currentAlbum.AddPhoto(photoId, displayName, storageName);
-                this.SaveAlbums();
-            }
-        }
-
-        /// <summary>
-        /// Stores the file.
-        /// </summary>
-        /// <param name="sourcePath">The source path.</param>
-        /// <param name="photoId">The photo id.</param>
-        /// <returns>The path to the file's location in storage.</returns>
-        /// <remarks>
-        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei
-        /// </remarks>
-        private static string StoreFile(string sourcePath, string photoId)
-        {
-            // Combines two paths without having to worry about whether path1 ends with a '\' character
-            string destinationPath = Path.Combine(Constants.PhotosFolderPath, photoId);
-
-            // Changes or adds the original file extension to the new path
-            string fileExtension = Path.GetExtension(sourcePath);
-            destinationPath = Path.ChangeExtension(destinationPath, fileExtension);
-            if (!File.Exists(destinationPath))
-            {
-                File.Copy(sourceFileName: sourcePath, destFileName: destinationPath, overwrite: true);
+                throw new ArgumentException("albumName is invalid.", "albumName");
             }
 
-            return destinationPath;
-        }
-
-        /// <summary>
-        /// Generates the photo key for the specified file.
-        /// </summary>
-        /// <param name="filePath">The file path.</param>
-        /// <returns>A unique string which identifies the file by its contents.</returns>
-        /// <remarks>
-        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei
-        /// </remarks>
-        private static string GeneratePhotoKey(string filePath)
-        {
-            // Reading the bytes of the actual file contents
-            byte[] source = File.ReadAllBytes(filePath);
-
-            // Computing the SHA 256 Hash value
-            using (SHA256Managed hashAlgorithm = new SHA256Managed())
+            if (this.albums.ContainsKey(albumName))
             {
-                byte[] hash = hashAlgorithm.ComputeHash(source);
-
-                // Convert to HEX encoded string
-                StringBuilder hashString = new StringBuilder();
-                for (int i = 0; i < hash.Length; i++)
-                {
-                    hashString.Append(hash[i].ToString("X2", CultureInfo.InvariantCulture));
-                }
-
-                return hashString.ToString();
+                throw new ArgumentException("Album name already used in the repository.", "albumName");
             }
         }
 

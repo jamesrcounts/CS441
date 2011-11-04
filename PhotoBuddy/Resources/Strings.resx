@@ -120,14 +120,8 @@
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
-  <data name="AppName" xml:space="preserve">
-    <value>Photo Buddy</value>
-  </data>
   <data name="Create" xml:space="preserve">
     <value>Create</value>
-  </data>
-  <data name="ErrorNotPictureFile" xml:space="preserve">
-    <value>The chosen file is not a picture! Please select a photo file of type JPG, PNG, BMP, or GIF.</value>
   </data>
   <data name="StartViewTitle" xml:space="preserve">
     <value>Albums</value>

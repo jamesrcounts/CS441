@@ -88,6 +88,17 @@ namespace PhotoBuddy.Models
         void AddPhoto(string photoId, string displayName, string fileName);
 
         /// <summary>
+        /// Adds a new photo.
+        /// </summary>
+        /// <param name="displayName">The display name.</param>
+        /// <param name="filePath">The file path.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created On: 2011-11-03</para>
+        /// </remarks>
+        void AddPhoto(string displayName, string filePath);
+
+        /// <summary>
         /// Gets the photo.
         /// </summary>
         /// <param name="photoId">The photo id.</param>

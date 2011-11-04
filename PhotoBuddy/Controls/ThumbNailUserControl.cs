@@ -13,6 +13,7 @@ namespace PhotoBuddy.Controls
     using System.Drawing;
     using System.Windows.Forms;
     using PhotoBuddy.EventObjects;
+    using PhotoBuddy.Models;
 
     /// <summary>
     /// Displays a photo thumbnail with its name.
@@ -56,12 +57,12 @@ namespace PhotoBuddy.Controls
         {
             get
             {
-                return this.NameTextBox.Text;
+                return this.photoNameTextBox.Text;
             }
 
             set
             {
-                this.NameTextBox.Text = value;
+                this.photoNameTextBox.Text = value;
             }
         }
 
@@ -75,12 +76,12 @@ namespace PhotoBuddy.Controls
         {
             get
             {
-                return this.thumbnail;
+                return this.thumbnailPictureBox;
             }
- 
+
             set
             {
-                this.thumbnail = value;
+                this.thumbnailPictureBox = value;
             }
         }
 
@@ -101,7 +102,7 @@ namespace PhotoBuddy.Controls
                 handler(sender, e);
             }
         }
-        
+
         /// <summary>
         /// Highlights the photo when the mouse is over it.
         /// </summary>
@@ -114,7 +115,7 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void HighlightPhoto(object sender, EventArgs e)
         {
-            this.panel1.BackColor = Color.Blue;
+            this.photoPanel.BackColor = Color.Blue;
         }
 
         /// <summary>
@@ -129,9 +130,9 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void RemovePhotoHighlight(object sender, EventArgs e)
         {
-            this.panel1.BackColor = Color.White;
+            this.photoPanel.BackColor = Color.White;
         }
-        
+
         /// <summary>
         /// Handles the delete tool strip menu item click.
         /// </summary>
@@ -142,7 +143,7 @@ namespace PhotoBuddy.Controls
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         private void HandleDeleteToolStripMenuItemClick(object sender, EventArgs e)
-        {  
+        {
             ////DialogResult result = CultureAwareMessageBox.Show(
             ////    this,
             ////    "Are you sure you want to delete this photo?", 
@@ -154,10 +155,55 @@ namespace PhotoBuddy.Controls
             ////    return;
             ////}
 
-            var photo = (PhotoBuddy.Models.IPhoto)this.Thumbnail.Tag;
+            var photo = (IPhoto)this.Thumbnail.Tag;
             photo.Album.Repository.DeletePhoto(photo.Album, photo);
-  
+
             this.OnDeletePhotoEvent(this, new PhotoEventArgs(photo.PhotoId));
+        }
+
+        /// <summary>
+        /// Handles the key press.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.KeyPressEventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-04</para>
+        /// </remarks>
+        private void HandleKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Delete)
+            {
+                this.HandleDeleteToolStripMenuItemClick(this, new EventArgs());
+            }
+        }
+
+        /// <summary>
+        /// Handles the request to rename a photo.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-10-25</para>
+        ///   <para>Modified: 2011-11-04</para>
+        /// </remarks>
+        private void RenamePhoto(object sender, EventArgs e)
+        {
+            var photo = (IPhoto)this.Thumbnail.Tag;
+            using (var renamePhotoView = new UploadViewForm(photo))
+            {
+                var result = renamePhotoView.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    // User approved so rename the photo.
+                    photo.DisplayName = renamePhotoView.DisplayName;
+                    photo.Album.Repository.SaveAlbums();
+
+                    // Important to update the new name on the view.                    
+                    this.photoNameTextBox.Text = photo.DisplayName;
+                }
+            }
         }
     }
 }
