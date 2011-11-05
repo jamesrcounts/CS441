@@ -60,10 +60,28 @@ namespace PhotoBuddy.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Photo Buddy.
+        /// </summary>
+        internal static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap cooltext584091782 {
             get {
                 object obj = ResourceManager.GetObject("cooltext584091782", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The chosen file is not a picture! Please select a photo file of type JPG, PNG, BMP, or GIF..
+        /// </summary>
+        internal static string ErrorNotPictureFile {
+            get {
+                return ResourceManager.GetString("ErrorNotPictureFile", resourceCulture);
             }
         }
         

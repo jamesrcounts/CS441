@@ -162,23 +162,6 @@ namespace PhotoBuddy.Controls
         }
 
         /// <summary>
-        /// Handles the key press.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.Windows.Forms.KeyPressEventArgs"/> instance containing the event data.</param>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-04</para>
-        /// </remarks>
-        private void HandleKeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Delete)
-            {
-                this.HandleDeleteToolStripMenuItemClick(this, new EventArgs());
-            }
-        }
-
-        /// <summary>
         /// Handles the request to rename a photo.
         /// </summary>
         /// <param name="sender">The sender.</param>

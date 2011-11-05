@@ -14,6 +14,7 @@ namespace PhotoBuddy.Screens
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
     using PhotoBuddy.Controls;
@@ -130,11 +131,11 @@ namespace PhotoBuddy.Screens
         /// Author: Jim Counts
         /// Created: 2011-11-04
         /// </remarks>
-        public IEnumerable<AlbumThumbnailUserControl> Thumbnails
+        public IEnumerable<AlbumIconUserControl> Thumbnails
         {
             get
             {
-                return this.albumsFlowPanel.Controls.OfType<AlbumThumbnailUserControl>();
+                return this.albumsFlowPanel.Controls.OfType<AlbumIconUserControl>();
             }
         }
 
@@ -155,7 +156,7 @@ namespace PhotoBuddy.Screens
 
             foreach (var album in this.Repository.Albums)
             {
-                var albumControl = new AlbumThumbnailUserControl()
+                var albumControl = new AlbumIconUserControl()
                                 {
                                     Album = album,
                                     AlbumName = album.AlbumId,
@@ -287,29 +288,35 @@ namespace PhotoBuddy.Screens
         private void HandleCreateButtonClick(object sender, EventArgs e)
         {
             // raise the create event
-            EventArgs args = new EventArgs();
-            this.CreateButtonEvent(this, args);
+            this.CreateButtonEvent(this, new EventArgs());
         }
 
         /// <summary>
-        /// Handles the search button click.
+        /// Change the color of button controls when the mouse enters.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender">Any Button on this form.</param>
+        /// <param name="e">The event args,</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-03</para>
+        /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        private void HandleSearchButtonClick(object sender, EventArgs e)
+        private void HandleButtonMouseEnter(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(this.searchTextBox.Text))
-            {
-                return;
-            }
+            Button button = sender as Button;
+            button.ForeColor = Color.Black;
+        }
 
-            var terms = this.searchTextBox.Text.Split(' ');
-            var searchReults = this.Repository.Search(terms);
-            this.OnSearchCompleteEvent(this, new AlbumEventArgs(searchReults));
+        /// <summary>
+        /// Change the color of button controls when the mouse leaves.
+        /// </summary>
+        /// <param name="sender">Any Button on this form.</param>
+        /// <param name="e">The event args.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleButtonMouseLeave(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            button.ForeColor = Color.White;
         }
     }
 }

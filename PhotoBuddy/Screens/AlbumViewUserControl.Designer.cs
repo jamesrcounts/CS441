@@ -33,12 +33,12 @@ namespace PhotoBuddy.Screens
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelAlbumName = new System.Windows.Forms.Label();
-            this.renameAlbumButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.AddPhotosButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.photosFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.addPhotosFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -81,7 +81,6 @@ namespace PhotoBuddy.Screens
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Controls.Add(this.labelAlbumName);
-            this.flowLayoutPanel1.Controls.Add(this.renameAlbumButton);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(10, -6);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -103,25 +102,6 @@ namespace PhotoBuddy.Screens
             this.labelAlbumName.TabIndex = 2;
             this.labelAlbumName.Text = "album name";
             this.labelAlbumName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // renameAlbumButton
-            // 
-            this.renameAlbumButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.renameAlbumButton.AutoSize = true;
-            this.renameAlbumButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.renameAlbumButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(234)))), ((int)(((byte)(243)))));
-            this.renameAlbumButton.FlatAppearance.BorderSize = 0;
-            this.renameAlbumButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
-            this.renameAlbumButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.renameAlbumButton.ForeColor = System.Drawing.Color.Black;
-            this.renameAlbumButton.Location = new System.Drawing.Point(166, 14);
-            this.renameAlbumButton.Margin = new System.Windows.Forms.Padding(5, 10, 38, 0);
-            this.renameAlbumButton.Name = "renameAlbumButton";
-            this.renameAlbumButton.Size = new System.Drawing.Size(35, 23);
-            this.renameAlbumButton.TabIndex = 1;
-            this.renameAlbumButton.Text = "Edit";
-            this.renameAlbumButton.UseVisualStyleBackColor = false;
-            this.renameAlbumButton.Click += new System.EventHandler(this.HandleRenameAlbumButtonClick);
             // 
             // panel2
             // 
@@ -202,6 +182,12 @@ namespace PhotoBuddy.Screens
             this.panel3.Size = new System.Drawing.Size(355, 1);
             this.panel3.TabIndex = 3;
             // 
+            // addPhotosFileDialog
+            // 
+            this.addPhotosFileDialog.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png|bmp files (*.bmp)|*.bmp|gif files" +
+                " (*.gif)|*.gif";
+            this.addPhotosFileDialog.Multiselect = true;
+            // 
             // AlbumViewUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,7 +212,6 @@ namespace PhotoBuddy.Screens
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button renameAlbumButton;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button AddPhotosButton;
         private System.Windows.Forms.Button backButton;
@@ -234,6 +219,6 @@ namespace PhotoBuddy.Screens
         private System.Windows.Forms.FlowLayoutPanel photosFlowPanel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel3;
-
+        private System.Windows.Forms.OpenFileDialog addPhotosFileDialog;
     }
 }

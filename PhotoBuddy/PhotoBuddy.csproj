@@ -214,7 +214,6 @@
     <EmbeddedResource Include="Controls\AlbumThumbnailUserControl.resx">
       <DependentUpon>AlbumThumbnailUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ClickLabel.resx">
       <DependentUpon>ClickLabel.cs</DependentUpon>
     </EmbeddedResource>

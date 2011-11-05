@@ -13,9 +13,9 @@ namespace PhotoBuddy.Screens
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Drawing;
     using System.IO;
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Windows.Forms;
     using PhotoBuddy.Controls;
     using PhotoBuddy.EventObjects;
@@ -93,7 +93,7 @@ namespace PhotoBuddy.Screens
                     this.RefreshPhotoList();
                 }
             }
-       }        
+        }
 
         /// <summary>
         /// Gets or sets the display name.
@@ -116,29 +116,24 @@ namespace PhotoBuddy.Screens
                 return;
             }
 
-            // Clear out the photos is the panel.
-            ////foreach (var thumbnail in this.photosFlowPanel.Controls.OfType<ThumbnailUserControl>())
-            ////{
-            ////    thumbnail.Dispose();
-            ////}
-
             this.photosFlowPanel.Controls.Clear();
             foreach (IPhoto photo in this.currentAlbum.Photos)
             {
-                // Create a thumbnail control for the current photo
                 ThumbnailUserControl thumb = new ThumbnailUserControl()
                 {
                     DisplayName = photo.DisplayName
                 };
+
                 // Store the photo object in the thumbnail tag.
                 // thumbnail is a public property to set the picture box on the thumbnailUserControl.
                 thumb.Thumbnail.Tag = photo;
                 thumb.Thumbnail.Image = photo.Image;
+                
                 // Wire the click event to the picturebox
                 thumb.Thumbnail.Click += this.HandlePhotoClick;
                 thumb.DeletePhotoEvent += this.HandleDeletePhotoEvent;
                 // Add the thumb control to the flow panel.
-                this.AddThumbnail(thumb);              
+                this.AddThumbnail(thumb);
             }
         }
 
@@ -328,6 +323,34 @@ namespace PhotoBuddy.Screens
             ////IPhoto photoToDelete = currentAlbum.Photos.Where(photo => photo.DisplayName == photoDisplayName).Single();
             ////currentAlbum.Repository.DeletePhoto(currentAlbum, photoToDelete);
             ////this.RefreshPhotoList();
+        }
+
+        /// <summary>
+        /// Change the color of button controls when the mouse enters.
+        /// </summary>
+        /// <param name="sender">Any Button on this form.</param>
+        /// <param name="e">The event args,</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleButtonMouseEnter(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            button.ForeColor = Color.Black;
+        }
+
+        /// <summary>
+        /// Change the color of button controls when the mouse leaves.
+        /// </summary>
+        /// <param name="sender">Any Button on this form.</param>
+        /// <param name="e">The event args.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleButtonMouseLeave(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            button.ForeColor = Color.White;
         }
     }
 }

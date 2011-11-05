@@ -425,13 +425,29 @@ namespace PhotoBuddy
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (this.CurrentView == this.HomeView)
+            this.HandleAppNameLabelClick(sender, e);
+            this.ShowView(this.HomeView);
+        }
+
+        /// <summary>
+        /// Handles the search button click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>
+        private void HandleSearchButtonClick(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(this.searchTextBox.Text))
             {
-                this.MessageService.ShowMessage(this.MessageService.AboutPhotoBuddy);
                 return;
             }
 
-            this.ShowView(this.HomeView);
+            var terms = this.searchTextBox.Text.Split(' ');
+            var searchResults = Model.Search(terms);
+            this.ShowSearchResults(this, new AlbumEventArgs(searchResults));
         }
     }
 }
