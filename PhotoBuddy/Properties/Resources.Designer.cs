@@ -91,5 +91,12 @@ namespace PhotoBuddy.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        internal static System.Drawing.Icon PhotoBuddy {
+            get {
+                object obj = ResourceManager.GetObject("PhotoBuddy", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

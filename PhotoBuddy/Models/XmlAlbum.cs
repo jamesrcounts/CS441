@@ -212,7 +212,7 @@ namespace PhotoBuddy.Models
         public void AddPhoto(string displayName, string filePath)
         {
             // Copies the file to the secret location.
-            string photoId = Photo.GeneratePhotoKey(filePath);
+            string photoId = Photo.GeneratePhotoKey(filePath);            
             string storagePath = AlbumRepository.StoreFile(filePath, photoId);
             string storageName = Path.GetFileName(storagePath);
 

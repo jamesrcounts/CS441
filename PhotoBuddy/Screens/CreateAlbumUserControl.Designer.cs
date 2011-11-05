@@ -29,49 +29,49 @@ namespace PhotoBuddy.Screens
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.footerPanel = new System.Windows.Forms.Panel();
             this.cancelButton = new System.Windows.Forms.Button();
             this.continueButton = new System.Windows.Forms.Button();
             this.albumNameTextBox = new System.Windows.Forms.TextBox();
             this.createAlbumLabel = new System.Windows.Forms.Label();
             this.createHeaderLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.foundationTableLayoutPanel.SuspendLayout();
+            this.footerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // foundationTableLayoutPanel
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 345F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.albumNameTextBox, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.createAlbumLabel, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.createHeaderLabel, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(375, 325);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.foundationTableLayoutPanel.ColumnCount = 3;
+            this.foundationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.foundationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 345F));
+            this.foundationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.foundationTableLayoutPanel.Controls.Add(this.footerPanel, 1, 3);
+            this.foundationTableLayoutPanel.Controls.Add(this.albumNameTextBox, 1, 2);
+            this.foundationTableLayoutPanel.Controls.Add(this.createAlbumLabel, 1, 1);
+            this.foundationTableLayoutPanel.Controls.Add(this.createHeaderLabel, 1, 0);
+            this.foundationTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.foundationTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
+            this.foundationTableLayoutPanel.RowCount = 5;
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(375, 325);
+            this.foundationTableLayoutPanel.TabIndex = 1;
             // 
-            // panel1
+            // footerPanel
             // 
-            this.panel1.Controls.Add(this.cancelButton);
-            this.panel1.Controls.Add(this.continueButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(15, 261);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(345, 49);
-            this.panel1.TabIndex = 4;
+            this.footerPanel.Controls.Add(this.cancelButton);
+            this.footerPanel.Controls.Add(this.continueButton);
+            this.footerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.footerPanel.Location = new System.Drawing.Point(15, 261);
+            this.footerPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.footerPanel.Name = "footerPanel";
+            this.footerPanel.Size = new System.Drawing.Size(345, 49);
+            this.footerPanel.TabIndex = 4;
             // 
             // cancelButton
             // 
@@ -82,7 +82,7 @@ namespace PhotoBuddy.Screens
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelButton.Location = new System.Drawing.Point(8, 1);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(8);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(92, 40);
             this.cancelButton.TabIndex = 4;
@@ -99,7 +99,7 @@ namespace PhotoBuddy.Screens
             this.continueButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.continueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.continueButton.Location = new System.Drawing.Point(245, 1);
-            this.continueButton.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.continueButton.Margin = new System.Windows.Forms.Padding(8);
             this.continueButton.Name = "continueButton";
             this.continueButton.Size = new System.Drawing.Size(92, 40);
             this.continueButton.TabIndex = 3;
@@ -149,21 +149,21 @@ namespace PhotoBuddy.Screens
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.foundationTableLayoutPanel);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateAlbumUserControl";
             this.Size = new System.Drawing.Size(375, 325);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.foundationTableLayoutPanel.ResumeLayout(false);
+            this.foundationTableLayoutPanel.PerformLayout();
+            this.footerPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel foundationTableLayoutPanel;
+        private System.Windows.Forms.Panel footerPanel;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button continueButton;
         private System.Windows.Forms.TextBox albumNameTextBox;

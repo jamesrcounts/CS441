@@ -33,10 +33,10 @@ namespace PhotoBuddy
         /////// </summary>
         ////private readonly string photoID;
 
-        /// <summary>
-        /// The photo
-        /// </summary>
-        private readonly IPhoto picture;
+        /////// <summary>
+        /////// The photo
+        /////// </summary>
+        ////private readonly IPhoto picture;
 
         /// <summary>
         /// All photos in the album.
@@ -73,10 +73,8 @@ namespace PhotoBuddy
             this.Text = "Photo Display - Photo Buddy";
             this.album = currentAlbum;
             this.currentAlbumLabel.Text = this.album.AlbumId.Replace("&", "&&");
-            /////this.allPhotosInAlbum = this.album.PhotoList.PhotoTable.Values.Cast<Photo>().ToList();
-            this.allPhotosInAlbum = this.album.Photos.ToList();
-            this.picture = this.allPhotosInAlbum.SingleOrDefault(photo => photo.PhotoId == photoToDisplay.PhotoId);
-            this.photoIndex = this.allPhotosInAlbum.IndexOf(this.picture);
+            this.allPhotosInAlbum = new List<IPhoto>(this.album.Photos);
+            this.photoIndex = this.allPhotosInAlbum.IndexOf(photoToDisplay);
             this.DisplayPhoto(this.photoIndex);
         }
 

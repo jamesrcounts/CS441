@@ -138,9 +138,9 @@ namespace PhotoBuddy.Screens
             else
             {
                 // Editing an existing album.
-                this.albumNameTextBox.Text = theAlbumName;
-                this.createAlbumLabel.Text = "Please enter the new album name for: " + this.AlbumName;
-                this.createHeaderLabel.Text = "Edit Album: " + theAlbumName;
+                this.albumNameTextBox.Text = this.AlbumName;
+                this.createAlbumLabel.Text = "Please enter the new album name for: " + this.AlbumName.Replace("&", "&&");
+                this.createHeaderLabel.Text = "Edit Album: " + this.AlbumName.Replace("&", "&&");
             }
 
             this.albumNameTextBox.Focus();

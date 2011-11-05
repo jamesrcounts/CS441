@@ -102,6 +102,9 @@
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\PhotoBuddy.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -280,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MissingImageIcon.ico" />
+    <None Include="Resources\PhotoBuddy.ico" />
     <None Include="Resources\FolderIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
