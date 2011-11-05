@@ -158,5 +158,33 @@ namespace PhotoBuddy
                 this.HandleContinueButtonClick(sender, e);
             }
         }
+
+        /// <summary>
+        /// Change the color of button controls when the mouse enters.
+        /// </summary>
+        /// <param name="sender">Any Button on this form.</param>
+        /// <param name="e">The event args,</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleButtonMouseEnter(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            button.ForeColor = Color.Black;
+        }
+
+        /// <summary>
+        /// Change the color of button controls when the mouse leaves.
+        /// </summary>
+        /// <param name="sender">Any Button on this form.</param>
+        /// <param name="e">The event args.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleButtonMouseLeave(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            button.ForeColor = Color.White;
+        }
     }
 }

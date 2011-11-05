@@ -18,6 +18,7 @@ namespace PhotoBuddy.Screens
     using PhotoBuddy.Controls;
     using PhotoBuddy.EventObjects;
     using PhotoBuddy.Models;
+    using System.Drawing;
 
     /// <summary>
     /// The Opening View
@@ -240,6 +241,34 @@ namespace PhotoBuddy.Screens
             // raise the create event
             EventArgs args = new EventArgs();
             this.CreateButtonEvent(this, args);
+        }
+
+        /// <summary>
+        /// Change the color of button controls when the mouse enters.
+        /// </summary>
+        /// <param name="sender">Any Button on this form.</param>
+        /// <param name="e">The event args,</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleButtonMouseEnter(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            button.ForeColor = Color.Black;
+        }
+
+        /// <summary>
+        /// Change the color of button controls when the mouse leaves.
+        /// </summary>
+        /// <param name="sender">Any Button on this form.</param>
+        /// <param name="e">The event args.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan
+        /// </remarks>
+        private void HandleButtonMouseLeave(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            button.ForeColor = Color.White;
         }
     }
 }

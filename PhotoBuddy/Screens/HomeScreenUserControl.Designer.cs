@@ -36,6 +36,7 @@ namespace PhotoBuddy.Screens
             this.CreateButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.albumsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.dividerPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -47,16 +48,18 @@ namespace PhotoBuddy.Screens
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.albumsFlowPanel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.albumsFlowPanel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.dividerPanel, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 244);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
@@ -64,82 +67,102 @@ namespace PhotoBuddy.Screens
             // 
             this.panel1.Controls.Add(this.AlbumsLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(2, 2);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(296, 45);
+            this.panel1.Size = new System.Drawing.Size(300, 35);
             this.panel1.TabIndex = 0;
             // 
             // AlbumsLabel
             // 
             this.AlbumsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AlbumsLabel.AutoSize = true;
-            this.AlbumsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AlbumsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AlbumsLabel.ForeColor = System.Drawing.Color.Black;
-            this.AlbumsLabel.Location = new System.Drawing.Point(32, 14);
-            this.AlbumsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.AlbumsLabel.Location = new System.Drawing.Point(10, 4);
+            this.AlbumsLabel.Margin = new System.Windows.Forms.Padding(10, 0, 2, 0);
             this.AlbumsLabel.Name = "AlbumsLabel";
-            this.AlbumsLabel.Size = new System.Drawing.Size(93, 29);
+            this.AlbumsLabel.Size = new System.Drawing.Size(104, 31);
             this.AlbumsLabel.TabIndex = 0;
             this.AlbumsLabel.Text = "Albums";
             this.AlbumsLabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.Controls.Add(this.CreateButton);
             this.panel2.Controls.Add(this.ExitButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 179);
+            this.panel2.Location = new System.Drawing.Point(0, 208);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(300, 65);
+            this.panel2.Size = new System.Drawing.Size(300, 36);
             this.panel2.TabIndex = 1;
             // 
             // CreateButton
             // 
             this.CreateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CreateButton.AutoSize = true;
+            this.CreateButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
             this.CreateButton.FlatAppearance.BorderSize = 0;
-            this.CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(225)))), ((int)(((byte)(237)))));
+            this.CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
             this.CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateButton.Location = new System.Drawing.Point(170, 17);
-            this.CreateButton.Margin = new System.Windows.Forms.Padding(8, 8, 38, 8);
+            this.CreateButton.ForeColor = System.Drawing.Color.White;
+            this.CreateButton.Location = new System.Drawing.Point(223, 2);
+            this.CreateButton.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.CreateButton.Name = "CreateButton";
-            this.CreateButton.Size = new System.Drawing.Size(92, 40);
+            this.CreateButton.Size = new System.Drawing.Size(67, 30);
             this.CreateButton.TabIndex = 0;
             this.CreateButton.Text = "Create";
             this.CreateButton.UseVisualStyleBackColor = false;
             this.CreateButton.Click += new System.EventHandler(this.HandleCreateButtonClick);
+            this.CreateButton.MouseEnter += new System.EventHandler(this.HandleButtonMouseEnter);
+            this.CreateButton.MouseLeave += new System.EventHandler(this.HandleButtonMouseLeave);
             // 
             // ExitButton
             // 
             this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ExitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ExitButton.AutoSize = true;
+            this.ExitButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ExitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
             this.ExitButton.FlatAppearance.BorderSize = 0;
-            this.ExitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(225)))), ((int)(((byte)(237)))));
+            this.ExitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
             this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExitButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ExitButton.Location = new System.Drawing.Point(39, 17);
-            this.ExitButton.Margin = new System.Windows.Forms.Padding(38, 8, 8, 8);
+            this.ExitButton.ForeColor = System.Drawing.Color.White;
+            this.ExitButton.Location = new System.Drawing.Point(10, 2);
+            this.ExitButton.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(92, 40);
+            this.ExitButton.Size = new System.Drawing.Size(45, 30);
             this.ExitButton.TabIndex = 1;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = false;
             this.ExitButton.Click += new System.EventHandler(this.HandleExitButtonClick);
+            this.ExitButton.MouseEnter += new System.EventHandler(this.HandleButtonMouseEnter);
+            this.ExitButton.MouseLeave += new System.EventHandler(this.HandleButtonMouseLeave);
             // 
             // albumsFlowPanel
             // 
             this.albumsFlowPanel.AutoScroll = true;
             this.albumsFlowPanel.BackColor = System.Drawing.Color.White;
             this.albumsFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.albumsFlowPanel.Location = new System.Drawing.Point(38, 57);
-            this.albumsFlowPanel.Margin = new System.Windows.Forms.Padding(38, 8, 38, 3);
+            this.albumsFlowPanel.Location = new System.Drawing.Point(10, 39);
+            this.albumsFlowPanel.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.albumsFlowPanel.Name = "albumsFlowPanel";
-            this.albumsFlowPanel.Size = new System.Drawing.Size(224, 119);
+            this.albumsFlowPanel.Size = new System.Drawing.Size(280, 166);
             this.albumsFlowPanel.TabIndex = 2;
+            // 
+            // dividerPanel
+            // 
+            this.dividerPanel.BackColor = System.Drawing.Color.Black;
+            this.dividerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dividerPanel.Location = new System.Drawing.Point(10, 35);
+            this.dividerPanel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.dividerPanel.Name = "dividerPanel";
+            this.dividerPanel.Size = new System.Drawing.Size(280, 1);
+            this.dividerPanel.TabIndex = 3;
             // 
             // HomeScreenUserControl
             // 
@@ -147,13 +170,14 @@ namespace PhotoBuddy.Screens
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "HomeScreenUserControl";
             this.Size = new System.Drawing.Size(300, 244);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -167,5 +191,6 @@ namespace PhotoBuddy.Screens
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button CreateButton;
         private System.Windows.Forms.FlowLayoutPanel albumsFlowPanel;
+        private System.Windows.Forms.Panel dividerPanel;
     }
 }

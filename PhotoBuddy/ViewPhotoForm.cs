@@ -176,7 +176,7 @@ namespace PhotoBuddy
         private void HandleButtonMouseEnter(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            button.ForeColor = Color.Azure;
+            button.ForeColor = Color.Black;
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace PhotoBuddy
         private void HandleButtonMouseLeave(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            button.ForeColor = Color.DarkGray;
+            button.ForeColor = Color.FromArgb(47, 70, 102);
         }
 
         /// <summary>

@@ -60,6 +60,13 @@ namespace PhotoBuddy.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap cooltext584091782 {
+            get {
+                object obj = ResourceManager.GetObject("cooltext584091782", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon FolderIcon {
             get {
                 object obj = ResourceManager.GetObject("FolderIcon", resourceCulture);
@@ -71,6 +78,69 @@ namespace PhotoBuddy.Properties {
             get {
                 object obj = ResourceManager.GetObject("MissingImageIcon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PB_black {
+            get {
+                object obj = ResourceManager.GetObject("PB-black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PB_black2 {
+            get {
+                object obj = ResourceManager.GetObject("PB-black2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PB_Black3 {
+            get {
+                object obj = ResourceManager.GetObject("PB-Black3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PB_blue {
+            get {
+                object obj = ResourceManager.GetObject("PB-blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PB_Mac_Silver {
+            get {
+                object obj = ResourceManager.GetObject("PB-Mac-Silver", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PB_Orange {
+            get {
+                object obj = ResourceManager.GetObject("PB-Orange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PB_short_orange {
+            get {
+                object obj = ResourceManager.GetObject("PB-short-orange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap PB_silver {
+            get {
+                object obj = ResourceManager.GetObject("PB-silver", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap photobuddy_orange {
+            get {
+                object obj = ResourceManager.GetObject("photobuddy-orange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

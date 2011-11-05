@@ -484,5 +484,16 @@ namespace PhotoBuddy
 
             this.ShowView(this.HomeView);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (this.CurrentView == this.HomeView)
+            {
+                this.MessageService.ShowMessage(this.MessageService.AboutPhotoBuddy);
+                return;
+            }
+
+            this.ShowView(this.HomeView);
+        }
     }
 }

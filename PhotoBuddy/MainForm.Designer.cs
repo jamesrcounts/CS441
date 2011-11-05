@@ -30,54 +30,122 @@ namespace PhotoBuddy
         private void InitializeComponent()
         {
             this.panelScreenHolder = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AppNameLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.photoBrowserOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.panelScreenHolder.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelScreenHolder
             // 
-            this.panelScreenHolder.BackColor = System.Drawing.Color.Transparent;
+            this.panelScreenHolder.BackColor = System.Drawing.Color.White;
+            this.panelScreenHolder.Controls.Add(this.AppNameLabel);
             this.panelScreenHolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelScreenHolder.Location = new System.Drawing.Point(0, 49);
+            this.panelScreenHolder.Location = new System.Drawing.Point(0, 36);
             this.panelScreenHolder.Margin = new System.Windows.Forms.Padding(0);
             this.panelScreenHolder.Name = "panelScreenHolder";
-            this.panelScreenHolder.Size = new System.Drawing.Size(784, 513);
+            this.panelScreenHolder.Size = new System.Drawing.Size(784, 526);
             this.panelScreenHolder.TabIndex = 2;
+            // 
+            // AppNameLabel
+            // 
+            this.AppNameLabel.AutoSize = true;
+            this.AppNameLabel.Font = new System.Drawing.Font("Magneto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AppNameLabel.ForeColor = System.Drawing.Color.LightGray;
+            this.AppNameLabel.Location = new System.Drawing.Point(109, 20);
+            this.AppNameLabel.Name = "AppNameLabel";
+            this.AppNameLabel.Size = new System.Drawing.Size(117, 20);
+            this.AppNameLabel.TabIndex = 7;
+            this.AppNameLabel.Text = "Photo Buddy";
+            this.AppNameLabel.Click += new System.EventHandler(this.HandleAppNameLabelClick);
+            this.AppNameLabel.MouseEnter += new System.EventHandler(this.HandleAppNameLabelMouseEnter);
+            this.AppNameLabel.MouseLeave += new System.EventHandler(this.HandleAppNameLabelMouseLeave);
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(146)))), ((int)(((byte)(190)))));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tableLayoutPanel1.Controls.Add(this.AppNameLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panelScreenHolder, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 562);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // AppNameLabel
+            // panel1
             // 
-            this.AppNameLabel.AutoSize = true;
-            this.AppNameLabel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.AppNameLabel.Font = new System.Drawing.Font("Magneto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AppNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.AppNameLabel.Location = new System.Drawing.Point(542, 0);
-            this.AppNameLabel.Name = "AppNameLabel";
-            this.AppNameLabel.Size = new System.Drawing.Size(239, 49);
-            this.AppNameLabel.TabIndex = 7;
-            this.AppNameLabel.Text = "Photo Buddy";
-            this.AppNameLabel.Click += new System.EventHandler(this.HandleAppNameLabelClick);
-            this.AppNameLabel.MouseEnter += new System.EventHandler(this.HandleAppNameLabelMouseEnter);
-            this.AppNameLabel.MouseLeave += new System.EventHandler(this.HandleAppNameLabelMouseLeave);
+            this.panel1.AutoSize = true;
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.searchButton);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(784, 36);
+            this.panel1.TabIndex = 3;
+            // 
+            // button2
+            // 
+            this.button2.AutoSize = true;
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Magneto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.LightSlateGray;
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(127, 32);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Photo Buddy";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // searchButton
+            // 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.searchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.searchButton.FlatAppearance.BorderSize = 0;
+            this.searchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Location = new System.Drawing.Point(723, 10);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(0, 3, 10, 3);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(51, 22);
+            this.searchButton.TabIndex = 2;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(502, 9);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(221, 24);
+            this.textBox1.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -89,8 +157,12 @@ namespace PhotoBuddy
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeScreenForm";
+            this.panelScreenHolder.ResumeLayout(false);
+            this.panelScreenHolder.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -101,5 +173,10 @@ namespace PhotoBuddy
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label AppNameLabel;
         private System.Windows.Forms.OpenFileDialog photoBrowserOpenFileDialog;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button button2;
     }
 }
