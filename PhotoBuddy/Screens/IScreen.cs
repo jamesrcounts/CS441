@@ -35,7 +35,7 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// Shows the view.
         /// </summary>
-        /// <param name="caller">The caller.</param>
-        void ShowView(Stack<UserControl> caller);
+        /// <param name="history">The history.</param>
+        void ShowView(Stack<UserControl> history);
     }
 }

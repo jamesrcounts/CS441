@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="AlbumThumnailUserControl.cs" company="Gold Rush">
+// <copyright file="AlbumThumbnailUserControl.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -7,8 +7,9 @@ namespace PhotoBuddy.Controls
 {
     using System;
     using System.Drawing;
+    using System.Globalization;
     using System.Windows.Forms;
-    using PhotoBuddy.EventObjects;
+    using PhotoBuddy.Models;
 
     /// <summary>
     /// Displays an album on the home screen.
@@ -17,19 +18,28 @@ namespace PhotoBuddy.Controls
     ///   <para>Author: Jim Counts</para>
     ///   <para>Created: 2011-10-26</para>
     /// </remarks>
-    public partial class AlbumThumnailUserControl : UserControl
+    public partial class AlbumThumbnailUserControl : UserControl
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AlbumThumnailUserControl"/> class.
+        /// Initializes a new instance of the <see cref="AlbumThumbnailUserControl"/> class.
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        public AlbumThumnailUserControl()
+        public AlbumThumbnailUserControl()
         {
             this.InitializeComponent();
         }
+
+        /// <summary>
+        /// Occurs when a request is made to rename an album.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-04</para>
+        /// </remarks>
+        public event EventHandler<AlbumEventArgs> RenameAlbumEvent;
 
         /// <summary>
         /// Occurs when an album is clicked.
@@ -38,7 +48,7 @@ namespace PhotoBuddy.Controls
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        public event EventHandler<AlbumEventArgs> AlbumSelectedEvent;
+        public event EventHandler<AlbumNameEventArgs> AlbumSelectedEvent;
 
         /// <summary>
         /// Occurs when the user makes a request to delete an album.
@@ -47,7 +57,19 @@ namespace PhotoBuddy.Controls
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
-        public event EventHandler<AlbumEventArgs> DeleteAlbumEvent;
+        public event EventHandler<AlbumNameEventArgs> DeleteAlbumEvent;
+
+        /// <summary>
+        /// Gets or sets the album.
+        /// </summary>
+        /// <value>
+        /// The album.
+        /// </value>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-26</para>
+        /// </remarks>
+        public IAlbum Album { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the album.
@@ -86,12 +108,12 @@ namespace PhotoBuddy.Controls
         {
             get
             {
-                return Convert.ToInt32(this.AlbumCountLabel.Text);
+                return Convert.ToInt32(this.AlbumCountLabel.Text, CultureInfo.CurrentCulture);
             }
 
             set
             {
-                this.AlbumCountLabel.Text = value.ToString();
+                this.AlbumCountLabel.Text = value.ToString(CultureInfo.CurrentCulture);
             }
         }
 
@@ -119,6 +141,24 @@ namespace PhotoBuddy.Controls
         }
 
         /// <summary>
+        /// Called when an album rename is requested.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.Models.AlbumEventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-04</para>
+        /// </remarks>
+        public virtual void OnRenameAlbumEvent(object sender, AlbumEventArgs e)
+        {
+            EventHandler<AlbumEventArgs> handler = this.RenameAlbumEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
+        /// <summary>
         /// Called when the album is selected.
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -127,9 +167,9 @@ namespace PhotoBuddy.Controls
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        public virtual void OnAlbumSelectedEvent(object sender, AlbumEventArgs e)
+        public virtual void OnAlbumSelectedEvent(object sender, AlbumNameEventArgs e)
         {
-            EventHandler<AlbumEventArgs> handler = this.AlbumSelectedEvent;
+            EventHandler<AlbumNameEventArgs> handler = this.AlbumSelectedEvent;
             if (handler != null)
             {
                 handler(sender, e);
@@ -145,9 +185,9 @@ namespace PhotoBuddy.Controls
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
-        public virtual void OnDeleteAlbumEvent(object sender, AlbumEventArgs e)
+        public virtual void OnDeleteAlbumEvent(object sender, AlbumNameEventArgs e)
         {
-            EventHandler<AlbumEventArgs> handler = this.DeleteAlbumEvent;
+            EventHandler<AlbumNameEventArgs> handler = this.DeleteAlbumEvent;
             if (handler != null)
             {
                 handler(sender, e);
@@ -165,7 +205,7 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void HandleCoverImagePictureBoxClick(object sender, EventArgs e)
         {
-            this.OnAlbumSelectedEvent(this, new AlbumEventArgs(this.AlbumName));
+            this.OnAlbumSelectedEvent(this, new AlbumNameEventArgs(this.AlbumName));
         }
 
         /// <summary>
@@ -179,7 +219,22 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void HandleDeleteToolStripItemClick(object sender, EventArgs e)
         {
-            this.OnDeleteAlbumEvent(this, new AlbumEventArgs(this.AlbumName));
+            this.OnDeleteAlbumEvent(this, new AlbumNameEventArgs(this.AlbumName));
+        }
+
+        /// <summary>
+        /// Handles the rename album click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-11-04</para>
+        /// </remarks>
+        private void HandleRenameAlbumClick(object sender, EventArgs e)
+        {
+            this.OnRenameAlbumEvent(this, new AlbumEventArgs(this.Album));
+            this.AlbumName = this.Album.AlbumId;
         }
     }
 }

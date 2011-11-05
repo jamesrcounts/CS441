@@ -38,28 +38,14 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
-        /// Defines a delegate to handle the Cancel Event.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        public delegate void CancelEventHandler(object sender, EventArgs e);
-
-        /// <summary>
-        /// Defines a delegate to handle the Continue Event.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        public delegate void ContinueEventHandler(object sender, EventArgs e);
-
-        /// <summary>
         /// Occurs when the user cancels album create/edit
         /// </summary>
-        public event CancelEventHandler CancelEvent;
+        public event EventHandler CancelEvent;
 
         /// <summary>
         /// Occurs when user decides to complete the create/edit action.
         /// </summary>
-        public event ContinueEventHandler ContinueEvent;
+        public event EventHandler ContinueEvent;
 
         /// <summary>
         /// Gets the name of the album.
@@ -103,7 +89,7 @@ namespace PhotoBuddy.Screens
         /// <value>
         ///   <c>true</c> if album creation is needed; otherwise, <c>false</c> if editing is needed.
         /// </value>
-        public bool InCreateMode { get; private set; }
+        public bool AlbumCreateMode { get; private set; }
 
         /// <summary>
         /// Gets or sets the display name.
@@ -142,8 +128,8 @@ namespace PhotoBuddy.Screens
         public void ResetForm(bool isCreateAlbum, string theAlbumName)
         {
             this.AlbumName = theAlbumName;
-            this.InCreateMode = isCreateAlbum;
-            if (this.InCreateMode)
+            this.AlbumCreateMode = isCreateAlbum;
+            if (this.AlbumCreateMode)
             {
                 // Creating a new album.
                 this.createAlbumLabel.Text = "Please enter the name of the new album:";
@@ -153,9 +139,9 @@ namespace PhotoBuddy.Screens
             else
             {
                 // Editing an existing album.
-                this.albumNameTextBox.Text = theAlbumName;
-                this.createAlbumLabel.Text = "Please enter the new album name for: " + this.AlbumName;
-                this.createHeaderLabel.Text = "Edit Album: " + theAlbumName;
+                this.albumNameTextBox.Text = this.AlbumName;
+                this.createAlbumLabel.Text = "Please enter the new album name for: " + this.AlbumName.Replace("&", "&&");
+                this.createHeaderLabel.Text = "Edit Album: " + this.AlbumName.Replace("&", "&&");
             }
 
             this.albumNameTextBox.Focus();
@@ -210,7 +196,8 @@ namespace PhotoBuddy.Screens
         {
             if (string.IsNullOrWhiteSpace(this.albumNameTextBox.Text))
             {
-                MessageBox.Show(
+                CultureAwareMessageBox.Show(
+                    this,
                     "Album name must not be empty!",
                     "Empty Album ID Issue",
                     MessageBoxButtons.OK,
@@ -220,15 +207,16 @@ namespace PhotoBuddy.Screens
 
             if (this.albumNameTextBox.Text.Length > Constants.MaxNameLength)
             {
-                MessageBox.Show(
-                    "Album name is too long.  Please enter a name less than " + Constants.MaxNameLength,
-                    "Album Name Length Issue",
+                CultureAwareMessageBox.Show(
+                    this,
+                    Format.Culture("Album name is too long.  Please enter a name up to {0} characters.", Constants.MaxNameLength),
+                    "Please Try Again",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!this.InCreateMode)
+            if (!this.AlbumCreateMode)
             {
                 // Renaming album - user entered the existing name so cancel the rename
                 if (this.AlbumName == this.albumNameTextBox.Text)

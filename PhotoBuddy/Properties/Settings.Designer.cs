@@ -58,5 +58,17 @@ namespace PhotoBuddy.Properties {
                 this["MaxNameLength"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("%USERPROFILE%")]
+        public string LastImportDirectory {
+            get {
+                return ((string)(this["LastImportDirectory"]));
+            }
+            set {
+                this["LastImportDirectory"] = value;
+            }
+        }
     }
 }

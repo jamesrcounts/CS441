@@ -11,5 +11,8 @@
     <Setting Name="MaxNameLength" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">32</Value>
     </Setting>
+    <Setting Name="LastImportDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%USERPROFILE%</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -5,3 +5,4 @@ syntax: glob
 *StyleCop.Cache
 TestResults/*
 PhotoBuddy/Resources/Thumbs.db
+*.orig

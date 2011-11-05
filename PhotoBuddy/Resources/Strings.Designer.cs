@@ -70,29 +70,11 @@ namespace PhotoBuddy.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Photo Buddy.
-        /// </summary>
-        internal static string AppName {
-            get {
-                return ResourceManager.GetString("AppName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         internal static string Create {
             get {
                 return ResourceManager.GetString("Create", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The chosen file is not a picture! Please select a photo file of type .jpg, .png, .bmp, or .gif..
-        /// </summary>
-        internal static string ErrorNotPictureFile {
-            get {
-                return ResourceManager.GetString("ErrorNotPictureFile", resourceCulture);
             }
         }
         

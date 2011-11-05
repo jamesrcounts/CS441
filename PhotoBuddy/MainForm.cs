@@ -12,11 +12,10 @@ namespace PhotoBuddy
     using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.IO;
+    using System.Linq;
+    using System.Text;
     using System.Windows.Forms;
-    using PhotoBuddy.EventObjects;
     using PhotoBuddy.Models;
-    using PhotoBuddy.Resources;
     using PhotoBuddy.Screens;
 
     /// <summary>
@@ -24,15 +23,6 @@ namespace PhotoBuddy
     /// </summary>
     public partial class MainForm : Form
     {
-        /// <summary>
-        /// Presents message boxes.
-        /// </summary>
-        /// <remarks>
-        /// <para>Author: Jim Counts</para>
-        /// <para>Created: 2011-10-25</para>
-        /// </remarks>
-        private readonly IMessageService MessageService;
-
         /// <summary>
         /// Stores the history of previous views.
         /// </summary>
@@ -45,7 +35,7 @@ namespace PhotoBuddy
         /// <summary>
         /// The album model
         /// </summary>
-        private static readonly AlbumRespository Model = new AlbumRespository();
+        private static readonly AlbumRepository Model = new AlbumRepository();
 
         /// <summary>
         /// The Opening View shows a list of albums; allows user to create new albums.
@@ -63,28 +53,19 @@ namespace PhotoBuddy
         private readonly CreateAlbumUserControl createAlbumScreen = new CreateAlbumUserControl();
 
         /// <summary>
-        /// The import folder path.
-        /// </summary>
-        private string importFolderPath;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
-        /// <param name="messageService">The message service.</param>
         /// <remarks>
         /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
         /// </remarks>
-        public MainForm(IMessageService messageService)
+        public MainForm()
         {
             this.InitializeComponent();
             this.homeScreen = new HomeScreenUserControl(Model);
             this.InitializeUIScreens();
-            this.MessageService = messageService;
-            this.importFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-
             this.CurrentView = this.HomeView;
             this.ShowView(this.HomeView);
-            this.Text = Strings.AppName;
+            this.Text = PhotoBuddy.Properties.Resources.AppName;
         }
 
         /// <summary>
@@ -213,11 +194,22 @@ namespace PhotoBuddy
             this.HomeView.CreateButtonEvent += this.HandleCreateButtonClick;
             this.HomeView.AlbumSelectedEvent += this.ShowSelectedAlbum;
             this.HomeView.DeleteAlbumEvent += this.DeleteAlbum;
+            this.HomeView.SearchCompleteEvent += this.ShowSearchResults;
             this.CreateAlbumView.CancelEvent += this.GoBack;
             this.CreateAlbumView.ContinueEvent += this.CreateOrEditAlbum;
             this.AlbumView.BackEvent += this.ReturnToHomeView;
-            this.AlbumView.AddPhotosEvent += this.AddPhotos;
-            this.AlbumView.RenameAlbumEvent += this.RenameAlbum;
+            this.HomeView.RenameAlbumEvent += this.RenameAlbum;
+        }
+
+        /// <summary>
+        /// Shows the selected album.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.Models.AlbumEventArgs"/> instance containing the event data.</param>
+        private void ShowSearchResults(object sender, AlbumEventArgs e)
+        {
+            this.AlbumView.CurrentAlbum = e.Album;
+            this.ShowView(this.AlbumView);
         }
 
         /// <summary>
@@ -228,7 +220,7 @@ namespace PhotoBuddy
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        private void ShowSelectedAlbum(object sender, AlbumEventArgs e)
+        private void ShowSelectedAlbum(object sender, AlbumNameEventArgs e)
         {
             this.AlbumView.CurrentAlbum = Model.GetAlbum(e.AlbumName);
             //// this.AlbumView.CurrentAlbum = (Album)Model.Albums.AlbumList[e.TheAlbum.AlbumID.Replace("&&", "&")];
@@ -245,12 +237,13 @@ namespace PhotoBuddy
         ///   <para>Created: 2011-10-27</para>
         ///   <para>Modified: 2011-10-28</para>
         /// </remarks>
-        private void DeleteAlbum(object sender, AlbumEventArgs e)
+        private void DeleteAlbum(object sender, AlbumNameEventArgs e)
         {
-            var result = MessageBox.Show(
-                "Are you sure you want to delete this album?", 
-                "Delete Album?", 
-                MessageBoxButtons.YesNo, 
+            var result = CultureAwareMessageBox.Show(
+                this,
+                "Are you sure you want to delete this album?",
+                "Delete Album?",
+                MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (result == DialogResult.No)
             {
@@ -275,25 +268,38 @@ namespace PhotoBuddy
             string rawAlbumName = this.CreateAlbumView.UserEnteredText;
             if (Model.IsExistingAlbumName(rawAlbumName))
             {
-                this.MessageService.ShowMessage(this.MessageService.InvalidAlbumName);
+                var invalidAlbumNameMessage = new InvalidAlbumNameMessage();
+                CultureAwareMessageBox.Show(
+                    this,
+                    invalidAlbumNameMessage.Text,
+                    invalidAlbumNameMessage.Caption,
+                    invalidAlbumNameMessage.Buttons,
+                    invalidAlbumNameMessage.Icon);
                 return;
             }
 
-            if (this.CreateAlbumView.InCreateMode)
+            if (this.CreateAlbumView.AlbumCreateMode)
             {
                 // Creating a new album
                 Model.AddAlbum(rawAlbumName);
                 Model.SaveAlbums();
+
+                // Return to the album view screen, showing the current album.
+                this.AlbumView.CurrentAlbum = Model.GetAlbum(rawAlbumName);
+                this.ShowView(this.AlbumView);
             }
             else
             {
                 // Editing an album
                 Model.RenameAlbum(this.CreateAlbumView.AlbumName, rawAlbumName);
-            }
 
-            // Return to the album view screen, showing the current album.
-            this.AlbumView.CurrentAlbum = Model.GetAlbum(rawAlbumName);
-            this.ShowView(this.AlbumView);
+                // Update the home view.
+                var albumThumbnailView = this.HomeView
+                    .Thumbnails
+                    .SingleOrDefault(album => album.AlbumName == this.CreateAlbumView.AlbumName);
+                albumThumbnailView.AlbumName = rawAlbumName;     
+                this.ShowView(this.HomeView);                    
+            }
         }
 
         /// <summary>
@@ -304,89 +310,13 @@ namespace PhotoBuddy
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        private void RenameAlbum(object sender, EventArgs e)
+        private void RenameAlbum(object sender, AlbumEventArgs e)
         {
-            if (this.AlbumView.CurrentAlbum != null)
-            {
-                this.CreateAlbumView.ResetForm(false, this.AlbumView.CurrentAlbum.AlbumId);
-                this.ShowView(this.CreateAlbumView);
-            }
-        }
+            this.CreateAlbumView.ResetForm(
+                false,
+                e.Album.AlbumId);
 
-        /// <summary>
-        /// Adds photos to an album.
-        /// </summary>
-        /// <param name="sender">The finish button.</param>
-        /// <param name="e">The event args.</param>
-        /// <remarks>
-        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
-        /// </remarks>
-        private void AddPhotos(object sender, EventArgs e)
-        {
-            using (OpenFileDialog fileBrowser = new OpenFileDialog())
-            {
-                fileBrowser.InitialDirectory = this.importFolderPath;
-                fileBrowser.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png|bmp files (*.bmp)|*.bmp|gif files (*.gif)|*.gif";
-                fileBrowser.FilterIndex = 1;
-                fileBrowser.RestoreDirectory = true;
-                fileBrowser.Multiselect = true;
-                fileBrowser.Title = Format.Culture("Add to {0} - Photo Buddy", this.AlbumView.CurrentAlbum.AlbumId);
-                var result = fileBrowser.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    var multiPhotoImportForm = new MultiPhotoImportForm();
-                    this.importFolderPath = Path.GetDirectoryName(fileBrowser.FileName);
-                    foreach (string fileName in fileBrowser.FileNames)
-                    {
-                        multiPhotoImportForm.AddImageFromFile(fileName);
-                        ////     this.VerifyIncomingPhoto(fileName);
-                    }
-
-                    var importResult = multiPhotoImportForm.ShowDialog();
-                    if (importResult == DialogResult.OK)
-                    {
-                        foreach (var importFile in multiPhotoImportForm.SelectedFiles)
-                        {
-                            // User approved so upload the photo to the album.
-                            string name = importFile.Key;
-                            string file = importFile.Value;
-                            Model.AddPhotoToAlbum(this.AlbumView.CurrentAlbum.AlbumId, name, file);
-                        }
-                        
-                        this.AlbumView.RefreshPhotoList();
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Verifies the incoming photo.
-        /// </summary>
-        /// <param name="photoFileName">The name of the photo the user is uploading.</param>
-        /// <remarks>
-        ///   <para>Author(s): Miguel Gonzales and Andrea Tan</para>
-        ///   <para>When the user selects a photo to import, we want to show them the photo so they can confirm
-        /// that they selected the correct photo.</para>
-        /// </remarks>
-        private void VerifyIncomingPhoto(string photoFileName)
-        {
-            using (UploadViewForm uploadPhoto = new UploadViewForm(this.MessageService, photoFileName))
-            {
-                // Need this check to see if the user attempted an invalid file type.
-                if (uploadPhoto.IsDisposed)
-                {
-                    return;
-                }
-
-                DialogResult result = uploadPhoto.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    // User approved so upload the photo to the album.
-                    string name = uploadPhoto.DisplayName;
-                    string file = photoFileName;
-                    Model.AddPhotoToAlbum(this.AlbumView.CurrentAlbum.AlbumId, name, file);
-                }
-            }
+            this.ShowView(this.CreateAlbumView);
         }
 
         /// <summary>
@@ -478,7 +408,15 @@ namespace PhotoBuddy
         {
             if (this.CurrentView == this.HomeView)
             {
-                this.MessageService.ShowMessage(this.MessageService.AboutPhotoBuddy);
+                StringBuilder aboutPhotoBuddy = new StringBuilder();
+                aboutPhotoBuddy.AppendLine("Photo Buddy by GOLD RUSH.");
+                aboutPhotoBuddy.AppendFormat("Version: {0}", Application.ProductVersion).AppendLine();
+                CultureAwareMessageBox.Show(
+                    this,
+                    aboutPhotoBuddy.ToString(),
+                    PhotoBuddy.Properties.Resources.AppName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.None);
                 return;
             }
 
