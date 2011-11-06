@@ -103,7 +103,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\PhotoBuddy.ico</ApplicationIcon>
+    <ApplicationIcon>PhotoBuddy.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -305,6 +305,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MissingImageIcon.ico" />
+    <Content Include="PhotoBuddy.ico" />
+    <None Include="Resources\PhotoBuddy-1.ico" />
     <None Include="Resources\PhotoBuddy.ico" />
     <None Include="Resources\FolderIcon.ico" />
   </ItemGroup>

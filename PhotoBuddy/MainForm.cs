@@ -2,9 +2,9 @@
 // <copyright file="MainForm.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales and Andrea Tan
+// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
 // Date: Sept 28 2011
-// Modified date: Oct 19 2011
+// Modified date: 2011-11-05
 // Description: program start up forms, which gets inherited from multiple user controls
 //-----------------------------------------------------------------------
 namespace PhotoBuddy
@@ -36,13 +36,7 @@ namespace PhotoBuddy
         {
             this.InitializeComponent();
             this.Text = PhotoBuddy.Properties.Resources.AppName;
-
             this.ShowScreen("Home");
-
-            ////this.homeScreen = new HomeScreenUserControl(Model);
-            ////this.InitializeUIScreens();
-            ////this.CurrentView = this.HomeView;
-            ////this.ShowView(this.HomeView);
         }
 
         /// <summary>
@@ -53,21 +47,8 @@ namespace PhotoBuddy
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public IScreen CurrentView { get; private set; }
-
-        /// <summary>
-        /// Shows the requested screen.
-        /// </summary>
-        /// <param name="viewName">Name of the view.</param>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-26</para>
-        /// </remarks>
-        public void ShowScreen(string viewName)
-        {
-            this.ClearScreen();
-            this.CurrentView = this.GetView(viewName);
-            this.LoadView();
-        }
+        
+        #region View Updaters
 
         /// <summary>
         /// Shows the album view for the requested album.
@@ -87,7 +68,7 @@ namespace PhotoBuddy
         }
 
         /// <summary>
-        /// Shows the renamer.
+        /// Shows the rename album view.
         /// </summary>
         /// <param name="album">The album.</param>
         /// <remarks>
@@ -100,6 +81,21 @@ namespace PhotoBuddy
             var view = this.GetView("RenameAlbum") as CreateAlbumUserControl;
             view.Album = album;
             this.CurrentView = view;
+            this.LoadView();
+        }
+
+        /// <summary>
+        /// Shows the requested screen.
+        /// </summary>
+        /// <param name="viewName">Name of the view.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-26</para>
+        /// </remarks>
+        public void ShowScreen(string viewName)
+        {
+            this.ClearScreen();
+            this.CurrentView = this.GetView(viewName);
             this.LoadView();
         }
 
@@ -119,53 +115,32 @@ namespace PhotoBuddy
             view.AddPhotosEnabled = false;
             this.CurrentView = view;
             this.LoadView();
-        }        
+        }
 
-        /////// <summary>
-        /////// Create or Edit an album
-        /////// </summary>
-        /////// <param name="sender">The continue button from the createScreen.</param>
-        /////// <param name="e">The event args.</param>
-        /////// <remarks>
-        /////// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
-        /////// </remarks>
-        ////private void CreateOrEditAlbum(object sender, EventArgs e)
-        ////{
-        ////    string rawAlbumName = this.CreateAlbumView.UserEnteredText;
-        ////    if (Model.IsExistingAlbumName(rawAlbumName))
-        ////    {
-        ////        var invalidAlbumNameMessage = new InvalidAlbumNameMessage();
-        ////        CultureAwareMessageBox.Show(
-        ////            this,
-        ////            invalidAlbumNameMessage.Text,
-        ////            invalidAlbumNameMessage.Caption,
-        ////            invalidAlbumNameMessage.Buttons,
-        ////            invalidAlbumNameMessage.Icon);
-        ////        return;
-        ////    }
-        ////    if (this.CreateAlbumView.AlbumCreateMode)
-        ////    {
-        ////        // Creating a new album
-        ////        Model.AddAlbum(rawAlbumName);
-        ////        Model.SaveAlbums();
+        #endregion
 
-        ////        // Return to the album view screen, showing the current album.
-        ////        ////this.AlbumView.CurrentAlbum = Model.GetAlbum(rawAlbumName);
-        ////        ////this.ShowView(this.AlbumView);
-        ////    }
-        ////    else
-        ////    {
-        ////        // Editing an album
-        ////        Model.RenameAlbum(this.CreateAlbumView.AlbumName, rawAlbumName);
+        #region Update View Request Handlers
+       
+        /// <summary>
+        /// Handles the search button click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>
+        private void HandleSearchButtonClick(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(this.searchTextBox.Text))
+            {
+                return;
+            }
 
-        ////        // Update the home view.
-        ////        var albumThumbnailView = this.HomeView
-        ////            .Thumbnails
-        ////            .SingleOrDefault(album => album.AlbumName == this.CreateAlbumView.AlbumName);
-        ////        albumThumbnailView.AlbumName = rawAlbumName;     
-        ////        this.ShowView(this.HomeView);                    
-        ////    }
-        ////}
+            var terms = this.searchTextBox.Text.Split(' ');
+            var searchResults = Model.Search(terms);
+            this.ShowSearchResults(searchResults);
+        }
 
         /// <summary>
         /// Reacts to new album creation.
@@ -180,41 +155,6 @@ namespace PhotoBuddy
         {
             this.ShowAlbum(e.Data);
         }
-
-        /////// <summary>
-        /////// Renames the album.
-        /////// </summary>
-        /////// <param name="sender">The rename album button.</param>
-        /////// <param name="e">The event args.</param>
-        /////// <remarks>
-        /////// Author(s): Miguel Gonzales and Andrea Tan
-        /////// </remarks>
-        ////private void RenameAlbum(object sender, AlbumEventArgs e)
-        ////{
-        ////    this.CreateAlbumView.ResetForm(
-        ////        false,
-        ////        e.Album.AlbumId);
-
-        ////    this.ShowView(this.CreateAlbumView);
-        ////}
-
-        /////// <summary>
-        /////// Goes back to the most recent screen before the current screen.
-        /////// </summary>
-        /////// <param name="sender">The sender.</param>
-        /////// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /////// <remarks>
-        /////// Author(s): Miguel Gonzales and Andrea Tan
-        /////// </remarks>
-        ////private void GoBack(object sender, EventArgs e)
-        ////{
-        ////    if (this.PreviousViews == null || this.PreviousViews.Count < 1)
-        ////    {
-        ////        this.ShowView(this.HomeView);
-        ////    }
-
-        ////    this.ShowView((IScreen)this.PreviousViews.Pop());
-        ////}
 
         /// <summary>
         /// Returns to the Opening View.
@@ -273,87 +213,10 @@ namespace PhotoBuddy
             this.ShowRenamer(e.Data);
         }
 
-        /// <summary>
-        /// Handles the search button click.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-03</para>
-        /// </remarks>
-        private void HandleSearchButtonClick(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(this.searchTextBox.Text))
-            {
-                return;
-            }
-
-            var terms = this.searchTextBox.Text.Split(' ');
-            var searchResults = Model.Search(terms);
-            this.ShowSearchResults(searchResults);
-        }
-
-        /// <summary>
-        /// Clears the screen.
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-05</para>
-        /// </remarks>
-        private void ClearScreen()
-        {
-            while (0 < this.screenHolderPanel.Controls.Count)
-            {
-                this.screenHolderPanel.Controls[0].Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Loads the current view.
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-05</para>
-        /// </remarks>
-        private void LoadView()
-        {
-            this.screenHolderPanel.Controls.Add(this.CurrentView.Control);
-            this.CurrentView.Control.Show();
-        }
-
-        /// <summary>
-        /// Creates the create album view.
-        /// </summary>
-        /// <returns>The create album view.</returns>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-05</para>
-        /// </remarks>
-        private CreateAlbumUserControl CreateCreateAlbumView()
-        {
-            CreateAlbumUserControl view = new CreateAlbumUserControl(Model);
-            view.CancelEvent += this.ShowHomeView;
-            view.CreateAlbumEvent += this.ShowAlbum;
-            return view;
-        }
-
-        /// <summary>
-        /// Creates the rename album view.
-        /// </summary>
-        /// <returns>The rename album view.</returns>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-05</para>
-        /// </remarks>
-        private CreateAlbumUserControl CreateRenameAlbumView()
-        {
-            CreateAlbumUserControl view = new CreateAlbumUserControl(Model);
-            view.CancelEvent += this.ShowHomeView;
-            view.RenameAlbumEvent += this.ShowHomeView;
-            return view;
-        }
-
+        #endregion
+       
+        #region View Factory Methods
+    
         /// <summary>
         /// Gets the view.
         /// </summary>
@@ -389,6 +252,23 @@ namespace PhotoBuddy
         }
 
         /// <summary>
+        /// Creates the home view.
+        /// </summary>
+        /// <returns>The home view.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        private HomeScreenUserControl CreateHomeView()
+        {
+            HomeScreenUserControl view = new HomeScreenUserControl(Model);
+            view.CreateAlbumEvent += this.ShowCreateAlbumView;
+            view.AlbumSelectedEvent += this.ShowAlbum;
+            view.RenameAlbumEvent += this.ShowRenameAlbumView;
+            return view;
+        }
+
+        /// <summary>
         /// Creates the album view.
         /// </summary>
         /// <returns>A new album view.</returns>
@@ -404,20 +284,66 @@ namespace PhotoBuddy
         }
 
         /// <summary>
-        /// Creates the home view.
+        /// Creates the create album view.
         /// </summary>
-        /// <returns>The home view.</returns>
+        /// <returns>The create album view.</returns>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
-        private HomeScreenUserControl CreateHomeView()
+        private CreateAlbumUserControl CreateCreateAlbumView()
         {
-            HomeScreenUserControl view = new HomeScreenUserControl(Model);
-            view.CreateAlbumEvent += this.ShowCreateAlbumView;
-            view.AlbumSelectedEvent += this.ShowAlbum;
-            view.RenameAlbumEvent += this.ShowRenameAlbumView;
+            CreateAlbumUserControl view = new CreateAlbumUserControl(Model);
+            view.CancelEvent += this.ShowHomeView;
+            view.CreateAlbumEvent += this.ShowAlbum;
             return view;
+        }
+
+        /// <summary>
+        /// Creates the rename album view.
+        /// </summary>
+        /// <returns>The rename album view.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        private CreateAlbumUserControl CreateRenameAlbumView()
+        {
+            CreateAlbumUserControl view = new CreateAlbumUserControl(Model);
+            view.CancelEvent += this.ShowHomeView;
+            view.RenameAlbumEvent += this.ShowHomeView;
+            return view;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Clears the screen.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        private void ClearScreen()
+        {
+            while (0 < this.screenHolderPanel.Controls.Count)
+            {
+                this.screenHolderPanel.Controls[0].Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Loads the current view.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        private void LoadView()
+        {
+            this.screenHolderPanel.Controls.Add(this.CurrentView.Control);
+            this.CurrentView.Control.Show();
+            this.CurrentView.Control.Focus();
         }
     }
 }

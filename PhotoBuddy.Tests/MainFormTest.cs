@@ -86,9 +86,6 @@ namespace PhotoBuddy.Tests
                 data.Delete();
             }
 
-            var albumRepository = new Models.AlbumRepository();
-            albumRepository.AddAlbum("Zombies");
-            albumRepository.SaveAlbums();
             using (var mainForm = new MainForm())
             {
                 mainForm.ShowAlbum("Zombies");
