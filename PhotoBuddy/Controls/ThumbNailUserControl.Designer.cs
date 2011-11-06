@@ -36,8 +36,8 @@ namespace PhotoBuddy.Controls
             this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
             this.thumbnailContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.photoNameTextBox = new System.Windows.Forms.TextBox();
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.photoNameTextBox = new System.Windows.Forms.TextBox();
             this.foundationTableLayoutPanel.SuspendLayout();
             this.photoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
@@ -63,9 +63,9 @@ namespace PhotoBuddy.Controls
             // 
             // photoPanel
             // 
-            this.photoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.photoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.photoPanel.AutoSize = true;
             this.photoPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.photoPanel.BackColor = System.Drawing.Color.White;
@@ -108,6 +108,13 @@ namespace PhotoBuddy.Controls
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.HandleDeleteToolStripMenuItemClick);
             // 
+            // renameToolStripMenuItem
+            // 
+            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.renameToolStripMenuItem.Text = "Rename";
+            this.renameToolStripMenuItem.Click += new System.EventHandler(this.RenamePhoto);
+            // 
             // photoNameTextBox
             // 
             this.photoNameTextBox.BackColor = System.Drawing.SystemColors.Window;
@@ -121,13 +128,6 @@ namespace PhotoBuddy.Controls
             this.photoNameTextBox.Size = new System.Drawing.Size(162, 13);
             this.photoNameTextBox.TabIndex = 1;
             this.photoNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // renameToolStripMenuItem
-            // 
-            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.renameToolStripMenuItem.Text = "Rename";
-            this.renameToolStripMenuItem.Click += new System.EventHandler(this.RenamePhoto);
             // 
             // ThumbnailUserControl
             // 

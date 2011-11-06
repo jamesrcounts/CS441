@@ -155,6 +155,13 @@ namespace PhotoBuddy.Properties {
             }
         }
         
+        internal static System.Drawing.Icon PhotoBuddy {
+            get {
+                object obj = ResourceManager.GetObject("PhotoBuddy", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap photobuddy_orange {
             get {
                 object obj = ResourceManager.GetObject("photobuddy-orange", resourceCulture);

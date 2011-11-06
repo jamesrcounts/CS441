@@ -13,9 +13,10 @@ namespace PhotoBuddy.Screens
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Drawing;
     using System.Windows.Forms;
     using PhotoBuddy.Common;
-    using System.Drawing;
+    using PhotoBuddy.Models;
 
     /// <summary>
     /// The create album view
@@ -24,17 +25,44 @@ namespace PhotoBuddy.Screens
     public partial class CreateAlbumUserControl : UserControl, IScreen
     {
         /// <summary>
+        /// Provides access to albums and photos.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Authors: Jim Counts</para>
+        ///   <para>Modified: 2011-11-05</para>
+        /// </remarks>
+        private readonly AlbumRepository Model;
+
+        /// <summary>
+        /// The album to rename; if any.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        private IAlbum album;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateAlbumUserControl"/> class.
         /// </summary>
+        /// <param name="albumRepository">The album repository.</param>
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
-        public CreateAlbumUserControl()
+        public CreateAlbumUserControl(AlbumRepository albumRepository)
         {
             this.InitializeComponent();
+
+            this.Model = albumRepository;
             this.Dock = DockStyle.Fill;
             this.DisplayName = "Create New Album";
             this.createHeaderLabel.Text = this.DisplayName;
+
+            // Default to creating a new album.
+            this.createAlbumLabel.Text = "Please enter the name of the new album:";
+            this.albumNameTextBox.Text = string.Empty;
+            this.createHeaderLabel.Text = this.DisplayName;
+            this.albumNameTextBox.Focus();
         }
 
         /// <summary>
@@ -43,17 +71,52 @@ namespace PhotoBuddy.Screens
         public event EventHandler CancelEvent;
 
         /// <summary>
-        /// Occurs when user decides to complete the create/edit action.
+        /// Occurs when user decides to complete the create album action.
         /// </summary>
-        public event EventHandler ContinueEvent;
+        public event EventHandler<EventArgs<string>> CreateAlbumEvent;
 
         /// <summary>
-        /// Gets the name of the album.
+        /// Occurs when user decides to complete the rename album action.
+        /// </summary>
+        public event EventHandler<EventArgs<IAlbum>> RenameAlbumEvent;
+
+        /////// <summary>
+        /////// Gets the name of the album.
+        /////// </summary>
+        /////// <value>
+        /////// The name of the album.
+        /////// </value>
+        ////public string AlbumName { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the album.
         /// </summary>
         /// <value>
-        /// The name of the album.
+        /// The album.
         /// </value>
-        public string AlbumName { get; private set; }
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        public IAlbum Album
+        {
+            get
+            {
+                return this.album;
+            }
+
+            set
+            {
+                this.album = value;
+                if (this.album != null)
+                {
+                    // Editing an existing album.
+                    this.albumNameTextBox.Text = this.album.AlbumId;
+                    this.createAlbumLabel.Text = "Please enter the new album name for: " + this.album.AlbumId.Replace("&", "&&");
+                    this.createHeaderLabel.Text = "Edit Album: " + this.album.AlbumId.Replace("&", "&&");
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the continue button.
@@ -83,13 +146,13 @@ namespace PhotoBuddy.Screens
         /// </summary>
         public string UserEnteredText { get; private set; }
 
-        /// <summary>
-        /// Gets a value indicating whether to use this control to create an album.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if album creation is needed; otherwise, <c>false</c> if editing is needed.
-        /// </value>
-        public bool AlbumCreateMode { get; private set; }
+        /////// <summary>
+        /////// Gets a value indicating whether to use this control to create an album.
+        /////// </summary>
+        /////// <value>
+        ///////   <c>true</c> if album creation is needed; otherwise, <c>false</c> if editing is needed.
+        /////// </value>
+        ////public bool AlbumCreateMode { get; set; }
 
         /// <summary>
         /// Gets or sets the display name.
@@ -111,40 +174,57 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
-        /// Resets the form.
+        /// Called when the user cancels the create or edit album request.
         /// </summary>
-        /// <param name="isCreateAlbum">Bool value indicates creating a new object or editing existing.</param>
-        /// <param name="theAlbumName">Name of the album if editing.</param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author(s): Miguel Gonzales and Andrea Tan</para>
-        ///   <para>reset Create form method which takes a boolean and a string album name.
-        /// this function is mainly used to set focus on object label of what user control
-        /// is currently at and set the label name for it.
-        /// depending if it's on create it will assigned a different kind of text message,
-        /// and if it's on the renaming it will use the same usercontrol but change the prompt message for it.
-        /// preCondition: 2 parameters string and bool
-        /// postCondition: display a necessary label depending of what state it is currently in.</para>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        public void ResetForm(bool isCreateAlbum, string theAlbumName)
+        public virtual void OnCancelEvent(object sender, EventArgs e)
         {
-            this.AlbumName = theAlbumName;
-            this.AlbumCreateMode = isCreateAlbum;
-            if (this.AlbumCreateMode)
+            EventHandler handler = this.CancelEvent;
+            if (handler != null)
             {
-                // Creating a new album.
-                this.createAlbumLabel.Text = "Please enter the name of the new album:";
-                this.albumNameTextBox.Text = string.Empty;
-                this.createHeaderLabel.Text = this.DisplayName;
+                handler(sender, e);
             }
-            else
-            {
-                // Editing an existing album.
-                this.albumNameTextBox.Text = this.AlbumName;
-                this.createAlbumLabel.Text = "Please enter the new album name for: " + this.AlbumName.Replace("&", "&&");
-                this.createHeaderLabel.Text = "Edit Album: " + this.AlbumName.Replace("&", "&&");
-            }
+        }
 
-            this.albumNameTextBox.Focus();
+        /// <summary>
+        /// Called when the user completes the create album request.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;System.String&gt;"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        public virtual void OnCreateAlbumEvent(object sender, EventArgs<string> e)
+        {
+            EventHandler<EventArgs<string>> handler = this.CreateAlbumEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// Called when a rename album event has been initiated.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;PhotoBuddy.Models.IAlbum&gt;"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        public virtual void OnRenameAlbumEvent(object sender, EventArgs<IAlbum> e)
+        {
+            EventHandler<EventArgs<IAlbum>> handler = this.RenameAlbumEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
         }
 
         /// <summary>
@@ -175,7 +255,7 @@ namespace PhotoBuddy.Screens
         private void HandleCancelButtonClick(object sender, EventArgs e)
         {
             // raise the create event
-            this.CancelEvent(this, e);
+            this.OnCancelEvent(this, e);
         }
 
         /// <summary>
@@ -216,24 +296,39 @@ namespace PhotoBuddy.Screens
                 return;
             }
 
-            if (!this.AlbumCreateMode)
+            if (this.album != null)
             {
                 // Renaming album - user entered the existing name so cancel the rename
-                if (this.AlbumName == this.albumNameTextBox.Text)
+                if (this.album.AlbumId == this.albumNameTextBox.Text)
                 {
                     this.CancelEvent(this, e);
                     return;
                 }
+
+                this.Model.RenameAlbum(this.album.AlbumId, this.albumNameTextBox.Text);
+                this.Model.SaveAlbums();
+                this.OnRenameAlbumEvent(this, new EventArgs<IAlbum>(this.album));
+                return;
             }
 
-            // Store the text that the user entered.
-            this.UserEnteredText = this.albumNameTextBox.Text;
-
-            // raise the create event
-            if (this.ContinueEvent != null)
+            string rawAlbumName = this.albumNameTextBox.Text;
+            if (this.Model.IsExistingAlbumName(rawAlbumName))
             {
-                this.ContinueEvent(this, e);
+                var invalidAlbumNameMessage = new InvalidAlbumNameMessage();
+                CultureAwareMessageBox.Show(
+                    this,
+                    invalidAlbumNameMessage.Text,
+                    invalidAlbumNameMessage.Caption,
+                    invalidAlbumNameMessage.Buttons,
+                    invalidAlbumNameMessage.Icon);
+                return;
             }
+
+            // Creating a new album
+            this.Model.AddAlbum(rawAlbumName);
+            this.Model.SaveAlbums();
+
+            this.OnCreateAlbumEvent(this, new EventArgs<string>(rawAlbumName));
         }
 
         /// <summary>

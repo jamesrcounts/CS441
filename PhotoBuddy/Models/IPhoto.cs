@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Models
 {
+    using System;
     using System.Drawing;
 
     /// <summary>
@@ -14,7 +15,7 @@ namespace PhotoBuddy.Models
     ///   <para>Author: Jim Counts</para>
     ///   <para>Created: 2011-11-03</para>
     /// </remarks>
-    public interface IPhoto
+    public interface IPhoto : IDisposable
     {
         /// <summary>
         /// Gets the album.

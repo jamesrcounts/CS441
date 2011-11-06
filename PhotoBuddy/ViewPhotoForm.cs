@@ -28,16 +28,6 @@ namespace PhotoBuddy
         /// </summary>
         private readonly IAlbum album;
 
-        /////// <summary>
-        /////// The photo id.
-        /////// </summary>
-        ////private readonly string photoID;
-
-        /////// <summary>
-        /////// The photo
-        /////// </summary>
-        ////private readonly IPhoto picture;
-
         /// <summary>
         /// All photos in the album.
         /// </summary>
@@ -189,6 +179,70 @@ namespace PhotoBuddy
         {
             Button button = sender as Button;
             button.ForeColor = Color.FromArgb(47, 70, 102);
+        }
+
+        /// <summary>
+        /// Toggles the timer.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-10-26</para>
+        /// </remarks>
+        private void ToggleTimer(object sender, EventArgs e)
+        {
+            this.slideShowTimer.Enabled = !this.slideShowTimer.Enabled;
+            if (this.slideShowTimer.Enabled)
+            {
+                this.slideShowTimer.Start();
+            }
+            else
+            {
+                this.slideShowTimer.Stop();
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the RenamePhotoButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void HandleRenamePhotoButtonClick(object sender, EventArgs e)
+        {
+            this.SuspendLayout();
+            this.foundationTableLayoutPanel.Hide();
+
+            var photoControl = new CropPhotoControl();
+            photoControl.photoCropBox.Photo = this.pictureBox1.Image;
+            photoControl.LeftButton.Text = "Cancel";
+            photoControl.RightButton.Text = "Crop";
+            photoControl.LeftButton.Click += (o, s) =>
+            {
+                photoControl.Hide();
+                this.foundationTableLayoutPanel.Show();
+            };
+            photoControl.RightButton.Click += (o, s) =>
+            {
+                photoControl.Hide();
+
+                // Get the rectangle
+                Rectangle selectedRectangle = photoControl.photoCropBox.SelectedRectangle;
+                CultureAwareMessageBox.Show(
+                    this,
+                    "Position: " + selectedRectangle.Location.X + "," + selectedRectangle.Location.Y + " Height: " + selectedRectangle.Height + " Width: " + selectedRectangle.Width,
+                    "Result",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                // Do Some math
+                // Crop the image.
+                // Add new image to album
+                // Display image.
+            };
+            this.Controls.Add(photoControl);
+            photoControl.Show();
+            this.ResumeLayout();
         }
     }
 }

@@ -119,13 +119,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\AlbumIconUserControl.cs">
-      <SubType>UserControl</SubType></Compile>
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\CropBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\AlbumIconUserControl.Designer.cs">
       <DependentUpon>AlbumIconUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="EventArgs{T}.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumEventArgs.cs" />
     <Compile Include="Models\AlbumRepository.cs" />
@@ -197,6 +199,15 @@
     <Compile Include="Screens\IScreen.cs" />
     <Compile Include="Format.cs" />
     <Compile Include="Screens\CultureAwareMessageBox.cs" />
+    <Compile Include="Screens\CropPhotoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screens\PhotoControl.Designer.cs">
+      <DependentUpon>CropPhotoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CropBox.Designer.cs">
+      <DependentUpon>CropBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="UploadViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,7 +221,8 @@
       <DependentUpon>ViewPhotoForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Controls\AlbumIconUserControl.resx">
-      <DependentUpon>AlbumIconUserControl.cs</DependentUpon></EmbeddedResource>
+      <DependentUpon>AlbumIconUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\AlbumThumbnailUserControl.resx">
       <DependentUpon>AlbumThumbnailUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -240,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\CreateAlbumUserControl.resx">
       <DependentUpon>CreateAlbumUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\CropPhotoControl.resx">
+      <DependentUpon>CropPhotoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\HomeScreenUserControl.resx">
       <DependentUpon>HomeScreenUserControl.cs</DependentUpon>

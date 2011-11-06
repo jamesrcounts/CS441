@@ -160,4 +160,7 @@
   <data name="ErrorNotPictureFile" xml:space="preserve">
     <value>The chosen file is not a picture! Please select a photo file of type JPG, PNG, BMP, or GIF.</value>
   </data>
+  <data name="PhotoBuddy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PhotoBuddy.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

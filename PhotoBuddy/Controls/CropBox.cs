@@ -13,12 +13,12 @@ namespace PhotoBuddy.Controls
     /// A picture box that enables cropping.
     /// </summary>
     /// <seealso cref="http://msdn.microsoft.com/en-us/library/system.windows.forms.controlpaint.drawreversibleframe.aspx"/>
-    public class CropBox : PictureBox
+    public partial class CropBox : PictureBox
     {
         /// <summary>
         /// The original image used to erase old rectangles.
         /// </summary>
-        private readonly Image OriginalImage;
+        private Image originalImage;
 
         /// <summary>
         /// A value indicating whether the control is in drag mode.
@@ -61,23 +61,50 @@ namespace PhotoBuddy.Controls
         public CropBox()
         {
             this.InitializeComponent();
-            this.OriginalImage = this.Image.Clone() as Image;
         }
 
         /// <summary>
-        /// Initializes the component.
+        /// Gets or sets the photo.
         /// </summary>
-        private void InitializeComponent()
+        /// <value>
+        /// The photo.
+        /// </value>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        public Image Photo
         {
-            (this as System.ComponentModel.ISupportInitialize).BeginInit();
-            this.SuspendLayout();
+            get
+            {
+                return this.Image;
+            }
 
-            // CropBox
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HandleMouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.HandleMouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.HandleMouseUp);
-            (this as System.ComponentModel.ISupportInitialize).EndInit();
-            this.ResumeLayout(false);
+            set
+            {
+                if (value == null)
+                {
+                    return;
+                }
+
+                this.originalImage = value.Clone() as Image;
+                this.Image = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the selected rectangle.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        public Rectangle SelectedRectangle
+        {
+            get
+            {
+                return this.drawnRectangle;
+            }
         }
 
         /// <summary>
@@ -95,7 +122,7 @@ namespace PhotoBuddy.Controls
                 this.isDrag = true;
                 if (this.drawnRectangle != Rectangle.Empty)
                 {
-                    this.Image = this.OriginalImage.Clone() as Image;
+                    this.Image = this.originalImage.Clone() as Image;
                 }
             }
 
@@ -179,21 +206,6 @@ namespace PhotoBuddy.Controls
                 this.theRectangle,
                 this.BackColor,
                 FrameStyle.Dashed);
-
-            ////// Find out which controls intersect the rectangle and 
-            ////// change their color. The method uses the RectangleToScreen  
-            ////// method to convert the Control's client coordinates 
-            ////// to screen coordinates.
-            ////Rectangle controlRectangle;
-            ////for (int i = 0; i < Controls.Count; i++)
-            ////{
-            ////    controlRectangle = Controls[i].RectangleToScreen
-            ////        (Controls[i].ClientRectangle);
-            ////    if (controlRectangle.IntersectsWith(theRectangle))
-            ////    {
-            ////        Controls[i].BackColor = Color.BurlyWood;
-            ////    }
-            ////}
 
             // Draw a permanent rectangle on the picture box.
             using (Graphics createGraphics = this.CreateGraphics())

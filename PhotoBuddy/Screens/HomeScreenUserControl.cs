@@ -51,7 +51,7 @@ namespace PhotoBuddy.Screens
             }
 
             this.InitializeComponent();
-            this.albums = albumRepository;
+            this.albums = albumRepository;            
             this.Dock = DockStyle.Fill;
             this.DisplayName = "Albums";
         }
@@ -59,21 +59,12 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// Occurs when the user clicks the create button.
         /// </summary>
-        public event EventHandler CreateButtonEvent;
+        public event EventHandler CreateAlbumEvent;
 
         /// <summary>
         /// Occurs when an album is selected event.
         /// </summary>
-        public event EventHandler<AlbumNameEventArgs> AlbumSelectedEvent;
-
-        /// <summary>
-        /// Occurs when the delete event is selected for an album.
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts and Eric Wei</para>
-        ///   <para>Created: 2011-10-27</para>
-        /// </remarks>
-        public event EventHandler<AlbumNameEventArgs> DeleteAlbumEvent;
+        public event EventHandler<EventArgs<string>> AlbumSelectedEvent;
 
         /// <summary>
         /// Occurs when a search completes.
@@ -87,7 +78,7 @@ namespace PhotoBuddy.Screens
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-11-04</para>
         /// </remarks>
-        public event EventHandler<AlbumEventArgs> RenameAlbumEvent;
+        public event EventHandler<EventArgs<IAlbum>> RenameAlbumEvent;
 
         /// <summary>
         /// Gets the a reference to the album repository.
@@ -140,6 +131,24 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
+        /// Called when the user wants to create an album.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        public virtual void OnCreateButtonEvent(object sender, EventArgs e)
+        {
+            EventHandler handler = this.CreateAlbumEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
+        /// <summary>
         /// Refreshes the album view list.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,13 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         public void RefreshAlbumViewList()
         {
+            while (0 < this.albumsFlowPanel.Controls.Count)
+            {
+                var control = this.albumsFlowPanel.Controls[0];
+                this.albumsFlowPanel.Controls.Remove(control);
+                control.Dispose();
+            } 
+            
             this.albumsFlowPanel.Controls.Clear();
             if (this.Repository.Count == 0)
             {
@@ -171,7 +187,7 @@ namespace PhotoBuddy.Screens
                 this.albumsFlowPanel.Controls.Add(albumControl);
             }
         }
-
+                
         /// <summary>
         /// Shows the view.
         /// </summary>
@@ -219,9 +235,9 @@ namespace PhotoBuddy.Screens
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        protected virtual void OnAlbumSelectedEvent(object sender, AlbumNameEventArgs e)
+        protected virtual void OnAlbumSelectedEvent(object sender, EventArgs<string> e)
         {
-            EventHandler<AlbumNameEventArgs> handler = this.AlbumSelectedEvent;
+            EventHandler<EventArgs<string>> handler = this.AlbumSelectedEvent;
             if (handler != null)
             {
                 handler(sender, e);
@@ -237,13 +253,30 @@ namespace PhotoBuddy.Screens
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        protected virtual void OnDeleteAlbumEvent(object sender, AlbumNameEventArgs e)
+        protected virtual void OnDeleteAlbumEvent(object sender, EventArgs<string> e)
         {
-            EventHandler<AlbumNameEventArgs> handler = this.DeleteAlbumEvent;
-            if (handler != null)
+            var thumb = sender as Control;
+            if (thumb == null)
             {
-                handler(sender, e);
+                return;
             }
+
+            this.albumsFlowPanel.Controls.Remove(thumb);
+            thumb.Dispose();
+        }
+
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Forms.UserControl.Load"/> event.
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        protected override void OnLoad(EventArgs e)
+        {
+            this.RefreshAlbumViewList();
+            base.OnLoad(e);
         }
 
         /// <summary>
@@ -255,9 +288,9 @@ namespace PhotoBuddy.Screens
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-11-04</para>
         /// </remarks>
-        protected virtual void OnRenameAlbumEvent(object sender, AlbumEventArgs e)
+        protected virtual void OnRenameAlbumEvent(object sender, EventArgs<IAlbum> e)
         {
-            EventHandler<AlbumEventArgs> handler = this.RenameAlbumEvent;
+            EventHandler<EventArgs<IAlbum>> handler = this.RenameAlbumEvent;
             if (handler != null)
             {
                 handler(sender, e);
@@ -287,8 +320,7 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandleCreateButtonClick(object sender, EventArgs e)
         {
-            // raise the create event
-            this.CreateButtonEvent(this, new EventArgs());
+            this.OnCreateButtonEvent(this, e);
         }
 
         /// <summary>

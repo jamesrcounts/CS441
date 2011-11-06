@@ -120,7 +120,7 @@ namespace PhotoBuddy.Models
             {
                 if (this.Count <= 0)
                 {
-                    return PhotoBuddy.Properties.Resources.FolderIcon.ToBitmap();
+                    return PhotoBuddy.Properties.Resources.PhotoBuddy.ToBitmap();
                 }
 
                 return this.Photos.First().Image;
@@ -242,6 +242,12 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public void Delete()
         {
+            foreach (var photo in this.photos.Values)
+            {
+                photo.Delete();
+                photo.Dispose();
+            }
+
             this.Repository.DeleteAlbum(this.AlbumId);
         }
 
@@ -256,8 +262,10 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public void RemovePhoto(string photoId)
         {
-            this.GetPhoto(photoId).Delete();
+            var photo = this.GetPhoto(photoId);
+            photo.Delete();
             this.photos.Remove(photoId);
+            photo.Dispose();
         }
 
         /// <summary>

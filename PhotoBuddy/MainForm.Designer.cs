@@ -30,93 +30,76 @@ namespace PhotoBuddy
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.panelScreenHolder = new System.Windows.Forms.Panel();
-            this.AppNameLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.screenHolderPanel = new System.Windows.Forms.Panel();
+            this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.contentPanel = new System.Windows.Forms.Panel();
+            this.photoBuddyButton = new System.Windows.Forms.Button();
             this.searchButton = new System.Windows.Forms.Button();
             this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.panelScreenHolder.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.foundationTableLayoutPanel.SuspendLayout();
+            this.contentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelScreenHolder
+            // screenHolderPanel
             // 
-            this.panelScreenHolder.BackColor = System.Drawing.Color.White;
-            this.panelScreenHolder.Controls.Add(this.AppNameLabel);
-            this.panelScreenHolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelScreenHolder.Location = new System.Drawing.Point(0, 36);
-            this.panelScreenHolder.Margin = new System.Windows.Forms.Padding(0);
-            this.panelScreenHolder.Name = "panelScreenHolder";
-            this.panelScreenHolder.Size = new System.Drawing.Size(784, 526);
-            this.panelScreenHolder.TabIndex = 2;
+            this.screenHolderPanel.BackColor = System.Drawing.Color.White;
+            this.screenHolderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.screenHolderPanel.Location = new System.Drawing.Point(0, 36);
+            this.screenHolderPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.screenHolderPanel.Name = "screenHolderPanel";
+            this.screenHolderPanel.Size = new System.Drawing.Size(784, 526);
+            this.screenHolderPanel.TabIndex = 2;
             // 
-            // AppNameLabel
+            // foundationTableLayoutPanel
             // 
-            this.AppNameLabel.AutoSize = true;
-            this.AppNameLabel.Font = new System.Drawing.Font("Magneto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AppNameLabel.ForeColor = System.Drawing.Color.LightGray;
-            this.AppNameLabel.Location = new System.Drawing.Point(109, 20);
-            this.AppNameLabel.Name = "AppNameLabel";
-            this.AppNameLabel.Size = new System.Drawing.Size(117, 20);
-            this.AppNameLabel.TabIndex = 7;
-            this.AppNameLabel.Text = "Photo Buddy";
-            this.AppNameLabel.Click += new System.EventHandler(this.HandleAppNameLabelClick);
-            this.AppNameLabel.MouseEnter += new System.EventHandler(this.HandleAppNameLabelMouseEnter);
-            this.AppNameLabel.MouseLeave += new System.EventHandler(this.HandleAppNameLabelMouseLeave);
+            this.foundationTableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(146)))), ((int)(((byte)(190)))));
+            this.foundationTableLayoutPanel.ColumnCount = 1;
+            this.foundationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.foundationTableLayoutPanel.Controls.Add(this.screenHolderPanel, 0, 1);
+            this.foundationTableLayoutPanel.Controls.Add(this.contentPanel, 0, 0);
+            this.foundationTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.foundationTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
+            this.foundationTableLayoutPanel.RowCount = 2;
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(784, 562);
+            this.foundationTableLayoutPanel.TabIndex = 3;
             // 
-            // tableLayoutPanel1
+            // contentPanel
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(146)))), ((int)(((byte)(190)))));
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.panelScreenHolder, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 562);
-            this.tableLayoutPanel1.TabIndex = 3;
+            this.contentPanel.AutoSize = true;
+            this.contentPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
+            this.contentPanel.Controls.Add(this.photoBuddyButton);
+            this.contentPanel.Controls.Add(this.searchButton);
+            this.contentPanel.Controls.Add(this.searchTextBox);
+            this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contentPanel.Location = new System.Drawing.Point(0, 0);
+            this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.contentPanel.Name = "contentPanel";
+            this.contentPanel.Size = new System.Drawing.Size(784, 36);
+            this.contentPanel.TabIndex = 3;
             // 
-            // panel1
+            // photoBuddyButton
             // 
-            this.panel1.AutoSize = true;
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.searchButton);
-            this.panel1.Controls.Add(this.searchTextBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(784, 36);
-            this.panel1.TabIndex = 3;
-            // 
-            // button2
-            // 
-            this.button2.AutoSize = true;
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Magneto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.LightSlateGray;
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 32);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Photo Buddy";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.photoBuddyButton.AutoSize = true;
+            this.photoBuddyButton.BackColor = System.Drawing.Color.Transparent;
+            this.photoBuddyButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.photoBuddyButton.FlatAppearance.BorderSize = 0;
+            this.photoBuddyButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.photoBuddyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.photoBuddyButton.Font = new System.Drawing.Font("Magneto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.photoBuddyButton.ForeColor = System.Drawing.Color.LightSlateGray;
+            this.photoBuddyButton.Location = new System.Drawing.Point(0, 0);
+            this.photoBuddyButton.Margin = new System.Windows.Forms.Padding(0);
+            this.photoBuddyButton.Name = "photoBuddyButton";
+            this.photoBuddyButton.Size = new System.Drawing.Size(127, 32);
+            this.photoBuddyButton.TabIndex = 8;
+            this.photoBuddyButton.Text = "Photo Buddy";
+            this.photoBuddyButton.UseVisualStyleBackColor = false;
+            this.photoBuddyButton.Click += new System.EventHandler(this.ShowHomeView);
             // 
             // searchButton
             // 
@@ -152,30 +135,27 @@ namespace PhotoBuddy
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.foundationTableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeScreenForm";
-            this.panelScreenHolder.ResumeLayout(false);
-            this.panelScreenHolder.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.foundationTableLayoutPanel.ResumeLayout(false);
+            this.foundationTableLayoutPanel.PerformLayout();
+            this.contentPanel.ResumeLayout(false);
+            this.contentPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelScreenHolder;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label AppNameLabel;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel screenHolderPanel;
+        private System.Windows.Forms.TableLayoutPanel foundationTableLayoutPanel;
+        private System.Windows.Forms.Panel contentPanel;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox searchTextBox;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button photoBuddyButton;
     }
 }

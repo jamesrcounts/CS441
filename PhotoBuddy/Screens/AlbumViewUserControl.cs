@@ -29,6 +29,11 @@ namespace PhotoBuddy.Screens
     public partial class AlbumViewUserControl : UserControl, IScreen
     {
         /// <summary>
+        /// A value indicating whether adding photos to the album is allowed.
+        /// </summary>
+        private bool addPhotosEnabled;
+
+        /// <summary>
         /// The current album.
         /// </summary>
         private IAlbum currentAlbum;
@@ -49,15 +54,36 @@ namespace PhotoBuddy.Screens
         /// </summary>
         public event EventHandler BackEvent;
 
-        /////// <summary>
-        /////// Occurs when the rename album button is clicked.
-        /////// </summary>
-        ////public event EventHandler RenameAlbumEvent;
+        /// <summary>
+        /// Gets or sets a value indicating whether adding photos is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if adding photos is enabled; otherwise, <c>false</c>.
+        /// </value>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        public bool AddPhotosEnabled
+        {
+            get
+            {
+                return this.addPhotosEnabled;
+            }
 
-        ///// <summary>
-        ///// Occurs when the add photo button is clicked.
-        ///// </summary>
-        //// public event EventHandler AddPhotosEvent;
+            set
+            {
+                this.addPhotosEnabled = value;
+                if (!this.addPhotosEnabled)
+                {
+                    this.addPhotosButton.Hide();
+                }
+                else
+                {
+                    this.addPhotosButton.Show();
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the control managed by this view.
@@ -87,9 +113,10 @@ namespace PhotoBuddy.Screens
             set
             {
                 this.currentAlbum = value;
+                this.AddPhotosEnabled = true;
                 if (this.currentAlbum != null)
                 {
-                    this.labelAlbumName.Text = this.currentAlbum.AlbumId.Replace("&", "&&");
+                    this.albumNameLabel.Text = this.currentAlbum.AlbumId.Replace("&", "&&");
                     this.RefreshPhotoList();
                 }
             }
@@ -128,10 +155,11 @@ namespace PhotoBuddy.Screens
                 // thumbnail is a public property to set the picture box on the thumbnailUserControl.
                 thumb.Thumbnail.Tag = photo;
                 thumb.Thumbnail.Image = photo.Image;
-                
+
                 // Wire the click event to the picturebox
                 thumb.Thumbnail.Click += this.HandlePhotoClick;
                 thumb.DeletePhotoEvent += this.HandleDeletePhotoEvent;
+
                 // Add the thumb control to the flow panel.
                 this.AddThumbnail(thumb);
             }
@@ -154,6 +182,24 @@ namespace PhotoBuddy.Screens
 
             // To focus text boxes.
             this.Focus();
+        }
+
+        /// <summary>
+        /// Called when the user wants to go back to the home screen.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        public virtual void OnBackEvent(object sender, EventArgs e)
+        {
+            EventHandler handler = this.BackEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
         }
 
         /// <summary>
@@ -186,7 +232,7 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandleBackButtonClick(object sender, EventArgs e)
         {
-            this.BackEvent(this, e);
+            this.OnBackEvent(this, e);
         }
 
         /// <summary>
@@ -221,6 +267,11 @@ namespace PhotoBuddy.Screens
                 var selectedItemsIndex = new Dictionary<string, string>();
                 foreach (var photo in this.currentAlbum.Photos)
                 {
+                    if (!File.Exists(photo.FullPath))
+                    {
+                        continue;
+                    }
+
                     selectedItemsIndex.Add(photo.DisplayName, photo.FullPath);
                 }
 
@@ -255,8 +306,6 @@ namespace PhotoBuddy.Screens
                     }
 
                     this.CurrentAlbum.AddPhoto(item.Key, item.Value);
-                    ////IPhoto addedPhoto = this.CurrentAlbum.GetPhoto(photoKey);
-                    ////this.CreateThumbnailControlForCurrentPhoto(addedPhoto);
                 }
 
                 this.RefreshPhotoList();
@@ -313,16 +362,9 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.EventObjects.PhotoEventArgs"/> instance containing the event data.</param>
-        private void HandleDeletePhotoEvent(object sender, PhotoEventArgs e)
+        private void HandleDeletePhotoEvent(object sender, EventArgs e)
         {
             this.photosFlowPanel.Controls.Remove((Control)sender);
-
-            ////string photoDisplayName = e.PhotoDisplayName;
-            ////IAlbum currentAlbum = this.CurrentAlbum;
-
-            ////IPhoto photoToDelete = currentAlbum.Photos.Where(photo => photo.DisplayName == photoDisplayName).Single();
-            ////currentAlbum.Repository.DeletePhoto(currentAlbum, photoToDelete);
-            ////this.RefreshPhotoList();
         }
 
         /// <summary>

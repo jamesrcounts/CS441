@@ -45,7 +45,7 @@ namespace PhotoBuddy.Controls
         ///   <para>Authors: Jim Counts and Eric Wei.</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
-        public event EventHandler<PhotoEventArgs> DeletePhotoEvent;
+        public event EventHandler DeletePhotoEvent;
 
         /// <summary>
         /// Gets or sets the display name.
@@ -94,9 +94,9 @@ namespace PhotoBuddy.Controls
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
-        public virtual void OnDeletePhotoEvent(object sender, PhotoEventArgs e)
+        public virtual void OnDeletePhotoEvent(object sender, EventArgs e)
         {
-            EventHandler<PhotoEventArgs> handler = this.DeletePhotoEvent;
+            EventHandler handler = this.DeletePhotoEvent;
             if (handler != null)
             {
                 handler(sender, e);
@@ -158,7 +158,7 @@ namespace PhotoBuddy.Controls
             var photo = (IPhoto)this.Thumbnail.Tag;
             photo.Album.Repository.DeletePhoto(photo.Album, photo);
 
-            this.OnDeletePhotoEvent(this, new PhotoEventArgs(photo.PhotoId));
+            this.OnDeletePhotoEvent(this, new EventArgs());
         }
 
         /// <summary>

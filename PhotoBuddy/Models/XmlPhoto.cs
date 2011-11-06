@@ -18,7 +18,7 @@ namespace PhotoBuddy.Models
     ///   <para>Author: Jim Counts</para>
     ///   <para>Created: 2011-11-03</para>
     /// </remarks>
-    public sealed class XmlPhoto : IPhoto
+    public sealed class XmlPhoto : IPhoto, IDisposable
     {
         /// <summary>
         /// string literal: id_tag
@@ -57,15 +57,6 @@ namespace PhotoBuddy.Models
         private const string DisplayNameTag = "display_name";
 
         /// <summary>
-        /// Backing store for parsed photo data.
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-03</para>
-        /// </remarks>
-        private readonly IPhoto decoratedPhoto;
-
-        /// <summary>
         /// The XML element which describes this photo.
         /// </summary>
         /// <remarks>
@@ -73,6 +64,15 @@ namespace PhotoBuddy.Models
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private readonly XElement photoElement;
+
+        /// <summary>
+        /// Backing store for parsed photo data.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>
+        private IPhoto decoratedPhoto;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlPhoto"/> class.
@@ -246,6 +246,33 @@ namespace PhotoBuddy.Models
         public override string ToString()
         {
             return this.decoratedPhoto.ToString();
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        private void Dispose(bool disposing)
+        {
+            if (!disposing)
+            {
+                return;
+            }
+
+            if (this.decoratedPhoto != null)
+            {
+                this.decoratedPhoto.Dispose();
+                this.decoratedPhoto = null;
+            }
         }
     }
 }
