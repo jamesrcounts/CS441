@@ -137,7 +137,7 @@ namespace PhotoBuddy
                 return;
             }
 
-            var terms = this.searchTextBox.Text.Split(' ');
+            var terms = this.searchTextBox.Text.Trim().Split(' ');
             var searchResults = Model.Search(terms);
             this.ShowSearchResults(searchResults);
         }

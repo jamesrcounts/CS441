@@ -119,23 +119,22 @@ namespace PhotoBuddy
             {
                 CultureAwareMessageBox.Show(
                     this,
-                    "Photo name must not be empty!",
-                    "Empty Photo Name Issue",
+                    "Photo name must not be empty.",
+                    "Photo Buddy - " + Application.ProductVersion,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
 
             // Did user enter too long of a name?
-            if (this.DisplayName.Length > Constants.MaxNameLength)
+            if (Constants.MaxNameLength < this.DisplayName.Length)
             {
-                var nameTooLongMessage = new NameTooLongMessage();
                 CultureAwareMessageBox.Show(
                     this,
-                    nameTooLongMessage.Text,
-                    nameTooLongMessage.Caption,
-                    nameTooLongMessage.Buttons,
-                    nameTooLongMessage.Icon);
+                    Format.Culture("Photo name is too long.  Please enter a name up to {0} characters.", Constants.MaxNameLength),
+                    "Photo Buddy - " + Application.ProductVersion,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 

@@ -209,8 +209,8 @@ namespace PhotoBuddy.Models
         {
             if (Constants.MaxNameLength < displayName.Length)
             {
-                var nameTooLongMessage = new NameTooLongMessage();
-                throw new ArgumentException(nameTooLongMessage.Text, "displayName");
+                var nameTooLongMessage = Format.Culture("Photo name is too long.  Please enter a name up to {0} characters.", Constants.MaxNameLength);
+                throw new ArgumentException(nameTooLongMessage, "displayName");
             }
 
             XElement photoElement = new XElement(PhotoTag);
