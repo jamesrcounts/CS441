@@ -34,6 +34,11 @@ namespace PhotoBuddy
         private readonly IList<IPhoto> allPhotosInAlbum;
 
         /// <summary>
+        /// The photo currently displayed.
+        /// </summary>
+        private IPhoto currentPhoto;
+   
+        /// <summary>
         /// The current photo's index.
         /// </summary>
         private int photoIndex;
@@ -67,6 +72,20 @@ namespace PhotoBuddy
             this.photoIndex = this.allPhotosInAlbum.IndexOf(photoToDisplay);
             this.DisplayPhoto(this.photoIndex);
         }
+        
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Forms.Form.Closed"/> event.
+        /// </summary>
+        /// <param name="e">The <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        /// <remarks>
+        /// Author: Jim Counts
+        /// Created: 2011-11-06
+        /// </remarks>
+        protected override void OnClosed(EventArgs e)
+        {
+            this.CloseCurrentPhoto();
+            base.OnClosed(e);
+        }
 
         /// <summary>
         /// Displays the photo at the specified index.
@@ -78,12 +97,29 @@ namespace PhotoBuddy
         /// </remarks>
         private void DisplayPhoto(int index)
         {
-            IPhoto photo = this.allPhotosInAlbum[index];
-            this.pictureBox1.Image = photo.Image;
-            this.photoNameLabel.Text = photo.DisplayName.Replace("&", "&&");
-            this.Text = photo.DisplayName + " - Photo Buddy";
+            this.CloseCurrentPhoto();
+            this.currentPhoto = this.allPhotosInAlbum[index];
+            this.pictureBox1.Image = this.currentPhoto.Image;
+            this.photoNameLabel.Text = this.currentPhoto.DisplayName.Replace("&", "&&");
+            this.Text = this.currentPhoto.DisplayName + " - Photo Buddy";
         }
 
+        /// <summary>
+        /// Closes the current photo.
+        /// </summary>
+        /// <remarks>
+        /// Author: Jim Counts
+        /// Modified: 2011-11-06
+        /// </remarks>
+        private void CloseCurrentPhoto()
+        {
+            if (this.currentPhoto != null)
+            {
+                this.currentPhoto.Close();
+                this.currentPhoto = null;
+            }
+        }
+        
         /// <summary>
         /// Handles the Click event of the backButton control.
         /// </summary>

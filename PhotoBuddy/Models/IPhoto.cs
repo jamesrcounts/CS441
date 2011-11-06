@@ -76,7 +76,30 @@ namespace PhotoBuddy.Models
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         Image Image { get; }
+       
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        void Close();
 
+        /// <summary>
+        /// Creates the thumbnail.
+        /// </summary>
+        /// <param name="maxWidth">Maximum Width.</param>
+        /// <param name="maxHeight">Maximum Height.</param>
+        /// <returns>
+        /// A small version of the image.
+        /// </returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        Image CreateThumbnail(int maxWidth, int maxHeight);
+        
         /// <summary>
         /// Deletes this instance.
         /// </summary>

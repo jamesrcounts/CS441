@@ -9,18 +9,7 @@ namespace PhotoBuddy.Controls
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
 
         #region Component Designer generated code
 
@@ -63,9 +52,9 @@ namespace PhotoBuddy.Controls
             // 
             // photoPanel
             // 
-            this.photoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.photoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.photoPanel.AutoSize = true;
             this.photoPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.photoPanel.BackColor = System.Drawing.Color.White;
@@ -90,6 +79,7 @@ namespace PhotoBuddy.Controls
             this.thumbnailPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.thumbnailPictureBox.TabIndex = 0;
             this.thumbnailPictureBox.TabStop = false;
+            this.thumbnailPictureBox.Click += new System.EventHandler(this.OnThumbnailClick);
             this.thumbnailPictureBox.MouseEnter += new System.EventHandler(this.HighlightPhoto);
             this.thumbnailPictureBox.MouseLeave += new System.EventHandler(this.RemovePhotoHighlight);
             // 

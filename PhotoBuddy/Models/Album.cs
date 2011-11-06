@@ -114,7 +114,8 @@ namespace PhotoBuddy.Models
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
-        public Image CoverPhoto
+        [Obsolete]
+        public Image CoverThumbnailPhoto
         {
             get
             {
@@ -183,6 +184,28 @@ namespace PhotoBuddy.Models
 
             // Put the photo in the album data structure.
             this.AddPhoto(photoId, displayName, storageName);           
+        }
+
+        /// <summary>
+        /// Creates the thumbnail.
+        /// </summary>
+        /// <param name="maxWidth">Maximum Width.</param>
+        /// <param name="maxHeight">Maximum Height.</param>
+        /// <returns>
+        /// A small version of the image.
+        /// </returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public Image CreateThumbnail(int maxWidth, int maxHeight)
+        {
+            if (this.Count <= 0)
+            {
+                return PhotoBuddy.Properties.Resources.PhotoBuddy.ToBitmap();
+            }
+
+            return this.Photos.First().CreateThumbnail(maxWidth, maxHeight);
         }
         
         /// <summary>

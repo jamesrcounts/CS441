@@ -177,9 +177,11 @@ namespace PhotoBuddy.Screens
                                     Album = album,
                                     AlbumName = album.AlbumId,
                                     Count = album.Count,
-                                    Image = album.CoverPhoto
                                 };
 
+                albumControl.Image = album.CreateThumbnail(
+                    albumControl.ThumbnailWidth,
+                    albumControl.ThumbnailHeight);
                 albumControl.AlbumSelectedEvent += this.OnAlbumSelectedEvent;
                 albumControl.DeleteAlbumEvent += this.OnDeleteAlbumEvent;
                 albumControl.RenameAlbumEvent += this.OnRenameAlbumEvent;

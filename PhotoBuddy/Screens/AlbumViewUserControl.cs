@@ -148,16 +148,12 @@ namespace PhotoBuddy.Screens
             {
                 ThumbnailUserControl thumb = new ThumbnailUserControl()
                 {
-                    DisplayName = photo.DisplayName
+                    DisplayName = photo.DisplayName,
+                    Photo = photo
                 };
 
-                // Store the photo object in the thumbnail tag.
-                // thumbnail is a public property to set the picture box on the thumbnailUserControl.
-                thumb.Thumbnail.Tag = photo;
-                thumb.Thumbnail.Image = photo.Image;
-
                 // Wire the click event to the picturebox
-                thumb.Thumbnail.Click += this.HandlePhotoClick;
+                thumb.ThumbnailClick += this.HandlePhotoClick;
                 thumb.DeletePhotoEvent += this.HandleDeletePhotoEvent;
 
                 // Add the thumb control to the flow panel.
@@ -322,8 +318,8 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandlePhotoClick(object sender, EventArgs e)
         {
-            PictureBox uc = sender as PictureBox;
-            using (ViewPhotoForm photoForm = new ViewPhotoForm(this.currentAlbum, (IPhoto)uc.Tag))
+            var thumbnailControl = (ThumbnailUserControl)sender;
+            using (var photoForm = new ViewPhotoForm(this.currentAlbum, thumbnailControl.Photo))
             {
                 photoForm.ShowDialog();
             }

@@ -26,6 +26,15 @@ namespace PhotoBuddy.Controls
     public partial class ThumbnailUserControl : UserControl
     {
         /// <summary>
+        /// The photo entity
+        /// </summary>
+        /// <remarks>
+        /// Author: Jim Counts
+        /// Created 2011-11-06
+        /// </remarks>
+        private IPhoto photo;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ThumbnailUserControl"/> class.
         /// </summary>
         /// <remarks>
@@ -48,6 +57,11 @@ namespace PhotoBuddy.Controls
         public event EventHandler DeletePhotoEvent;
 
         /// <summary>
+        /// Occurs when the thumbnail is clicked.
+        /// </summary>
+        public event EventHandler ThumbnailClick;
+
+        /// <summary>
         /// Gets or sets the display name.
         /// </summary>
         /// <value>
@@ -67,21 +81,54 @@ namespace PhotoBuddy.Controls
         }
 
         /// <summary>
-        /// Gets or sets the thumbnail.
+        /// Gets or sets the photo.
         /// </summary>
         /// <value>
-        /// The thumbnail.
+        /// The photo.
         /// </value>
-        public PictureBox Thumbnail
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        /// <seealso cref="http://snippets.dzone.com/posts/show/4336"/>
+        public IPhoto Photo
         {
             get
             {
-                return this.thumbnailPictureBox;
+                return this.photo;
             }
 
             set
             {
-                this.thumbnailPictureBox = value;
+                this.photo = value;
+                if (this.photo != null)
+                {
+                    this.thumbnailPictureBox.Image = this.photo.CreateThumbnail(
+                    this.thumbnailPictureBox.Width,
+                    this.thumbnailPictureBox.Height);
+                }
+                else
+                {
+                    this.thumbnailPictureBox.Image = this.thumbnailPictureBox.ErrorImage;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when the thumbnail is clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public virtual void OnThumbnailClick(object sender, EventArgs e)
+        {
+            EventHandler handler = this.ThumbnailClick;
+            if (handler != null)
+            {
+                handler(this, e);
             }
         }
 
@@ -101,6 +148,24 @@ namespace PhotoBuddy.Controls
             {
                 handler(sender, e);
             }
+        }
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.Photo.Close();
+                if (this.components != null)
+                {
+                    this.components.Dispose();
+                }
+            }
+
+            base.Dispose(disposing);
         }
 
         /// <summary>
@@ -155,9 +220,7 @@ namespace PhotoBuddy.Controls
             ////    return;
             ////}
 
-            var photo = (IPhoto)this.Thumbnail.Tag;
-            photo.Album.Repository.DeletePhoto(photo.Album, photo);
-
+            this.Photo.Album.Repository.DeletePhoto(this.Photo.Album, this.Photo);
             this.OnDeletePhotoEvent(this, new EventArgs());
         }
 
@@ -173,18 +236,17 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void RenamePhoto(object sender, EventArgs e)
         {
-            var photo = (IPhoto)this.Thumbnail.Tag;
-            using (var renamePhotoView = new UploadViewForm(photo))
+            using (var renamePhotoView = new UploadViewForm(this.Photo))
             {
                 var result = renamePhotoView.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     // User approved so rename the photo.
-                    photo.DisplayName = renamePhotoView.DisplayName;
-                    photo.Album.Repository.SaveAlbums();
+                    this.Photo.DisplayName = renamePhotoView.DisplayName;
+                    this.Photo.Album.Repository.SaveAlbums();
 
                     // Important to update the new name on the view.                    
-                    this.photoNameTextBox.Text = photo.DisplayName;
+                    this.photoNameTextBox.Text = this.Photo.DisplayName;
                 }
             }
         }

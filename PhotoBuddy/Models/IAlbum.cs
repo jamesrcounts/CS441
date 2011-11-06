@@ -57,15 +57,6 @@ namespace PhotoBuddy.Models
         int Count { get; }
 
         /// <summary>
-        /// Gets the cover photo.
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created On: 2011-11-03</para>
-        /// </remarks>
-        Image CoverPhoto { get; }
-
-        /// <summary>
         /// Adds the photo.
         /// </summary>
         /// <param name="photo">The photo.</param>
@@ -139,6 +130,20 @@ namespace PhotoBuddy.Models
         ///   <para>Created On: 2011-11-03</para>
         /// </remarks>
         string ToString();
+
+        /// <summary>
+        /// Creates the thumbnail.
+        /// </summary>
+        /// <param name="maxWidth">Maximum Width.</param>
+        /// <param name="maxHeight">Maximum Height.</param>
+        /// <returns>
+        /// A small version of the image.
+        /// </returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        Image CreateThumbnail(int maxWidth, int maxHeight);
 
         /// <summary>
         /// Determines whether the album contains the specified photo id.

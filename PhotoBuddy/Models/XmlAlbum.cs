@@ -156,21 +156,6 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
-        /// Gets the cover photo.
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-11-03</para>
-        /// </remarks>
-        public Image CoverPhoto
-        {
-            get
-            {
-                return this.decoratedAlbum.CoverPhoto;
-            }
-        }
-
-        /// <summary>
         /// Creates a new album element.
         /// </summary>
         /// <param name="name">The name.</param>
@@ -280,6 +265,23 @@ namespace PhotoBuddy.Models
         public bool ContainsName(string displayName)
         {
             return this.decoratedAlbum.ContainsName(displayName);
+        }
+
+        /// <summary>
+        /// Creates the thumbnail.
+        /// </summary>
+        /// <param name="maxWidth">Maximum Width.</param>
+        /// <param name="maxHeight">Maximum Height.</param>
+        /// <returns>
+        /// A small version of the image.
+        /// </returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public Image CreateThumbnail(int maxWidth, int maxHeight)
+        {
+            return this.decoratedAlbum.CreateThumbnail(maxWidth, maxHeight);
         }
 
         /// <summary>

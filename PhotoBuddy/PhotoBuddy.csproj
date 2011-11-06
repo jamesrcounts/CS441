@@ -135,12 +135,6 @@
     <Compile Include="Models\IPhoto.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="Controls\AlbumThumbnailUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\AlbumThumbnailUserControl.Designer.cs">
-      <DependentUpon>AlbumThumbnailUserControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ClickLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -221,9 +215,6 @@
     </Compile>
     <EmbeddedResource Include="Controls\AlbumIconUserControl.resx">
       <DependentUpon>AlbumIconUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\AlbumThumbnailUserControl.resx">
-      <DependentUpon>AlbumThumbnailUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ClickLabel.resx">
       <DependentUpon>ClickLabel.cs</DependentUpon>

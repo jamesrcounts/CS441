@@ -177,24 +177,7 @@ namespace PhotoBuddy.Models
             {
                 if (this.photoImage == null)
                 {
-                    if (!File.Exists(this.FullPath))
-                    {
-                        this.photoImage = Photo.DefaultImage;
-                        return this.photoImage;
-                    }
-
-                    // Load the file
-                    try
-                    {
-                        using (MemoryStream stream = new MemoryStream(File.ReadAllBytes(this.FullPath)))
-                        {
-                            this.photoImage = Image.FromStream(stream);
-                        }
-                    }
-                    catch (OutOfMemoryException)
-                    {
-                        this.photoImage = Photo.DefaultImage;
-                    }
+                    this.Open();
                 }
 
                 return this.photoImage;
@@ -229,7 +212,7 @@ namespace PhotoBuddy.Models
                 return hashString.ToString();
             }
         }
-        
+
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
@@ -254,6 +237,60 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public void Close()
+        {
+            if (this.photoImage != null)
+            {
+                this.photoImage.Dispose();
+                this.photoImage = null;
+            }
+        }
+
+        /// <summary>
+        /// Creates the thumbnail.
+        /// </summary>
+        /// <param name="maxWidth">Width of the max.</param>
+        /// <param name="maxHeight">Height of the max.</param>
+        /// <returns>
+        /// A small version of the image.
+        /// </returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public Image CreateThumbnail(int maxWidth, int maxHeight)
+        {
+            bool shouldClose = this.photoImage == null;
+
+            // Scale by width
+            int newHeight = this.Image.Height * maxWidth / this.Image.Width;
+            int newWidth = maxWidth;
+            if (newHeight > maxHeight)
+            {
+                // Resize with height instead
+                newWidth = this.Image.Width * maxHeight / this.Image.Height;
+                newHeight = maxHeight;
+            }
+
+            Image thumbnailImage = Photo.DefaultImage;
+            thumbnailImage = this.Image.GetThumbnailImage(newWidth, newHeight, null, IntPtr.Zero);
+
+            // Free the resources used by the full sized image.
+            if (shouldClose)
+            {
+                this.Close();
+            }
+
+            return thumbnailImage;
+        }
+
+        /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
         /// </summary>
         /// <returns>
@@ -268,6 +305,34 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
+        /// Opens this instance.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        private void Open()
+        {
+            if (!File.Exists(this.FullPath))
+            {
+                this.photoImage = Photo.DefaultImage;
+                return;
+            }
+
+            try
+            {
+                using (MemoryStream stream = new MemoryStream(File.ReadAllBytes(this.FullPath)))
+                {
+                    this.photoImage = Image.FromStream(stream);
+                }
+            }
+            catch (OutOfMemoryException)
+            {
+                this.photoImage = Photo.DefaultImage;
+            }
+        }
+
+        /// <summary>
         /// Releases unmanaged and - optionally - managed resources
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
@@ -278,11 +343,7 @@ namespace PhotoBuddy.Models
                 return;
             }
 
-            if (this.photoImage != null)
-            {
-                this.photoImage.Dispose();
-                this.photoImage = null;
-            }
+            this.Close();
         }
     }
 }

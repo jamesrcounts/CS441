@@ -120,7 +120,7 @@ namespace PhotoBuddy.Models
         ///   <para>Authors: Jim Counts and Eric Wei.</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
-        public Image CoverPhoto
+        public Image CoverThumbnailPhoto
         {
             get { return this.photoBucket.First().Image; }
         }
@@ -222,6 +222,23 @@ namespace PhotoBuddy.Models
         public bool ContainsPhoto(string photoId)
         {
             return this.photoBucket.Any(photo => photo.PhotoId == photoId);
+        }
+
+        /// <summary>
+        /// Creates the thumbnail.
+        /// </summary>
+        /// <param name="maxWidth">Maximum Width.</param>
+        /// <param name="maxHeight">Maximum Height.</param>
+        /// <returns>
+        /// A small version of the image.
+        /// </returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public Image CreateThumbnail(int maxWidth, int maxHeight)
+        {
+            throw new System.NotSupportedException();
         }
 
         /// <summary>

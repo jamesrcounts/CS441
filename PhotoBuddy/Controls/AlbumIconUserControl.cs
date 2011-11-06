@@ -119,6 +119,42 @@ namespace PhotoBuddy.Controls
         }
 
         /// <summary>
+        /// Gets the width of the thumbnail.
+        /// </summary>
+        /// <value>
+        /// The width of the thumbnail.
+        /// </value>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public int ThumbnailWidth
+        {
+            get
+            {
+                return this.thumbnailPictureBox.Width;
+            }
+        }
+
+        /// <summary>
+        /// Gets the height of the thumbnail.
+        /// </summary>
+        /// <value>
+        /// The height of the thumbnail.
+        /// </value>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public int ThumbnailHeight
+        {
+            get
+            {
+                return this.thumbnailPictureBox.Height;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the image.
         /// </summary>
         /// <value>

@@ -221,6 +221,18 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public void Close()
+        {
+            this.decoratedPhoto.Close();
+        }
+
+        /// <summary>
         /// Deletes this photo.
         /// </summary>
         /// <remarks>
@@ -249,8 +261,29 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
+        /// Creates the thumbnail.
+        /// </summary>
+        /// <param name="maxWidth">Maximum Width.</param>
+        /// <param name="maxHeight">Maximum Height.</param>
+        /// <returns>
+        /// A small version of the image.
+        /// </returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>
+        public Image CreateThumbnail(int maxWidth, int maxHeight)
+        {
+            return this.decoratedPhoto.CreateThumbnail(maxWidth, maxHeight);
+        }
+
+        /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
         public void Dispose()
         {
             this.Dispose(true);
@@ -261,6 +294,10 @@ namespace PhotoBuddy.Models
         /// Releases unmanaged and - optionally - managed resources
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
         private void Dispose(bool disposing)
         {
             if (!disposing)
