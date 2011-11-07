@@ -70,6 +70,15 @@ namespace PhotoBuddy.Models
         private Image photoImage;
 
         /// <summary>
+        /// Stream associated with the photo image.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        private MemoryStream imageStream;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Photo"/> class.
         /// </summary>
         /// <param name="album">The album.</param>
@@ -250,6 +259,12 @@ namespace PhotoBuddy.Models
                 this.photoImage.Dispose();
                 this.photoImage = null;
             }
+
+            if (this.imageStream != null)
+            {
+                this.imageStream.Dispose();
+                this.imageStream = null;
+            }
         }
 
         /// <summary>
@@ -264,6 +279,7 @@ namespace PhotoBuddy.Models
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
+        /// <seealso cref="http://snippets.dzone.com/posts/show/4336"/>
         public Image CreateThumbnail(int maxWidth, int maxHeight)
         {
             bool shouldClose = this.photoImage == null;
@@ -321,10 +337,8 @@ namespace PhotoBuddy.Models
 
             try
             {
-                using (MemoryStream stream = new MemoryStream(File.ReadAllBytes(this.FullPath)))
-                {
-                    this.photoImage = Image.FromStream(stream);
-                }
+                this.imageStream = new MemoryStream(File.ReadAllBytes(this.FullPath));
+                this.photoImage = Image.FromStream(this.imageStream);
             }
             catch (OutOfMemoryException)
             {

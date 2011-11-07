@@ -76,6 +76,13 @@ namespace PhotoBuddy.Controls
 
             set
             {
+                if (this.InvokeRequired)
+                {
+                    Action<string> invoker = s => this.DisplayName = s;
+                    this.BeginInvoke(invoker, value);
+                    return;
+                }
+
                 this.photoNameTextBox.Text = value;
             }
         }
@@ -90,7 +97,6 @@ namespace PhotoBuddy.Controls
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
-        /// <seealso cref="http://snippets.dzone.com/posts/show/4336"/>
         public IPhoto Photo
         {
             get
@@ -100,6 +106,13 @@ namespace PhotoBuddy.Controls
 
             set
             {
+                if (this.InvokeRequired)
+                {
+                    Action<IPhoto> invoker = p => this.Photo = p;
+                    this.BeginInvoke(invoker, value);
+                    return;
+                }
+
                 this.photo = value;
                 if (this.photo != null)
                 {
@@ -242,7 +255,10 @@ namespace PhotoBuddy.Controls
                 if (result == DialogResult.OK)
                 {
                     // User approved so rename the photo.
-                    this.Photo.DisplayName = renamePhotoView.DisplayName;
+                    this.Photo.Album.Repository.RenamePhotoInAlbum(
+                        this.Photo.Album.AlbumId, 
+                        renamePhotoView.DisplayName, 
+                        this.photo.PhotoId);
                     this.Photo.Album.Repository.SaveAlbums();
 
                     // Important to update the new name on the view.                    

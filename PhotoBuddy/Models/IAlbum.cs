@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.Drawing;
 
@@ -17,6 +18,15 @@ namespace PhotoBuddy.Models
     /// </remarks>
     public interface IAlbum
     {
+        /// <summary>
+        /// Occurs when a photo is added to the album.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created On: 2011-11-06</para>
+        /// </remarks>
+        event EventHandler<EventArgs<IPhoto>> PhotoAddedEvent;
+
         /// <summary>
         /// Gets or sets the album id.
         /// </summary>
@@ -60,34 +70,48 @@ namespace PhotoBuddy.Models
         /// Adds the photo.
         /// </summary>
         /// <param name="photo">The photo.</param>
+        /// <returns>The attached photo.</returns>
         /// <remarks>
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created On: 2011-11-03</para>
         /// </remarks>
-        void AddPhoto(IPhoto photo);
- 
+        IPhoto AddPhoto(IPhoto photo);
+
+        /// <summary>
+        /// Adds the photo.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <returns>The attached photo.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created On: 2011-11-06</para>
+        /// </remarks>
+        IPhoto AddPhoto(string filePath);
+
         /// <summary>
         /// Adds the photo.
         /// </summary>
         /// <param name="photoId">The photo id.</param>
         /// <param name="displayName">The display name.</param>
         /// <param name="fileName">Name of the file.</param>
+        /// <returns>The attached photo.</returns>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created On: 2011-11-03</para>
         /// </remarks>
-        void AddPhoto(string photoId, string displayName, string fileName);
+        IPhoto AddPhoto(string photoId, string displayName, string fileName);
 
         /// <summary>
         /// Adds a new photo.
         /// </summary>
         /// <param name="displayName">The display name.</param>
         /// <param name="filePath">The file path.</param>
+        /// <returns>The attached photo.</returns>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created On: 2011-11-03</para>
         /// </remarks>
-        void AddPhoto(string displayName, string filePath);
+        IPhoto AddPhoto(string displayName, string filePath);
 
         /// <summary>
         /// Gets the photo.
@@ -99,6 +123,14 @@ namespace PhotoBuddy.Models
         ///   <para>Created On: 2011-11-03</para>
         /// </remarks>
         IPhoto GetPhoto(string photoId);
+
+        /// <summary>
+        /// Gets the number of photos that have display names matching the prefix of the specified display name.
+        /// </summary>
+        /// <param name="displayName">The display name.</param>
+        /// <param name="prefixLength">Length of the prefix.</param>
+        /// <returns>The number of matches</returns>
+        int GetPrefixMatchCount(string displayName, int prefixLength);
 
         /// <summary>
         /// Deletes this instance.
@@ -157,7 +189,7 @@ namespace PhotoBuddy.Models
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         bool ContainsPhoto(string photoId);
-        
+
         /// <summary>
         /// Determines whether the album contains the specified display name.
         /// </summary>

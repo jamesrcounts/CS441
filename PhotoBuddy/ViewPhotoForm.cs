@@ -37,7 +37,7 @@ namespace PhotoBuddy
         /// The photo currently displayed.
         /// </summary>
         private IPhoto currentPhoto;
-   
+
         /// <summary>
         /// The current photo's index.
         /// </summary>
@@ -72,7 +72,7 @@ namespace PhotoBuddy
             this.photoIndex = this.allPhotosInAlbum.IndexOf(photoToDisplay);
             this.DisplayPhoto(this.photoIndex);
         }
-        
+
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.Form.Closed"/> event.
         /// </summary>
@@ -119,7 +119,7 @@ namespace PhotoBuddy
                 this.currentPhoto = null;
             }
         }
-        
+
         /// <summary>
         /// Handles the Click event of the backButton control.
         /// </summary>
@@ -253,6 +253,7 @@ namespace PhotoBuddy
             photoControl.photoCropBox.Photo = this.pictureBox1.Image;
             photoControl.LeftButton.Text = "Cancel";
             photoControl.RightButton.Text = "Crop";
+            photoControl.RightButton.Visible = true;
             photoControl.LeftButton.Click += (o, s) =>
             {
                 photoControl.Hide();
@@ -261,21 +262,61 @@ namespace PhotoBuddy
             photoControl.RightButton.Click += (o, s) =>
             {
                 photoControl.Hide();
+                this.foundationTableLayoutPanel.Show();
 
                 // Get the rectangle
                 Rectangle selectedRectangle = photoControl.photoCropBox.SelectedRectangle;
-                CultureAwareMessageBox.Show(
-                    this,
-                    "Position: " + selectedRectangle.Location.X + "," + selectedRectangle.Location.Y + " Height: " + selectedRectangle.Height + " Width: " + selectedRectangle.Width,
-                    "Result",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                if (selectedRectangle == Rectangle.Empty)
+                {
+                    return;
+                }
 
-                // Do Some math
+                // Scale the rectangle size and position.
+                var cropBoxSize = photoControl.photoCropBox.Size;
+                var imageSize = this.pictureBox1.Image;
+
+                float horizontalScale = (float)cropBoxSize.Width / imageSize.Width;
+                float verticalScale = (float)cropBoxSize.Height / imageSize.Height;
+                int newWidth = (int)(selectedRectangle.Width / horizontalScale);
+                int newHeight = (int)(selectedRectangle.Height / verticalScale);
+                int newX = (int)((float)selectedRectangle.X / horizontalScale);
+                int newY = (int)((float)selectedRectangle.Y / verticalScale);
+                Rectangle scaledRectangle = new Rectangle(
+                    newX,
+                    newY,
+                    newWidth,
+                    newHeight);
+
                 // Crop the image.
-                // Add new image to album
-                // Display image.
+                IPhoto croppedPhoto = null;
+                using (var croppedImage = new Bitmap(scaledRectangle.Width, scaledRectangle.Height))
+                {
+                    using (var g = Graphics.FromImage(croppedImage))
+                    {
+                        g.DrawImage(
+                            this.pictureBox1.Image,
+                            new Rectangle(0, 0, croppedImage.Width, croppedImage.Height),
+                            scaledRectangle,
+                            GraphicsUnit.Pixel);
+
+                        System.IO.MemoryStream mss = new System.IO.MemoryStream();
+                        croppedImage.Save(mss, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        string tempPath = System.IO.Path.GetTempFileName();
+                        System.IO.File.WriteAllBytes(tempPath, mss.ToArray());
+
+                        croppedPhoto = this.album.AddPhoto(tempPath);
+                        System.IO.File.Delete(tempPath);
+                    }
+                }
+
+                this.allPhotosInAlbum.Add(croppedPhoto);
+                int idx = this.allPhotosInAlbum.IndexOf(croppedPhoto);
+                if (idx != -1)
+                {
+                    this.DisplayPhoto(idx);
+                }              
             };
+
             this.Controls.Add(photoControl);
             photoControl.Show();
             this.ResumeLayout();

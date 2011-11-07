@@ -17,8 +17,8 @@ namespace PhotoBuddy.Screens
     using System.IO;
     using System.Linq;
     using System.Windows.Forms;
+    using PhotoBuddy.Common;
     using PhotoBuddy.Controls;
-    using PhotoBuddy.EventObjects;
     using PhotoBuddy.Models;
     using PhotoBuddy.Properties;
 
@@ -111,7 +111,7 @@ namespace PhotoBuddy.Screens
             }
 
             set
-            {
+            { 
                 this.currentAlbum = value;
                 this.AddPhotosEnabled = true;
                 if (this.currentAlbum != null)
@@ -138,26 +138,26 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         public void RefreshPhotoList()
         {
-            if (this.currentAlbum == null)
+            using (Cursor.Current = Cursors.WaitCursor)
             {
-                return;
-            }
-
-            this.photosFlowPanel.Controls.Clear();
-            foreach (IPhoto photo in this.currentAlbum.Photos)
-            {
-                ThumbnailUserControl thumb = new ThumbnailUserControl()
+                if (this.currentAlbum == null)
                 {
-                    DisplayName = photo.DisplayName,
-                    Photo = photo
-                };
+                    return;
+                }
 
-                // Wire the click event to the picturebox
-                thumb.ThumbnailClick += this.HandlePhotoClick;
-                thumb.DeletePhotoEvent += this.HandleDeletePhotoEvent;
-
-                // Add the thumb control to the flow panel.
-                this.AddThumbnail(thumb);
+                this.photosFlowPanel.Controls.Clear();
+                var albumPhotos = this.currentAlbum.Photos.ToList();
+                for (int i = 0; i < albumPhotos.Count; i++)
+                {
+                    var thumbnailControl = new ThumbnailUserControl();
+                    thumbnailControl.ThumbnailClick += this.HandlePhotoClick;
+                    thumbnailControl.DeletePhotoEvent += this.HandleDeletePhotoEvent;
+                    this.photosFlowPanel.Controls.Add(thumbnailControl);
+                    var thumb = (ThumbnailUserControl)this.photosFlowPanel.Controls[i];
+                    var photo = albumPhotos[i];
+                    thumb.DisplayName = photo.DisplayName;
+                    thumb.Photo = photo;
+                }
             }
         }
 
@@ -196,6 +196,24 @@ namespace PhotoBuddy.Screens
             {
                 handler(sender, e);
             }
+        }
+
+        /// <summary>
+        /// Configures the thumbnail control.
+        /// </summary>
+        /// <param name="photo">The photo.</param>
+        /// <param name="thumb">The thumb.</param>
+        private void ConfigureThumbnailControl(IPhoto photo, ThumbnailUserControl thumb)
+        {
+            thumb.DisplayName = photo.DisplayName;
+            thumb.Photo = photo;
+
+            // Wire the click event to the picturebox
+            thumb.ThumbnailClick += this.HandlePhotoClick;
+            thumb.DeletePhotoEvent += this.HandleDeletePhotoEvent;
+
+            // Add the thumb control to the flow panel.
+            this.AddThumbnail(thumb);
         }
 
         /// <summary>
@@ -249,59 +267,9 @@ namespace PhotoBuddy.Screens
                 // Cache the directory the user just picked a file from.
                 Settings.Default.LastImportDirectory = Path.GetDirectoryName(this.addPhotosFileDialog.FileName);
                 Settings.Default.Save();
-
-                // Put the selected files a collection of anonymous objects
-                //      o := displayName, fileName
-                int maxLen = Settings.Default.MaxNameLength;
-                var selectedItems = from file in this.addPhotosFileDialog.FileNames
-                                    select new
-                                    {
-                                        DisplayName = Path.GetFileNameWithoutExtension(file),
-                                        Path = file
-                                    };
-
-                var selectedItemsIndex = new Dictionary<string, string>();
-                foreach (var photo in this.currentAlbum.Photos)
+                foreach (var fullPath in this.addPhotosFileDialog.FileNames)
                 {
-                    if (!File.Exists(photo.FullPath))
-                    {
-                        continue;
-                    }
-
-                    selectedItemsIndex.Add(photo.DisplayName, photo.FullPath);
-                }
-
-                // Loop through the anon-objs 
-                foreach (var item in selectedItems)
-                {
-                    // select count of each displayname - 4 from dictionary.
-                    int subKeyLen = Math.Min(maxLen - 4, item.DisplayName.Length);
-                    string subKey = item.DisplayName.Substring(0, subKeyLen);
-                    var prefixMatches = from key in selectedItemsIndex.Keys
-                                        where key.StartsWith(subKey, StringComparison.OrdinalIgnoreCase)
-                                        select key;
-
-                    int prefixMatchesCount = prefixMatches.Count();
-                    int keyLen = Math.Min(maxLen, item.DisplayName.Length);
-                    string displayName = item.DisplayName.Substring(0, keyLen);
-                    if (prefixMatchesCount != 0)
-                    {
-                        // replace last 4 digits with count of prefix matches and add to dictionary.
-                        displayName = subKey + prefixMatchesCount;
-                    }
-
-                    selectedItemsIndex.Add(displayName, item.Path);
-                }
-
-                foreach (var item in selectedItemsIndex)
-                {
-                    string photoKey = Photo.GeneratePhotoKey(item.Value);
-                    if (this.CurrentAlbum.ContainsPhoto(photoKey))
-                    {
-                        continue;
-                    }
-
-                    this.CurrentAlbum.AddPhoto(item.Key, item.Value);
+                    this.CurrentAlbum.AddPhoto(fullPath);
                 }
 
                 this.RefreshPhotoList();
@@ -322,6 +290,7 @@ namespace PhotoBuddy.Screens
             using (var photoForm = new ViewPhotoForm(this.currentAlbum, thumbnailControl.Photo))
             {
                 photoForm.ShowDialog();
+                this.RefreshPhotoList();
             }
         }
 

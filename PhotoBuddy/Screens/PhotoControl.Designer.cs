@@ -34,7 +34,6 @@ namespace PhotoBuddy.Screens
             this.footerTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.rightFooterPanel = new System.Windows.Forms.Panel();
             this.RightButton = new System.Windows.Forms.Button();
-            this.footerLabel = new System.Windows.Forms.Label();
             this.leftFooterPanel = new System.Windows.Forms.Panel();
             this.LeftButton = new System.Windows.Forms.Button();
             this.photoCropBox = new PhotoBuddy.Controls.CropBox();
@@ -76,7 +75,7 @@ namespace PhotoBuddy.Screens
             this.captionLabel.Name = "captionLabel";
             this.captionLabel.Size = new System.Drawing.Size(586, 29);
             this.captionLabel.TabIndex = 9;
-            this.captionLabel.Text = "captionLabel";
+            this.captionLabel.Text = "Crop Photo";
             this.captionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // footerTableLayoutPanel
@@ -102,7 +101,6 @@ namespace PhotoBuddy.Screens
             // rightFooterPanel
             // 
             this.rightFooterPanel.Controls.Add(this.RightButton);
-            this.rightFooterPanel.Controls.Add(this.footerLabel);
             this.rightFooterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightFooterPanel.Location = new System.Drawing.Point(383, 0);
             this.rightFooterPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -129,19 +127,6 @@ namespace PhotoBuddy.Screens
             this.RightButton.Text = "RightButton";
             this.RightButton.UseVisualStyleBackColor = false;
             this.RightButton.Visible = false;
-            // 
-            // footerLabel
-            // 
-            this.footerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.footerLabel.AutoSize = true;
-            this.footerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
-            this.footerLabel.Location = new System.Drawing.Point(38, 14);
-            this.footerLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.footerLabel.Name = "footerLabel";
-            this.footerLabel.Size = new System.Drawing.Size(30, 13);
-            this.footerLabel.TabIndex = 4;
-            this.footerLabel.Text = "1/32";
-            this.footerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // leftFooterPanel
             // 
@@ -207,7 +192,6 @@ namespace PhotoBuddy.Screens
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel foundationTableLayoutPanel;
-        private System.Windows.Forms.Label footerLabel;
         private System.Windows.Forms.Label captionLabel;
         private System.Windows.Forms.TableLayoutPanel footerTableLayoutPanel;
         private System.Windows.Forms.Panel rightFooterPanel;

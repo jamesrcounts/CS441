@@ -58,6 +58,15 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
+        /// Occurs when a photo is added.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Authors: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public event EventHandler<EventArgs<IPhoto>> PhotoAddedEvent;
+
+        /// <summary>
         /// Gets or sets the album ID.
         /// </summary>
         /// <value>
@@ -108,50 +117,15 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
-        /// Gets the cover photo.
-        /// </summary>
-        /// <remarks>
-        ///   <para>Author: Jim Counts</para>
-        ///   <para>Created: 2011-10-26</para>
-        /// </remarks>
-        [Obsolete]
-        public Image CoverThumbnailPhoto
-        {
-            get
-            {
-                if (this.Count <= 0)
-                {
-                    return PhotoBuddy.Properties.Resources.PhotoBuddy.ToBitmap();
-                }
-
-                return this.Photos.First().Image;
-            }
-        }
-
-        /// <summary>
-        /// Adds the specified photo.
-        /// </summary>
-        /// <param name="photoId">The photo id.</param>
-        /// <param name="displayName">The display name.</param>
-        /// <param name="fileName">Name of the file.</param>
-        /// <remarks>
-        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
-        ///   <para>Created: 2011-10-28</para>
-        /// </remarks>
-        public void AddPhoto(string photoId, string displayName, string fileName)
-        {
-            this.AddPhoto(new Photo(this, photoId, displayName, fileName));
-        }
-
-        /// <summary>
         /// Adds the photo.
         /// </summary>
         /// <param name="photo">The photo to add.</param>
+        /// <returns>The attached photo.</returns>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
-        public void AddPhoto(IPhoto photo)
+        public IPhoto AddPhoto(IPhoto photo)
         {
             if (this.ContainsPhoto(photo.PhotoId))
             {
@@ -164,6 +138,36 @@ namespace PhotoBuddy.Models
             }
 
             this.photos.Add(photo.PhotoId, photo);
+            var attachedPhoto = this.GetPhoto(photo.PhotoId);
+            this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(attachedPhoto));
+            return attachedPhoto;
+        }
+
+        /// <summary>
+        /// Adds the photo.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <returns>The attached photo.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created On: 2011-11-06</para>
+        /// </remarks>
+        public IPhoto AddPhoto(string filePath)
+        {
+            string dn = Path.GetFileNameWithoutExtension(filePath);
+            int maxLen = PhotoBuddy.Properties.Settings.Default.MaxNameLength;
+            int prefixLen = maxLen - 4;
+            int matchCount = this.GetPrefixMatchCount(dn, prefixLen);
+            int subKeyLen = Math.Min(prefixLen, dn.Length);
+            int keyLen = Math.Min(maxLen, dn.Length);
+
+            string displayName = dn.Substring(0, keyLen);
+            if (matchCount != 0)
+            {
+                displayName = displayName.Substring(0, subKeyLen) + matchCount;
+            }
+
+            return this.AddPhoto(displayName, filePath);
         }
 
         /// <summary>
@@ -171,11 +175,12 @@ namespace PhotoBuddy.Models
         /// </summary>
         /// <param name="displayName">The display name.</param>
         /// <param name="filePath">The file path.</param>
+        /// <returns>The attached photo.</returns>
         /// <remarks>
         ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
         ///   <para>Modified: 2011-11-04</para>
         /// </remarks>
-        public void AddPhoto(string displayName, string filePath)
+        public IPhoto AddPhoto(string displayName, string filePath)
         {
             // Copies the file to the secret location.
             string photoId = Photo.GeneratePhotoKey(filePath);
@@ -183,7 +188,29 @@ namespace PhotoBuddy.Models
             string storageName = Path.GetFileName(storagePath);
 
             // Put the photo in the album data structure.
-            this.AddPhoto(photoId, displayName, storageName);           
+            this.AddPhoto(photoId, displayName, storageName);
+            IPhoto attachedPhoto = this.GetPhoto(photoId);
+            this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(attachedPhoto));
+            return attachedPhoto;
+        }
+
+        /// <summary>
+        /// Adds the specified photo.
+        /// </summary>
+        /// <param name="photoId">The photo id.</param>
+        /// <param name="displayName">The display name.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns>The attached photo.</returns>
+        /// <remarks>
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        ///   <para>Created: 2011-10-28</para>
+        /// </remarks>
+        public IPhoto AddPhoto(string photoId, string displayName, string fileName)
+        {
+            this.AddPhoto(new Photo(this, photoId, displayName, fileName));
+            IPhoto attachedPhoto = this.GetPhoto(photoId);
+            this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(attachedPhoto));
+            return attachedPhoto;
         }
 
         /// <summary>
@@ -303,6 +330,42 @@ namespace PhotoBuddy.Models
         public override string ToString()
         {
             return this.AlbumId;
+        }
+
+        /// <summary>
+        /// Gets the number of photos that have display names matching the prefix of the specified display name.
+        /// </summary>
+        /// <param name="displayName">The display name.</param>
+        /// <param name="prefixLength">Length of the prefix.</param>
+        /// <returns>
+        /// The number of matches
+        /// </returns>
+        /// <remarks>
+        /// Author: Jim Counts
+        /// Created: 2011-11-06
+        /// </remarks>
+        public int GetPrefixMatchCount(string displayName, int prefixLength)
+        {
+            int subKeyLen = Math.Min(prefixLength, displayName.Length);
+            string subKey = displayName.Substring(0, subKeyLen);
+            var prefixMatches = from key in this.photos.Values.Select(photo => photo.DisplayName)
+                                where key.StartsWith(subKey, StringComparison.OrdinalIgnoreCase)
+                                select key;
+            return prefixMatches.Count();
+        }
+
+        /// <summary>
+        /// Raises the photo added event.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;PhotoBuddy.Models.IPhoto&gt;"/> instance containing the event data.</param>
+        public void OnPhotoAddedEvent(object sender, EventArgs<IPhoto> e)
+        {
+            EventHandler<EventArgs<IPhoto>> handler = this.PhotoAddedEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
         }
     }
 }

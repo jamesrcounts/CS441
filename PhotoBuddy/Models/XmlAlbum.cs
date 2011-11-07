@@ -40,7 +40,7 @@ namespace PhotoBuddy.Models
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private const string AlbumTag = "album";
-        
+
         /// <summary>
         /// string literal: photo
         /// </summary>
@@ -81,10 +81,20 @@ namespace PhotoBuddy.Models
         {
             this.albumElement = albumElement;
             string albumId = this.albumElement.Attribute(IdTag).Value;
-            IEnumerable<IPhoto> photos = from photoElement in this.albumElement.Descendants(PhotoTag)                                         
+            IEnumerable<IPhoto> photos = from photoElement in this.albumElement.Descendants(PhotoTag)
                                          select new XmlPhoto(this, photoElement);
             this.decoratedAlbum = new Album(albumRepository, albumId, photos);
+            this.decoratedAlbum.PhotoAddedEvent += this.OnPhotoAddedEvent;
         }
+
+        /// <summary>
+        /// Occurs when a photo is added to the album.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Authors: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public event EventHandler<EventArgs<IPhoto>> PhotoAddedEvent;
 
         /// <summary>
         /// Gets or sets the album id.
@@ -167,22 +177,23 @@ namespace PhotoBuddy.Models
         public static XElement CreateAlbumElement(string name)
         {
             var albumElement = new XElement(AlbumTag);
-           //// albumElement.Add(new XElement(PhotoTag));
+            //// albumElement.Add(new XElement(PhotoTag));
             albumElement.Add(new XAttribute(IdTag, name));
             return albumElement;
         }
-            
+
         /// <summary>
         /// Adds the photo.
         /// </summary>
         /// <param name="photo">The photo.</param>
+        /// <returns>The attached photo.</returns>
         /// <remarks>
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
-        public void AddPhoto(IPhoto photo)
+        public IPhoto AddPhoto(IPhoto photo)
         {
-            this.AddPhoto(photo.PhotoId, photo.DisplayName, photo.FullPath);
+            return this.AddPhoto(photo.PhotoId, photo.DisplayName, photo.FullPath);
         }
 
         /// <summary>
@@ -190,31 +201,33 @@ namespace PhotoBuddy.Models
         /// </summary>
         /// <param name="displayName">The display name.</param>
         /// <param name="filePath">The file path.</param>
+        /// <returns>The attached photo.</returns>
         /// <remarks>
         ///   <para>Authors: Jim Counts.</para>
         ///   <para>Created: 2011-11-04</para>
         /// </remarks>
-        public void AddPhoto(string displayName, string filePath)
+        public IPhoto AddPhoto(string displayName, string filePath)
         {
             // Copies the file to the secret location.
-            string photoId = Photo.GeneratePhotoKey(filePath);            
+            string photoId = Photo.GeneratePhotoKey(filePath);
             string storagePath = AlbumRepository.StoreFile(filePath, photoId);
             string storageName = Path.GetFileName(storagePath);
 
-            this.AddPhoto(photoId, displayName, storageName);
+            return this.AddPhoto(photoId, displayName, storageName);
         }
-        
+
         /// <summary>
         /// Adds the photo.
         /// </summary>
         /// <param name="photoId">The photo id.</param>
         /// <param name="displayName">The display name.</param>
         /// <param name="fileName">Name of the file.</param>
+        /// <returns>The attached photo.</returns>
         /// <remarks>
         ///   <para>Author: Jim Counts</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
-        public void AddPhoto(string photoId, string displayName, string fileName)
+        public IPhoto AddPhoto(string photoId, string displayName, string fileName)
         {
             if (this.ContainsPhoto(photoId))
             {
@@ -232,7 +245,7 @@ namespace PhotoBuddy.Models
             this.Repository.SaveAlbums();
 
             // Update Indexes
-            this.decoratedAlbum.AddPhoto(new XmlPhoto(this, photoElement));
+            return this.decoratedAlbum.AddPhoto(new XmlPhoto(this, photoElement));
         }
 
         /// <summary>
@@ -330,9 +343,69 @@ namespace PhotoBuddy.Models
         /// <returns>
         /// A <see cref="System.String"/> that represents this instance.
         /// </returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
         public override string ToString()
         {
             return this.decoratedAlbum.ToString();
+        }
+
+        /// <summary>
+        /// Gets the number of photos that have display names matching the prefix of the specified display name.
+        /// </summary>
+        /// <param name="displayName">The display name.</param>
+        /// <param name="prefixLength">Length of the prefix.</param>
+        /// <returns>
+        /// The number of matches
+        /// </returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-03</para>
+        /// </remarks>
+        public int GetPrefixMatchCount(string displayName, int prefixLength)
+        {
+            return this.decoratedAlbum.GetPrefixMatchCount(displayName, prefixLength);
+        }
+
+        /// <summary>
+        /// Adds the photo.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <returns>The attached photo.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public IPhoto AddPhoto(string filePath)
+        {
+            var photo = this.decoratedAlbum.AddPhoto(filePath);
+
+            // Update XML
+            XElement photoElement = XmlPhoto.CreatePhotoElement(photo.PhotoId, photo.DisplayName, photo.FileName);
+            this.albumElement.Add(photoElement);
+            this.Repository.SaveAlbums();
+
+            return photo;
+        }
+
+        /// <summary>
+        /// Raises when photo added event.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;PhotoBuddy.Models.IPhoto&gt;"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Authors: Jim Counts</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        public virtual void OnPhotoAddedEvent(object sender, EventArgs<IPhoto> e)
+        {
+            EventHandler<EventArgs<IPhoto>> handler = this.PhotoAddedEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
         }
     }
 }
