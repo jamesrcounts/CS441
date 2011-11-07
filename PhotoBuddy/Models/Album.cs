@@ -36,6 +36,11 @@ namespace PhotoBuddy.Models
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
         private readonly IDictionary<string, IPhoto> photos = new Dictionary<string, IPhoto>();
+        
+        /// <summary>
+        /// Backing store for the cover photo.
+        /// </summary>
+        private IPhoto coverPhoto;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Album"/> class.
@@ -76,6 +81,35 @@ namespace PhotoBuddy.Models
         /// Author(s): Miguel Gonzales and Andrea Tan.
         /// </remarks>
         public string AlbumId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cover photo.
+        /// </summary>
+        /// <value>
+        /// The cover photo.
+        /// </value>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created On: 2011-11-07</para>
+        /// </remarks>
+        public IPhoto CoverPhoto
+        {
+            get
+            {
+                return this.coverPhoto;
+            }
+
+            set
+            {
+                // Cover photo must exist in this album.
+                if (value != null && !this.ContainsPhoto(value.PhotoId))
+                {
+                    return;
+                }
+
+                this.coverPhoto = value;
+            }
+        }
 
         /// <summary>
         /// Gets the photos in the album.
@@ -232,7 +266,12 @@ namespace PhotoBuddy.Models
                 return PhotoBuddy.Properties.Resources.PhotoBuddy.ToBitmap();
             }
 
-            return this.Photos.First().CreateThumbnail(maxWidth, maxHeight);
+            if (this.coverPhoto == null)
+            {
+                return this.Photos.First().CreateThumbnail(maxWidth, maxHeight);
+            }
+
+            return this.coverPhoto.CreateThumbnail(maxWidth, maxHeight);
         }
         
         /// <summary>

@@ -27,6 +27,7 @@ namespace PhotoBuddy.Controls
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.photoNameTextBox = new System.Windows.Forms.TextBox();
+            this.setAsAlbumCoverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foundationTableLayoutPanel.SuspendLayout();
             this.photoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
@@ -52,9 +53,9 @@ namespace PhotoBuddy.Controls
             // 
             // photoPanel
             // 
-            this.photoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.photoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.photoPanel.AutoSize = true;
             this.photoPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.photoPanel.BackColor = System.Drawing.Color.White;
@@ -87,9 +88,10 @@ namespace PhotoBuddy.Controls
             // 
             this.thumbnailContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem,
-            this.renameToolStripMenuItem});
+            this.renameToolStripMenuItem,
+            this.setAsAlbumCoverToolStripMenuItem});
             this.thumbnailContextMenuStrip.Name = "contextMenuStrip1";
-            this.thumbnailContextMenuStrip.Size = new System.Drawing.Size(118, 48);
+            this.thumbnailContextMenuStrip.Size = new System.Drawing.Size(178, 92);
             // 
             // deleteToolStripMenuItem
             // 
@@ -119,6 +121,13 @@ namespace PhotoBuddy.Controls
             this.photoNameTextBox.TabIndex = 1;
             this.photoNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // setAsAlbumCoverToolStripMenuItem
+            // 
+            this.setAsAlbumCoverToolStripMenuItem.Name = "setAsAlbumCoverToolStripMenuItem";
+            this.setAsAlbumCoverToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.setAsAlbumCoverToolStripMenuItem.Text = "Set as Album Cover";
+            this.setAsAlbumCoverToolStripMenuItem.Click += new System.EventHandler(this.SetAlbumCover);
+            // 
             // ThumbnailUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,5 +154,6 @@ namespace PhotoBuddy.Controls
         private ContextMenuStrip thumbnailContextMenuStrip;
         private ToolStripMenuItem deleteToolStripMenuItem;
         private ToolStripMenuItem renameToolStripMenuItem;
+        private ToolStripMenuItem setAsAlbumCoverToolStripMenuItem;
     }
 }

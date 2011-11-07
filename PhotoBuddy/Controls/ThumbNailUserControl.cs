@@ -122,11 +122,16 @@ namespace PhotoBuddy.Controls
                 this.thumbnailPictureBox.Image = ThumbnailUserControl.DefaultImage;
                 if (this.photo != null)
                 {
+                    // Create the thumbnail on another thread, then marshal back to the 
+                    // UI thread in order to update it.
                     Task.Factory.StartNew(() =>
                     {
+                        // Creates thumbnail
                         var image = this.photo.CreateThumbnail(
                             this.thumbnailPictureBox.Width,
                             this.thumbnailPictureBox.Height);
+
+                        // Asks the UI thread to update the completed thumbnail
                         this.ThumbnailSetter(image);
                     }).ContinueWith(t =>
                     {
@@ -302,6 +307,22 @@ namespace PhotoBuddy.Controls
                     this.photoNameTextBox.Text = this.Photo.DisplayName;
                 }
             }
+        }
+
+        /// <summary>
+        /// Sets the album cover.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-11-06</para>
+        /// </remarks>
+        private void SetAlbumCover(object sender, EventArgs e)
+        {
+            var album = this.photo.Album;
+            album.CoverPhoto = this.photo;
+            album.Repository.SaveAlbums();
         }
     }
 }

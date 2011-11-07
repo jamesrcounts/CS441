@@ -40,6 +40,18 @@ namespace PhotoBuddy.Models
         string AlbumId { get; set; }
 
         /// <summary>
+        /// Gets or sets the cover photo.
+        /// </summary>
+        /// <value>
+        /// The cover photo.
+        /// </value>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created On: 2011-11-07</para>
+        /// </remarks>
+        IPhoto CoverPhoto { get; set; }
+
+        /// <summary>
         /// Gets the photos.
         /// </summary>
         /// <remarks>

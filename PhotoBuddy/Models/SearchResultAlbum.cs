@@ -81,6 +81,18 @@ namespace PhotoBuddy.Models
         public string AlbumId { get; set; }
 
         /// <summary>
+        /// Gets or sets the cover photo.
+        /// </summary>
+        /// <value>
+        /// The cover photo.
+        /// </value>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created On: 2011-11-07</para>
+        /// </remarks>
+        public IPhoto CoverPhoto { get; set; }
+
+        /// <summary>
         /// Gets the photos.
         /// </summary>
         /// <remarks>
@@ -107,7 +119,7 @@ namespace PhotoBuddy.Models
             get
             {
                 return this.albumRepository;
-            }          
+            }
         }
 
         /// <summary>
@@ -121,7 +133,7 @@ namespace PhotoBuddy.Models
         {
             get { return this.photoBucket.Count; }
         }
-           
+
         /// <summary>
         /// Adds the photo.
         /// </summary>
@@ -151,7 +163,7 @@ namespace PhotoBuddy.Models
         {
             throw new NotSupportedException();
         }
-        
+
         /// <summary>
         /// Adds the photo.
         /// </summary>
@@ -258,7 +270,7 @@ namespace PhotoBuddy.Models
         {
             return this.photoBucket.Any(photo => photo.DisplayName == displayName);
         }
-        
+
         /// <summary>
         /// Gets the number of photos that have display names matching the prefix of the specified display name.
         /// </summary>

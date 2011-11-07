@@ -145,8 +145,16 @@ namespace PhotoBuddy.Screens
                     return;
                 }
 
+                while (0 < this.photosFlowPanel.Controls.Count)
+                {
+                    var control = this.photosFlowPanel.Controls[0];
+                    this.photosFlowPanel.Controls.Remove(control);
+                    control.Dispose();
+                }
+
                 this.photosFlowPanel.Controls.Clear();
                 var albumPhotos = this.currentAlbum.Photos.ToList();
+                this.albumSizeLabel.Text = Format.Culture("{0} photos", albumPhotos.Count);
                 for (int i = 0; i < albumPhotos.Count; i++)
                 {
                     var thumbnailControl = new ThumbnailUserControl();

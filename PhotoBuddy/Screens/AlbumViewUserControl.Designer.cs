@@ -31,6 +31,7 @@ namespace PhotoBuddy.Screens
         {
             this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.headerPanel = new System.Windows.Forms.Panel();
+            this.albumSizeLabel = new System.Windows.Forms.Label();
             this.headerFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.albumNameLabel = new System.Windows.Forms.Label();
             this.footerPanel = new System.Windows.Forms.Panel();
@@ -39,7 +40,6 @@ namespace PhotoBuddy.Screens
             this.photosFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.addPhotosFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.albumSizeLabel = new System.Windows.Forms.Label();
             this.foundationTableLayoutPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
             this.headerFlowLayoutPanel.SuspendLayout();
@@ -57,14 +57,14 @@ namespace PhotoBuddy.Screens
             this.foundationTableLayoutPanel.Controls.Add(this.contentPanel, 0, 1);
             this.foundationTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.foundationTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
             this.foundationTableLayoutPanel.RowCount = 4;
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
             this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(500, 400);
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(375, 325);
             this.foundationTableLayoutPanel.TabIndex = 2;
             // 
             // headerPanel
@@ -75,18 +75,31 @@ namespace PhotoBuddy.Screens
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Margin = new System.Windows.Forms.Padding(0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(500, 46);
+            this.headerPanel.Size = new System.Drawing.Size(375, 37);
             this.headerPanel.TabIndex = 0;
+            // 
+            // albumSizeLabel
+            // 
+            this.albumSizeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.albumSizeLabel.AutoSize = true;
+            this.albumSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.albumSizeLabel.ForeColor = System.Drawing.Color.Black;
+            this.albumSizeLabel.Location = new System.Drawing.Point(289, 17);
+            this.albumSizeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 30, 0);
+            this.albumSizeLabel.Name = "albumSizeLabel";
+            this.albumSizeLabel.Size = new System.Drawing.Size(63, 17);
+            this.albumSizeLabel.TabIndex = 4;
+            this.albumSizeLabel.Text = "0 photos";
             // 
             // headerFlowLayoutPanel
             // 
             this.headerFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.headerFlowLayoutPanel.AutoSize = true;
             this.headerFlowLayoutPanel.Controls.Add(this.albumNameLabel);
-            this.headerFlowLayoutPanel.Location = new System.Drawing.Point(13, -7);
+            this.headerFlowLayoutPanel.Location = new System.Drawing.Point(10, -6);
             this.headerFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.headerFlowLayoutPanel.Name = "headerFlowLayoutPanel";
-            this.headerFlowLayoutPanel.Size = new System.Drawing.Size(319, 50);
+            this.headerFlowLayoutPanel.Size = new System.Drawing.Size(239, 41);
             this.headerFlowLayoutPanel.TabIndex = 3;
             this.headerFlowLayoutPanel.WrapContents = false;
             // 
@@ -96,11 +109,11 @@ namespace PhotoBuddy.Screens
             this.albumNameLabel.AutoSize = true;
             this.albumNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.albumNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.albumNameLabel.Location = new System.Drawing.Point(0, 12);
-            this.albumNameLabel.Margin = new System.Windows.Forms.Padding(0, 12, 0, 0);
-            this.albumNameLabel.MaximumSize = new System.Drawing.Size(533, 38);
+            this.albumNameLabel.Location = new System.Drawing.Point(0, 10);
+            this.albumNameLabel.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.albumNameLabel.MaximumSize = new System.Drawing.Size(400, 31);
             this.albumNameLabel.Name = "albumNameLabel";
-            this.albumNameLabel.Size = new System.Drawing.Size(204, 38);
+            this.albumNameLabel.Size = new System.Drawing.Size(161, 31);
             this.albumNameLabel.TabIndex = 2;
             this.albumNameLabel.Text = "album name";
             this.albumNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -111,10 +124,10 @@ namespace PhotoBuddy.Screens
             this.footerPanel.Controls.Add(this.addPhotosButton);
             this.footerPanel.Controls.Add(this.backButton);
             this.footerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.footerPanel.Location = new System.Drawing.Point(0, 356);
+            this.footerPanel.Location = new System.Drawing.Point(0, 289);
             this.footerPanel.Margin = new System.Windows.Forms.Padding(0);
             this.footerPanel.Name = "footerPanel";
-            this.footerPanel.Size = new System.Drawing.Size(500, 44);
+            this.footerPanel.Size = new System.Drawing.Size(375, 36);
             this.footerPanel.TabIndex = 1;
             // 
             // addPhotosButton
@@ -128,10 +141,10 @@ namespace PhotoBuddy.Screens
             this.addPhotosButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addPhotosButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addPhotosButton.ForeColor = System.Drawing.Color.White;
-            this.addPhotosButton.Location = new System.Drawing.Point(362, 4);
-            this.addPhotosButton.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
+            this.addPhotosButton.Location = new System.Drawing.Point(262, 1);
+            this.addPhotosButton.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.addPhotosButton.Name = "addPhotosButton";
-            this.addPhotosButton.Size = new System.Drawing.Size(124, 35);
+            this.addPhotosButton.Size = new System.Drawing.Size(102, 30);
             this.addPhotosButton.TabIndex = 0;
             this.addPhotosButton.Text = "Add Photos";
             this.addPhotosButton.UseVisualStyleBackColor = false;
@@ -150,10 +163,10 @@ namespace PhotoBuddy.Screens
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.ForeColor = System.Drawing.Color.White;
-            this.backButton.Location = new System.Drawing.Point(274, 4);
-            this.backButton.Margin = new System.Windows.Forms.Padding(0, 0, 11, 0);
+            this.backButton.Location = new System.Drawing.Point(200, 1);
+            this.backButton.Margin = new System.Windows.Forms.Padding(0, 0, 8, 0);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(66, 35);
+            this.backButton.Size = new System.Drawing.Size(55, 30);
             this.backButton.TabIndex = 1;
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = false;
@@ -166,10 +179,10 @@ namespace PhotoBuddy.Screens
             this.photosFlowPanel.AutoScroll = true;
             this.photosFlowPanel.BackColor = System.Drawing.Color.White;
             this.photosFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.photosFlowPanel.Location = new System.Drawing.Point(13, 51);
-            this.photosFlowPanel.Margin = new System.Windows.Forms.Padding(13, 4, 13, 4);
+            this.photosFlowPanel.Location = new System.Drawing.Point(10, 41);
+            this.photosFlowPanel.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.photosFlowPanel.Name = "photosFlowPanel";
-            this.photosFlowPanel.Size = new System.Drawing.Size(474, 301);
+            this.photosFlowPanel.Size = new System.Drawing.Size(355, 245);
             this.photosFlowPanel.TabIndex = 2;
             this.photosFlowPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.HandlePhotosFlowPanelMouseClick);
             this.photosFlowPanel.MouseEnter += new System.EventHandler(this.HandlePhotosFlowPanelMouseEnter);
@@ -178,10 +191,10 @@ namespace PhotoBuddy.Screens
             // 
             this.contentPanel.BackColor = System.Drawing.Color.Black;
             this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contentPanel.Location = new System.Drawing.Point(13, 46);
-            this.contentPanel.Margin = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            this.contentPanel.Location = new System.Drawing.Point(10, 37);
+            this.contentPanel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(474, 1);
+            this.contentPanel.Size = new System.Drawing.Size(355, 1);
             this.contentPanel.TabIndex = 3;
             // 
             // addPhotosFileDialog
@@ -190,28 +203,15 @@ namespace PhotoBuddy.Screens
                 " (*.gif)|*.gif";
             this.addPhotosFileDialog.Multiselect = true;
             // 
-            // albumSizeLabel
-            // 
-            this.albumSizeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.albumSizeLabel.AutoSize = true;
-            this.albumSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.albumSizeLabel.ForeColor = System.Drawing.Color.Black;
-            this.albumSizeLabel.Location = new System.Drawing.Point(385, 21);
-            this.albumSizeLabel.Margin = new System.Windows.Forms.Padding(3, 0, 40, 0);
-            this.albumSizeLabel.Name = "albumSizeLabel";
-            this.albumSizeLabel.Size = new System.Drawing.Size(73, 20);
-            this.albumSizeLabel.TabIndex = 4;
-            this.albumSizeLabel.Text = "0 photos";
-            // 
             // AlbumViewUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.foundationTableLayoutPanel);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AlbumViewUserControl";
-            this.Size = new System.Drawing.Size(500, 400);
+            this.Size = new System.Drawing.Size(375, 325);
             this.foundationTableLayoutPanel.ResumeLayout(false);
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();

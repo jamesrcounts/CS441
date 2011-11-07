@@ -33,6 +33,15 @@ namespace PhotoBuddy.Models
         private const string IdTag = "id_tag";
 
         /// <summary>
+        /// string literal: cover
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-11-07</para>
+        /// </remarks>
+        private const string CoverTag = "cover";
+
+        /// <summary>
         /// string literal: album
         /// </summary>
         /// <remarks>
@@ -81,10 +90,16 @@ namespace PhotoBuddy.Models
         {
             this.albumElement = albumElement;
             string albumId = this.albumElement.Attribute(IdTag).Value;
+
             IEnumerable<IPhoto> photos = from photoElement in this.albumElement.Descendants(PhotoTag)
                                          select new XmlPhoto(this, photoElement);
             this.decoratedAlbum = new Album(albumRepository, albumId, photos);
-            this.decoratedAlbum.PhotoAddedEvent += this.OnPhotoAddedEvent;
+            var attribute = this.albumElement.Attribute(CoverTag);
+            if (attribute != null)
+            {
+                var coverPhoto = this.decoratedAlbum.GetPhoto(attribute.Value);
+                this.decoratedAlbum.CoverPhoto = coverPhoto;
+            }
         }
 
         /// <summary>
@@ -117,6 +132,41 @@ namespace PhotoBuddy.Models
             {
                 this.albumElement.Attribute(IdTag).Value = value;
                 this.decoratedAlbum.AlbumId = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the cover photo.
+        /// </summary>
+        /// <value>
+        /// The cover photo.
+        /// </value>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created On: 2011-11-07</para>
+        /// </remarks>
+        public IPhoto CoverPhoto
+        {
+            get
+            {
+                return this.decoratedAlbum.CoverPhoto;
+            }
+
+            set
+            {
+                this.decoratedAlbum.CoverPhoto = value;
+                if (this.decoratedAlbum.CoverPhoto != null)
+                {
+                    var attribute = this.albumElement.Attribute(CoverTag);
+                    if (attribute == null)
+                    {
+                        this.albumElement.Add(new XAttribute(CoverTag, value.PhotoId));
+                    }
+                    else
+                    {
+                        attribute.Value = value.PhotoId;
+                    }
+                }
             }
         }
 
