@@ -12,7 +12,7 @@ namespace PhotoBuddy.Models
     /// Describes photo data.
     /// </summary>
     /// <remarks>
-    ///   <para>Author: Jim Counts</para>
+    ///   <para>Author: Jim Counts and Eric Wei</para>
     ///   <para>Created: 2011-11-03</para>
     /// </remarks>
     public interface IPhoto : IDisposable
@@ -21,7 +21,7 @@ namespace PhotoBuddy.Models
         /// Gets the album.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         IAlbum Album { get; }
@@ -30,7 +30,7 @@ namespace PhotoBuddy.Models
         /// Gets the photo id.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         string PhotoId { get; }
@@ -42,7 +42,7 @@ namespace PhotoBuddy.Models
         /// The display name.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         string DisplayName { get; set; }
@@ -54,7 +54,7 @@ namespace PhotoBuddy.Models
         /// The name of the file.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         string FileName { get; }
@@ -63,7 +63,7 @@ namespace PhotoBuddy.Models
         /// Gets the full path.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         string FullPath { get; }
@@ -72,7 +72,7 @@ namespace PhotoBuddy.Models
         /// Gets the image.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         Image Image { get; }
@@ -81,7 +81,7 @@ namespace PhotoBuddy.Models
         /// Closes this instance.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         void Close();
@@ -95,7 +95,7 @@ namespace PhotoBuddy.Models
         /// A small version of the image.
         /// </returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         Image CreateThumbnail(int maxWidth, int maxHeight);
@@ -104,7 +104,7 @@ namespace PhotoBuddy.Models
         /// Deletes this instance.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         void Delete();
@@ -116,7 +116,7 @@ namespace PhotoBuddy.Models
         /// A <see cref="System.String"/> that represents this instance.
         /// </returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         string ToString();

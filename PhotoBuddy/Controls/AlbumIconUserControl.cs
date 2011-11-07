@@ -16,7 +16,7 @@ namespace PhotoBuddy.Controls
     /// Displays an attractive Icon/Preview for albums.
     /// </summary>
     /// <remarks>
-    ///   <para>Authors: Jim Counts, Miguel Gonzales.</para>
+    ///   <para>Authors: Jim Counts and Eric Wei, Miguel Gonzales.</para>
     ///   <para>Modified: 2011-11-05</para>
     /// </remarks>
     public partial class AlbumIconUserControl : UserControl
@@ -25,7 +25,7 @@ namespace PhotoBuddy.Controls
         /// Initializes a new instance of the <see cref="AlbumIconUserControl"/> class.
         /// </summary>
         /// <remarks>
-        ///   <para>Authors: Jim Counts, Miguel Gonzales.</para>
+        ///   <para>Authors: Jim Counts and Eric Wei, Miguel Gonzales.</para>
         ///   <para>Modified: 2011-11-05</para>
         /// </remarks>
         public AlbumIconUserControl()
@@ -37,7 +37,7 @@ namespace PhotoBuddy.Controls
         /// Occurs when an album is clicked.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         public event EventHandler<EventArgs<string>> AlbumSelectedEvent;
@@ -55,7 +55,7 @@ namespace PhotoBuddy.Controls
         /// Occurs when a request is made to rename an album.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-04</para>
         /// </remarks>
         public event EventHandler<EventArgs<IAlbum>> RenameAlbumEvent;
@@ -67,7 +67,7 @@ namespace PhotoBuddy.Controls
         /// The album.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         public IAlbum Album { get; set; }
@@ -79,7 +79,7 @@ namespace PhotoBuddy.Controls
         /// The name of the album.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         public string AlbumName
@@ -102,7 +102,7 @@ namespace PhotoBuddy.Controls
         /// The count.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         public int Count
@@ -125,7 +125,7 @@ namespace PhotoBuddy.Controls
         /// The width of the thumbnail.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public int ThumbnailWidth
@@ -143,7 +143,7 @@ namespace PhotoBuddy.Controls
         /// The height of the thumbnail.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public int ThumbnailHeight
@@ -161,7 +161,7 @@ namespace PhotoBuddy.Controls
         /// The image.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         public Image Image
@@ -183,7 +183,7 @@ namespace PhotoBuddy.Controls
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.Models.AlbumEventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-04</para>
         /// </remarks>
         protected virtual void OnRenameAlbumEvent(object sender, EventArgs<IAlbum> e)
@@ -201,7 +201,7 @@ namespace PhotoBuddy.Controls
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.EventObjects.AlbumEventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         protected virtual void OnAlbumSelectedEvent(object sender, EventArgs<string> e)
@@ -252,7 +252,7 @@ namespace PhotoBuddy.Controls
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         private void HandleCoverImagePictureBoxClick(object sender, EventArgs e)

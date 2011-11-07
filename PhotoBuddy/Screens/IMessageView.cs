@@ -14,7 +14,7 @@ namespace PhotoBuddy.Screens
     /// Describes methods to manipulate modal message boxes.
     /// </summary>
     /// <remarks>
-    ///   <para>Author: Jim Counts</para>
+    ///   <para>Author: Jim Counts and Eric Wei</para>
     ///   <para>Created: 2011-10-24</para>
     /// </remarks>
     public interface IMessageView
@@ -27,7 +27,7 @@ namespace PhotoBuddy.Screens
         /// <param name="buttons">The buttons.</param>
         /// <returns>A <see cref="DialogResult"/> value </returns>
         /// <remarks>
-        /// <para>Author: Jim Counts</para>
+        /// <para>Author: Jim Counts and Eric Wei</para>
         /// <para>Created: 2011-10-24</para>
         /// </remarks>
         DialogResult Show(string text, string caption, MessageBoxButtons buttons);
@@ -41,7 +41,7 @@ namespace PhotoBuddy.Screens
         /// <param name="icon">The icon.</param>
         /// <returns>A <see cref="DialogResult"/> value </returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-24</para>
         /// </remarks>
         DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon);

@@ -2,7 +2,7 @@
 // <copyright file="MainForm.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
 // Date: Sept 28 2011
 // Modified date: 2011-11-05
 // Description: program start up forms, which gets inherited from multiple user controls
@@ -29,7 +29,7 @@ namespace PhotoBuddy
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         /// <remarks>
-        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
         /// Modified: 2011-11-05
         /// </remarks>
         public MainForm()
@@ -43,7 +43,7 @@ namespace PhotoBuddy
         /// Gets the current view.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public IScreen CurrentView { get; private set; }
@@ -55,7 +55,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <param name="albumName">Name of the album.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public void ShowAlbum(string albumName)
@@ -72,7 +72,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <param name="album">The album.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public void ShowRenamer(IAlbum album)
@@ -89,7 +89,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <param name="viewName">Name of the view.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         public void ShowScreen(string viewName)
@@ -104,7 +104,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <param name="searchResults">The search results.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public void ShowSearchResults(IAlbum searchResults)
@@ -127,7 +127,7 @@ namespace PhotoBuddy
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private void HandleSearchButtonClick(object sender, EventArgs e)
@@ -148,7 +148,7 @@ namespace PhotoBuddy
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.EventArgs{System.String}"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         private void ShowAlbum(object sender, EventArgs<string> e)
@@ -162,7 +162,7 @@ namespace PhotoBuddy
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
         /// Modified: 2011-11-05
         /// </remarks>
         private void ShowHomeView(object sender, EventArgs e)
@@ -190,7 +190,7 @@ namespace PhotoBuddy
         /// <param name="sender">Create button click on Home screen.</param>
         /// <param name="e">The event args.</param>
         /// <remarks>
-        /// <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        /// <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei</para>
         /// <para>Modified: 2011-11-05</para>
         /// <para>Initiates the creation of a new album.</para>
         /// </remarks>
@@ -205,7 +205,7 @@ namespace PhotoBuddy
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.Models.AlbumEventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private void ShowRenameAlbumView(object sender, EventArgs<IAlbum> e)
@@ -223,7 +223,7 @@ namespace PhotoBuddy
         /// <param name="name">The name.</param>
         /// <returns>The requested view if <paramref name="name"/> matches a known view; otherwise null.</returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         private IScreen GetView(string name)
@@ -256,7 +256,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <returns>The home view.</returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         private HomeScreenUserControl CreateHomeView()
@@ -273,7 +273,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <returns>A new album view.</returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         private AlbumViewUserControl CreateAlbumView()
@@ -288,7 +288,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <returns>The create album view.</returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         private CreateAlbumUserControl CreateCreateAlbumView()
@@ -304,7 +304,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <returns>The rename album view.</returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         private CreateAlbumUserControl CreateRenameAlbumView()
@@ -321,7 +321,7 @@ namespace PhotoBuddy
         /// Clears the screen.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         private void ClearScreen()
@@ -336,7 +336,7 @@ namespace PhotoBuddy
         /// Loads the current view.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         private void LoadView()

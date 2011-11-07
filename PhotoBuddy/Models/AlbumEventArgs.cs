@@ -14,7 +14,7 @@ namespace PhotoBuddy.Models
     /// Passes an <see cref="IAlbum"/> instance as event data.
     /// </summary>
     /// <remarks>
-    ///   <para>Author: Jim Counts</para>
+    ///   <para>Author: Jim Counts and Eric Wei</para>
     ///   <para>Created: 2011-11-03</para>
     /// </remarks>  
     public sealed class AlbumEventArgs : EventArgs
@@ -23,7 +23,7 @@ namespace PhotoBuddy.Models
         /// The event data.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>  
         private readonly IAlbum data;
@@ -33,7 +33,7 @@ namespace PhotoBuddy.Models
         /// </summary>
         /// <param name="album">The album.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>  
         public AlbumEventArgs(IAlbum album)
@@ -45,7 +45,7 @@ namespace PhotoBuddy.Models
         /// Gets the album.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>  
         public IAlbum Album

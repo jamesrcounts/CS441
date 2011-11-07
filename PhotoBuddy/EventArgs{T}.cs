@@ -12,7 +12,7 @@ namespace PhotoBuddy
     /// </summary>
     /// <typeparam name="T">The type of data to pass.</typeparam>
     /// <remarks>
-    ///   <para>Author: Jim Counts</para>
+    ///   <para>Author: Jim Counts and Eric Wei</para>
     ///   <para>Created: 2011-11-05</para>
     /// </remarks>
     public class EventArgs<T> : EventArgs
@@ -21,7 +21,7 @@ namespace PhotoBuddy
         /// The data value to pass.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         private readonly T value;
@@ -31,7 +31,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <param name="data">The data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public EventArgs(T data)
@@ -43,7 +43,7 @@ namespace PhotoBuddy
         /// Gets the data.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public T Data

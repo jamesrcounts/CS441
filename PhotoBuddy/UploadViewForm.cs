@@ -2,7 +2,7 @@
 // <copyright file="UploadViewForm.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
 // Date: Sept 28 2011
 // Modified date: Oct 23 2011
 // Description: this class is responsible to show the upload photo in particular album that is

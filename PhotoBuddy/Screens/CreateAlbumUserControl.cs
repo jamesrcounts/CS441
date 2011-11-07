@@ -28,7 +28,7 @@ namespace PhotoBuddy.Screens
         /// Provides access to albums and photos.
         /// </summary>
         /// <remarks>
-        ///   <para>Authors: Jim Counts</para>
+        ///   <para>Authors: Jim Counts and Eric Wei</para>
         ///   <para>Modified: 2011-11-05</para>
         /// </remarks>
         private readonly AlbumRepository Model;
@@ -37,7 +37,7 @@ namespace PhotoBuddy.Screens
         /// The album to rename; if any.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         private IAlbum album;
@@ -95,7 +95,7 @@ namespace PhotoBuddy.Screens
         /// The album.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public IAlbum Album
@@ -132,7 +132,7 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// Gets the control managed by this view.
         /// </summary>
-        /// <remarks>Author: Jim Counts</remarks>
+        /// <remarks>Author: Jim Counts and Eric Wei</remarks>
         public UserControl Control
         {
             get
@@ -179,7 +179,7 @@ namespace PhotoBuddy.Screens
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         public virtual void OnCancelEvent(object sender, EventArgs e)
@@ -197,7 +197,7 @@ namespace PhotoBuddy.Screens
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;System.String&gt;"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public virtual void OnCreateAlbumEvent(object sender, EventArgs<string> e)
@@ -215,7 +215,7 @@ namespace PhotoBuddy.Screens
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;PhotoBuddy.Models.IAlbum&gt;"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public virtual void OnRenameAlbumEvent(object sender, EventArgs<IAlbum> e)
@@ -232,7 +232,7 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <param name="history">The caller's history of previous views.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Note: this view does not push itself onto the history stack.</para>
         /// </remarks>
         public void ShowView(Stack<UserControl> history)

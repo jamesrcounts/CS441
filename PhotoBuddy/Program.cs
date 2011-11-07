@@ -2,7 +2,7 @@
 // <copyright file="Program.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei
+// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
 // Date: Sept 28 2011
 // Modified date: Oct 22 2011
 // References:

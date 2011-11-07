@@ -30,7 +30,7 @@ namespace PhotoBuddy.Screens
         /// The album manager.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
         private readonly AlbumRepository albums;
@@ -40,7 +40,7 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <param name="albumRepository">The collection of albums.</param>
         /// <remarks>
-        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei</para>
         ///   <para>Modified: 2011-28-10</para>
         /// </remarks>
         public HomeScreenUserControl(AlbumRepository albumRepository)
@@ -75,7 +75,7 @@ namespace PhotoBuddy.Screens
         /// Occurs when a request is made to rename an album.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-04</para>
         /// </remarks>
         public event EventHandler<EventArgs<IAlbum>> RenameAlbumEvent;
@@ -84,7 +84,7 @@ namespace PhotoBuddy.Screens
         /// Gets the a reference to the album repository.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
         public AlbumRepository Repository
@@ -98,7 +98,7 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// Gets the control managed by this view.
         /// </summary>
-        /// <remarks>Author: Jim Counts</remarks>
+        /// <remarks>Author: Jim Counts and Eric Wei</remarks>
         public UserControl Control
         {
             get
@@ -119,7 +119,7 @@ namespace PhotoBuddy.Screens
         /// Gets the album thumbnails.
         /// </summary>
         /// <remarks>
-        /// Author: Jim Counts
+        /// Author: Jim Counts and Eric Wei
         /// Created: 2011-11-04
         /// </remarks>
         public IEnumerable<AlbumIconUserControl> Thumbnails
@@ -136,7 +136,7 @@ namespace PhotoBuddy.Screens
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public virtual void OnCreateButtonEvent(object sender, EventArgs e)
@@ -152,7 +152,7 @@ namespace PhotoBuddy.Screens
         /// Refreshes the album view list.
         /// </summary>
         /// <remarks>
-        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei</para>
         ///   <para>Modified: 2011-10-28</para>
         /// </remarks>
         public void RefreshAlbumViewList()
@@ -194,7 +194,7 @@ namespace PhotoBuddy.Screens
         /// Shows the view.
         /// </summary>
         /// <param name="history">The caller's history of previous views.</param>
-        /// <remarks>Author: Jim Counts</remarks>
+        /// <remarks>Author: Jim Counts and Eric Wei</remarks>
         public void ShowView(Stack<UserControl> history)
         {
             // Refresh the list of Albums.
@@ -216,7 +216,7 @@ namespace PhotoBuddy.Screens
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.Models.AlbumEventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>  
         public virtual void OnSearchCompleteEvent(object sender, AlbumEventArgs e)
@@ -234,7 +234,7 @@ namespace PhotoBuddy.Screens
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.EventObjects.AlbumEventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         protected virtual void OnAlbumSelectedEvent(object sender, EventArgs<string> e)
@@ -252,7 +252,7 @@ namespace PhotoBuddy.Screens
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.EventObjects.AlbumEventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         protected virtual void OnDeleteAlbumEvent(object sender, EventArgs<string> e)
@@ -272,7 +272,7 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         protected override void OnLoad(EventArgs e)
@@ -287,7 +287,7 @@ namespace PhotoBuddy.Screens
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.Models.AlbumEventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-04</para>
         /// </remarks>
         protected virtual void OnRenameAlbumEvent(object sender, EventArgs<IAlbum> e)

@@ -11,7 +11,7 @@ namespace PhotoBuddy
     /// Provides helper methods to format strings.
     /// </summary>
     /// <remarks>
-    ///   <para>Author: Jim Counts</para>
+    ///   <para>Author: Jim Counts and Eric Wei</para>
     ///   <para>Created: 2011-10-23</para>
     /// </remarks>
     public static class Format
@@ -25,7 +25,7 @@ namespace PhotoBuddy
         /// A formatted string.
         /// </returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-23</para>
         /// </remarks>
         public static string Culture(string format, params object[] args)
@@ -40,7 +40,7 @@ namespace PhotoBuddy
         /// <param name="args">The objects to format.</param>
         /// <returns>A formatted string.</returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-24</para>
         /// </remarks>
         public static string Invariant(string format, params object[] args)

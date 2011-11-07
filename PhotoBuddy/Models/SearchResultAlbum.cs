@@ -63,7 +63,7 @@ namespace PhotoBuddy.Models
         /// Occurs when a photo is added to the album.
         /// </summary>
         /// <remarks>
-        ///   <para>Authors: Jim Counts</para>
+        ///   <para>Authors: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public event EventHandler<EventArgs<IPhoto>> PhotoAddedEvent;
@@ -144,7 +144,7 @@ namespace PhotoBuddy.Models
         /// <param name="filePath">The file path.</param>
         /// <returns>The attached photo.</returns>
         /// <remarks>
-        ///   <para>Authors: Jim Counts.</para>
+        ///   <para>Authors: Jim Counts and Eric Wei.</para>
         ///   <para>Created: 2011-11-04</para>
         /// </remarks>
         public IPhoto AddPhoto(string displayName, string filePath)
@@ -234,7 +234,7 @@ namespace PhotoBuddy.Models
         /// A small version of the image.
         /// </returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public Image CreateThumbnail(int maxWidth, int maxHeight)
@@ -268,7 +268,7 @@ namespace PhotoBuddy.Models
         /// The number of matches
         /// </returns>
         /// <remarks>
-        ///   <para>Authors: Jim Counts</para>
+        ///   <para>Authors: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public int GetPrefixMatchCount(string displayName, int prefixLength)
@@ -282,7 +282,7 @@ namespace PhotoBuddy.Models
         /// <param name="filePath">The file path.</param>
         /// <returns>The attached photo.</returns>
         /// <remarks>
-        ///   <para>Authors: Jim Counts</para>
+        ///   <para>Authors: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public IPhoto AddPhoto(string filePath)
@@ -296,7 +296,7 @@ namespace PhotoBuddy.Models
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;PhotoBuddy.Models.IPhoto&gt;"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Authors: Jim Counts</para>
+        ///   <para>Authors: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public virtual void OnPhotoAddedEvent(object sender, EventArgs<IPhoto> e)
