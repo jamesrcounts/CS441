@@ -78,7 +78,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <param name="e">The <see cref="T:System.EventArgs"/> that contains the event data.</param>
         /// <remarks>
-        /// Author: Jim Counts
+        /// Author: Jim Counts and Eric Wei
         /// Created: 2011-11-06
         /// </remarks>
         protected override void OnClosed(EventArgs e)
@@ -92,7 +92,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <param name="index">The photo index in the list of photos.</param>
         /// <remarks>
-        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei</para>
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei</para>
         ///   <para>Modified: 2011-10-27</para>
         /// </remarks>
         private void DisplayPhoto(int index)
@@ -108,7 +108,7 @@ namespace PhotoBuddy
         /// Closes the current photo.
         /// </summary>
         /// <remarks>
-        /// Author: Jim Counts
+        /// Author: Jim Counts and Eric Wei
         /// Modified: 2011-11-06
         /// </remarks>
         private void CloseCurrentPhoto()
@@ -223,7 +223,7 @@ namespace PhotoBuddy
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         private void ToggleTimer(object sender, EventArgs e)

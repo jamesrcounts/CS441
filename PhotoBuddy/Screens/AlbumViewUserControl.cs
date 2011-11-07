@@ -2,7 +2,7 @@
 // <copyright file="AlbumViewUserControl.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
 // Date: Sept 28 2011
 // Modified date: Oct 24 2011
 // Description: this class is responsible for the use control in album view which 
@@ -61,7 +61,7 @@ namespace PhotoBuddy.Screens
         ///   <c>true</c> if adding photos is enabled; otherwise, <c>false</c>.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public bool AddPhotosEnabled
@@ -88,7 +88,7 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// Gets the control managed by this view.
         /// </summary>
-        /// <remarks>Author: Jim Counts</remarks>
+        /// <remarks>Author: Jim Counts and Eric Wei</remarks>
         public UserControl Control
         {
             get
@@ -166,7 +166,7 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <param name="history">The caller's history of previous views.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         /// </remarks>
         public void ShowView(Stack<UserControl> history)
         {
@@ -186,7 +186,7 @@ namespace PhotoBuddy.Screens
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public virtual void OnBackEvent(object sender, EventArgs e)
@@ -221,7 +221,7 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <param name="thumb">The thumb.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-04</para>
         /// </remarks>
         private void AddThumbnail(ThumbnailUserControl thumb)

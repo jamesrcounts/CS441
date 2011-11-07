@@ -2,7 +2,7 @@
 // <copyright file="AlbumRepository.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
 // Date: Sept 28 2011
 // Modified date: Oct 31 2011
 // High level Description: this class is responsible for populating the objects from the XMLs,
@@ -38,7 +38,7 @@ namespace PhotoBuddy.Models
         /// Backing store for indexed album list.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
         private readonly IDictionary<string, IAlbum> albums = new Dictionary<string, IAlbum>();
@@ -73,7 +73,7 @@ namespace PhotoBuddy.Models
         /// Gets the collection of albums.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
         public IEnumerable<IAlbum> Albums
@@ -93,7 +93,7 @@ namespace PhotoBuddy.Models
         /// Gets the album count.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
         public int Count
@@ -111,7 +111,7 @@ namespace PhotoBuddy.Models
         /// <param name="photoId">The photo id.</param>
         /// <returns>The path to the file's location in storage.</returns>
         /// <remarks>
-        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
         /// </remarks>
         public static string StoreFile(string sourcePath, string photoId)
         {
@@ -133,7 +133,7 @@ namespace PhotoBuddy.Models
         /// </summary>
         /// <param name="albumName">Name of the album.</param>
         /// <remarks>
-        ///   <para>Authors: Jim Counts and Eric Wei</para>
+        ///   <para>Authors: Jim Counts and Eric Wei and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
         public void DeleteAlbum(string albumName)
@@ -150,7 +150,7 @@ namespace PhotoBuddy.Models
         /// <param name="enclosingAlbum">The current album.</param>
         /// <param name="photoToDelete">The photo to delete.</param>
         /// <remarks>
-        ///   <para>Authors: Jim Counts and Eric Wei</para>
+        ///   <para>Authors: Jim Counts and Eric Wei and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
         public void DeletePhoto(IAlbum enclosingAlbum, IPhoto photoToDelete)
@@ -169,7 +169,7 @@ namespace PhotoBuddy.Models
         /// <param name="name">The old name.</param>
         /// <param name="updateName">The new name.</param>
         /// <remarks>
-        /// <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        /// <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei</para>
         /// <para>Modified: 2011-10-28</para>
         /// </remarks>
         public void RenameAlbum(string name, string updateName)
@@ -218,7 +218,7 @@ namespace PhotoBuddy.Models
         /// <param name="albumName">Name of the album.</param>
         /// <returns>The newly created album.</returns>
         /// <remarks>
-        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        ///   <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei</para>
         ///   <para>Modified: 2011-10-28</para>
         /// </remarks>
         public IAlbum AddAlbum(string albumName)
@@ -241,7 +241,7 @@ namespace PhotoBuddy.Models
         /// <param name="photoId">The photo id.</param>
         /// <param name="filePath">The file path.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-02</para>
         /// </remarks>
         public void CollectGarbage(string photoId, string filePath)
@@ -260,7 +260,7 @@ namespace PhotoBuddy.Models
         ///   <c>true</c> if the specified photo id exists in the repository; otherwise, <c>false</c>.
         /// </returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-02</para>
         /// </remarks>
         public bool ContainsPhoto(string photoId)
@@ -275,7 +275,7 @@ namespace PhotoBuddy.Models
         /// Saves changes to the albums since the last time SaveAlbums was called.
         /// </summary>
         /// <remarks>
-        /// <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts</para>
+        /// <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei</para>
         /// <para>Modified: 2011-10-29</para>
         /// </remarks>
         public void SaveAlbums()
@@ -308,7 +308,7 @@ namespace PhotoBuddy.Models
         /// An album.
         /// </returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-26</para>
         /// </remarks>
         public IAlbum GetAlbum(string albumId)
@@ -358,7 +358,7 @@ namespace PhotoBuddy.Models
         /// </summary>
         /// <param name="albumName">Name of the album.</param>
         /// <remarks>
-        /// Author: Jim Counts
+        /// Author: Jim Counts and Eric Wei
         /// Created: 2011-11-04
         /// </remarks>
         private void ThrowOnInvalidAlbumName(string albumName)
@@ -380,7 +380,7 @@ namespace PhotoBuddy.Models
         /// <param name="name">The album name.</param>
         /// <returns>If an album exists with the specified name it is returned; otherwise null.</returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
         private IAlbum DetachAlbum(string name)

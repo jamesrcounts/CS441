@@ -2,7 +2,7 @@
 // <copyright file="Photo.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
 // Date: Sept 28 2011
 // Modified date: Oct 27 2011
 // Description: this Photo class is responsible in instantiation of the photo object.
@@ -28,7 +28,7 @@ namespace PhotoBuddy.Models
         /// Image to display any time there is a problem fetching the intended photo.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
         private static readonly Image DefaultImage = PhotoBuddy.Properties.Resources.MissingImageIcon.ToBitmap();
@@ -37,7 +37,7 @@ namespace PhotoBuddy.Models
         /// The album which this photo belongs to.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
         private readonly IAlbum parentAlbum;
@@ -46,7 +46,7 @@ namespace PhotoBuddy.Models
         /// Identifies the photo.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private readonly string photoId;
@@ -55,7 +55,7 @@ namespace PhotoBuddy.Models
         /// Name of the photo.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private readonly string fileName;
@@ -64,7 +64,7 @@ namespace PhotoBuddy.Models
         /// Cached instance of the photo.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-02</para>
         /// </remarks>
         private Image photoImage;
@@ -73,7 +73,7 @@ namespace PhotoBuddy.Models
         /// Stream associated with the photo image.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         private MemoryStream imageStream;
@@ -86,7 +86,7 @@ namespace PhotoBuddy.Models
         /// <param name="displayName">The display name.</param>
         /// <param name="fileName">Name of the file.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
         public Photo(IAlbum album, string photoId, string displayName, string fileName)
@@ -101,7 +101,7 @@ namespace PhotoBuddy.Models
         /// Gets the album.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public IAlbum Album
@@ -161,7 +161,7 @@ namespace PhotoBuddy.Models
         /// Gets the full path to the image file in storage.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
         public string FullPath
@@ -177,7 +177,7 @@ namespace PhotoBuddy.Models
         /// </summary>
         /// <returns>The photo image if there are no errors; otherwise the default image.</returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-27</para>
         /// </remarks>
         public Image Image
@@ -199,7 +199,7 @@ namespace PhotoBuddy.Models
         /// <param name="filePath">The file path.</param>
         /// <returns>A unique string which identifies the file by its contents.</returns>
         /// <remarks>
-        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts, Eric Wei
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
         /// </remarks>
         public static string GeneratePhotoKey(string filePath)
         {
@@ -235,7 +235,7 @@ namespace PhotoBuddy.Models
         /// Deletes this photo from the album.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-02</para>
         ///   <para>After removing itself from the repository data, the photo triggers the repository's
         /// garbage collector.</para>
@@ -249,7 +249,7 @@ namespace PhotoBuddy.Models
         /// Closes this instance.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public void Close()
@@ -276,7 +276,7 @@ namespace PhotoBuddy.Models
         /// A small version of the image.
         /// </returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         /// <seealso cref="http://snippets.dzone.com/posts/show/4336"/>
@@ -324,7 +324,7 @@ namespace PhotoBuddy.Models
         /// Opens this instance.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         private void Open()

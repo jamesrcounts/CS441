@@ -2,7 +2,7 @@
 // <copyright file="MainFormTest.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author: Jim Counts
+// Author: Jim Counts and Eric Wei
 // Date: October 16, 2011
 // Modified: October 20, 2011
 // Description: Unit tests for MainForm
@@ -20,7 +20,7 @@ namespace PhotoBuddy.Tests
     /// A container for tests related to <see cref="MainForm"/>
     /// </summary>
     /// <remarks>
-    /// <para>Author: Jim Counts</para>
+    /// <para>Author: Jim Counts and Eric Wei</para>
     /// </remarks>
     [TestClass]
     [UseReporter(typeof(DiffReporter))]
@@ -32,7 +32,7 @@ namespace PhotoBuddy.Tests
         /// approved specification.
         /// </summary>
         /// <remarks>
-        /// <para>Author: Jim Counts</para>
+        /// <para>Author: Jim Counts and Eric Wei</para>
         /// </remarks>
         [TestMethod]
         public void ApproveOpeningView()
@@ -99,7 +99,7 @@ namespace PhotoBuddy.Tests
         /////// Sets the previous screen when showing new screen.
         /////// </summary>
         /////// <remarks>
-        /////// <para>Author: Jim Counts</para>
+        /////// <para>Author: Jim Counts and Eric Wei</para>
         /////// </remarks>
         ////[TestMethod]
         ////public void SetPreviousScreenWhenShowingNewScreen()
@@ -123,7 +123,7 @@ namespace PhotoBuddy.Tests
         /////// Skips the set previous screen when current screen is create album view.
         /////// </summary>
         /////// <remarks>
-        /////// <para>Author: Jim Counts</para>
+        /////// <para>Author: Jim Counts and Eric Wei</para>
         /////// </remarks>
         ////[TestMethod]
         ////public void SkipSetPreviousScreenWhenCurrentScreenIsCreateAlbumView()
@@ -148,7 +148,7 @@ namespace PhotoBuddy.Tests
         /////// Sets the current view when showing view.
         /////// </summary>
         /////// <remarks>
-        /////// <para>Author: Jim Counts</para>
+        /////// <para>Author: Jim Counts and Eric Wei</para>
         /////// </remarks>
         ////[TestMethod]
         ////public void SetCurrentViewWhenShowingView()
@@ -168,7 +168,7 @@ namespace PhotoBuddy.Tests
         /////// Provides unit tests with methods to call protected <see cref="MainForm"/> methods directly.
         /////// </summary>
         /////// <remarks>
-        /////// <para>Author: Jim Counts</para>
+        /////// <para>Author: Jim Counts and Eric Wei</para>
         /////// </remarks>
         ////private class MainFormAccessor : MainForm
         ////{
@@ -176,7 +176,7 @@ namespace PhotoBuddy.Tests
         ////    /// Initializes a new instance of the <see cref="MainFormAccessor"/> class.
         ////    /// </summary>
         ////    /// <remarks>
-        ////    /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+        ////    /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
         ////    /// </remarks>
         ////    public MainFormAccessor()
         ////    {
@@ -187,7 +187,7 @@ namespace PhotoBuddy.Tests
         ////    /// </summary>
         ////    /// <param name="screenToShow">The screen to show.</param>
         ////    /// <remarks>
-        ////    /// <para>Author: Jim Counts</para>
+        ////    /// <para>Author: Jim Counts and Eric Wei</para>
         ////    /// </remarks>
         ////    public void ShowScreenAccessor(IScreen screenToShow)
         ////    {

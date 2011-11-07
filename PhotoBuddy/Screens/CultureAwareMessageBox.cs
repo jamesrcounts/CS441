@@ -13,7 +13,7 @@ namespace PhotoBuddy.Screens
     /// </summary>
     /// <seealso cref="http://msdn.microsoft.com/en-us/library/ms182191.aspx"/>
     /// <remarks>
-    /// <para>Author: Jim Counts</para>
+    /// <para>Author: Jim Counts and Eric Wei</para>
     /// <para>Created: 2011-11-02</para>
     /// </remarks>
     public static class CultureAwareMessageBox
@@ -30,7 +30,7 @@ namespace PhotoBuddy.Screens
         /// The DialogResult
         /// </returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-02</para>
         /// </remarks>
         public static DialogResult Show(
@@ -64,7 +64,7 @@ namespace PhotoBuddy.Screens
         ///   <c>true</c> if owner is right to left; otherwise, <c>false</c>.
         /// </returns>
         /// <remarks>
-        /// <para>Author: Jim Counts</para>
+        /// <para>Author: Jim Counts and Eric Wei</para>
         /// <para>Created: 2011-11-02</para>
         /// </remarks>
         private static bool IsRightToLeft(IWin32Window owner)

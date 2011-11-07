@@ -70,7 +70,7 @@ namespace PhotoBuddy.Controls
         /// The photo.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public Image Photo
@@ -96,7 +96,7 @@ namespace PhotoBuddy.Controls
         /// Gets the selected rectangle.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public Rectangle SelectedRectangle

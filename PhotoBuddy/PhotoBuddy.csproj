@@ -256,6 +256,7 @@
       <DependentUpon>ViewPhotoForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="FxCop\FxCop.bat" />
     <None Include="FxCop\PhotoBuddy.FxCop" />
     <None Include="GoldRush.snk" />

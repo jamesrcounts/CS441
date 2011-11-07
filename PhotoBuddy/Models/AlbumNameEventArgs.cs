@@ -32,7 +32,7 @@ namespace PhotoBuddy.Models
         /// </summary>
         /// <param name="albumId">The name of the album to pass.</param>
         /// <remarks>
-        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
         /// Date: Sept 28 2011
         /// Modified date: Oct 26 2011
         /// </remarks>
@@ -48,7 +48,7 @@ namespace PhotoBuddy.Models
         /// The name of the album.
         /// </value>
         /// <remarks>
-        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
         /// Date: Sept 28 2011
         /// Modified date: Oct 23 2011
         /// </remarks>

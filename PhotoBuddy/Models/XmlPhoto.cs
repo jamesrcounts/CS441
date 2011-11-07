@@ -15,7 +15,7 @@ namespace PhotoBuddy.Models
     /// the photo.
     /// </summary>
     /// <remarks>
-    ///   <para>Author: Jim Counts</para>
+    ///   <para>Author: Jim Counts and Eric Wei</para>
     ///   <para>Created: 2011-11-03</para>
     /// </remarks>
     public sealed class XmlPhoto : IPhoto, IDisposable
@@ -24,7 +24,7 @@ namespace PhotoBuddy.Models
         /// string literal: id_tag
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private const string IdTag = "id_tag";
@@ -33,7 +33,7 @@ namespace PhotoBuddy.Models
         /// string literal: photo
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private const string PhotoTag = "photo";
@@ -42,7 +42,7 @@ namespace PhotoBuddy.Models
         /// string literal: copied_path
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private const string CopiedPathTag = "copied_path";
@@ -51,7 +51,7 @@ namespace PhotoBuddy.Models
         /// string literal: display_name;
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private const string DisplayNameTag = "display_name";
@@ -60,7 +60,7 @@ namespace PhotoBuddy.Models
         /// The XML element which describes this photo.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private readonly XElement photoElement;
@@ -69,7 +69,7 @@ namespace PhotoBuddy.Models
         /// Backing store for parsed photo data.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         private IPhoto decoratedPhoto;
@@ -80,7 +80,7 @@ namespace PhotoBuddy.Models
         /// <param name="parentAlbum">The parent album.</param>
         /// <param name="photoElement">The photo element.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public XmlPhoto(IAlbum parentAlbum, XElement photoElement)
@@ -96,7 +96,7 @@ namespace PhotoBuddy.Models
         /// Gets the album.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public IAlbum Album
@@ -111,7 +111,7 @@ namespace PhotoBuddy.Models
         /// Gets the photo id.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public string PhotoId
@@ -129,7 +129,7 @@ namespace PhotoBuddy.Models
         /// The display name.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public string DisplayName
@@ -153,7 +153,7 @@ namespace PhotoBuddy.Models
         /// The name of the file.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public string FileName
@@ -168,7 +168,7 @@ namespace PhotoBuddy.Models
         /// Gets the full path.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public string FullPath
@@ -183,7 +183,7 @@ namespace PhotoBuddy.Models
         /// Gets the image.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public Image Image
@@ -202,7 +202,7 @@ namespace PhotoBuddy.Models
         /// <param name="fileName">Name of the file.</param>
         /// <returns>An XML element which describes the photo.</returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public static XElement CreatePhotoElement(string photoId, string displayName, string fileName)
@@ -224,7 +224,7 @@ namespace PhotoBuddy.Models
         /// Closes this instance.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public void Close()
@@ -236,7 +236,7 @@ namespace PhotoBuddy.Models
         /// Deletes this photo.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public void Delete()
@@ -252,7 +252,7 @@ namespace PhotoBuddy.Models
         /// A <see cref="System.String"/> that represents this instance.
         /// </returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public override string ToString()
@@ -269,7 +269,7 @@ namespace PhotoBuddy.Models
         /// A small version of the image.
         /// </returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-03</para>
         /// </remarks>
         public Image CreateThumbnail(int maxWidth, int maxHeight)
@@ -281,7 +281,7 @@ namespace PhotoBuddy.Models
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public void Dispose()
@@ -295,7 +295,7 @@ namespace PhotoBuddy.Models
         /// </summary>
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         private void Dispose(bool disposing)

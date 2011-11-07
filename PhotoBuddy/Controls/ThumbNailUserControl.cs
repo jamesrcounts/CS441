@@ -29,7 +29,7 @@ namespace PhotoBuddy.Controls
         /// The photo entity
         /// </summary>
         /// <remarks>
-        /// Author: Jim Counts
+        /// Author: Jim Counts and Eric Wei
         /// Created 2011-11-06
         /// </remarks>
         private IPhoto photo;
@@ -94,7 +94,7 @@ namespace PhotoBuddy.Controls
         /// The photo.
         /// </value>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public IPhoto Photo
@@ -133,7 +133,7 @@ namespace PhotoBuddy.Controls
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         public virtual void OnThumbnailClick(object sender, EventArgs e)

@@ -11,7 +11,7 @@ namespace PhotoBuddy.Models
     /// Provides data for an invalid album name message.
     /// </summary>
     /// <remarks>
-    ///   <para>Author: Jim Counts</para>
+    ///   <para>Author: Jim Counts and Eric Wei</para>
     ///   <para>Created: 2011-10-24</para>
     /// </remarks>
     public sealed class InvalidAlbumNameMessage : IMessage
@@ -20,7 +20,7 @@ namespace PhotoBuddy.Models
         /// Gets the text.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-24</para>
         /// </remarks>
         public string Text
@@ -32,7 +32,7 @@ namespace PhotoBuddy.Models
         /// Gets the caption.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-24</para>
         /// </remarks>
         public string Caption
@@ -44,7 +44,7 @@ namespace PhotoBuddy.Models
         /// Gets the buttons.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-24</para>
         /// </remarks>
         public MessageBoxButtons Buttons
@@ -56,7 +56,7 @@ namespace PhotoBuddy.Models
         /// Gets the icon.
         /// </summary>
         /// <remarks>
-        ///   <para>Author: Jim Counts</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-10-24</para>
         /// </remarks>
         public MessageBoxIcon Icon
