@@ -293,7 +293,7 @@ namespace PhotoBuddy.Models
             var matches = from term in terms
                           from album in this.Albums
                           from photo in album.Photos
-                          where photo.DisplayName.Contains(term)
+                          where photo.DisplayName.ToUpperInvariant().Contains(term)
                           select photo;
 
             var searchResults = new SearchResultAlbum(this, "Search Results", matches.Distinct());

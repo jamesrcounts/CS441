@@ -271,7 +271,13 @@ namespace PhotoBuddy.Models
                 return this.Photos.First().CreateThumbnail(maxWidth, maxHeight);
             }
 
-            return this.coverPhoto.CreateThumbnail(maxWidth, maxHeight);
+            var thumbnail = this.coverPhoto.CreateThumbnail(maxWidth, maxHeight);
+            if (thumbnail == null)
+            {
+                return this.Photos.First().CreateThumbnail(maxWidth, maxHeight);
+            }
+
+            return thumbnail;
         }
         
         /// <summary>
@@ -352,6 +358,11 @@ namespace PhotoBuddy.Models
         public void RemovePhoto(string photoId)
         {
             var photo = this.GetPhoto(photoId);
+            if (this.coverPhoto == photo)
+            {
+                this.coverPhoto = null;
+            }
+
             photo.Delete();
             this.photos.Remove(photoId);
             photo.Dispose();

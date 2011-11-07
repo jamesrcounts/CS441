@@ -17,7 +17,6 @@ namespace PhotoBuddy.Screens
     using System.IO;
     using System.Linq;
     using System.Windows.Forms;
-    using PhotoBuddy.Common;
     using PhotoBuddy.Controls;
     using PhotoBuddy.Models;
     using PhotoBuddy.Properties;
@@ -143,13 +142,6 @@ namespace PhotoBuddy.Screens
                 if (this.currentAlbum == null)
                 {
                     return;
-                }
-
-                while (0 < this.photosFlowPanel.Controls.Count)
-                {
-                    var control = this.photosFlowPanel.Controls[0];
-                    this.photosFlowPanel.Controls.Remove(control);
-                    control.Dispose();
                 }
 
                 this.photosFlowPanel.Controls.Clear();

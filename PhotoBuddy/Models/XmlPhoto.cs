@@ -274,6 +274,11 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public Image CreateThumbnail(int maxWidth, int maxHeight)
         {
+            if (this.decoratedPhoto == null)
+            {
+                return null;
+            }
+
             return this.decoratedPhoto.CreateThumbnail(maxWidth, maxHeight);
         }
 

@@ -47,7 +47,7 @@ namespace PhotoBuddy
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
         public IScreen CurrentView { get; private set; }
-        
+
         #region View Updaters
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace PhotoBuddy
         #endregion
 
         #region Update View Request Handlers
-       
+
         /// <summary>
         /// Handles the search button click.
         /// </summary>
@@ -137,7 +137,7 @@ namespace PhotoBuddy
                 return;
             }
 
-            var terms = this.searchTextBox.Text.Trim().Split(' ');
+            var terms = this.searchTextBox.Text.ToUpperInvariant().Trim().Split(' ');
             var searchResults = Model.Search(terms);
             this.ShowSearchResults(searchResults);
         }
@@ -214,9 +214,9 @@ namespace PhotoBuddy
         }
 
         #endregion
-       
+
         #region View Factory Methods
-    
+
         /// <summary>
         /// Gets the view.
         /// </summary>

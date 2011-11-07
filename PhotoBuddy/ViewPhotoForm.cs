@@ -98,7 +98,7 @@ namespace PhotoBuddy
             this.CloseCurrentPhoto();
             this.currentPhoto = this.allPhotosInAlbum[index];
             this.pictureBox1.Image = this.currentPhoto.Image;
-            this.currentAlbumLabel.Text = Format.Culture("{0}/{1}", index, this.allPhotosInAlbum.Count);
+            this.currentAlbumLabel.Text = Format.Culture("{0}/{1}", index + 1, this.allPhotosInAlbum.Count);
             this.photoNameLabel.Text = this.currentPhoto.DisplayName.Replace("&", "&&");
         }
 
