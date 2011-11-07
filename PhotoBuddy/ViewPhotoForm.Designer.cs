@@ -50,7 +50,7 @@ namespace PhotoBuddy
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // foundationTableLayoutPanel
             // 
             this.foundationTableLayoutPanel.BackColor = System.Drawing.Color.White;
             this.foundationTableLayoutPanel.ColumnCount = 1;
@@ -61,7 +61,7 @@ namespace PhotoBuddy
             this.foundationTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.foundationTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.foundationTableLayoutPanel.Name = "tableLayoutPanel1";
+            this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
             this.foundationTableLayoutPanel.RowCount = 3;
             this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
@@ -129,12 +129,12 @@ namespace PhotoBuddy
             this.playPauseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playPauseButton.Font = new System.Drawing.Font("Webdings", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.playPauseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
-            this.playPauseButton.Location = new System.Drawing.Point(251, 2);
+            this.playPauseButton.Location = new System.Drawing.Point(272, 2);
             this.playPauseButton.Margin = new System.Windows.Forms.Padding(0);
             this.playPauseButton.Name = "playPauseButton";
-            this.playPauseButton.Size = new System.Drawing.Size(83, 34);
+            this.playPauseButton.Size = new System.Drawing.Size(41, 34);
             this.playPauseButton.TabIndex = 7;
-            this.playPauseButton.Text = "4|;";
+            this.playPauseButton.Text = "4";
             this.playPauseButton.UseVisualStyleBackColor = false;
             this.playPauseButton.Click += new System.EventHandler(this.ToggleTimer);
             this.playPauseButton.MouseEnter += new System.EventHandler(this.HandleButtonMouseEnter);
@@ -276,7 +276,7 @@ namespace PhotoBuddy
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ViewPhotoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ViewPhotoForm";
+            this.Text = "Photo Display - Photo Buddy";
             this.foundationTableLayoutPanel.ResumeLayout(false);
             this.foundationTableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

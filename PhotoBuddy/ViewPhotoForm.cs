@@ -13,7 +13,6 @@ namespace PhotoBuddy
     using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.Linq;
     using System.Windows.Forms;
     using PhotoBuddy.Models;
     using PhotoBuddy.Screens;
@@ -63,11 +62,10 @@ namespace PhotoBuddy
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
         public ViewPhotoForm(IAlbum currentAlbum, IPhoto photoToDisplay)
+            : this()
         {
-            this.InitializeComponent();
-            this.Text = "Photo Display - Photo Buddy";
             this.album = currentAlbum;
-            this.currentAlbumLabel.Text = this.album.AlbumId.Replace("&", "&&");
+            this.Text = this.album.AlbumId + " - Photo Buddy";
             this.allPhotosInAlbum = new List<IPhoto>(this.album.Photos);
             this.photoIndex = this.allPhotosInAlbum.IndexOf(photoToDisplay);
             this.DisplayPhoto(this.photoIndex);
@@ -100,8 +98,8 @@ namespace PhotoBuddy
             this.CloseCurrentPhoto();
             this.currentPhoto = this.allPhotosInAlbum[index];
             this.pictureBox1.Image = this.currentPhoto.Image;
+            this.currentAlbumLabel.Text = Format.Culture("{0}/{1}", index, this.allPhotosInAlbum.Count);
             this.photoNameLabel.Text = this.currentPhoto.DisplayName.Replace("&", "&&");
-            this.Text = this.currentPhoto.DisplayName + " - Photo Buddy";
         }
 
         /// <summary>
@@ -231,10 +229,12 @@ namespace PhotoBuddy
             this.slideShowTimer.Enabled = !this.slideShowTimer.Enabled;
             if (this.slideShowTimer.Enabled)
             {
+                this.playPauseButton.Text = ";";
                 this.slideShowTimer.Start();
             }
             else
             {
+                this.playPauseButton.Text = "4";
                 this.slideShowTimer.Stop();
             }
         }
@@ -314,7 +314,7 @@ namespace PhotoBuddy
                 if (idx != -1)
                 {
                     this.DisplayPhoto(idx);
-                }              
+                }
             };
 
             this.Controls.Add(photoControl);

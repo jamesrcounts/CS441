@@ -11,8 +11,8 @@ namespace PhotoBuddy.Controls
 {
     using System;
     using System.Drawing;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
-    using PhotoBuddy.EventObjects;
     using PhotoBuddy.Models;
 
     /// <summary>
@@ -25,6 +25,11 @@ namespace PhotoBuddy.Controls
     /// </remarks>
     public partial class ThumbnailUserControl : UserControl
     {
+        /// <summary>
+        /// Image to show while waiting for the real image to load.
+        /// </summary>
+        private static readonly Bitmap DefaultImage = PhotoBuddy.Properties.Resources.PhotoBuddy.ToBitmap();
+
         /// <summary>
         /// The photo entity
         /// </summary>
@@ -114,11 +119,23 @@ namespace PhotoBuddy.Controls
                 }
 
                 this.photo = value;
+                this.thumbnailPictureBox.Image = ThumbnailUserControl.DefaultImage;
                 if (this.photo != null)
                 {
-                    this.thumbnailPictureBox.Image = this.photo.CreateThumbnail(
-                    this.thumbnailPictureBox.Width,
-                    this.thumbnailPictureBox.Height);
+                    Task.Factory.StartNew(() =>
+                    {
+                        var image = this.photo.CreateThumbnail(
+                            this.thumbnailPictureBox.Width,
+                            this.thumbnailPictureBox.Height);
+                        this.ThumbnailSetter(image);
+                    }).ContinueWith(t =>
+                    {
+                        if (t.Exception != null)
+                        {
+                            this.ThumbnailSetter(this.thumbnailPictureBox.ErrorImage);
+                            t.Exception.Flatten().Handle(ex => true);
+                        }
+                    });
                 }
                 else
                 {
@@ -179,6 +196,26 @@ namespace PhotoBuddy.Controls
             }
 
             base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Sets the thumbnail, marshalling to the UI thread if needed.
+        /// </summary>
+        /// <param name="thumbnail">The thumbnail.</param>
+        /// <remarks>
+        /// Author: Jim Counts
+        /// Created: 2011-11-07
+        /// </remarks>
+        private void ThumbnailSetter(Image thumbnail)
+        {
+            if (this.InvokeRequired)
+            {
+                Action<Image> invoker = this.ThumbnailSetter;
+                this.BeginInvoke(invoker, thumbnail);
+                return;
+            }
+
+            this.thumbnailPictureBox.Image = thumbnail;
         }
 
         /// <summary>
@@ -256,8 +293,8 @@ namespace PhotoBuddy.Controls
                 {
                     // User approved so rename the photo.
                     this.Photo.Album.Repository.RenamePhotoInAlbum(
-                        this.Photo.Album.AlbumId, 
-                        renamePhotoView.DisplayName, 
+                        this.Photo.Album.AlbumId,
+                        renamePhotoView.DisplayName,
                         this.photo.PhotoId);
                     this.Photo.Album.Repository.SaveAlbums();
 
