@@ -27,7 +27,7 @@ namespace PhotoBuddy
         private readonly T value;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventArgs&lt;T&gt;"/> class.
+        /// Initializes a new instance of the <see cref="EventArgs{T}"/> class.
         /// </summary>
         /// <param name="data">The data.</param>
         /// <remarks>

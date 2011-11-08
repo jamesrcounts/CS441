@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="CultureAwareMessageBox.cs" company="FNC Inc">
-//     Copyright (c) FNC Inc 2011. All rights reserved.
+// <copyright file="CultureAwareMessageBox.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Screens
@@ -9,7 +9,8 @@ namespace PhotoBuddy.Screens
     using System.Windows.Forms;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Displays a message box, setting the right-to-left reading property according to the parent control
+    /// setting, or the current culture.
     /// </summary>
     /// <seealso cref="http://msdn.microsoft.com/en-us/library/ms182191.aspx"/>
     /// <remarks>
@@ -19,7 +20,7 @@ namespace PhotoBuddy.Screens
     public static class CultureAwareMessageBox
     {
         /// <summary>
-        /// Shows the specified owner.
+        /// Shows the specified message.
         /// </summary>
         /// <param name="owner">The owner.</param>
         /// <param name="text">The text.</param>

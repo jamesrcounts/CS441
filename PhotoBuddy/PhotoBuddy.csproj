@@ -296,6 +296,9 @@
   <ItemGroup>
     <Content Include="MissingImageIcon.ico" />
     <Content Include="PhotoBuddy.ico" />
+    <Content Include="readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\PhotoBuddy-1.ico" />
     <None Include="Resources\PhotoBuddy.ico" />
     <None Include="Resources\FolderIcon.ico" />

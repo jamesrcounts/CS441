@@ -62,8 +62,8 @@ namespace PhotoBuddy
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
         public ViewPhotoForm(IAlbum currentAlbum, IPhoto photoToDisplay)
-            : this()
         {
+            this.InitializeComponent();
             this.album = currentAlbum;
             this.Text = this.album.AlbumId + " - Photo Buddy";
             this.allPhotosInAlbum = new List<IPhoto>(this.album.Photos);
