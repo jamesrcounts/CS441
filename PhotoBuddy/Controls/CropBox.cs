@@ -18,7 +18,7 @@ namespace PhotoBuddy.Controls
         /// <summary>
         /// The original image used to erase old rectangles.
         /// </summary>
-        private Image originalImage;
+        private Image cachedImage;
 
         /// <summary>
         /// A value indicating whether the control is in drag mode.
@@ -26,9 +26,14 @@ namespace PhotoBuddy.Controls
         private bool isDrag;
 
         /// <summary>
+        /// The image rectangle scaled to the size of the crop box boundaries.
+        /// </summary>
+        private Rectangle imageRectangle = Rectangle.Empty;
+
+        /// <summary>
         /// The selected rectangle.
         /// </summary>
-        private Rectangle theRectangle = new Rectangle(new Point(0, 0), new Size(0, 0));
+        private Rectangle selectionRectangle = Rectangle.Empty;
 
         /// <summary>
         /// The drawn rectangle.
@@ -38,22 +43,12 @@ namespace PhotoBuddy.Controls
         /// <summary>
         /// The point where rubber banding started relative to the screen.
         /// </summary>
-        private Point startPoint;
+        private Point startPoint = Point.Empty;
 
         /// <summary>
         /// The point where rubber banding started relative to the form.
         /// </summary>
         private Point rawStartPoint = Point.Empty;
-
-        /// <summary>
-        /// The point where rubber banding ended relative to the form.
-        /// </summary>
-        private Point rawEndPoint = Point.Empty;
-
-        /// <summary>
-        /// The original mouse clipping region.
-        /// </summary>
-        private Rectangle oldClip = Rectangle.Empty;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CropBox"/> class.
@@ -77,18 +72,21 @@ namespace PhotoBuddy.Controls
         {
             get
             {
-                return this.Image;
+                if (this.Image != null)
+                {
+                    return this.Image;
+                }
+
+                return this.ErrorImage;
             }
 
             set
             {
-                if (value == null)
-                {
-                    return;
-                }
-
-                this.originalImage = value.Clone() as Image;
                 this.Image = value;
+                if (this.Image != null)
+                {
+                    this.cachedImage = value.Clone() as Image;
+                }
             }
         }
 
@@ -108,34 +106,77 @@ namespace PhotoBuddy.Controls
         }
 
         /// <summary>
+        /// Gets the image rectangle.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-11-07</para>
+        /// </remarks>
+        public Rectangle ImageRectangle
+        {
+            get
+            {
+                return this.imageRectangle;
+            }
+        }
+
+        /// <summary>
         /// Handles the mouse down.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
         private void HandleMouseDown(object sender, MouseEventArgs e)
         {
-            // Set the isDrag variable to true and get the starting point 
-            // by using the PointToScreen method to convert form 
-            // coordinates to screen coordinates.
-            if (e.Button == MouseButtons.Left)
+            // Only draw for the left mouse button
+            if (e.Button != MouseButtons.Left)
             {
-                this.isDrag = true;
-                if (this.drawnRectangle != Rectangle.Empty)
-                {
-                    this.Image = this.originalImage.Clone() as Image;
-                }
+                return;
             }
 
+            // Extract the control
             Control control = (Control)sender;
 
-            // Calculate the startPoint by using the PointToScreen 
-            // method.
-            this.startPoint = control.PointToScreen(new Point(e.X, e.Y));
-            this.oldClip = Cursor.Clip;
-            control.Capture = true;
-            Cursor.Clip = control.RectangleToScreen(this.ClientRectangle);
+            // Get the scaled image rectangle
+            int newHeight = this.Image.Height * this.Width / this.Image.Width;
+            int newWidth = this.Width;
+            if (newHeight > this.Height)
+            {
+                // Resize with height instead
+                newWidth = this.Image.Width * this.Height / this.Image.Height;
+                newHeight = this.Height;
+            }
 
-            // Cache the raw start point
+            // Find the position
+            int horizontalOffset = (this.Width - newWidth) / 2;
+
+            // The image rectangle
+            this.imageRectangle = new Rectangle(horizontalOffset, 0, newWidth, newHeight);
+
+            // Is the cursor inside the image rectangle?
+            var screenImageRectangle = control.RectangleToScreen(this.imageRectangle);
+            var screenPoint = control.PointToScreen(e.Location);
+            if (!screenImageRectangle.Contains(screenPoint))
+            {
+                return;
+            }
+
+            // Assert drag mode.
+            this.isDrag = true;
+
+            // Is this the first rectangle drawn?
+            if (this.drawnRectangle != Rectangle.Empty)
+            {
+                // Reset the image.
+                this.Image = this.cachedImage.Clone() as Image;
+            }
+
+            // Capture the mouse
+            control.Capture = true;
+            Cursor.Clip = screenImageRectangle;
+
+            // Cache the start points
+            ////this.startPoint = control.PointToScreen(new Point(e.X, e.Y));
+            this.startPoint = screenPoint;
             this.rawStartPoint = e.Location;
         }
 
@@ -146,39 +187,37 @@ namespace PhotoBuddy.Controls
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
         private void HandleMouseMove(object sender, MouseEventArgs e)
         {
-            // If the mouse is being dragged, 
-            // undraw and redraw the rectangle as the mouse moves.
-            if (this.isDrag)
+            if (!this.isDrag)
             {
-                // Hide the previous rectangle by calling the 
-                // DrawReversibleFrame method with the same parameters.
-                ControlPaint.DrawReversibleFrame(
-                    this.theRectangle,
-                    this.BackColor,
-                    FrameStyle.Dashed);
-
-                // Calculate the endpoint and dimensions for the new 
-                // rectangle, again using the PointToScreen method.
-                Point endPoint = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
-
-                // Cache the raw endpoint 
-                this.rawEndPoint = e.Location;
-
-                int width = endPoint.X - this.startPoint.X;
-                int height = endPoint.Y - this.startPoint.Y;
-                this.theRectangle = new Rectangle(
-                    this.startPoint.X,
-                    this.startPoint.Y,
-                    width,
-                    height);
-
-                // Draw the new rectangle by calling DrawReversibleFrame
-                // again.  
-                ControlPaint.DrawReversibleFrame(
-                    this.theRectangle,
-                    this.BackColor,
-                    FrameStyle.Dashed);
+                return;
             }
+
+            // If the mouse is being dragged, undraw and redraw the rectangle as the mouse moves.
+            var control = (Control)sender;
+
+            // Hide the previous rectangle by calling the 
+            // DrawReversibleFrame method with the same parameters.
+            ControlPaint.DrawReversibleFrame(
+                this.selectionRectangle,
+                this.BackColor,
+                FrameStyle.Dashed);
+
+            // Calculate the endpoint and dimensions for the new 
+            // rectangle, again using the PointToScreen method.
+            ////Point endPoint = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
+            var screenPoint = control.PointToScreen(e.Location);
+            this.selectionRectangle = new Rectangle(
+                this.startPoint.X,
+                this.startPoint.Y,
+                screenPoint.X - this.startPoint.X,
+                screenPoint.Y - this.startPoint.Y);
+
+            // Draw the new rectangle by calling DrawReversibleFrame
+            // again.  
+            ControlPaint.DrawReversibleFrame(
+                this.selectionRectangle,
+                this.BackColor,
+                FrameStyle.Dashed);
         }
 
         /// <summary>
@@ -193,34 +232,40 @@ namespace PhotoBuddy.Controls
                 return;
             }
 
+            var control = (Control)sender;
+
             // If the MouseUp event occurs, the user is not dragging.
             this.isDrag = false;
-            ((Control)sender).Capture = false;
 
-            // Free the mouse pointer.
-            Cursor.Clip = this.oldClip;
+            // Release the mouse
+            control.Capture = false;
+            Cursor.Clip = Rectangle.Empty;
 
-            // Draw the rectangle to be evaluated. Set a dashed frame style 
-            // using the FrameStyle enumeration.
+            // Erase the dashed rectangle             
             ControlPaint.DrawReversibleFrame(
-                this.theRectangle,
+                this.selectionRectangle,
                 this.BackColor,
                 FrameStyle.Dashed);
 
-            // Draw a permanent rectangle on the picture box.
-            using (Graphics createGraphics = this.CreateGraphics())
+            // Draw the rectangle to be evaluated.
+            using (var g = this.CreateGraphics())
             {
-                int width = Math.Abs(this.rawEndPoint.X - this.rawStartPoint.X);
-                int height = Math.Abs(this.rawEndPoint.Y - this.rawStartPoint.Y);
-                int startX = Math.Min(this.rawStartPoint.X, this.rawEndPoint.X);
-                int startY = Math.Min(this.rawStartPoint.Y, this.rawEndPoint.Y);
-                Rectangle rawRectangle = new Rectangle(startX, startY, width, height);
-                createGraphics.DrawRectangle(Pens.Red, rawRectangle);
-                this.drawnRectangle = rawRectangle;
+                Point endPoint = control.PointToScreen(e.Location);
+                int width = Math.Abs(this.selectionRectangle.Width);
+                int height = Math.Abs(this.selectionRectangle.Height);
+                int horizontalOffset = Math.Min(this.startPoint.X, endPoint.X);
+                int verticalOffset = Math.Min(this.startPoint.Y, endPoint.Y);
+                var screenRectangle = new Rectangle(
+                    horizontalOffset, 
+                    verticalOffset,
+                    width,
+                    height);
+                this.drawnRectangle = control.RectangleToClient(screenRectangle);
+                g.DrawRectangle(Pens.Red, this.drawnRectangle);
             }
 
-            // Reset the rectangle.
-            this.theRectangle = new Rectangle(0, 0, 0, 0);
+            // Reset the selection rectangle
+            this.selectionRectangle = Rectangle.Empty;
         }
     }
 }

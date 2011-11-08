@@ -284,6 +284,11 @@ namespace PhotoBuddy.Models
         {
             bool shouldClose = this.photoImage == null;
 
+            // Prevent using images internal thumbnail
+            // Important because sometimes the thumbnail is rotated incorrectly.
+            this.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
+            this.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
+
             // Scale by width
             int newHeight = this.Image.Height * maxWidth / this.Image.Width;
             int newWidth = maxWidth;

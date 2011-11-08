@@ -271,23 +271,29 @@ namespace PhotoBuddy
                     return;
                 }
 
-                // Scale the rectangle size and position.
-                var cropBoxSize = photoControl.photoCropBox.Size;
-                var imageSize = this.pictureBox1.Image;
+                // Find the new position
+                Rectangle cropRectangle = photoControl.photoCropBox.SelectedRectangle;
+                Rectangle imageAsDisplayed = photoControl.photoCropBox.ImageRectangle;
+                Rectangle actualImage = new Rectangle(0, 0, this.pictureBox1.Image.Width, this.pictureBox1.Height);
 
-                float horizontalScale = (float)cropBoxSize.Width / imageSize.Width;
-                float verticalScale = (float)cropBoxSize.Height / imageSize.Height;
-                int newWidth = (int)(selectedRectangle.Width / horizontalScale);
-                int newHeight = (int)(selectedRectangle.Height / verticalScale);
-                int newX = (int)((float)selectedRectangle.X / horizontalScale);
-                int newY = (int)((float)selectedRectangle.Y / verticalScale);
+                // Find the percent scale between the image as displayed in the photo crop box, 
+                // and the actual image size.
+                float percentScale = (float)imageAsDisplayed.Width / actualImage.Width;
+
+                // First figure out the offset relative to the image, then scale it.
+                int horizontalOffset = (int)((cropRectangle.X - imageAsDisplayed.X) / percentScale);
+                int verticalOffset = (int)((cropRectangle.Y - imageAsDisplayed.Y) / percentScale);
+
+                // Now Scale the width and height.
+                int width = (int)(cropRectangle.Width / percentScale);
+                int height = (int)(cropRectangle.Height / percentScale);
                 Rectangle scaledRectangle = new Rectangle(
-                    newX,
-                    newY,
-                    newWidth,
-                    newHeight);
+                    horizontalOffset,
+                    verticalOffset, 
+                    width,
+                    height);
 
-                // Crop the image.
+                 // Crop the image.
                 IPhoto croppedPhoto = null;
                 using (var croppedImage = new Bitmap(scaledRectangle.Width, scaledRectangle.Height))
                 {
@@ -318,6 +324,7 @@ namespace PhotoBuddy
             };
 
             this.Controls.Add(photoControl);
+            photoControl.Dock = DockStyle.Fill;
             photoControl.Show();
             this.ResumeLayout();
         }

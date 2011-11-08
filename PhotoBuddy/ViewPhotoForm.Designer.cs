@@ -30,6 +30,7 @@ namespace PhotoBuddy
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewPhotoForm));
             this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.photoNameLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -60,7 +61,7 @@ namespace PhotoBuddy
             this.foundationTableLayoutPanel.Controls.Add(this.bottomtableLayoutPanel2, 0, 2);
             this.foundationTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.foundationTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
             this.foundationTableLayoutPanel.RowCount = 3;
             this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -273,7 +274,8 @@ namespace PhotoBuddy
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 462);
             this.Controls.Add(this.foundationTableLayoutPanel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ViewPhotoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Photo Display - Photo Buddy";
