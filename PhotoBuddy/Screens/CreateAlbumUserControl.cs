@@ -80,14 +80,6 @@ namespace PhotoBuddy.Screens
         /// </summary>
         public event EventHandler<EventArgs<IAlbum>> RenameAlbumEvent;
 
-        /////// <summary>
-        /////// Gets the name of the album.
-        /////// </summary>
-        /////// <value>
-        /////// The name of the album.
-        /////// </value>
-        ////public string AlbumName { get; private set; }
-
         /// <summary>
         /// Gets or sets the album.
         /// </summary>
@@ -112,7 +104,7 @@ namespace PhotoBuddy.Screens
                 {
                     // Editing an existing album.
                     this.albumNameTextBox.Text = this.album.AlbumId;
-                    this.createAlbumLabel.Text = "Please enter the new album name for: " + this.album.AlbumId.Replace("&", "&&");
+                    this.createAlbumLabel.Text = "Please enter the new album name:";
                     this.createHeaderLabel.Text = "Edit Album: " + this.album.AlbumId.Replace("&", "&&");
                 }
             }
@@ -145,14 +137,6 @@ namespace PhotoBuddy.Screens
         /// Gets the user entered text.
         /// </summary>
         public string UserEnteredText { get; private set; }
-
-        /////// <summary>
-        /////// Gets a value indicating whether to use this control to create an album.
-        /////// </summary>
-        /////// <value>
-        ///////   <c>true</c> if album creation is needed; otherwise, <c>false</c> if editing is needed.
-        /////// </value>
-        ////public bool AlbumCreateMode { get; set; }
 
         /// <summary>
         /// Gets or sets the display name.
@@ -279,7 +263,7 @@ namespace PhotoBuddy.Screens
                 CultureAwareMessageBox.Show(
                     this,
                     "Album name must not be empty!",
-                    "Empty Album ID Issue",
+                    "Photo Buddy - " + Application.ProductVersion,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
@@ -290,7 +274,7 @@ namespace PhotoBuddy.Screens
                 CultureAwareMessageBox.Show(
                     this,
                     Format.Culture("Album name is too long.  Please enter a name up to {0} characters.", Constants.MaxNameLength),
-                    "Please Try Again",
+                    "Photo Buddy - " + Application.ProductVersion,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;

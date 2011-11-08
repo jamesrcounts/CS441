@@ -143,6 +143,24 @@ namespace PhotoBuddy
         }
 
         /// <summary>
+        /// Check for the enter key press and execute the search button if it was pressed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.KeyEventArgs"/> instance containing the event data.</param>
+        /// <remarks>
+        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
+        /// Created:  2011-11-07
+        /// </remarks>
+        private void HandleSearchTextBoxKeyDown(object sender, KeyEventArgs e)
+        {
+            // See if the user pressed the enter key and if so execute the continue button.
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.HandleSearchButtonClick(sender, e);
+            }
+        }
+
+        /// <summary>
         /// Reacts to new album creation.
         /// </summary>
         /// <param name="sender">The sender.</param>

@@ -25,7 +25,7 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public string Text
         {
-            get { return "Invalid album name! Please enter a new album name."; }
+            get { return "Album name is already used. Please enter a different album name."; }
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public string Caption
         {
-            get { return "Album Name Invalid"; }
+            get { return "Photo Buddy - " + Application.ProductVersion; }
         }
 
         /// <summary>

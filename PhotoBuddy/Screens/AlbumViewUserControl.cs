@@ -330,6 +330,7 @@ namespace PhotoBuddy.Screens
         private void HandleDeletePhotoEvent(object sender, EventArgs e)
         {
             this.photosFlowPanel.Controls.Remove((Control)sender);
+            this.albumSizeLabel.Text = Format.Culture("{0} photos", this.CurrentAlbum.Count);
         }
 
         /// <summary>

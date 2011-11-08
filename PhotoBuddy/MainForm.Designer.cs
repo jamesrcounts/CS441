@@ -44,10 +44,10 @@ namespace PhotoBuddy
             // 
             this.screenHolderPanel.BackColor = System.Drawing.Color.White;
             this.screenHolderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.screenHolderPanel.Location = new System.Drawing.Point(0, 44);
+            this.screenHolderPanel.Location = new System.Drawing.Point(0, 36);
             this.screenHolderPanel.Margin = new System.Windows.Forms.Padding(0);
             this.screenHolderPanel.Name = "screenHolderPanel";
-            this.screenHolderPanel.Size = new System.Drawing.Size(1045, 648);
+            this.screenHolderPanel.Size = new System.Drawing.Size(784, 526);
             this.screenHolderPanel.TabIndex = 2;
             // 
             // foundationTableLayoutPanel
@@ -62,9 +62,9 @@ namespace PhotoBuddy
             this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
             this.foundationTableLayoutPanel.RowCount = 2;
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(1045, 692);
+            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(784, 562);
             this.foundationTableLayoutPanel.TabIndex = 3;
             // 
             // contentPanel
@@ -79,7 +79,7 @@ namespace PhotoBuddy
             this.contentPanel.Location = new System.Drawing.Point(0, 0);
             this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1045, 44);
+            this.contentPanel.Size = new System.Drawing.Size(784, 36);
             this.contentPanel.TabIndex = 3;
             // 
             // photoBuddyButton
@@ -95,7 +95,7 @@ namespace PhotoBuddy
             this.photoBuddyButton.Location = new System.Drawing.Point(0, 0);
             this.photoBuddyButton.Margin = new System.Windows.Forms.Padding(0);
             this.photoBuddyButton.Name = "photoBuddyButton";
-            this.photoBuddyButton.Size = new System.Drawing.Size(213, 43);
+            this.photoBuddyButton.Size = new System.Drawing.Size(160, 35);
             this.photoBuddyButton.TabIndex = 8;
             this.photoBuddyButton.Text = "Photo Buddy";
             this.photoBuddyButton.UseVisualStyleBackColor = false;
@@ -109,10 +109,10 @@ namespace PhotoBuddy
             this.searchButton.FlatAppearance.BorderSize = 0;
             this.searchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
             this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchButton.Location = new System.Drawing.Point(964, 12);
-            this.searchButton.Margin = new System.Windows.Forms.Padding(0, 4, 13, 4);
+            this.searchButton.Location = new System.Drawing.Point(723, 10);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(0, 3, 10, 3);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(68, 27);
+            this.searchButton.Size = new System.Drawing.Size(51, 22);
             this.searchButton.TabIndex = 2;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = false;
@@ -124,20 +124,21 @@ namespace PhotoBuddy
             this.searchTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.searchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchTextBox.Location = new System.Drawing.Point(669, 11);
-            this.searchTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
+            this.searchTextBox.Location = new System.Drawing.Point(502, 9);
+            this.searchTextBox.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(294, 29);
+            this.searchTextBox.Size = new System.Drawing.Size(221, 24);
             this.searchTextBox.TabIndex = 1;
+            this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleSearchTextBoxKeyDown);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1045, 692);
+            this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.foundationTableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeScreenForm";
