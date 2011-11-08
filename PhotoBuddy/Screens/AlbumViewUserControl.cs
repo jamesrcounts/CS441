@@ -269,6 +269,13 @@ namespace PhotoBuddy.Screens
                 Settings.Default.Save();
                 foreach (var fullPath in this.addPhotosFileDialog.FileNames)
                 {
+                    // Inefficient bug fix: 2011-11-08 10:42 AM
+                    string photoId = Photo.GeneratePhotoKey(fullPath);
+                    if (this.CurrentAlbum.ContainsPhoto(photoId))
+                    {
+                        continue;
+                    }
+
                     this.CurrentAlbum.AddPhoto(fullPath);
                 }
 
