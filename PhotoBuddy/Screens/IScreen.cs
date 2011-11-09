@@ -31,11 +31,5 @@ namespace PhotoBuddy.Screens
         /// The display name.
         /// </value>
         string DisplayName { get; set; }
-
-        /// <summary>
-        /// Shows the view.
-        /// </summary>
-        /// <param name="history">The history.</param>
-        void ShowView(Stack<UserControl> history);
     }
 }

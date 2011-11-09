@@ -283,32 +283,39 @@ namespace PhotoBuddy.Models
         public Image CreateThumbnail(int maxWidth, int maxHeight)
         {
             bool shouldClose = this.photoImage == null;
+            if (shouldClose)
+            {
+                this.Open();
+            }
 
             // Prevent using images internal thumbnail
             // Important because sometimes the thumbnail is rotated incorrectly.
-            this.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
-            this.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
+            using (Image imageCopy = Image.FromStream(this.imageStream))
+            {       
+                imageCopy.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
+                imageCopy.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
 
-            // Scale by width
-            int newHeight = this.Image.Height * maxWidth / this.Image.Width;
-            int newWidth = maxWidth;
-            if (newHeight > maxHeight)
-            {
-                // Resize with height instead
-                newWidth = this.Image.Width * maxHeight / this.Image.Height;
-                newHeight = maxHeight;
+                // Scale by width
+                int newHeight = imageCopy.Height * maxWidth / imageCopy.Width;
+                int newWidth = maxWidth;
+                if (newHeight > maxHeight)
+                {
+                    // Resize with height instead
+                    newWidth = imageCopy.Width * maxHeight / imageCopy.Height;
+                    newHeight = maxHeight;
+                }
+
+                Image thumbnailImage = Photo.DefaultImage;
+                thumbnailImage = imageCopy.GetThumbnailImage(newWidth, newHeight, null, IntPtr.Zero); 
+                
+                // Free the resources used by the full sized image.
+                if (shouldClose)
+                {
+                    this.Close();
+                }
+                
+                return thumbnailImage;
             }
-
-            Image thumbnailImage = Photo.DefaultImage;
-            thumbnailImage = this.Image.GetThumbnailImage(newWidth, newHeight, null, IntPtr.Zero);
-
-            // Free the resources used by the full sized image.
-            if (shouldClose)
-            {
-                this.Close();
-            }
-
-            return thumbnailImage;
         }
 
         /// <summary>

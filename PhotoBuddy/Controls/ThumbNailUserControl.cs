@@ -124,16 +124,18 @@ namespace PhotoBuddy.Controls
                 {
                     // Create the thumbnail on another thread, then marshal back to the 
                     // UI thread in order to update it.
-                    Task.Factory.StartNew(() =>
-                    {
-                        // Creates thumbnail
-                        var image = this.photo.CreateThumbnail(
-                            this.thumbnailPictureBox.Width,
-                            this.thumbnailPictureBox.Height);
+                    Task.Factory.StartNew(
+                        () =>
+                        {
+                            // Creates thumbnail
+                            var image = this.photo.CreateThumbnail(
+                                this.thumbnailPictureBox.Width,
+                                this.thumbnailPictureBox.Height);
 
-                        // Asks the UI thread to update the completed thumbnail
-                        this.ThumbnailSetter(image);
-                    }).ContinueWith(t =>
+                            // Asks the UI thread to update the completed thumbnail
+                            this.ThumbnailSetter(image);
+                        },
+                    TaskCreationOptions.LongRunning).ContinueWith(t =>
                     {
                         if (t.Exception != null)
                         {

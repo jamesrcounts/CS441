@@ -13,6 +13,9 @@ namespace PhotoBuddy
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.IO;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
     using PhotoBuddy.Models;
     using PhotoBuddy.Screens;
@@ -72,6 +75,11 @@ namespace PhotoBuddy
         }
 
         /// <summary>
+        /// Occurs when [photo added event].
+        /// </summary>
+        public event EventHandler<EventArgs<IPhoto>> PhotoAddedEvent;
+
+        /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.Form.Closed"/> event.
         /// </summary>
         /// <param name="e">The <see cref="T:System.EventArgs"/> that contains the event data.</param>
@@ -83,6 +91,20 @@ namespace PhotoBuddy
         {
             this.CloseCurrentPhoto();
             base.OnClosed(e);
+        }
+
+        /// <summary>
+        /// Called when [photo added event].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;PhotoBuddy.Models.IPhoto&gt;"/> instance containing the event data.</param>
+        protected virtual void OnPhotoAddedEvent(object sender, EventArgs<IPhoto> e)
+        {
+            EventHandler<EventArgs<IPhoto>> handler = this.PhotoAddedEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
         }
 
         /// <summary>
@@ -244,7 +266,7 @@ namespace PhotoBuddy
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void HandleRenamePhotoButtonClick(object sender, EventArgs e)
+        private void HandleEditButtonClick(object sender, EventArgs e)
         {
             this.SuspendLayout();
             this.foundationTableLayoutPanel.Hide();
@@ -271,10 +293,10 @@ namespace PhotoBuddy
                     return;
                 }
 
-                // Find the new position
+                // Find the new position and dimensions
                 Rectangle cropRectangle = photoControl.photoCropBox.SelectedRectangle;
                 Rectangle imageAsDisplayed = photoControl.photoCropBox.ImageRectangle;
-                Rectangle actualImage = new Rectangle(0, 0, this.pictureBox1.Image.Width, this.pictureBox1.Height);
+                Image actualImage = this.pictureBox1.Image;
 
                 // Find the percent scale between the image as displayed in the photo crop box, 
                 // and the actual image size.
@@ -289,11 +311,11 @@ namespace PhotoBuddy
                 int height = (int)(cropRectangle.Height / percentScale);
                 Rectangle scaledRectangle = new Rectangle(
                     horizontalOffset,
-                    verticalOffset, 
+                    verticalOffset,
                     width,
                     height);
 
-                 // Crop the image.
+                // Crop the image.
                 IPhoto croppedPhoto = null;
                 using (var croppedImage = new Bitmap(scaledRectangle.Width, scaledRectangle.Height))
                 {
@@ -305,13 +327,17 @@ namespace PhotoBuddy
                             scaledRectangle,
                             GraphicsUnit.Pixel);
 
-                        System.IO.MemoryStream mss = new System.IO.MemoryStream();
-                        croppedImage.Save(mss, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        string tempPath = System.IO.Path.GetTempFileName();
-                        System.IO.File.WriteAllBytes(tempPath, mss.ToArray());
+                        string tempPath = Path.GetTempFileName();
+                        using (MemoryStream mss = new MemoryStream())
+                        {
+                            croppedImage.Save(mss, ImageFormat.Jpeg);
+                            File.WriteAllBytes(tempPath, mss.ToArray());
+                        }
 
                         croppedPhoto = this.album.AddPhoto(tempPath);
-                        System.IO.File.Delete(tempPath);
+                        File.Delete(tempPath);
+
+                        Task.Factory.StartNew(() => this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(croppedPhoto)));                        
                     }
                 }
 

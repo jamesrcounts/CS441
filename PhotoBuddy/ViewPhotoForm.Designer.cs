@@ -192,7 +192,7 @@ namespace PhotoBuddy
             this.RenamePhotoButton.TabIndex = 11;
             this.RenamePhotoButton.Text = "Edit";
             this.RenamePhotoButton.UseVisualStyleBackColor = false;
-            this.RenamePhotoButton.Click += new System.EventHandler(this.HandleRenamePhotoButtonClick);
+            this.RenamePhotoButton.Click += new System.EventHandler(this.HandleEditButtonClick);
             this.RenamePhotoButton.MouseEnter += new System.EventHandler(this.HandleButtonMouseEnter);
             this.RenamePhotoButton.MouseLeave += new System.EventHandler(this.HandleButtonMouseLeave);
             // 

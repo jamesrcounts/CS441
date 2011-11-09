@@ -11,11 +11,12 @@
 namespace PhotoBuddy.Screens
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
     using System.IO;
-    using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
     using PhotoBuddy.Controls;
     using PhotoBuddy.Models;
@@ -110,7 +111,7 @@ namespace PhotoBuddy.Screens
             }
 
             set
-            { 
+            {
                 this.currentAlbum = value;
                 this.AddPhotosEnabled = true;
                 if (this.currentAlbum != null)
@@ -137,47 +138,15 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         public void RefreshPhotoList()
         {
+            if (this.currentAlbum == null)
+            {
+                return;
+            }
+
             using (Cursor.Current = Cursors.WaitCursor)
             {
-                if (this.currentAlbum == null)
-                {
-                    return;
-                }
-
-                this.photosFlowPanel.Controls.Clear();
-                var albumPhotos = this.currentAlbum.Photos.ToList();
-                this.albumSizeLabel.Text = Format.Culture("{0} photos", albumPhotos.Count);
-                for (int i = 0; i < albumPhotos.Count; i++)
-                {
-                    var thumbnailControl = new ThumbnailUserControl();
-                    thumbnailControl.ThumbnailClick += this.HandlePhotoClick;
-                    thumbnailControl.DeletePhotoEvent += this.HandleDeletePhotoEvent;
-                    this.photosFlowPanel.Controls.Add(thumbnailControl);
-                    var thumb = (ThumbnailUserControl)this.photosFlowPanel.Controls[i];
-                    var photo = albumPhotos[i];
-                    thumb.DisplayName = photo.DisplayName;
-                    thumb.Photo = photo;
-                }
+                this.AddPhotos(this.currentAlbum.Photos);
             }
-        }
-
-        /// <summary>
-        /// Shows the view.
-        /// </summary>
-        /// <param name="history">The caller's history of previous views.</param>
-        /// <remarks>
-        ///   <para>Author: Jim Counts and Eric Wei</para>
-        /// </remarks>
-        public void ShowView(Stack<UserControl> history)
-        {
-            // Push myself onto the history stack
-            history.Push(this);
-
-            // Show myself
-            this.Visible = true;
-
-            // To focus text boxes.
-            this.Focus();
         }
 
         /// <summary>
@@ -199,21 +168,82 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
+        /// Updates the album count.
+        /// </summary>
+        /// <param name="count">The count.</param>
+        private void UpdateAlbumCount(int count)
+        {
+            if (this.InvokeRequired)
+            {
+                Action<int> invoker = this.UpdateAlbumCount;
+                this.BeginInvoke(invoker, count);
+                return;
+            }
+
+            this.albumSizeLabel.Text = Format.Culture("{0} photos", count);
+        }
+
+        /// <summary>
+        /// Creates the thumbnail user control.
+        /// </summary>
+        /// <returns>A new thumbnail user control, created on the UI thread.</returns>
+        private ThumbnailUserControl CreateThumbnailUserControl()
+        {
+            if (this.InvokeRequired)
+            {
+                Func<ThumbnailUserControl> invoker = this.CreateThumbnailUserControl;
+                return this.Invoke(invoker) as ThumbnailUserControl;
+            }
+
+            return new ThumbnailUserControl();
+        }
+
+        /// <summary>
+        /// Adds the thumbnail controls.
+        /// </summary>
+        /// <param name="controls">The controls.</param>
+        private void AddThumbnailControls(BlockingCollection<ThumbnailUserControl> controls)
+        {
+            foreach (var control in controls.GetConsumingEnumerable())
+            {
+                this.AddThumbnail(control);
+            }
+        }
+
+        /// <summary>
         /// Configures the thumbnail control.
         /// </summary>
         /// <param name="photo">The photo.</param>
-        /// <param name="thumb">The thumb.</param>
-        private void ConfigureThumbnailControl(IPhoto photo, ThumbnailUserControl thumb)
+        /// <returns>A thumbnail control configured with the supplied photo.</returns>
+        private ThumbnailUserControl ConfigureThumbnailControl(IPhoto photo)
         {
-            thumb.DisplayName = photo.DisplayName;
-            thumb.Photo = photo;
+            var thumbnailControl = this.CreateThumbnailUserControl();
+            thumbnailControl.ThumbnailClick += this.HandlePhotoClick;
+            thumbnailControl.DeletePhotoEvent += this.HandleDeletePhotoEvent;
+            thumbnailControl.DisplayName = photo.DisplayName;
+            thumbnailControl.Photo = photo;
+            return thumbnailControl;
+        }
 
-            // Wire the click event to the picturebox
-            thumb.ThumbnailClick += this.HandlePhotoClick;
-            thumb.DeletePhotoEvent += this.HandleDeletePhotoEvent;
-
-            // Add the thumb control to the flow panel.
-            this.AddThumbnail(thumb);
+        /// <summary>
+        /// Generates the thumbnail controls.
+        /// </summary>
+        /// <param name="photos">The photos.</param>
+        /// <param name="controls">The controls.</param>
+        private void GenerateThumbnailControls(BlockingCollection<IPhoto> photos, BlockingCollection<ThumbnailUserControl> controls)
+        {
+            try
+            {
+                foreach (var photo in photos.GetConsumingEnumerable())
+                {
+                    ThumbnailUserControl thumbnailControl = this.ConfigureThumbnailControl(photo);
+                    controls.Add(thumbnailControl);
+                }
+            }
+            finally
+            {
+                controls.CompleteAdding();
+            }
         }
 
         /// <summary>
@@ -234,6 +264,7 @@ namespace PhotoBuddy.Screens
             }
 
             this.photosFlowPanel.Controls.Add(thumb);
+            this.UpdateAlbumCount(this.photosFlowPanel.Controls.Count);
         }
 
         /// <summary>
@@ -267,19 +298,124 @@ namespace PhotoBuddy.Screens
                 // Cache the directory the user just picked a file from.
                 Settings.Default.LastImportDirectory = Path.GetDirectoryName(this.addPhotosFileDialog.FileName);
                 Settings.Default.Save();
-                foreach (var fullPath in this.addPhotosFileDialog.FileNames)
+
+                // Setup a pipeline
+                var pathBuffer = new BlockingCollection<string>();
+                var filteredPathBuffer = new BlockingCollection<string>(32);
+                Task.Factory.StartNew(
+                    () => this.FilterExistingPhotos(pathBuffer, filteredPathBuffer),
+                    TaskCreationOptions.LongRunning);
+
+                var photoBuffer = new BlockingCollection<IPhoto>(32);
+                Task.Factory.StartNew(
+                    () => this.AddPhotos(filteredPathBuffer, photoBuffer),
+                    TaskCreationOptions.LongRunning);
+
+                var thumbnailBuffer = new BlockingCollection<ThumbnailUserControl>(32);
+                Task.Factory.StartNew(
+                    () => this.GenerateThumbnailControls(photoBuffer, thumbnailBuffer),
+                    TaskCreationOptions.LongRunning);
+
+                Task.Factory.StartNew(
+                    () => this.AddThumbnailControls(thumbnailBuffer),
+                    TaskCreationOptions.LongRunning);
+
+                // Start filling the pipeline.
+                try
                 {
-                    // Inefficient bug fix: 2011-11-08 10:42 AM
-                    string photoId = Photo.GeneratePhotoKey(fullPath);
-                    if (this.CurrentAlbum.ContainsPhoto(photoId))
+                    foreach (var fullPath in this.addPhotosFileDialog.FileNames)
                     {
-                        continue;
+                        pathBuffer.Add(fullPath);
                     }
-
-                    this.CurrentAlbum.AddPhoto(fullPath);
                 }
+                finally
+                {
+                    pathBuffer.CompleteAdding();
+                }
+            }
+        }
 
-                this.RefreshPhotoList();
+        /// <summary>
+        /// Adds the photo.
+        /// </summary>
+        /// <param name="photo">The photo.</param>
+        private void AddPhoto(IPhoto photo)
+        {
+            this.AddThumbnail(this.ConfigureThumbnailControl(photo));
+        }
+
+        /// <summary>
+        /// Adds the photos.
+        /// </summary>
+        /// <param name="photosToAdd">The photos to add.</param>
+        private void AddPhotos(IEnumerable<IPhoto> photosToAdd)
+        {
+            var photoBuffer = new BlockingCollection<IPhoto>();
+            var thumbnailBuffer = new BlockingCollection<ThumbnailUserControl>(32);
+            this.photosFlowPanel.Controls.Clear();
+
+            Task.Factory.StartNew(
+                () => this.GenerateThumbnailControls(photoBuffer, thumbnailBuffer),
+                TaskCreationOptions.LongRunning);
+            Task.Factory.StartNew(
+                () => this.AddThumbnailControls(thumbnailBuffer),
+                TaskCreationOptions.LongRunning);
+            try
+            {
+                foreach (var photo in photosToAdd)
+                {
+                    photoBuffer.Add(photo);
+                }
+            }
+            finally
+            {
+                photoBuffer.CompleteAdding();
+            }
+        }
+
+        /// <summary>
+        /// Adds the photos.
+        /// </summary>
+        /// <param name="paths">The paths.</param>
+        /// <param name="photos">The photos.</param>
+        private void AddPhotos(BlockingCollection<string> paths, BlockingCollection<IPhoto> photos)
+        {
+            try
+            {
+                foreach (var path in paths.GetConsumingEnumerable())
+                {
+                    var photo = this.CurrentAlbum.AddPhoto(path);
+                    photos.Add(photo);
+                }
+            }
+            finally
+            {
+                photos.CompleteAdding();
+            }
+        }
+
+        /// <summary>
+        /// Filters the existing photos.
+        /// </summary>
+        /// <param name="paths">The paths.</param>
+        /// <param name="filteredPaths">The filtered paths.</param>
+        /// <remarks>Inefficient bug fix: 2011-11-08 10:42 AM</remarks>
+        private void FilterExistingPhotos(BlockingCollection<string> paths, BlockingCollection<string> filteredPaths)
+        {
+            try
+            {
+                foreach (var path in paths.GetConsumingEnumerable())
+                {
+                    string photoId = Photo.GeneratePhotoKey(path);
+                    if (!this.CurrentAlbum.ContainsPhoto(photoId))
+                    {
+                        filteredPaths.Add(path);
+                    }
+                }
+            }
+            finally
+            {
+                filteredPaths.CompleteAdding();
             }
         }
 
@@ -296,9 +432,20 @@ namespace PhotoBuddy.Screens
             var thumbnailControl = (ThumbnailUserControl)sender;
             using (var photoForm = new ViewPhotoForm(this.currentAlbum, thumbnailControl.Photo))
             {
+                photoForm.PhotoAddedEvent += this.AddPhoto;
                 photoForm.ShowDialog();
-                this.RefreshPhotoList();
+                photoForm.PhotoAddedEvent -= this.AddPhoto;
             }
+        }
+
+        /// <summary>
+        /// Adds the photo.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;PhotoBuddy.Models.IPhoto&gt;"/> instance containing the event data.</param>
+        private void AddPhoto(object sender, EventArgs<IPhoto> e)
+        {
+            this.AddPhoto(e.Data);
         }
 
         /// <summary>

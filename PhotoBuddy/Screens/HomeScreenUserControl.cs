@@ -157,6 +157,7 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         public void RefreshAlbumViewList()
         {
+            this.albumsFlowPanel.SuspendLayout();
             while (0 < this.albumsFlowPanel.Controls.Count)
             {
                 var control = this.albumsFlowPanel.Controls[0];
@@ -188,6 +189,8 @@ namespace PhotoBuddy.Screens
 
                 this.albumsFlowPanel.Controls.Add(albumControl);
             }
+
+            this.albumsFlowPanel.ResumeLayout();
         }
                 
         /// <summary>
