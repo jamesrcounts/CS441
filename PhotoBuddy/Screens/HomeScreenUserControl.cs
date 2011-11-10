@@ -12,10 +12,12 @@
 namespace PhotoBuddy.Screens
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
     using PhotoBuddy.Controls;
     using PhotoBuddy.Models;
@@ -51,7 +53,7 @@ namespace PhotoBuddy.Screens
             }
 
             this.InitializeComponent();
-            this.albums = albumRepository;            
+            this.albums = albumRepository;
             this.Dock = DockStyle.Fill;
             this.DisplayName = "Albums";
         }
@@ -157,42 +159,41 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         public void RefreshAlbumViewList()
         {
-            this.albumsFlowPanel.SuspendLayout();
-            while (0 < this.albumsFlowPanel.Controls.Count)
-            {
-                var control = this.albumsFlowPanel.Controls[0];
-                this.albumsFlowPanel.Controls.Remove(control);
-                control.Dispose();
-            } 
-            
             this.albumsFlowPanel.Controls.Clear();
             if (this.Repository.Count == 0)
             {
+                // No albums to show.
                 return;
             }
 
-            foreach (var album in this.Repository.Albums)
+            var albumBuffer = new BlockingCollection<IAlbum>();
+            var controlBuffer = new BlockingCollection<AlbumIconUserControl>(32);
+            Task.Factory.StartNew(
+                () => this.GenerateThumbnailControls(albumBuffer, controlBuffer),
+                TaskCreationOptions.LongRunning);
+
+            var thumbnailBuffer = new BlockingCollection<AlbumIconUserControl>(32);
+            Task.Factory.StartNew(
+                () => HomeScreenUserControl.GenerateThumbnails(controlBuffer, thumbnailBuffer),
+                TaskCreationOptions.LongRunning);
+            
+            Task.Factory.StartNew(
+                () => this.AddThumbnailControls(thumbnailBuffer),
+                TaskCreationOptions.LongRunning);
+
+            try
             {
-                var albumControl = new AlbumIconUserControl()
-                                {
-                                    Album = album,
-                                    AlbumName = album.AlbumId,
-                                    Count = album.Count,
-                                };
-
-                albumControl.Image = album.CreateThumbnail(
-                    albumControl.ThumbnailWidth,
-                    albumControl.ThumbnailHeight);
-                albumControl.AlbumSelectedEvent += this.OnAlbumSelectedEvent;
-                albumControl.DeleteAlbumEvent += this.OnDeleteAlbumEvent;
-                albumControl.RenameAlbumEvent += this.OnRenameAlbumEvent;
-
-                this.albumsFlowPanel.Controls.Add(albumControl);
+                foreach (var album in this.Repository.Albums)
+                {
+                    albumBuffer.Add(album);
+                }
             }
-
-            this.albumsFlowPanel.ResumeLayout();
+            finally
+            {
+                albumBuffer.CompleteAdding();
+            }
         }
-                
+
         /// <summary>
         /// Shows the view.
         /// </summary>
@@ -303,6 +304,29 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
+        /// Generates the thumbnail for the AlbumIconControls.
+        /// </summary>
+        /// <param name="albums">The albums.</param>
+        /// <param name="thumbnailAlbums">The thumbnail albums.</param>
+        private static void GenerateThumbnails(BlockingCollection<AlbumIconUserControl> albums, BlockingCollection<AlbumIconUserControl> thumbnailAlbums)
+        {
+            try
+            {
+                foreach (var albumControl in albums.GetConsumingEnumerable())
+                {
+                    albumControl.Image = albumControl.Album.CreateThumbnail(
+                        albumControl.ThumbnailWidth,
+                        albumControl.ThumbnailHeight);
+                    thumbnailAlbums.Add(albumControl);
+                }
+            }
+            finally
+            {
+                thumbnailAlbums.CompleteAdding();
+            }
+        }
+
+        /// <summary>
         /// Exits the program.
         /// </summary>
         /// <param name="sender">The exit button.</param>
@@ -354,6 +378,76 @@ namespace PhotoBuddy.Screens
         {
             Button button = sender as Button;
             button.ForeColor = Color.White;
+        }
+
+        /// <summary>
+        /// Creates the album icon user control.
+        /// </summary>
+        /// <returns>A new <see cref="AlbumIconUserControl"/>, created on the UI thread.</returns>
+        private AlbumIconUserControl CreateAlbumIconUserControl()
+        {
+            if (this.InvokeRequired)
+            {
+                Func<AlbumIconUserControl> invoker = this.CreateAlbumIconUserControl;
+                return (AlbumIconUserControl)this.Invoke(invoker);
+            }
+
+            return new AlbumIconUserControl();
+        }
+
+        /// <summary>
+        /// Generates the thumbnail controls.
+        /// </summary>
+        /// <param name="albums">The albums.</param>
+        /// <param name="thumbnails">The thumbnails.</param>
+        private void GenerateThumbnailControls(BlockingCollection<IAlbum> albums, BlockingCollection<AlbumIconUserControl> thumbnails)
+        {
+            try
+            {
+                foreach (var album in albums.GetConsumingEnumerable())
+                {
+                    AlbumIconUserControl albumControl = this.CreateAlbumIconUserControl();
+                    albumControl.Album = album;
+                    albumControl.AlbumName = album.AlbumId;
+                    albumControl.Count = album.Count;
+                    albumControl.AlbumSelectedEvent += this.OnAlbumSelectedEvent;
+                    albumControl.DeleteAlbumEvent += this.OnDeleteAlbumEvent;
+                    albumControl.RenameAlbumEvent += this.OnRenameAlbumEvent;
+                    thumbnails.Add(albumControl);
+                }
+            }
+            finally
+            {
+                thumbnails.CompleteAdding();
+            }
+        }
+
+        /// <summary>
+        /// Adds the thumbnail controls.
+        /// </summary>
+        /// <param name="albumControls">The album controls.</param>
+        private void AddThumbnailControls(BlockingCollection<AlbumIconUserControl> albumControls)
+        {
+            foreach (var albumControl in albumControls.GetConsumingEnumerable())
+            {
+                this.AddAlbumControl(albumControl);
+            }
+        }
+
+        /// <summary>
+        /// Adds the album control to the albumsFlowPanel, marshalling the request to the UI thread if necessary.
+        /// </summary>
+        /// <param name="albumControl">The album control.</param>
+        private void AddAlbumControl(AlbumIconUserControl albumControl)
+        {
+            if (this.InvokeRequired)
+            {
+                Action<AlbumIconUserControl> invoker = this.AddAlbumControl;
+                this.BeginInvoke(invoker, albumControl);
+                return;
+            }
+
+            this.albumsFlowPanel.Controls.Add(albumControl);
         }
     }
 }
