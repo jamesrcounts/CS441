@@ -127,6 +127,12 @@
     <Compile Include="Controls\AlbumIconUserControl.Designer.cs">
       <DependentUpon>AlbumIconUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SearchControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SearchControl.Designer.cs">
+      <DependentUpon>SearchControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="EventArgs{T}.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumEventArgs.cs" />
@@ -222,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CropBox.resx">
       <DependentUpon>CropBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SearchControl.resx">
+      <DependentUpon>SearchControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ThumbnailUserControl.resx">
       <DependentUpon>ThumbnailUserControl.cs</DependentUpon>

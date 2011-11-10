@@ -37,6 +37,7 @@ namespace PhotoBuddy
             this.InitializeComponent();
             this.Text = PhotoBuddy.Properties.Resources.AppName;
             this.ShowScreen("Home");
+            this.searchControl.SearchInitiatedEvent += this.ShowSearchResults;
         }
 
         /// <summary>
@@ -122,45 +123,6 @@ namespace PhotoBuddy
         #region Update View Request Handlers
 
         /// <summary>
-        /// Handles the search button click.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        /// <remarks>
-        ///   <para>Author: Jim Counts and Eric Wei</para>
-        ///   <para>Created: 2011-11-03</para>
-        /// </remarks>
-        private void HandleSearchButtonClick(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(this.searchTextBox.Text))
-            {
-                return;
-            }
-
-            var terms = this.searchTextBox.Text.ToUpperInvariant().Trim().Split(' ');
-            var searchResults = Model.Search(terms);
-            this.ShowSearchResults(searchResults);
-        }
-
-        /// <summary>
-        /// Check for the enter key press and execute the search button if it was pressed.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.Windows.Forms.KeyEventArgs"/> instance containing the event data.</param>
-        /// <remarks>
-        /// Author(s): Miguel Gonzales, Andrea Tan, Jim Counts
-        /// Created:  2011-11-07
-        /// </remarks>
-        private void HandleSearchTextBoxKeyDown(object sender, KeyEventArgs e)
-        {
-            // See if the user pressed the enter key and if so execute the continue button.
-            if (e.KeyCode == Keys.Enter)
-            {
-                this.HandleSearchButtonClick(sender, e);
-            }
-        }
-
-        /// <summary>
         /// Reacts to new album creation.
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -215,6 +177,17 @@ namespace PhotoBuddy
         private void ShowCreateAlbumView(object sender, EventArgs e)
         {
             this.ShowScreen("CreateAlbum");
+        }
+
+        /// <summary>
+        /// Handles the SearchInitiatedEvent event of the searchControl control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;System.String[]&gt;"/> instance containing the event data.</param>
+        private void ShowSearchResults(object sender, EventArgs<string[]> e)
+        {
+            var searchResults = Model.Search(e.Data);
+            this.ShowSearchResults(searchResults);
         }
 
         /// <summary>

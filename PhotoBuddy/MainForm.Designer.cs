@@ -34,8 +34,7 @@ namespace PhotoBuddy
             this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.photoBuddyButton = new System.Windows.Forms.Button();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.searchControl = new PhotoBuddy.Controls.SearchControl();
             this.foundationTableLayoutPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
@@ -73,8 +72,7 @@ namespace PhotoBuddy
             this.contentPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.contentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
             this.contentPanel.Controls.Add(this.photoBuddyButton);
-            this.contentPanel.Controls.Add(this.searchButton);
-            this.contentPanel.Controls.Add(this.searchTextBox);
+            this.contentPanel.Controls.Add(this.searchControl);
             this.contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contentPanel.Location = new System.Drawing.Point(0, 0);
             this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -101,35 +99,14 @@ namespace PhotoBuddy
             this.photoBuddyButton.UseVisualStyleBackColor = false;
             this.photoBuddyButton.Click += new System.EventHandler(this.ShowHomeView);
             // 
-            // searchButton
+            // searchControl
             // 
-            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.searchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.searchButton.FlatAppearance.BorderSize = 0;
-            this.searchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
-            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchButton.Location = new System.Drawing.Point(723, 10);
-            this.searchButton.Margin = new System.Windows.Forms.Padding(0, 3, 10, 3);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(51, 22);
-            this.searchButton.TabIndex = 2;
-            this.searchButton.Text = "Search";
-            this.searchButton.UseVisualStyleBackColor = false;
-            this.searchButton.Click += new System.EventHandler(this.HandleSearchButtonClick);
-            // 
-            // searchTextBox
-            // 
-            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.searchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchTextBox.Location = new System.Drawing.Point(502, 9);
-            this.searchTextBox.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(221, 24);
-            this.searchTextBox.TabIndex = 1;
-            this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleSearchTextBoxKeyDown);
+            this.searchControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
+            this.searchControl.Location = new System.Drawing.Point(502, 9);
+            this.searchControl.Name = "searchControl";
+            this.searchControl.Size = new System.Drawing.Size(272, 24);
+            this.searchControl.TabIndex = 9;
             // 
             // MainForm
             // 
@@ -138,7 +115,7 @@ namespace PhotoBuddy
             this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.foundationTableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeScreenForm";
@@ -155,8 +132,7 @@ namespace PhotoBuddy
         private System.Windows.Forms.Panel screenHolderPanel;
         private System.Windows.Forms.TableLayoutPanel foundationTableLayoutPanel;
         private System.Windows.Forms.Panel contentPanel;
-        private System.Windows.Forms.Button searchButton;
-        private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Button photoBuddyButton;
+        private Controls.SearchControl searchControl;
     }
 }

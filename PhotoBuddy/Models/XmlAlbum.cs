@@ -430,6 +430,7 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public IPhoto AddPhoto(string filePath)
         {
+            // This add/remove/add sequence works around a bug with setting the album cover right after adding a photo.
             var photo = this.decoratedAlbum.AddPhoto(filePath);
 
             // Update XML
@@ -437,7 +438,9 @@ namespace PhotoBuddy.Models
             this.albumElement.Add(photoElement);
             this.Repository.SaveAlbums();
 
-            return photo;
+            this.decoratedAlbum.RemovePhoto(photo.PhotoId);
+
+            return this.decoratedAlbum.AddPhoto(new XmlPhoto(this, photoElement));
         }
 
         /// <summary>
