@@ -134,11 +134,6 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
-        /// Gets the user entered text.
-        /// </summary>
-        public string UserEnteredText { get; private set; }
-
-        /// <summary>
         /// Gets or sets the display name.
         /// </summary>
         /// <value>
@@ -212,23 +207,6 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
-        /// Shows the view.
-        /// </summary>
-        /// <param name="history">The caller's history of previous views.</param>
-        /// <remarks>
-        ///   <para>Author: Jim Counts and Eric Wei</para>
-        ///   <para>Note: this view does not push itself onto the history stack.</para>
-        /// </remarks>
-        public void ShowView(Stack<UserControl> history)
-        {
-            // Show myself
-            this.Visible = true;
-
-            // Important for focusing text boxes.
-            this.Focus();
-        }
-
-        /// <summary>
         /// Handles the Click event of the cancelButton control.
         /// </summary>
         /// <param name="sender">The cancel button.</param>
@@ -240,6 +218,42 @@ namespace PhotoBuddy.Screens
         {
             // raise the create event
             this.OnCancelEvent(this, e);
+        }
+
+        /// <summary>
+        /// Renames the album.
+        /// </summary>
+        private void RenameAlbum()
+        {
+            this.Model.RenameAlbum(this.album.AlbumId, this.albumNameTextBox.Text);
+            this.Model.SaveAlbums();
+            this.OnRenameAlbumEvent(this, new EventArgs<IAlbum>(this.album));
+        }
+
+        /// <summary>
+        /// Handles the empty album name error.
+        /// </summary>
+        private void HandleEmptyAlbumNameError()
+        {
+            CultureAwareMessageBox.Show(
+                                this,
+                                "Album name must not be empty.",
+                                "Photo Buddy - " + Application.ProductVersion,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+        }
+
+        /// <summary>
+        /// Handles the name too long error.
+        /// </summary>
+        private void HandleNameTooLongError()
+        {
+            CultureAwareMessageBox.Show(
+                                this,
+                                Format.Culture("Album name is too long.  Please enter a name up to {0} characters.", Constants.MaxNameLength),
+                                "Photo Buddy - " + Application.ProductVersion,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
         }
 
         /// <summary>
@@ -260,23 +274,13 @@ namespace PhotoBuddy.Screens
         {
             if (string.IsNullOrWhiteSpace(this.albumNameTextBox.Text))
             {
-                CultureAwareMessageBox.Show(
-                    this,
-                    "Album name must not be empty!",
-                    "Photo Buddy - " + Application.ProductVersion,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                this.HandleEmptyAlbumNameError();
                 return;
             }
 
             if (this.albumNameTextBox.Text.Length > Constants.MaxNameLength)
             {
-                CultureAwareMessageBox.Show(
-                    this,
-                    Format.Culture("Album name is too long.  Please enter a name up to {0} characters.", Constants.MaxNameLength),
-                    "Photo Buddy - " + Application.ProductVersion,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                this.HandleNameTooLongError();
                 return;
             }
 
@@ -289,9 +293,7 @@ namespace PhotoBuddy.Screens
                     return;
                 }
 
-                this.Model.RenameAlbum(this.album.AlbumId, this.albumNameTextBox.Text);
-                this.Model.SaveAlbums();
-                this.OnRenameAlbumEvent(this, new EventArgs<IAlbum>(this.album));
+                this.RenameAlbum();
                 return;
             }
 

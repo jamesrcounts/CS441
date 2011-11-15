@@ -76,7 +76,7 @@ namespace PhotoBuddy
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-05</para>
         /// </remarks>
-        public void ShowRenamer(IAlbum album)
+        public void ShowRenameAlbum(IAlbum album)
         {
             this.ClearScreen();
             var view = this.GetView("RenameAlbum") as CreateAlbumUserControl;
@@ -201,7 +201,7 @@ namespace PhotoBuddy
         /// </remarks>
         private void ShowRenameAlbumView(object sender, EventArgs<IAlbum> e)
         {
-            this.ShowRenamer(e.Data);
+            this.ShowRenameAlbum(e.Data);
         }
 
         #endregion

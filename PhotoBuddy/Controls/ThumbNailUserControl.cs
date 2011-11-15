@@ -111,38 +111,11 @@ namespace PhotoBuddy.Controls
 
             set
             {
-                if (this.InvokeRequired)
-                {
-                    Action<IPhoto> invoker = p => this.Photo = p;
-                    this.BeginInvoke(invoker, value);
-                    return;
-                }
-
                 this.photo = value;
                 this.thumbnailPictureBox.Image = ThumbnailUserControl.DefaultImage;
                 if (this.photo != null)
                 {
-                    // Create the thumbnail on another thread, then marshal back to the 
-                    // UI thread in order to update it.
-                    Task.Factory.StartNew(
-                        () =>
-                        {
-                            // Creates thumbnail
-                            var image = this.photo.CreateThumbnail(
-                                this.thumbnailPictureBox.Width,
-                                this.thumbnailPictureBox.Height);
-
-                            // Asks the UI thread to update the completed thumbnail
-                            this.ThumbnailSetter(image);
-                        },
-                    TaskCreationOptions.LongRunning).ContinueWith(t =>
-                    {
-                        if (t.Exception != null)
-                        {
-                            this.ThumbnailSetter(this.thumbnailPictureBox.ErrorImage);
-                            t.Exception.Flatten().Handle(ex => true);
-                        }
-                    });
+                    this.StartCreateThumbnailTask();
                 }
                 else
                 {
@@ -203,6 +176,34 @@ namespace PhotoBuddy.Controls
             }
 
             base.Dispose(disposing);
+        }
+        
+        /// <summary>
+        /// Starts the create thumbnail task.
+        /// </summary>
+        private void StartCreateThumbnailTask()
+        {
+            // Create the thumbnail on another thread, then marshal back to the
+            // UI thread in order to update it.
+            Task.Factory.StartNew(
+                () =>
+                {
+                    // Creates thumbnail
+                    var image = this.photo.CreateThumbnail(
+                        this.thumbnailPictureBox.Width,
+                        this.thumbnailPictureBox.Height);
+
+                    // Asks the UI thread to update the completed thumbnail
+                    this.ThumbnailSetter(image);
+                },
+            TaskCreationOptions.LongRunning).ContinueWith(t =>
+            {
+                if (t.Exception != null)
+                {
+                    this.ThumbnailSetter(this.thumbnailPictureBox.ErrorImage);
+                    t.Exception.Flatten().Handle(ex => true);
+                }
+            });
         }
 
         /// <summary>

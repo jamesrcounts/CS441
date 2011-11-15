@@ -29,6 +29,7 @@ namespace PhotoBuddy.Screens
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CropPhotoControl));
             this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.captionLabel = new System.Windows.Forms.Label();
             this.footerTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -119,14 +120,14 @@ namespace PhotoBuddy.Screens
             this.RightButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RightButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RightButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
-            this.RightButton.Location = new System.Drawing.Point(88, 4);
+            this.RightButton.Location = new System.Drawing.Point(140, 4);
             this.RightButton.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.RightButton.Name = "RightButton";
-            this.RightButton.Size = new System.Drawing.Size(105, 30);
+            this.RightButton.Size = new System.Drawing.Size(53, 30);
             this.RightButton.TabIndex = 11;
-            this.RightButton.Text = "RightButton";
+            this.RightButton.Text = "Crop";
             this.RightButton.UseVisualStyleBackColor = false;
-            this.RightButton.Visible = false;
+            this.RightButton.Click += new System.EventHandler(this.HandleCropButtonClick);
             // 
             // leftFooterPanel
             // 
@@ -152,18 +153,20 @@ namespace PhotoBuddy.Screens
             this.LeftButton.Location = new System.Drawing.Point(10, 4);
             this.LeftButton.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.LeftButton.Name = "LeftButton";
-            this.LeftButton.Size = new System.Drawing.Size(95, 30);
+            this.LeftButton.Size = new System.Drawing.Size(68, 30);
             this.LeftButton.TabIndex = 1;
-            this.LeftButton.Text = "LeftButton";
+            this.LeftButton.Text = "Cancel";
             this.LeftButton.UseMnemonic = false;
             this.LeftButton.UseVisualStyleBackColor = false;
+            this.LeftButton.Click += new System.EventHandler(this.HandleCancelButtonClick);
             // 
             // photoCropBox
             // 
             this.photoCropBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.photoCropBox.Image = ((System.Drawing.Image)(resources.GetObject("photoCropBox.Image")));
             this.photoCropBox.Location = new System.Drawing.Point(3, 3);
             this.photoCropBox.Name = "photoCropBox";
-            this.photoCropBox.Photo = null;
+            this.photoCropBox.Photo = ((System.Drawing.Image)(resources.GetObject("photoCropBox.Photo")));
             this.photoCropBox.Size = new System.Drawing.Size(580, 374);
             this.photoCropBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.photoCropBox.TabIndex = 10;
@@ -196,8 +199,8 @@ namespace PhotoBuddy.Screens
         private System.Windows.Forms.TableLayoutPanel footerTableLayoutPanel;
         private System.Windows.Forms.Panel rightFooterPanel;
         private System.Windows.Forms.Panel leftFooterPanel;
-        public System.Windows.Forms.Button LeftButton;
-        public Controls.CropBox photoCropBox;
-        public System.Windows.Forms.Button RightButton;
+        private System.Windows.Forms.Button LeftButton;
+        private System.Windows.Forms.Button RightButton;
+        private Controls.CropBox photoCropBox;
     }
 }

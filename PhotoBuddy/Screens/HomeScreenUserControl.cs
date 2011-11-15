@@ -168,18 +168,8 @@ namespace PhotoBuddy.Screens
 
             var albumBuffer = new BlockingCollection<IAlbum>();
             var controlBuffer = new BlockingCollection<AlbumIconUserControl>(32);
-            Task.Factory.StartNew(
-                () => this.GenerateThumbnailControls(albumBuffer, controlBuffer),
-                TaskCreationOptions.LongRunning);
-
             var thumbnailBuffer = new BlockingCollection<AlbumIconUserControl>(32);
-            Task.Factory.StartNew(
-                () => HomeScreenUserControl.GenerateThumbnails(controlBuffer, thumbnailBuffer),
-                TaskCreationOptions.LongRunning);
-            
-            Task.Factory.StartNew(
-                () => this.AddThumbnailControls(thumbnailBuffer),
-                TaskCreationOptions.LongRunning);
+            this.StartPipelineStages(albumBuffer, controlBuffer, thumbnailBuffer);
 
             try
             {
@@ -448,6 +438,27 @@ namespace PhotoBuddy.Screens
             }
 
             this.albumsFlowPanel.Controls.Add(albumControl);
+        }
+
+        /// <summary>
+        /// Starts the pipeline stages involved with adding album thumbnail icons to the hove view.
+        /// </summary>
+        /// <param name="albumBuffer">The album buffer.</param>
+        /// <param name="controlBuffer">The control buffer.</param>
+        /// <param name="thumbnailBuffer">The thumbnail buffer.</param>
+        private void StartPipelineStages(BlockingCollection<IAlbum> albumBuffer, BlockingCollection<AlbumIconUserControl> controlBuffer, BlockingCollection<AlbumIconUserControl> thumbnailBuffer)
+        {
+            Task.Factory.StartNew(
+                            () => this.GenerateThumbnailControls(albumBuffer, controlBuffer),
+                            TaskCreationOptions.LongRunning);
+
+            Task.Factory.StartNew(
+                () => HomeScreenUserControl.GenerateThumbnails(controlBuffer, thumbnailBuffer),
+                TaskCreationOptions.LongRunning);
+
+            Task.Factory.StartNew(
+                () => this.AddThumbnailControls(thumbnailBuffer),
+                TaskCreationOptions.LongRunning);
         }
     }
 }

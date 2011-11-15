@@ -272,86 +272,98 @@ namespace PhotoBuddy
             this.foundationTableLayoutPanel.Hide();
 
             var photoControl = new CropPhotoControl();
-            photoControl.photoCropBox.Photo = this.pictureBox1.Image;
-            photoControl.LeftButton.Text = "Cancel";
-            photoControl.RightButton.Text = "Crop";
-            photoControl.RightButton.Visible = true;
-            photoControl.LeftButton.Click += (o, s) =>
-            {
-                photoControl.Hide();
-                this.foundationTableLayoutPanel.Show();
-            };
-            photoControl.RightButton.Click += (o, s) =>
-            {
-                photoControl.Hide();
-                this.foundationTableLayoutPanel.Show();
-
-                // Get the rectangle
-                Rectangle selectedRectangle = photoControl.photoCropBox.SelectedRectangle;
-                if (selectedRectangle == Rectangle.Empty)
-                {
-                    return;
-                }
-
-                // Find the new position and dimensions
-                Rectangle cropRectangle = photoControl.photoCropBox.SelectedRectangle;
-                Rectangle imageAsDisplayed = photoControl.photoCropBox.ImageRectangle;
-                Image actualImage = this.pictureBox1.Image;
-
-                // Find the percent scale between the image as displayed in the photo crop box, 
-                // and the actual image size.
-                float percentScale = (float)imageAsDisplayed.Width / actualImage.Width;
-
-                // First figure out the offset relative to the image, then scale it.
-                int horizontalOffset = (int)((cropRectangle.X - imageAsDisplayed.X) / percentScale);
-                int verticalOffset = (int)((cropRectangle.Y - imageAsDisplayed.Y) / percentScale);
-
-                // Now Scale the width and height.
-                int width = (int)(cropRectangle.Width / percentScale);
-                int height = (int)(cropRectangle.Height / percentScale);
-                Rectangle scaledRectangle = new Rectangle(
-                    horizontalOffset,
-                    verticalOffset,
-                    width,
-                    height);
-
-                // Crop the image.
-                IPhoto croppedPhoto = null;
-                using (var croppedImage = new Bitmap(scaledRectangle.Width, scaledRectangle.Height))
-                {
-                    using (var g = Graphics.FromImage(croppedImage))
-                    {
-                        g.DrawImage(
-                            this.pictureBox1.Image,
-                            new Rectangle(0, 0, croppedImage.Width, croppedImage.Height),
-                            scaledRectangle,
-                            GraphicsUnit.Pixel);
-
-                        string tempPath = Path.GetTempFileName();
-                        using (MemoryStream mss = new MemoryStream())
-                        {
-                            croppedImage.Save(mss, ImageFormat.Jpeg);
-                            File.WriteAllBytes(tempPath, mss.ToArray());
-                        }
-
-                        croppedPhoto = this.album.AddPhoto(tempPath);
-                        File.Delete(tempPath);
-
-                        Task.Factory.StartNew(() => this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(croppedPhoto)));                        
-                    }
-                }
-
-                this.allPhotosInAlbum.Add(croppedPhoto);
-                int idx = this.allPhotosInAlbum.IndexOf(croppedPhoto);
-                if (idx != -1)
-                {
-                    this.DisplayPhoto(idx);
-                }
-            };
-
+            photoControl.Image = this.pictureBox1.Image;
+            photoControl.CancelEvent += this.CancelCrop;
+            photoControl.ContinueEvent += this.ContinueCrop;
             this.Controls.Add(photoControl);
             photoControl.Dock = DockStyle.Fill;
+
             photoControl.Show();
+            this.ResumeLayout();
+        }
+
+        /// <summary>
+        /// Saves and adds an image to the current album.
+        /// </summary>
+        /// <param name="image">The image.</param>
+        /// <returns>A photo object, attached to the current album.</returns>
+        private IPhoto AddImageToAlbum(Image image)
+        {
+            // A temporary save location
+            string tempPath = Path.GetTempFileName();
+
+            // This memory stream is probably unnecessary.
+            using (MemoryStream mss = new MemoryStream())
+            {
+                // Write the image to the temp file.
+                image.Save(mss, ImageFormat.Jpeg);
+                File.WriteAllBytes(tempPath, mss.ToArray());
+            }
+            
+            // Add the new photo to the album.
+            IPhoto croppedPhoto = this.album.AddPhoto(tempPath);
+
+            // Clean up the temporary file
+            File.Delete(tempPath);
+
+            return croppedPhoto;
+        }
+
+        /// <summary>
+        /// Displays the specified photo if it is part of the photo list; otherwise does nothing.
+        /// </summary>
+        /// <param name="photo">The photo.</param>
+        private void DisplayPhoto(IPhoto photo)
+        {
+            this.allPhotosInAlbum.Add(photo);
+            int idx = this.allPhotosInAlbum.IndexOf(photo);
+            if (idx != -1)
+            {
+                this.DisplayPhoto(idx);
+            }
+        }
+
+        /// <summary>
+        /// Process a cropped image.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;System.Drawing.Image&gt;"/> instance containing the event data.</param>
+        private void ContinueCrop(object sender, EventArgs<Image> e)
+        {
+            var photoCropControl = (CropPhotoControl)sender;
+            this.SuspendLayout();
+
+            IPhoto croppedPhoto = this.AddImageToAlbum(e.Data);
+            Task.Factory.StartNew(() => this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(croppedPhoto)));
+            this.TearDownCropControl(photoCropControl);
+            this.DisplayPhoto(croppedPhoto);
+
+            this.ResumeLayout();
+        }
+
+        /// <summary>
+        /// Tears down a crop control.
+        /// </summary>
+        /// <param name="photoCropControl">The photo crop control.</param>
+        private void TearDownCropControl(CropPhotoControl photoCropControl)
+        {
+            photoCropControl.ContinueEvent -= this.ContinueCrop;
+            photoCropControl.CancelEvent -= this.CancelCrop;
+            photoCropControl.Hide();
+            photoCropControl.Dispose();
+            this.foundationTableLayoutPanel.Show();
+        }
+
+        /// <summary>
+        /// Cancels the crop and shows the view again.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void CancelCrop(object sender, EventArgs e)
+        {
+            var photoCropControl = (CropPhotoControl)sender;
+            this.SuspendLayout();
+            this.TearDownCropControl(photoCropControl);
             this.ResumeLayout();
         }
     }

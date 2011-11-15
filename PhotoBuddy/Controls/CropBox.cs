@@ -14,7 +14,7 @@ namespace PhotoBuddy.Controls
     /// </summary>
     /// <seealso cref="http://msdn.microsoft.com/en-us/library/system.windows.forms.controlpaint.drawreversibleframe.aspx"/>
     public partial class CropBox : PictureBox
-    {
+    { 
         /// <summary>
         /// The original image used to erase old rectangles.
         /// </summary>
@@ -44,11 +44,6 @@ namespace PhotoBuddy.Controls
         /// The point where rubber banding started relative to the screen.
         /// </summary>
         private Point startPoint = Point.Empty;
-
-        /// <summary>
-        /// The point where rubber banding started relative to the form.
-        /// </summary>
-        private Point rawStartPoint = Point.Empty;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CropBox"/> class.
@@ -121,6 +116,142 @@ namespace PhotoBuddy.Controls
         }
 
         /// <summary>
+        /// Scales a length or width.
+        /// </summary>
+        /// <param name="value">Length or width.</param>
+        /// <param name="scale">The percent scale.</param>
+        /// <returns>The scaled value.</returns>
+        public static int ScaleDimension(int value, float scale)
+        {
+            return (int)(value / scale);
+        }
+
+        /// <summary>
+        /// Scales the X or Y value of a coordinate.
+        /// </summary>
+        /// <param name="selectedOffset">The selected rectangle's offset.</param>
+        /// <param name="imageOffset">The image rectangle's offset.</param>
+        /// <param name="scale">The percent scale.</param>
+        /// <returns>The scaled value.</returns>
+        public static int ScaleOffset(int selectedOffset, int imageOffset, float scale)
+        {
+            return (int)((selectedOffset - imageOffset) / scale);
+        }
+     
+        /// <summary>
+        /// Gets the percent scale between the image as displayed in the photo crop box,
+        /// and the actual image size.
+        /// </summary>
+        /// <returns>The scaling factor.</returns>
+        public float CalculatePercentScale()
+        {
+            return (float)this.ImageRectangle.Width / this.Image.Width;
+        }
+
+        /// <summary>
+        /// Gets the scaled selection rectangle.
+        /// </summary>
+        /// <returns>A cropping rectangle, scaled and positioned for the actual image dimensions</returns>
+        public Rectangle CalculateScaledSelectionRectangle()
+        {
+            float scale = (float)this.ImageRectangle.Width / this.Image.Width;
+            return new Rectangle(
+                ScaleOffset(this.SelectedRectangle.X, this.ImageRectangle.X, scale),
+                ScaleOffset(this.SelectedRectangle.Y, this.ImageRectangle.Y, scale),
+                ScaleDimension(this.SelectedRectangle.Width, scale),
+                ScaleDimension(this.SelectedRectangle.Height, scale));
+        }
+
+        /// <summary>
+        /// Gets the cropped image.
+        /// </summary>
+        /// <returns>A new image, filled with the portion of the image the user selected.</returns>
+        public Image CreateCroppedImage()
+        {
+            var scaledRectangle = this.CalculateScaledSelectionRectangle();
+            Image croppedImage = new Bitmap(scaledRectangle.Width, scaledRectangle.Height);
+            using (var g = Graphics.FromImage(croppedImage))
+            {
+                g.DrawImage(
+                    this.Image,
+                    new Rectangle(0, 0, croppedImage.Width, croppedImage.Height),
+                    scaledRectangle,
+                    GraphicsUnit.Pixel);
+            }
+
+            return croppedImage;
+        }
+
+        /// <summary>
+        /// Scales the image dimensions to fit in the CropBox window.  
+        /// </summary>
+        /// <returns>A <see cref="Size"/> that describes the width and height of the image as it appears in
+        /// the crop window.</returns>
+        private Size ScaleImageSizeToFit()
+        {
+            int height = this.Image.Height * this.Width / this.Image.Width;
+            int width = this.Width;
+            if (height > this.Height)
+            {
+                // Resize with height instead
+                width = this.Image.Width * this.Height / this.Image.Height;
+                height = this.Height;
+            }
+
+            return new Size(width, height);
+        }
+
+        /// <summary>
+        /// Calculate the size and position of the image rectangle as displayed in the crop box.  Then
+        /// sets the ImageRectangle property.
+        /// </summary>
+        private void SetupImageRectangle()
+        {
+            var scaledSize = this.ScaleImageSizeToFit();
+
+            // Find the position
+            int horizontalOffset = (this.Width - scaledSize.Width) / 2;
+            var scaledPosition = new Point(horizontalOffset, 0);
+
+            // The image rectangle
+            this.imageRectangle = new Rectangle(scaledPosition, scaledSize);
+        }
+
+        /// <summary>
+        /// Resets the previously drawn rectangle.
+        /// </summary>
+        private void ResetPreviousDrawnRectangle()
+        {
+            if (this.drawnRectangle != Rectangle.Empty)
+            {
+                // Reset the image.
+                this.Image = this.cachedImage.Clone() as Image;
+            }
+        }
+
+        /// <summary>
+        /// Starts drawing the rectangle.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        /// <param name="screenImageRectangle">The screen image rectangle.</param>
+        /// <param name="screenPoint">The screen point.</param>
+        private void StartDrawing(Control control, Rectangle screenImageRectangle, Point screenPoint)
+        {
+            // Assert drag mode.
+            this.isDrag = true;
+
+            // Is this the first rectangle drawn?
+            this.ResetPreviousDrawnRectangle();
+
+            // Capture the mouse
+            control.Capture = true;
+            Cursor.Clip = screenImageRectangle;
+
+            // Cache the start points
+            this.startPoint = screenPoint;
+        }
+
+        /// <summary>
         /// Handles the mouse down.
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -133,51 +264,32 @@ namespace PhotoBuddy.Controls
                 return;
             }
 
-            // Extract the control
-            Control control = (Control)sender;
-
             // Get the scaled image rectangle
-            int newHeight = this.Image.Height * this.Width / this.Image.Width;
-            int newWidth = this.Width;
-            if (newHeight > this.Height)
-            {
-                // Resize with height instead
-                newWidth = this.Image.Width * this.Height / this.Image.Height;
-                newHeight = this.Height;
-            }
-
-            // Find the position
-            int horizontalOffset = (this.Width - newWidth) / 2;
-
-            // The image rectangle
-            this.imageRectangle = new Rectangle(horizontalOffset, 0, newWidth, newHeight);
+            this.SetupImageRectangle();
 
             // Is the cursor inside the image rectangle?
-            var screenImageRectangle = control.RectangleToScreen(this.imageRectangle);
+            var control = (Control)sender;
+            var screenImageRectangle = control.RectangleToScreen(this.ImageRectangle);
             var screenPoint = control.PointToScreen(e.Location);
             if (!screenImageRectangle.Contains(screenPoint))
             {
                 return;
             }
 
-            // Assert drag mode.
-            this.isDrag = true;
+            this.StartDrawing(control, screenImageRectangle, screenPoint);
+        }
 
-            // Is this the first rectangle drawn?
-            if (this.drawnRectangle != Rectangle.Empty)
-            {
-                // Reset the image.
-                this.Image = this.cachedImage.Clone() as Image;
-            }
-
-            // Capture the mouse
-            control.Capture = true;
-            Cursor.Clip = screenImageRectangle;
-
-            // Cache the start points
-            ////this.startPoint = control.PointToScreen(new Point(e.X, e.Y));
-            this.startPoint = screenPoint;
-            this.rawStartPoint = e.Location;
+        /// <summary>
+        /// Refreshes the selection rectangle.
+        /// </summary>
+        /// <param name="screenPoint">The screen point.</param>
+        private void RefreshSelectionRectangle(Point screenPoint)
+        {
+            this.selectionRectangle = new Rectangle(
+                            this.startPoint.X,
+                            this.startPoint.Y,
+                            screenPoint.X - this.startPoint.X,
+                            screenPoint.Y - this.startPoint.Y);
         }
 
         /// <summary>
@@ -185,16 +297,14 @@ namespace PhotoBuddy.Controls
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        /// <remarks>If the mouse is being dragged, undraw and redraw the rectangle as the mouse moves.</remarks>
         private void HandleMouseMove(object sender, MouseEventArgs e)
         {
             if (!this.isDrag)
             {
                 return;
             }
-
-            // If the mouse is being dragged, undraw and redraw the rectangle as the mouse moves.
-            var control = (Control)sender;
-
+                        
             // Hide the previous rectangle by calling the 
             // DrawReversibleFrame method with the same parameters.
             ControlPaint.DrawReversibleFrame(
@@ -204,13 +314,9 @@ namespace PhotoBuddy.Controls
 
             // Calculate the endpoint and dimensions for the new 
             // rectangle, again using the PointToScreen method.
-            ////Point endPoint = ((Control)sender).PointToScreen(new Point(e.X, e.Y));
+            var control = (Control)sender;
             var screenPoint = control.PointToScreen(e.Location);
-            this.selectionRectangle = new Rectangle(
-                this.startPoint.X,
-                this.startPoint.Y,
-                screenPoint.X - this.startPoint.X,
-                screenPoint.Y - this.startPoint.Y);
+            this.RefreshSelectionRectangle(screenPoint);
 
             // Draw the new rectangle by calling DrawReversibleFrame
             // again.  
@@ -218,6 +324,37 @@ namespace PhotoBuddy.Controls
                 this.selectionRectangle,
                 this.BackColor,
                 FrameStyle.Dashed);
+        }
+
+        /// <summary>
+        /// Refreshes the drawn rectangle.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        /// <param name="endPoint">The end point.</param>
+        private void RefreshDrawnRectangle(Control control, Point endPoint)
+        {
+            var screenRectangle = new Rectangle(
+                                Math.Min(this.startPoint.X, endPoint.X),
+                                Math.Min(this.startPoint.Y, endPoint.Y),
+                                Math.Abs(this.selectionRectangle.Width),
+                                Math.Abs(this.selectionRectangle.Height));
+            this.drawnRectangle = control.RectangleToClient(screenRectangle);
+        }
+
+        /// <summary>
+        /// Draws the crop rectangle.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <param name="control">The control.</param>
+        private void DrawCropRectangle(Point location, Control control)
+        {
+            // Draw the rectangle to be evaluated.
+            using (var g = this.CreateGraphics())
+            {
+                var endPoint = control.PointToScreen(location);
+                this.RefreshDrawnRectangle(control, endPoint);
+                g.DrawRectangle(Pens.Red, this.drawnRectangle);
+            }
         }
 
         /// <summary>
@@ -232,12 +369,11 @@ namespace PhotoBuddy.Controls
                 return;
             }
 
-            var control = (Control)sender;
-
             // If the MouseUp event occurs, the user is not dragging.
             this.isDrag = false;
 
             // Release the mouse
+            var control = (Control)sender;
             control.Capture = false;
             Cursor.Clip = Rectangle.Empty;
 
@@ -247,22 +383,7 @@ namespace PhotoBuddy.Controls
                 this.BackColor,
                 FrameStyle.Dashed);
 
-            // Draw the rectangle to be evaluated.
-            using (var g = this.CreateGraphics())
-            {
-                Point endPoint = control.PointToScreen(e.Location);
-                int width = Math.Abs(this.selectionRectangle.Width);
-                int height = Math.Abs(this.selectionRectangle.Height);
-                int horizontalOffset = Math.Min(this.startPoint.X, endPoint.X);
-                int verticalOffset = Math.Min(this.startPoint.Y, endPoint.Y);
-                var screenRectangle = new Rectangle(
-                    horizontalOffset, 
-                    verticalOffset,
-                    width,
-                    height);
-                this.drawnRectangle = control.RectangleToClient(screenRectangle);
-                g.DrawRectangle(Pens.Red, this.drawnRectangle);
-            }
+            this.DrawCropRectangle(e.Location, control);
 
             // Reset the selection rectangle
             this.selectionRectangle = Rectangle.Empty;
