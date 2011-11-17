@@ -260,7 +260,14 @@ namespace PhotoBuddy
                 this.slideShowTimer.Stop();
             }
         }
-
+        /// This function will stop the timer for the slideshow when called
+        /// BUG FIX for crash found in cycle 2.
+        /// Kendra Diaz
+        private void StopTimer()
+        {
+            this.playPauseButton.Text = "4";
+            this.slideShowTimer.Stop();
+        }
         /// <summary>
         /// Handles the Click event of the RenamePhotoButton control.
         /// </summary>
@@ -268,6 +275,8 @@ namespace PhotoBuddy
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void HandleEditButtonClick(object sender, EventArgs e)
         {
+            this.StopTimer();
+            //stop slide show
             this.SuspendLayout();
             this.foundationTableLayoutPanel.Hide();
 
