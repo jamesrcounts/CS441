@@ -38,7 +38,7 @@ namespace PhotoBuddy
             this.playPauseButton = new System.Windows.Forms.Button();
             this.previousPhotoButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.RenamePhotoButton = new System.Windows.Forms.Button();
+            this.EditPhotoButton = new System.Windows.Forms.Button();
             this.currentAlbumLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.backButton = new System.Windows.Forms.Button();
@@ -165,7 +165,7 @@ namespace PhotoBuddy
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.RenamePhotoButton);
+            this.panel1.Controls.Add(this.EditPhotoButton);
             this.panel1.Controls.Add(this.currentAlbumLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(383, 0);
@@ -174,27 +174,27 @@ namespace PhotoBuddy
             this.panel1.Size = new System.Drawing.Size(203, 36);
             this.panel1.TabIndex = 5;
             // 
-            // RenamePhotoButton
+            // EditPhotoButton
             // 
-            this.RenamePhotoButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RenamePhotoButton.AutoSize = true;
-            this.RenamePhotoButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.RenamePhotoButton.BackColor = System.Drawing.Color.Transparent;
-            this.RenamePhotoButton.FlatAppearance.BorderSize = 0;
-            this.RenamePhotoButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
-            this.RenamePhotoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RenamePhotoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RenamePhotoButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
-            this.RenamePhotoButton.Location = new System.Drawing.Point(146, 4);
-            this.RenamePhotoButton.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.RenamePhotoButton.Name = "RenamePhotoButton";
-            this.RenamePhotoButton.Size = new System.Drawing.Size(47, 30);
-            this.RenamePhotoButton.TabIndex = 11;
-            this.RenamePhotoButton.Text = "Edit";
-            this.RenamePhotoButton.UseVisualStyleBackColor = false;
-            this.RenamePhotoButton.Click += new System.EventHandler(this.HandleEditButtonClick);
-            this.RenamePhotoButton.MouseEnter += new System.EventHandler(this.HandleButtonMouseEnter);
-            this.RenamePhotoButton.MouseLeave += new System.EventHandler(this.HandleButtonMouseLeave);
+            this.EditPhotoButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.EditPhotoButton.AutoSize = true;
+            this.EditPhotoButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.EditPhotoButton.BackColor = System.Drawing.Color.Transparent;
+            this.EditPhotoButton.FlatAppearance.BorderSize = 0;
+            this.EditPhotoButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.EditPhotoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EditPhotoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditPhotoButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
+            this.EditPhotoButton.Location = new System.Drawing.Point(146, 4);
+            this.EditPhotoButton.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.EditPhotoButton.Name = "EditPhotoButton";
+            this.EditPhotoButton.Size = new System.Drawing.Size(47, 30);
+            this.EditPhotoButton.TabIndex = 11;
+            this.EditPhotoButton.Text = "Edit";
+            this.EditPhotoButton.UseVisualStyleBackColor = false;
+            this.EditPhotoButton.Click += new System.EventHandler(this.HandleEditButtonClick);
+            this.EditPhotoButton.MouseEnter += new System.EventHandler(this.HandleButtonMouseEnter);
+            this.EditPhotoButton.MouseLeave += new System.EventHandler(this.HandleButtonMouseLeave);
             // 
             // currentAlbumLabel
             // 
@@ -302,7 +302,7 @@ namespace PhotoBuddy
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label photoNameLabel;
         private System.Windows.Forms.TableLayoutPanel bottomtableLayoutPanel2;
-        private System.Windows.Forms.Button RenamePhotoButton;
+        private System.Windows.Forms.Button EditPhotoButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button playPauseButton;

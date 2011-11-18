@@ -51,17 +51,19 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public AlbumRepository()
         {
+            //if dir dosnt exist creat it
             if (!Directory.Exists(Constants.PhotosFolderPath))
             {
                 Directory.CreateDirectory(Constants.PhotosFolderPath);
             }
-
+            //load existing data from file
             if (File.Exists(Constants.XmlDataFilePath))
             {
                 this.document = XDocument.Load(Constants.XmlDataFilePath);
             }
             else
             {
+                //or create file
                 this.document = new XDocument(new XElement(PhotoBuddyTag));
                 this.document.Save(Constants.XmlDataFilePath);
             }
@@ -330,12 +332,30 @@ namespace PhotoBuddy.Models
         ///   <c>true</c> if the specified album name is already used; otherwise, <c>false</c>.
         /// </returns>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan
-        /// </remarks>
+        /// Author(s): Miguel Gonzales and Andrea Tan and Kendra Diaz-(11/17/11)
+        /// Kendra: New definition handles names with white spaces and makes names not case sensitive
         public bool IsExistingAlbumName(string albumName)
         {
-            return this.albums.ContainsKey(albumName);
+            
+
+            //if album name exists return true else false
+            albumName = albumName.Trim();
+            albumName = albumName.ToLower();
+            //lower albumName
+            foreach (string keyAlbum in this.albums.Keys)
+            {
+                string existingAlbum = keyAlbum.Trim();
+                existingAlbum = existingAlbum.ToLower();
+                if (albumName == existingAlbum)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
+
+            //return this.albums.ContainsKey(albumName);
+        
 
         /// <summary>
         /// Loads the albums.

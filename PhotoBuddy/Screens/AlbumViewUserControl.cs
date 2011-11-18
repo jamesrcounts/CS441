@@ -433,6 +433,8 @@ namespace PhotoBuddy.Screens
             using (var photoForm = new ViewPhotoForm(this.currentAlbum, thumbnailControl.Photo))
             {
                 photoForm.PhotoAddedEvent += this.AddPhoto;
+                if (this.currentAlbum.AlbumId=="Search Results")
+                    photoForm.DisableEdit();
                 photoForm.ShowDialog();
                 photoForm.PhotoAddedEvent -= this.AddPhoto;
             }

@@ -311,6 +311,8 @@ namespace PhotoBuddy.Screens
             }
 
             // Creating a new album
+            //trim leading and trailing whitespace 
+            rawAlbumName = rawAlbumName.Trim();
             this.Model.AddAlbum(rawAlbumName);
             this.Model.SaveAlbums();
 
@@ -362,6 +364,11 @@ namespace PhotoBuddy.Screens
         {
             Button button = sender as Button;
             button.ForeColor = Color.White;
+        }
+
+        private void albumNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

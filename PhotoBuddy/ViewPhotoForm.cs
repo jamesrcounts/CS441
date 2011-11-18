@@ -268,6 +268,12 @@ namespace PhotoBuddy
             this.playPauseButton.Text = "4";
             this.slideShowTimer.Stop();
         }
+        /// Nov. 17, 2011 - Disable photo editing from view photo in search results.
+        /// Kendra Diaz and Thomas D.
+        public void DisableEdit()
+        {
+            this.EditPhotoButton.Visible = false;
+        }
         /// <summary>
         /// Handles the Click event of the RenamePhotoButton control.
         /// </summary>
