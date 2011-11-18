@@ -182,6 +182,7 @@ namespace PhotoBuddy.Models
                 return;
             }
 
+             
             album.AlbumId = updateName;
             this.albums.Add(album.AlbumId, album);
             this.SaveAlbums();

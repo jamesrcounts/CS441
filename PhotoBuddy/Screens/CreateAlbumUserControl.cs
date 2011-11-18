@@ -269,9 +269,15 @@ namespace PhotoBuddy.Screens
         /// preCondition: input label must not be empty string
         /// postCondition: if the album name has not been created then simply continue and
         /// eventually get added to album list. otherwise it will do nothing.</para>
+        /// <para>Alterations:</para>
+        /// <para>11/18 Thomas Donnellan applying whitespace check  and non-case sensitive 
+        /// to create album added new lines of code</para>
         /// </remarks>
         private void HandleContinueButtonClick(object sender, EventArgs e)
         {
+            albumNameTextBox.Text = albumNameTextBox.Text.Trim();
+            albumNameTextBox.Text = albumNameTextBox.Text.Trim();
+
             if (string.IsNullOrWhiteSpace(this.albumNameTextBox.Text))
             {
                 this.HandleEmptyAlbumNameError();
