@@ -34,6 +34,7 @@ namespace PhotoBuddy.Screens
             this.captionLabel = new System.Windows.Forms.Label();
             this.footerTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.rightFooterPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.RightButton = new System.Windows.Forms.Button();
             this.leftFooterPanel = new System.Windows.Forms.Panel();
             this.LeftButton = new System.Windows.Forms.Button();
@@ -101,6 +102,7 @@ namespace PhotoBuddy.Screens
             // 
             // rightFooterPanel
             // 
+            this.rightFooterPanel.Controls.Add(this.button1);
             this.rightFooterPanel.Controls.Add(this.RightButton);
             this.rightFooterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightFooterPanel.Location = new System.Drawing.Point(383, 0);
@@ -108,6 +110,26 @@ namespace PhotoBuddy.Screens
             this.rightFooterPanel.Name = "rightFooterPanel";
             this.rightFooterPanel.Size = new System.Drawing.Size(203, 36);
             this.rightFooterPanel.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.AutoSize = true;
+            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
+            this.button1.Location = new System.Drawing.Point(44, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(49, 30);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "B/W";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.Click_BlacknWhite);
             // 
             // RightButton
             // 
@@ -202,5 +224,6 @@ namespace PhotoBuddy.Screens
         private System.Windows.Forms.Button LeftButton;
         private System.Windows.Forms.Button RightButton;
         private Controls.CropBox photoCropBox;
+        private System.Windows.Forms.Button button1;
     }
 }

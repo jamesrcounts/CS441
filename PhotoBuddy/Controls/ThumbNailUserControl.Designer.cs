@@ -26,8 +26,8 @@ namespace PhotoBuddy.Controls
             this.thumbnailContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.photoNameTextBox = new System.Windows.Forms.TextBox();
             this.setAsAlbumCoverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.photoNameTextBox = new System.Windows.Forms.TextBox();
             this.foundationTableLayoutPanel.SuspendLayout();
             this.photoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
@@ -92,20 +92,28 @@ namespace PhotoBuddy.Controls
             this.setAsAlbumCoverToolStripMenuItem});
             this.thumbnailContextMenuStrip.Name = "contextMenuStrip1";
             this.thumbnailContextMenuStrip.Size = new System.Drawing.Size(178, 92);
+            this.thumbnailContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.thumbnailContextMenuStrip_Opening);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.HandleDeleteToolStripMenuItemClick);
             // 
             // renameToolStripMenuItem
             // 
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.renameToolStripMenuItem.Text = "Rename";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.RenamePhoto);
+            // 
+            // setAsAlbumCoverToolStripMenuItem
+            // 
+            this.setAsAlbumCoverToolStripMenuItem.Name = "setAsAlbumCoverToolStripMenuItem";
+            this.setAsAlbumCoverToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.setAsAlbumCoverToolStripMenuItem.Text = "Set as Album Cover";
+            this.setAsAlbumCoverToolStripMenuItem.Click += new System.EventHandler(this.SetAlbumCover);
             // 
             // photoNameTextBox
             // 
@@ -120,13 +128,6 @@ namespace PhotoBuddy.Controls
             this.photoNameTextBox.Size = new System.Drawing.Size(162, 13);
             this.photoNameTextBox.TabIndex = 1;
             this.photoNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // setAsAlbumCoverToolStripMenuItem
-            // 
-            this.setAsAlbumCoverToolStripMenuItem.Name = "setAsAlbumCoverToolStripMenuItem";
-            this.setAsAlbumCoverToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.setAsAlbumCoverToolStripMenuItem.Text = "Set as Album Cover";
-            this.setAsAlbumCoverToolStripMenuItem.Click += new System.EventHandler(this.SetAlbumCover);
             // 
             // ThumbnailUserControl
             // 

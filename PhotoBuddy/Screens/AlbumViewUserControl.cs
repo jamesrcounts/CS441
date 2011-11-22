@@ -22,6 +22,7 @@ namespace PhotoBuddy.Screens
     using PhotoBuddy.Models;
     using PhotoBuddy.Properties;
 
+
     /// <summary>
     /// Displays an album
     /// </summary>

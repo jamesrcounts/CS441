@@ -137,6 +137,7 @@
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumEventArgs.cs" />
     <Compile Include="Models\AlbumRepository.cs" />
+    <Compile Include="Models\BlackandWhite.cs" />
     <Compile Include="Models\IAlbum.cs" />
     <Compile Include="Models\IPhoto.cs" />
     <Compile Include="Models\Photo.cs" />
@@ -267,7 +268,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="FxCop\FxCop.bat" />
-    <None Include="FxCop\PhotoBuddy.FxCop" />
+    <None Include="Models\PhotoBuddy.FxCop" />
     <None Include="GoldRush.snk" />
     <None Include="Models\ModelClasses.cd" />
     <None Include="Properties\app.manifest" />

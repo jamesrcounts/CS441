@@ -207,7 +207,7 @@ namespace PhotoBuddy.Models
                 return;
             }
 
-            ////       album.RemovePhoto(photoId);
+     
             photo.DisplayName = displayName;
             ////   album.AddPhoto(photo);
             ////  this.albums.Add(album.AlbumId, album);

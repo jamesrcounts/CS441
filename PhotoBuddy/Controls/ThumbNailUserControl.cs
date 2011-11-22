@@ -327,5 +327,10 @@ namespace PhotoBuddy.Controls
             album.CoverPhoto = this.photo;
             album.Repository.SaveAlbums();
         }
+
+        private void thumbnailContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
     }
 }

@@ -77,10 +77,18 @@ namespace PhotoBuddy.Controls
 
             set
             {
-                this.Image = value;
-                if (this.Image != null)
+                try
                 {
-                    this.cachedImage = value.Clone() as Image;
+                    this.Image = value;
+                    if (this.Image != null)
+                    {
+                        this.cachedImage = value.Clone() as Image;
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                    return;
                 }
             }
         }

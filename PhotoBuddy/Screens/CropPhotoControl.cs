@@ -2,12 +2,16 @@
 // <copyright file="CropPhotoControl.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
+
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Screens
 {
+    using PhotoBuddy.Models;
     using System;
     using System.Drawing;
     using System.Windows.Forms;
+    using System.IO;
+
 
     /// <summary>
     /// Provides a user interface to crop a photo.
@@ -40,6 +44,8 @@ namespace PhotoBuddy.Screens
         /// </summary>
         public event EventHandler<EventArgs<Image>> ContinueEvent;
 
+        ///Occurs when Blk n White is clicked
+        public event EventHandler<EventArgs<Image>> ContinueBWEvent;
         /// <summary>
         /// Gets or sets the image.
         /// </summary>
@@ -86,7 +92,16 @@ namespace PhotoBuddy.Screens
                 handler(sender, e);
             }
         }
-
+        //This is the caller to the black n white event handler 
+        //Kendra Diaz
+        public virtual void OnContinueBlknWhtEvent(object sender, EventArgs<Image> e)
+        {
+            EventHandler<EventArgs<Image>> handler = this.ContinueBWEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
         /// <summary>
         /// Handles the Click event of the LeftButton control.
         /// </summary>
@@ -113,5 +128,17 @@ namespace PhotoBuddy.Screens
             Image croppedImage = this.photoCropBox.CreateCroppedImage();
             this.OnContinueEvent(this, new EventArgs<Image>(croppedImage));
         }
+
+        private void Click_BlacknWhite(object sender, EventArgs e)
+        {
+            Bitmap copyImage = (Bitmap)this.photoCropBox.Image;
+            copyImage = BlackandWhite.MakeGrayscale3(copyImage);
+            this.photoCropBox.Image = copyImage;  
+            this.Invalidate();
+            //NOW SAVE THE IMAGE
+            this.OnContinueBlknWhtEvent(this, new EventArgs<Image>(copyImage));
+        }
+
     }
-}
+    }
+

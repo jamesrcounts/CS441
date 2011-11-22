@@ -109,9 +109,12 @@ namespace PhotoBuddy
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
         private void HandleContinueButtonClick(object sender, EventArgs e)
-        {
+        {          
+            
+            
+            this.DisplayName = this.displayNameTextBox.Text;
             // Did user enter a blank name?
-            if (string.IsNullOrWhiteSpace(this.DisplayName))
+            //if (string.IsNullOrWhiteSpace(this.DisplayName))
             {
                 CultureAwareMessageBox.Show(
                     this,
@@ -134,7 +137,7 @@ namespace PhotoBuddy
                 return;
             }
 
-            this.DisplayName = this.displayNameTextBox.Text;
+  
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -290,6 +290,7 @@ namespace PhotoBuddy
             photoControl.Image = this.pictureBox1.Image;
             photoControl.CancelEvent += this.CancelCrop;
             photoControl.ContinueEvent += this.ContinueCrop;
+            photoControl.ContinueBWEvent += this.ContinueBlknWht;
             this.Controls.Add(photoControl);
             photoControl.Dock = DockStyle.Fill;
 
@@ -364,11 +365,12 @@ namespace PhotoBuddy
         {
             photoCropControl.ContinueEvent -= this.ContinueCrop;
             photoCropControl.CancelEvent -= this.CancelCrop;
+            photoCropControl.ContinueBWEvent -= this.ContinueBlknWht;
             photoCropControl.Hide();
             photoCropControl.Dispose();
             this.foundationTableLayoutPanel.Show();
         }
-
+     
         /// <summary>
         /// Cancels the crop and shows the view again.
         /// </summary>
@@ -379,6 +381,23 @@ namespace PhotoBuddy
             var photoCropControl = (CropPhotoControl)sender;
             this.SuspendLayout();
             this.TearDownCropControl(photoCropControl);
+            this.ResumeLayout();
+        }
+        /// <summary>
+        /// Handle Saving new BlknWht photo
+        /// By: Kendra Diaz
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContinueBlknWht(object sender, EventArgs<Image> e)
+        {
+            var photoCropControl = (CropPhotoControl)sender;
+            this.SuspendLayout();
+
+            IPhoto blknwhtPhoto = this.AddImageToAlbum(e.Data);
+            Task.Factory.StartNew(() => this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(blknwhtPhoto)));
+            this.TearDownCropControl(photoCropControl);
+            this.DisplayPhoto(blknwhtPhoto);
+
             this.ResumeLayout();
         }
     }
