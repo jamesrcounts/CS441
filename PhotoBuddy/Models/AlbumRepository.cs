@@ -181,8 +181,7 @@ namespace PhotoBuddy.Models
             {
                 return;
             }
-
-             
+            updateName = updateName.Trim();
             album.AlbumId = updateName;
             this.albums.Add(album.AlbumId, album);
             this.SaveAlbums();
