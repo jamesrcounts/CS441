@@ -114,7 +114,7 @@ namespace PhotoBuddy
             
             this.DisplayName = this.displayNameTextBox.Text;
             // Did user enter a blank name?
-            //if (string.IsNullOrWhiteSpace(this.DisplayName))
+            if (string.IsNullOrWhiteSpace(this.DisplayName))
             {
                 CultureAwareMessageBox.Show(
                     this,

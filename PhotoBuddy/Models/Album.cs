@@ -131,12 +131,12 @@ namespace PhotoBuddy.Models
         /// Gets a reference to the repository this album belongs to.
         /// </summary>
         /// <remarks>
-        /// <para>Authors(s): Jim Counts and Eric Wei and Eric Wei</para>
+        /// <para>Authors(s): Jim Counts and Eric Wei</para>
         /// <para>Created: 2011-10-25</para></remarks>
         public AlbumRepository Repository { get; private set; }
 
         /// <summary>
-        /// Gets the count.
+        /// Gets the count of photos in the album.
         /// </summary>
         /// <remarks>
         ///   <para>Author: Jim Counts and Eric Wei</para>
@@ -183,7 +183,7 @@ namespace PhotoBuddy.Models
         /// <param name="filePath">The file path.</param>
         /// <returns>The attached photo.</returns>
         /// <remarks>
-        ///   <para>Author: Jim Counts and Eric Wei and Eric Wei</para>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created On: 2011-11-06</para>
         /// </remarks>
         public IPhoto AddPhoto(string filePath)
@@ -272,6 +272,7 @@ namespace PhotoBuddy.Models
             }
 
             var thumbnail = this.coverPhoto.CreateThumbnail(maxWidth, maxHeight);
+
             if (thumbnail == null)
             {
                 return this.Photos.First().CreateThumbnail(maxWidth, maxHeight);
@@ -409,6 +410,10 @@ namespace PhotoBuddy.Models
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;PhotoBuddy.Models.IPhoto&gt;"/> instance containing the event data.</param>
+        /// <remarks>
+        /// Author: Jim Counts and Eric Wei
+        /// Created: 2011-11-06
+        /// </remarks>
         public void OnPhotoAddedEvent(object sender, EventArgs<IPhoto> e)
         {
             EventHandler<EventArgs<IPhoto>> handler = this.PhotoAddedEvent;
