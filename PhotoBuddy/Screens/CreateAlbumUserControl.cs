@@ -236,6 +236,7 @@ namespace PhotoBuddy.Screens
             this.Model.SaveAlbums();
             this.OnRenameAlbumEvent(this, new EventArgs<IAlbum>(this.album));
         }
+
         //************************************************************
         /// REFACTORING - Display invalid name message
         /// Authors: Kendra Diaz and Thomas Donnellan<summary>
@@ -251,6 +252,7 @@ namespace PhotoBuddy.Screens
                 invalidAlbumNameMessage.Icon);
             return;
         }
+
         //***********************************************************************
         /// <summary>
         /// Handles the empty album name error.
@@ -264,6 +266,7 @@ namespace PhotoBuddy.Screens
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
         }
+
         //***********************************************************************
         /// <summary>
         /// Handles the name too long error.
@@ -277,6 +280,7 @@ namespace PhotoBuddy.Screens
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
         }
+
         //***********************************************************************
         /// <summary>
         /// Handles the Click event of the continueButton control.

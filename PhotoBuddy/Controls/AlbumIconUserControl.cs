@@ -2,6 +2,11 @@
 // <copyright file="AlbumIconUserControl.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
+//
+// Author(s): Jim Counts, Eric Wei, Thomas Donnellan
+// Date: Nov 5 2011
+// Modified date: Nov 25 2011
+// High level Description: this class is for album icon user control
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Controls
 {
@@ -25,7 +30,7 @@ namespace PhotoBuddy.Controls
         /// Initializes a new instance of the <see cref="AlbumIconUserControl"/> class.
         /// </summary>
         /// <remarks>
-        ///   <para>Authors: Jim Counts and Eric Wei, Miguel Gonzales.</para>
+        ///   <para>Authors: Jim Counts, Eric Wei, Miguel Gonzales.</para>
         ///   <para>Modified: 2011-11-05</para>
         /// </remarks>
         public AlbumIconUserControl()
@@ -288,7 +293,7 @@ namespace PhotoBuddy.Controls
         }
 
         /// <summary>
-        /// Highlights the photo when the mouse is over it.
+        /// Highlights the Album when the mouse is over it.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
@@ -297,7 +302,7 @@ namespace PhotoBuddy.Controls
         /// Date: Oct 13 2011
         /// Modified date: Oct 23 2011
         /// </remarks>
-        private void HighlightPhoto(object sender, EventArgs e)
+        private void HighlightAlbum(object sender, EventArgs e)
         {
             this.thumbnailPanel.BackColor = Color.Gold;
         }

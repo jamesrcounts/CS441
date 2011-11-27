@@ -2,6 +2,11 @@
 // <copyright file="SearchControl.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
+//
+// Author(s): Jim Counts and Eric wei
+// Date: Nov 5, 2011
+// Modified date: Nov 25, 2011
+// High level Description: this class is for searching photos 
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Controls
 {

@@ -2,7 +2,12 @@
 // <copyright file="IAlbum.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
+// Author(s): Jim Counts and Eric Wei
+// Date: Nov 5 2011
+// Modified date: Nov 25 2011
+// Description: this interface is responsible for album functions.
 //-----------------------------------------------------------------------
+
 namespace PhotoBuddy.Models
 {
     using System;

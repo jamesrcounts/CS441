@@ -44,40 +44,6 @@ namespace PhotoBuddy
             this.messageLabel.Text = "This is the photo you have selected to rename.";
         }
 
-        /////// <summary>
-        /////// Initializes a new instance of the <see cref="UploadViewForm"/> class.
-        /////// </summary>
-        /////// <param name="photoFileName">The photo to verify.</param>
-        /////// <remarks>
-        /////// Author(s): Miguel Gonzales and Andrea Tan
-        /////// </remarks>
-        ////private UploadViewForm(string photoFileName)
-        ////{
-        ////    this.InitializeComponent();
-        ////    this.Text = Format.Culture("Upload {0} - Photo Buddy", Path.GetFileName(photoFileName));
-
-        ////    // Try to open the image.
-        ////    try
-        ////    {
-        ////        using (MemoryStream imageStream = new MemoryStream(File.ReadAllBytes(photoFileName)))
-        ////        {
-        ////            this.pictureBox1.Image = Image.FromStream(imageStream);
-        ////        }
-        ////    }
-        ////    catch (OutOfMemoryException)
-        ////    {
-        ////        // File was not a valid image so abort the upload & warn the user.
-        ////        CultureAwareMessageBox.Show(
-        ////            this,
-        ////            PhotoBuddy.Properties.Resources.ErrorNotPictureFile,
-        ////            PhotoBuddy.Properties.Resources.AppName,
-        ////            MessageBoxButtons.OK,
-        ////            MessageBoxIcon.Warning);
-        ////        this.HandleCancelButtonClick(this, new EventArgs());
-        ////    }
-
-        ////    this.displayNameTextBox.Text = Path.GetFileName(photoFileName);
-        ////}
 
         /// <summary>
         /// Gets the name of the photo.

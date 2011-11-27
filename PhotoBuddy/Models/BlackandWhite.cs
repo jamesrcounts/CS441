@@ -1,4 +1,14 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Album.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+// Author(s): Kendra Diaz, Thomas Donnellan, Eric Wei, Jim Counts
+// Date: Nov 22 2011
+// Modified date: Nov 26 2011
+// Description: this class is responsible for converting an image to grayscale.
+// Code from:http://stackoverflow.com/questions/2265910/c-convert-image-to-grayscale<summary>
+//-----------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,14 +19,15 @@ namespace PhotoBuddy.Models
 {
     public class BlackandWhite
     {
-
-        //*******************************************************************************
-        /// This class is used to convert an image to grayscale.
-        /// I got the code from:http://stackoverflow.com/questions/2265910/c-convert-image-to-grayscale<summary>
-        /// Author: Kendra Diaz
-        /// 
+        /// <summary>
+        /// Changs an image to grayscale.
+        /// </summary>
         /// <param name="original"></param>
         /// <returns>Bitmap object</returns>
+        /// <remarks>
+        ///   <para>Author(s): Kendra Diaz, Thomas Donnellan, Eric Wei, Jim Counts</para>
+        ///   <para>Modified: 2011-11-26</para>
+        /// </remarks>
         public static Bitmap MakeGrayscale3(Bitmap original)
         {
             //create a blank bitmap the same size as original
@@ -28,13 +39,13 @@ namespace PhotoBuddy.Models
             //create the grayscale ColorMatrix
             ColorMatrix colorMatrix = new ColorMatrix(
                new float[][] 
-      {
-         new float[] {.3f, .3f, .3f, 0, 0},
-         new float[] {.59f, .59f, .59f, 0, 0},
-         new float[] {.11f, .11f, .11f, 0, 0},
-         new float[] {0, 0, 0, 1, 0},
-         new float[] {0, 0, 0, 0, 1}
-      });
+         {
+            new float[] {.3f, .3f, .3f, 0, 0},
+             new float[] {.59f, .59f, .59f, 0, 0},
+            new float[] {.11f, .11f, .11f, 0, 0},
+             new float[] {0, 0, 0, 1, 0},
+            new float[] {0, 0, 0, 0, 1}
+          });
 
             //create some image attributes
             ImageAttributes attributes = new ImageAttributes();

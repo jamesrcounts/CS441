@@ -2,6 +2,10 @@
 // <copyright file="EventArgs{T}.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
+// Author(s): Jim Counts and Eric Wei
+// Date: Nov 5 2011
+// Modified date: Nov 26 2011
+// Description: this class is responsible in giving a generic way to pass data in an event.
 //-----------------------------------------------------------------------
 namespace PhotoBuddy
 {

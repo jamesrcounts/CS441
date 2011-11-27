@@ -2,6 +2,10 @@
 // <copyright file="XmlPhoto.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
+// Author(s): Jim Counts and Eric Wei
+// Date: Nov 5 2011
+// Modified date: Nov 26 2011
+// Description: this class is responsible in instantiation of the xml photo objects.
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Models
 {

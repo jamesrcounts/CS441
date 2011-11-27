@@ -209,8 +209,7 @@ namespace PhotoBuddy.Models
 
      
             photo.DisplayName = displayName;
-            ////   album.AddPhoto(photo);
-            ////  this.albums.Add(album.AlbumId, album);
+           
             this.SaveAlbums();
         }
 

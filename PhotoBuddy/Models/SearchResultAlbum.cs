@@ -2,6 +2,11 @@
 // <copyright file="SearchResultAlbum.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
+// Author(s): Jim Counts and Eric Wei
+// Date: Nov 6 2011
+// Modified date: Nov 26 2011
+// Description: this class is responsible in instantiation of a search album object.
+//              The search album does not follow normal album rules.
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Models
 {

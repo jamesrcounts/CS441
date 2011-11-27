@@ -211,7 +211,7 @@ namespace PhotoBuddy.Controls
         /// </summary>
         /// <param name="thumbnail">The thumbnail.</param>
         /// <remarks>
-        /// Author: Jim Counts
+        /// Author: Jim Counts and Eric Wei
         /// Created: 2011-11-07
         /// </remarks>
         private void ThumbnailSetter(Image thumbnail)
@@ -267,17 +267,6 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void HandleDeleteToolStripMenuItemClick(object sender, EventArgs e)
         {
-            ////DialogResult result = CultureAwareMessageBox.Show(
-            ////    this,
-            ////    "Are you sure you want to delete this photo?", 
-            ////    "Delete Photo?", 
-            ////    MessageBoxButtons.YesNo, 
-            ////    MessageBoxIcon.Question);
-            ////if (result == DialogResult.No)
-            ////{
-            ////    return;
-            ////}
-
             this.Photo.Album.Repository.DeletePhoto(this.Photo.Album, this.Photo);
             this.OnDeletePhotoEvent(this, new EventArgs());
         }
