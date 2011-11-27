@@ -112,6 +112,7 @@ namespace PhotoBuddy.Controls
             set
             {
                 this.photo = value;
+                /// Yellow Flag 1 posible bug requires further research Thomas Donnellan.
                 this.thumbnailPictureBox.Image = ThumbnailUserControl.DefaultImage;
                 if (this.photo != null)
                 {

@@ -2,7 +2,7 @@
 // <copyright file="ViewPhotoForm.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
-// Author(s): Miguel Gonzales and Andrea Tan
+// Author(s): Miguel Gonzales, Andrea Tan, Thomas Donnellan, Kendra Diaz, Eric Wei, and Jim Counts
 // Date: Sept 28 2011
 // Modified date: Oct 23 2011
 // Description: this class is responsible to show photo or possibly multiple photos
@@ -260,20 +260,34 @@ namespace PhotoBuddy
                 this.slideShowTimer.Stop();
             }
         }
-        /// This function will stop the timer for the slideshow when called
+        /// <summary>
+        /// This function will stop the timer for the slideshow when called.
         /// BUG FIX for crash found in cycle 2.
-        /// Kendra Diaz
+        /// </summary>
+        /// <remarks>
+        /// Author: Kendra Diaz
+        /// Created: Nov. 17, 2011
+        /// Modified: Thomas Donnellan refactoring 11/27/2011
+        /// </remarks>
         private void StopTimer()
         {
             this.playPauseButton.Text = "4";
             this.slideShowTimer.Stop();
         }
-        /// Nov. 17, 2011 - Disable photo editing from view photo in search results.
-        /// Kendra Diaz and Thomas D.
+
+        ///<summary>
+        ///Disable photo editing from view photo in search results.
+        ///</summary>
+        /// <remarks>
+        /// Authors: Kendra Diaz and Thomas Donnellan.
+        /// Created: Nov. 17, 2011 
+        /// Modified: Thomas Donnellan refactoring 11/27/2011
+        /// </remarks>
         public void DisableEdit()
         {
             this.EditPhotoButton.Visible = false;
         }
+
         /// <summary>
         /// Handles the Click event of the RenamePhotoButton control.
         /// </summary>
@@ -384,10 +398,14 @@ namespace PhotoBuddy
             this.ResumeLayout();
         }
         /// <summary>
-        /// Handle Saving new BlknWht photo
-        /// By: Kendra Diaz
+        /// Handle Saving new Black and White photo
+        /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <remarks>
+        /// Author: Kendra Diaz
+        /// Modified: Thomas Donnellan refactoring 11/27/2011
+        /// </remarks>
         private void ContinueBlknWht(object sender, EventArgs<Image> e)
         {
             var photoCropControl = (CropPhotoControl)sender;
