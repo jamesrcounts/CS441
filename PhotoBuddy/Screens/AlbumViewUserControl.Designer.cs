@@ -198,9 +198,9 @@ namespace PhotoBuddy.Screens
             this.contentPanel.TabIndex = 3;
             // 
             // addPhotosFileDialog
-            // 
-            this.addPhotosFileDialog.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png|bmp files (*.bmp)|*.bmp|gif files" +
-                " (*.gif)|*.gif";
+            //modified:11-29 Donnellan and Tan rewrite to allow all image types at once 
+            //
+            this.addPhotosFileDialog.Filter = "(*.png;*.bmp;*.jpg;*.gif)|*.png;*.bmp;*.jpg;*.gif|All files (*.*)|*.* ";
             this.addPhotosFileDialog.Multiselect = true;
             // 
             // AlbumViewUserControl

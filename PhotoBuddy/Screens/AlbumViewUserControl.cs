@@ -430,14 +430,20 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandlePhotoClick(object sender, EventArgs e)
         {
-            var thumbnailControl = (ThumbnailUserControl)sender;
-            using (var photoForm = new ViewPhotoForm(this.currentAlbum, thumbnailControl.Photo))
+            try
             {
-                photoForm.PhotoAddedEvent += this.AddPhoto;
-                if (this.currentAlbum.AlbumId=="Search Results")
-                    photoForm.DisableEdit();
-                photoForm.ShowDialog();
-                photoForm.PhotoAddedEvent -= this.AddPhoto;
+                var thumbnailControl = (ThumbnailUserControl)sender;
+                using (var photoForm = new ViewPhotoForm(this.currentAlbum, thumbnailControl.Photo))
+                {
+                    photoForm.PhotoAddedEvent += this.AddPhoto;
+                    if (this.currentAlbum.AlbumId == "Search Results")
+                        photoForm.DisableEdit();
+                    photoForm.ShowDialog();
+                    photoForm.PhotoAddedEvent -= this.AddPhoto;
+                }
+            }
+            catch
+            {
             }
         }
 
