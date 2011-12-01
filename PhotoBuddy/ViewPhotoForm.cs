@@ -296,7 +296,7 @@ namespace PhotoBuddy
         private void HandleEditButtonClick(object sender, EventArgs e)
         {
             this.StopTimer();
-            //stop slide show
+            //// stop slide show
             this.SuspendLayout();
             this.foundationTableLayoutPanel.Hide();
 
@@ -364,10 +364,14 @@ namespace PhotoBuddy
             this.SuspendLayout();
 
             IPhoto croppedPhoto = this.AddImageToAlbum(e.Data);
-            Task.Factory.StartNew(() => this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(croppedPhoto)));
-            this.TearDownCropControl(photoCropControl);
-            this.DisplayPhoto(croppedPhoto);
+            if (croppedPhoto != null)
+            {
+                Task.Factory.StartNew(() => this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(croppedPhoto)));
+                this.DisplayPhoto(croppedPhoto);
+            }
 
+            this.TearDownCropControl(photoCropControl);
+            
             this.ResumeLayout();
         }
 
@@ -412,10 +416,13 @@ namespace PhotoBuddy
             this.SuspendLayout();
 
             IPhoto blknwhtPhoto = this.AddImageToAlbum(e.Data);
-            Task.Factory.StartNew(() => this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(blknwhtPhoto)));
-            this.TearDownCropControl(photoCropControl);
-            this.DisplayPhoto(blknwhtPhoto);
+            if (blknwhtPhoto != null)
+            {
+                Task.Factory.StartNew(() => this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(blknwhtPhoto)));
+                this.DisplayPhoto(blknwhtPhoto);
+            }   
 
+            this.TearDownCropControl(photoCropControl);
             this.ResumeLayout();
         }
     }

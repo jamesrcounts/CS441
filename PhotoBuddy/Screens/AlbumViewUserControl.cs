@@ -22,23 +22,12 @@ namespace PhotoBuddy.Screens
     using PhotoBuddy.Models;
     using PhotoBuddy.Properties;
 
-
     /// <summary>
     /// Displays an album
     /// </summary>
     [DebuggerDisplay("{DisplayName}")]
     public partial class AlbumViewUserControl : UserControl, IScreen
     {
-        /// <summary>
-        /// A value indicating whether adding photos to the album is allowed.
-        /// </summary>
-        private bool addPhotosEnabled;
-
-        /// <summary>
-        /// The current album.
-        /// </summary>
-        private IAlbum currentAlbum;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AlbumViewUserControl"/> class.
         /// </summary>
@@ -168,6 +157,10 @@ namespace PhotoBuddy.Screens
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AlbumViewUserControl"/> class.
+        /// </summary>
+        /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
         /// <summary>
         /// Updates the album count.
         /// </summary>
@@ -302,9 +295,9 @@ namespace PhotoBuddy.Screens
 
                 // Setup a pipeline
                 var pathBuffer = new BlockingCollection<string>();
-                var filteredPathBuffer = new BlockingCollection<string>(32);
+                var filteredPathBuffer = new BlockingCollection<Tuple<string, string>>(32);
                 Task.Factory.StartNew(
-                    () => this.FilterExistingPhotos(pathBuffer, filteredPathBuffer),
+                    () => this.CalculateKeys(pathBuffer, filteredPathBuffer),
                     TaskCreationOptions.LongRunning);
 
                 var photoBuffer = new BlockingCollection<IPhoto>(32);
@@ -377,16 +370,19 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// Adds the photos.
         /// </summary>
-        /// <param name="paths">The paths.</param>
+        /// <param name="keysAndPaths">The paths.</param>
         /// <param name="photos">The photos.</param>
-        private void AddPhotos(BlockingCollection<string> paths, BlockingCollection<IPhoto> photos)
+        private void AddPhotos(BlockingCollection<Tuple<string, string>> keysAndPaths, BlockingCollection<IPhoto> photos)
         {
             try
             {
-                foreach (var path in paths.GetConsumingEnumerable())
+                foreach (Tuple<string, string> keyAndPath in keysAndPaths.GetConsumingEnumerable())
                 {
-                    var photo = this.CurrentAlbum.AddPhoto(path);
-                    photos.Add(photo);
+                    if (!this.CurrentAlbum.ContainsPhoto(keyAndPath.Item1))
+                    {
+                        var photo = this.CurrentAlbum.AddPhoto(keyAndPath.Item2);
+                        photos.Add(photo);
+                    }
                 }
             }
             finally
@@ -396,27 +392,24 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
-        /// Filters the existing photos.
+        /// Calculates the hash key for each photo in <paramref name="paths"/>.
         /// </summary>
         /// <param name="paths">The paths.</param>
-        /// <param name="filteredPaths">The filtered paths.</param>
+        /// <param name="keysAndPaths">The paths with thier hash keys.</param>
         /// <remarks>Inefficient bug fix: 2011-11-08 10:42 AM</remarks>
-        private void FilterExistingPhotos(BlockingCollection<string> paths, BlockingCollection<string> filteredPaths)
+        private void CalculateKeys(BlockingCollection<string> paths, BlockingCollection<Tuple<string, string>> keysAndPaths)
         {
             try
             {
                 foreach (var path in paths.GetConsumingEnumerable())
                 {
                     string photoId = Photo.GeneratePhotoKey(path);
-                    if (!this.CurrentAlbum.ContainsPhoto(photoId))
-                    {
-                        filteredPaths.Add(path);
-                    }
+                    keysAndPaths.Add(new Tuple<string, string>(photoId, path));
                 }
             }
             finally
             {
-                filteredPaths.CompleteAdding();
+                keysAndPaths.CompleteAdding();
             }
         }
 
@@ -430,20 +423,17 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandlePhotoClick(object sender, EventArgs e)
         {
-            try
+            var thumbnailControl = (ThumbnailUserControl)sender;
+            using (var photoForm = new ViewPhotoForm(this.currentAlbum, thumbnailControl.Photo))
             {
-                var thumbnailControl = (ThumbnailUserControl)sender;
-                using (var photoForm = new ViewPhotoForm(this.currentAlbum, thumbnailControl.Photo))
+                photoForm.PhotoAddedEvent += this.AddPhoto;
+                if (this.currentAlbum.AlbumId == "Search Results")
                 {
-                    photoForm.PhotoAddedEvent += this.AddPhoto;
-                    if (this.currentAlbum.AlbumId == "Search Results")
-                        photoForm.DisableEdit();
-                    photoForm.ShowDialog();
-                    photoForm.PhotoAddedEvent -= this.AddPhoto;
+                    photoForm.DisableEdit();
                 }
-            }
-            catch
-            {
+
+                photoForm.ShowDialog();
+                photoForm.PhotoAddedEvent -= this.AddPhoto;
             }
         }
 
@@ -523,5 +513,14 @@ namespace PhotoBuddy.Screens
             Button button = sender as Button;
             button.ForeColor = Color.White;
         }
+        /// <summary>
+        /// A value indicating whether adding photos to the album is allowed.
+        /// </summary>
+        private bool addPhotosEnabled;
+
+        /// <summary>
+        /// The current album.
+        /// </summary>
+        private IAlbum currentAlbum;
     }
 }

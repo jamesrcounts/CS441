@@ -220,27 +220,27 @@ namespace PhotoBuddy.Screens
             this.OnCancelEvent(this, e);
         }
 
-        /// *********************************************************************<summary>
+        /// <summary>
         /// Checks to see if the album name exists before allowing the user to rename the album and then
-        /// the album is either renamed or an exception is tthrown
+        /// the album is either renamed or an exception is thrown
+        /// </summary>
         /// Authors: Kendra Diaz and Thomas Donnellan
         private void RenameAlbum()
         {
 
             if (this.Model.IsExistingAlbumName(this.albumNameTextBox.Text) == true)
             {
-                showInvalidName();
+                this.showInvalidName();
                 return;
             }
+
             this.Model.RenameAlbum(this.album.AlbumId, this.albumNameTextBox.Text);
             this.Model.SaveAlbums();
             this.OnRenameAlbumEvent(this, new EventArgs<IAlbum>(this.album));
         }
 
-        //************************************************************
         /// REFACTORING - Display invalid name message
         /// Authors: Kendra Diaz and Thomas Donnellan<summary>
-        //************************************************************
         private void showInvalidName()
         {
             var invalidAlbumNameMessage = new InvalidAlbumNameMessage();
@@ -253,7 +253,6 @@ namespace PhotoBuddy.Screens
             return;
         }
 
-        //***********************************************************************
         /// <summary>
         /// Handles the empty album name error.
         /// </summary>
@@ -267,7 +266,6 @@ namespace PhotoBuddy.Screens
                                 MessageBoxIcon.Warning);
         }
 
-        //***********************************************************************
         /// <summary>
         /// Handles the name too long error.
         /// </summary>
@@ -281,7 +279,6 @@ namespace PhotoBuddy.Screens
                                 MessageBoxIcon.Warning);
         }
 
-        //***********************************************************************
         /// <summary>
         /// Handles the Click event of the continueButton control.
         /// </summary>
@@ -313,7 +310,7 @@ namespace PhotoBuddy.Screens
                 this.HandleNameTooLongError();
                 return;
             }
-//CHECKPOINT 1******
+
             if (this.album != null)
             {
                 // Renaming album - user entered the existing name so cancel the rename
@@ -330,12 +327,12 @@ namespace PhotoBuddy.Screens
             string rawAlbumName = this.albumNameTextBox.Text;
             if (this.Model.IsExistingAlbumName(rawAlbumName))
             {
-                showInvalidName();
+                this.showInvalidName();
                 return;
             }
 
-            // Creating a new album
-            //trim leading and trailing whitespace 
+            //// Creating a new album
+            ////trim leading and trailing whitespace 
             rawAlbumName = rawAlbumName.Trim();
             this.Model.AddAlbum(rawAlbumName);
             this.Model.SaveAlbums();

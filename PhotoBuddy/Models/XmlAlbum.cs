@@ -436,6 +436,9 @@ namespace PhotoBuddy.Models
         {
             // This add/remove/add sequence works around a bug with setting the album cover right after adding a photo.
             var photo = this.decoratedAlbum.AddPhoto(filePath);
+            if (photo == null)
+                return photo;
+
 
             // Update XML
             XElement photoElement = XmlPhoto.CreatePhotoElement(photo.PhotoId, photo.DisplayName, photo.FileName);

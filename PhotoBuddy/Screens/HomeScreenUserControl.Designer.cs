@@ -29,49 +29,49 @@ namespace PhotoBuddy.Screens
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.HomeScreenPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.HeadingPanel = new System.Windows.Forms.Panel();
             this.AlbumsLabel = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.HomeScreenActionPanel = new System.Windows.Forms.Panel();
             this.CreateButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.albumsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.dividerPanel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.HomeScreenPanel.SuspendLayout();
+            this.HeadingPanel.SuspendLayout();
+            this.HomeScreenActionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // HomeScreenPanel
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.albumsFlowPanel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.dividerPanel, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 244);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.HomeScreenPanel.BackColor = System.Drawing.Color.Transparent;
+            this.HomeScreenPanel.ColumnCount = 1;
+            this.HomeScreenPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.HomeScreenPanel.Controls.Add(this.HeadingPanel, 0, 0);
+            this.HomeScreenPanel.Controls.Add(this.HomeScreenActionPanel, 0, 3);
+            this.HomeScreenPanel.Controls.Add(this.albumsFlowPanel, 0, 2);
+            this.HomeScreenPanel.Controls.Add(this.dividerPanel, 0, 1);
+            this.HomeScreenPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HomeScreenPanel.Location = new System.Drawing.Point(0, 0);
+            this.HomeScreenPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.HomeScreenPanel.Name = "HomeScreenPanel";
+            this.HomeScreenPanel.RowCount = 4;
+            this.HomeScreenPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.HomeScreenPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
+            this.HomeScreenPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.HomeScreenPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.HomeScreenPanel.Size = new System.Drawing.Size(300, 244);
+            this.HomeScreenPanel.TabIndex = 1;
             // 
-            // panel1
+            // HeadingPanel
             // 
-            this.panel1.Controls.Add(this.AlbumsLabel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(300, 35);
-            this.panel1.TabIndex = 0;
+            this.HeadingPanel.Controls.Add(this.AlbumsLabel);
+            this.HeadingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HeadingPanel.Location = new System.Drawing.Point(0, 0);
+            this.HeadingPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.HeadingPanel.Name = "HeadingPanel";
+            this.HeadingPanel.Size = new System.Drawing.Size(300, 35);
+            this.HeadingPanel.TabIndex = 0;
             // 
             // AlbumsLabel
             // 
@@ -87,17 +87,17 @@ namespace PhotoBuddy.Screens
             this.AlbumsLabel.Text = "Albums";
             this.AlbumsLabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // panel2
+            // HomeScreenActionPanel
             // 
-            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel2.Controls.Add(this.CreateButton);
-            this.panel2.Controls.Add(this.ExitButton);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 208);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(300, 36);
-            this.panel2.TabIndex = 1;
+            this.HomeScreenActionPanel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.HomeScreenActionPanel.Controls.Add(this.CreateButton);
+            this.HomeScreenActionPanel.Controls.Add(this.ExitButton);
+            this.HomeScreenActionPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HomeScreenActionPanel.Location = new System.Drawing.Point(0, 208);
+            this.HomeScreenActionPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.HomeScreenActionPanel.Name = "HomeScreenActionPanel";
+            this.HomeScreenActionPanel.Size = new System.Drawing.Size(300, 36);
+            this.HomeScreenActionPanel.TabIndex = 1;
             // 
             // CreateButton
             // 
@@ -169,25 +169,25 @@ namespace PhotoBuddy.Screens
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.HomeScreenPanel);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "HomeScreenUserControl";
             this.Size = new System.Drawing.Size(300, 244);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.HomeScreenPanel.ResumeLayout(false);
+            this.HeadingPanel.ResumeLayout(false);
+            this.HeadingPanel.PerformLayout();
+            this.HomeScreenActionPanel.ResumeLayout(false);
+            this.HomeScreenActionPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel HomeScreenPanel;
+        private System.Windows.Forms.Panel HeadingPanel;
         private System.Windows.Forms.Label AlbumsLabel;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel HomeScreenActionPanel;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button CreateButton;
         private System.Windows.Forms.FlowLayoutPanel albumsFlowPanel;

@@ -1,5 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="Album.cs" company="Gold Rush">
+﻿// <copyright file="Album.cs" company="Gold Rush">
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 // Author(s): Kendra Diaz, Thomas Donnellan, Eric Wei, Jim Counts
@@ -7,16 +6,11 @@
 // Modified date: Nov 26 2011
 // Description: this class is responsible for converting an image to grayscale.
 // Code from:http://stackoverflow.com/questions/2265910/c-convert-image-to-grayscale<summary>
-//-----------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
-using System.Drawing.Imaging;
-
 namespace PhotoBuddy.Models
 {
+    using System.Drawing;
+    using System.Drawing.Imaging;
+
     public class BlackandWhite
     {
         /// <summary>
@@ -30,13 +24,13 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public static Bitmap MakeGrayscale3(Bitmap original)
         {
-            //create a blank bitmap the same size as original
+            // create a blank bitmap the same size as original
             Bitmap newBitmap = new Bitmap(original.Width, original.Height);
 
-            //get a graphics object from the new image
+            // get a graphics object from the new image
             Graphics g = Graphics.FromImage(newBitmap);
 
-            //create the grayscale ColorMatrix
+            // create the grayscale ColorMatrix
             ColorMatrix colorMatrix = new ColorMatrix(
                new float[][] 
          {
@@ -47,14 +41,14 @@ namespace PhotoBuddy.Models
             new float[] {0, 0, 0, 0, 1}
           });
 
-            //create some image attributes
+            ////create some image attributes
             ImageAttributes attributes = new ImageAttributes();
 
-            //set the color matrix attribute
+            ////set the color matrix attribute
             attributes.SetColorMatrix(colorMatrix);
 
-            //draw the original image on the new image
-            //using the grayscale color matrix
+            ////draw the original image on the new image
+            ////using the grayscale color matrix
             g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
                0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
 
@@ -62,6 +56,5 @@ namespace PhotoBuddy.Models
             g.Dispose();
             return newBitmap;
         }
-
     }
 }

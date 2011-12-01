@@ -51,19 +51,19 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public AlbumRepository()
         {
-            //if dir dosnt exist creat it
+            // if dir dosnt exist creat it
             if (!Directory.Exists(Constants.PhotosFolderPath))
             {
                 Directory.CreateDirectory(Constants.PhotosFolderPath);
             }
-            //load existing data from file
+            // load existing data from file
             if (File.Exists(Constants.XmlDataFilePath))
             {
                 this.document = XDocument.Load(Constants.XmlDataFilePath);
             }
             else
             {
-                //or create file
+                // or create file
                 this.document = new XDocument(new XElement(PhotoBuddyTag));
                 this.document.Save(Constants.XmlDataFilePath);
             }
@@ -181,6 +181,7 @@ namespace PhotoBuddy.Models
             {
                 return;
             }
+
             updateName = updateName.Trim();
             album.AlbumId = updateName;
             this.albums.Add(album.AlbumId, album);
@@ -337,10 +338,10 @@ namespace PhotoBuddy.Models
         {
             
 
-            //if album name exists return true else false
+            // if album name exists return true else false
             albumName = albumName.Trim();
             albumName = albumName.ToLower();
-            //lower albumName
+            // lower albumName
             foreach (string keyAlbum in this.albums.Keys)
             {
                 string existingAlbum = keyAlbum.Trim();
@@ -353,7 +354,7 @@ namespace PhotoBuddy.Models
             return false;
         }
 
-            //return this.albums.ContainsKey(albumName);
+            ////return this.albums.ContainsKey(albumName);
         
 
         /// <summary>

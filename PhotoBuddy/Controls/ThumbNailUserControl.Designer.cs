@@ -20,7 +20,7 @@ namespace PhotoBuddy.Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.ThumbnailLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.photoPanel = new System.Windows.Forms.Panel();
             this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
             this.thumbnailContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -28,28 +28,28 @@ namespace PhotoBuddy.Controls
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAsAlbumCoverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.photoNameTextBox = new System.Windows.Forms.TextBox();
-            this.foundationTableLayoutPanel.SuspendLayout();
+            this.ThumbnailLayoutPanel.SuspendLayout();
             this.photoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
             this.thumbnailContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // foundationTableLayoutPanel
+            // ThumbnailLayoutPanel
             // 
-            this.foundationTableLayoutPanel.BackColor = System.Drawing.SystemColors.Window;
-            this.foundationTableLayoutPanel.ColumnCount = 1;
-            this.foundationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.foundationTableLayoutPanel.Controls.Add(this.photoPanel, 0, 0);
-            this.foundationTableLayoutPanel.Controls.Add(this.photoNameTextBox, 0, 1);
-            this.foundationTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.foundationTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
-            this.foundationTableLayoutPanel.RowCount = 2;
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 124F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(164, 150);
-            this.foundationTableLayoutPanel.TabIndex = 0;
+            this.ThumbnailLayoutPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.ThumbnailLayoutPanel.ColumnCount = 1;
+            this.ThumbnailLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ThumbnailLayoutPanel.Controls.Add(this.photoPanel, 0, 0);
+            this.ThumbnailLayoutPanel.Controls.Add(this.photoNameTextBox, 0, 1);
+            this.ThumbnailLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ThumbnailLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.ThumbnailLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.ThumbnailLayoutPanel.Name = "ThumbnailLayoutPanel";
+            this.ThumbnailLayoutPanel.RowCount = 2;
+            this.ThumbnailLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            this.ThumbnailLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.ThumbnailLayoutPanel.Size = new System.Drawing.Size(164, 150);
+            this.ThumbnailLayoutPanel.TabIndex = 0;
             // 
             // photoPanel
             // 
@@ -91,7 +91,7 @@ namespace PhotoBuddy.Controls
             this.renameToolStripMenuItem,
             this.setAsAlbumCoverToolStripMenuItem});
             this.thumbnailContextMenuStrip.Name = "contextMenuStrip1";
-            this.thumbnailContextMenuStrip.Size = new System.Drawing.Size(178, 92);
+            this.thumbnailContextMenuStrip.Size = new System.Drawing.Size(178, 70);
             this.thumbnailContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.thumbnailContextMenuStrip_Opening);
             // 
             // deleteToolStripMenuItem
@@ -133,12 +133,12 @@ namespace PhotoBuddy.Controls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.foundationTableLayoutPanel);
+            this.Controls.Add(this.ThumbnailLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.Name = "ThumbnailUserControl";
             this.Size = new System.Drawing.Size(164, 150);
-            this.foundationTableLayoutPanel.ResumeLayout(false);
-            this.foundationTableLayoutPanel.PerformLayout();
+            this.ThumbnailLayoutPanel.ResumeLayout(false);
+            this.ThumbnailLayoutPanel.PerformLayout();
             this.photoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).EndInit();
             this.thumbnailContextMenuStrip.ResumeLayout(false);
@@ -148,7 +148,7 @@ namespace PhotoBuddy.Controls
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel foundationTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel ThumbnailLayoutPanel;
         private System.Windows.Forms.Panel photoPanel;
         private PictureBox thumbnailPictureBox;
         private System.Windows.Forms.TextBox photoNameTextBox;

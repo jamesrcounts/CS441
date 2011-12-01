@@ -10,8 +10,8 @@
 
 namespace PhotoBuddy.Screens
 {
-    using PhotoBuddy.Models;
     using System;
+    using PhotoBuddy.Models;
     using System.Drawing;
     using System.Windows.Forms;
     using System.IO;
@@ -48,7 +48,7 @@ namespace PhotoBuddy.Screens
         /// </summary>
         public event EventHandler<EventArgs<Image>> ContinueEvent;
 
-        ///Occurs when Blk n White is clicked
+        ///Occurs when Black and White is clicked
         public event EventHandler<EventArgs<Image>> ContinueBWEvent;
         /// <summary>
         /// Gets or sets the image.
@@ -96,8 +96,8 @@ namespace PhotoBuddy.Screens
                 handler(sender, e);
             }
         }
-        //This is the caller to the black n white event handler 
-        //Kendra Diaz
+        ////This is the caller to the black and white event handler 
+        ////Kendra Diaz
         public virtual void OnContinueBlknWhtEvent(object sender, EventArgs<Image> e)
         {
             EventHandler<EventArgs<Image>> handler = this.ContinueBWEvent;
@@ -106,8 +106,9 @@ namespace PhotoBuddy.Screens
                 handler(sender, e);
             }
         }
+
         /// <summary>
-        /// Handles the Click event of the LeftButton control.
+        /// Handles the Click event of the CancelEditButton control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
@@ -117,7 +118,7 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
-        /// Handles the Click event of the RightButton control.
+        /// Handles the Click event of the ConfirmCropButton control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
@@ -137,12 +138,11 @@ namespace PhotoBuddy.Screens
         {
             Bitmap copyImage = (Bitmap)this.photoCropBox.Image;
             copyImage = BlackandWhite.MakeGrayscale3(copyImage);
-            this.photoCropBox.Image = copyImage;  
-            this.Invalidate();
+            ////this.photoCropBox.Image = copyImage;  
+            ////this.Invalidate();
             //NOW SAVE THE IMAGE
             this.OnContinueBlknWhtEvent(this, new EventArgs<Image>(copyImage));
         }
-
     }
 }
 

@@ -186,7 +186,18 @@ namespace PhotoBuddy.Models
             {
                 if (this.photoImage == null)
                 {
-                    this.Open();
+                    var memoryStream = OpenMemoryStream(this.FullPath);
+
+                    // if you fail to open the image, we will use the default image instead
+                    if (memoryStream == null)
+                    {
+                        this.photoImage = DefaultImage.Clone() as Image;
+                    }
+                    else
+                    {
+                        this.imageStream = memoryStream;
+                        this.photoImage = GetImageOrDefault(memoryStream);
+                    }
                 }
 
                 return this.photoImage;
@@ -282,39 +293,39 @@ namespace PhotoBuddy.Models
         /// <seealso cref="http://snippets.dzone.com/posts/show/4336"/>
         public Image CreateThumbnail(int maxWidth, int maxHeight)
         {
-            bool shouldClose = this.photoImage == null;
-            if (shouldClose)
-            {
-                this.Open();
-            }
+            var copyMemoryStream = OpenMemoryStream(this.FullPath);
 
             // Prevent using images internal thumbnail
-            // Important because sometimes the thumbnail is rotated incorrectly.
-            using (Image imageCopy = Image.FromStream(this.imageStream))
-            {       
-                imageCopy.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
-                imageCopy.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
-
-                // Scale by width
-                int newHeight = imageCopy.Height * maxWidth / imageCopy.Width;
-                int newWidth = maxWidth;
-                if (newHeight > maxHeight)
+            using (Image imageCopy = GetImageOrDefault(copyMemoryStream))
+            {
+                try
                 {
-                    // Resize with height instead
-                    newWidth = imageCopy.Width * maxHeight / imageCopy.Height;
-                    newHeight = maxHeight;
-                }
+                    // Important because sometimes the thumbnail is rotated incorrectly.
+                    imageCopy.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
+                    imageCopy.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipNone);
 
-                Image thumbnailImage = Photo.DefaultImage;
-                thumbnailImage = imageCopy.GetThumbnailImage(newWidth, newHeight, null, IntPtr.Zero); 
-                
-                // Free the resources used by the full sized image.
-                if (shouldClose)
-                {
-                    this.Close();
+                    // Scale by width
+                    int newHeight = imageCopy.Height * maxWidth / imageCopy.Width;
+                    int newWidth = maxWidth;
+                    if (newHeight > maxHeight)
+                    {
+                        // Resize with height instead
+                        newWidth = imageCopy.Width * maxHeight / imageCopy.Height;
+                        newHeight = maxHeight;
+                    }
+
+                    Image thumbnailImage = Photo.DefaultImage.Clone() as Image;
+                    thumbnailImage = imageCopy.GetThumbnailImage(newWidth, newHeight, null, IntPtr.Zero);
+
+                    // Free the resources used by the full sized image.
+                    copyMemoryStream.Close();
+
+                    return thumbnailImage;
                 }
-                
-                return thumbnailImage;
+                catch (ArgumentException)
+                {
+                    return DefaultImage.Clone() as Image;
+                }
             }
         }
 
@@ -333,28 +344,49 @@ namespace PhotoBuddy.Models
         }
 
         /// <summary>
+        /// gets an image for the thumbnail or the default
+        /// </summary>
+        /// <param name="memoryStream">the dedicated memory</param>
+        /// <returns>default image</returns>
+        private static Image GetImageOrDefault(MemoryStream memoryStream)
+        {
+            try
+            {
+                return Image.FromStream(memoryStream);
+            }
+            catch (OutOfMemoryException)
+            {
+                return DefaultImage.Clone() as Image;
+            }
+            catch (ArgumentException)
+            {
+                return DefaultImage.Clone() as Image;
+            }
+        }
+
+        /// <summary>
         /// Opens this instance.
         /// </summary>
+        /// <param name="FullPath">the dedicated memory of the instance</param>
         /// <remarks>
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
-        private void Open()
+        /// <returns> value as null </returns>
+        private static MemoryStream OpenMemoryStream(string FullPath)
         {
-            if (!File.Exists(this.FullPath))
+            if (!File.Exists(FullPath))
             {
-                this.photoImage = Photo.DefaultImage;
-                return;
+                return null;
             }
 
             try
             {
-                this.imageStream = new MemoryStream(File.ReadAllBytes(this.FullPath));
-                this.photoImage = Image.FromStream(this.imageStream);
+                return new MemoryStream(File.ReadAllBytes(FullPath));
             }
             catch (OutOfMemoryException)
             {
-                this.photoImage = Photo.DefaultImage;
+                return null;
             }
         }
 

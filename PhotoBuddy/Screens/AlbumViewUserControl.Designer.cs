@@ -29,10 +29,10 @@ namespace PhotoBuddy.Screens
         /// </summary>
         private void InitializeComponent()
         {
-            this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.AlbumPanel = new System.Windows.Forms.TableLayoutPanel();
             this.headerPanel = new System.Windows.Forms.Panel();
             this.albumSizeLabel = new System.Windows.Forms.Label();
-            this.headerFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.AlbumHeaderPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.albumNameLabel = new System.Windows.Forms.Label();
             this.footerPanel = new System.Windows.Forms.Panel();
             this.addPhotosButton = new System.Windows.Forms.Button();
@@ -40,37 +40,37 @@ namespace PhotoBuddy.Screens
             this.photosFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.addPhotosFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.foundationTableLayoutPanel.SuspendLayout();
+            this.AlbumPanel.SuspendLayout();
             this.headerPanel.SuspendLayout();
-            this.headerFlowLayoutPanel.SuspendLayout();
+            this.AlbumHeaderPanel.SuspendLayout();
             this.footerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // foundationTableLayoutPanel
+            // AlbumPanel
             // 
-            this.foundationTableLayoutPanel.BackColor = System.Drawing.Color.Transparent;
-            this.foundationTableLayoutPanel.ColumnCount = 1;
-            this.foundationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.foundationTableLayoutPanel.Controls.Add(this.headerPanel, 0, 0);
-            this.foundationTableLayoutPanel.Controls.Add(this.footerPanel, 0, 3);
-            this.foundationTableLayoutPanel.Controls.Add(this.photosFlowPanel, 0, 2);
-            this.foundationTableLayoutPanel.Controls.Add(this.contentPanel, 0, 1);
-            this.foundationTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.foundationTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
-            this.foundationTableLayoutPanel.RowCount = 4;
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(375, 325);
-            this.foundationTableLayoutPanel.TabIndex = 2;
+            this.AlbumPanel.BackColor = System.Drawing.Color.Transparent;
+            this.AlbumPanel.ColumnCount = 1;
+            this.AlbumPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.AlbumPanel.Controls.Add(this.headerPanel, 0, 0);
+            this.AlbumPanel.Controls.Add(this.footerPanel, 0, 3);
+            this.AlbumPanel.Controls.Add(this.photosFlowPanel, 0, 2);
+            this.AlbumPanel.Controls.Add(this.contentPanel, 0, 1);
+            this.AlbumPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AlbumPanel.Location = new System.Drawing.Point(0, 0);
+            this.AlbumPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.AlbumPanel.Name = "AlbumPanel";
+            this.AlbumPanel.RowCount = 4;
+            this.AlbumPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.AlbumPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
+            this.AlbumPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.AlbumPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.AlbumPanel.Size = new System.Drawing.Size(375, 325);
+            this.AlbumPanel.TabIndex = 2;
             // 
             // headerPanel
             // 
             this.headerPanel.Controls.Add(this.albumSizeLabel);
-            this.headerPanel.Controls.Add(this.headerFlowLayoutPanel);
+            this.headerPanel.Controls.Add(this.AlbumHeaderPanel);
             this.headerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -91,17 +91,17 @@ namespace PhotoBuddy.Screens
             this.albumSizeLabel.TabIndex = 4;
             this.albumSizeLabel.Text = "0 photos";
             // 
-            // headerFlowLayoutPanel
+            // AlbumHeaderPanel
             // 
-            this.headerFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.headerFlowLayoutPanel.AutoSize = true;
-            this.headerFlowLayoutPanel.Controls.Add(this.albumNameLabel);
-            this.headerFlowLayoutPanel.Location = new System.Drawing.Point(10, -6);
-            this.headerFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.headerFlowLayoutPanel.Name = "headerFlowLayoutPanel";
-            this.headerFlowLayoutPanel.Size = new System.Drawing.Size(239, 41);
-            this.headerFlowLayoutPanel.TabIndex = 3;
-            this.headerFlowLayoutPanel.WrapContents = false;
+            this.AlbumHeaderPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AlbumHeaderPanel.AutoSize = true;
+            this.AlbumHeaderPanel.Controls.Add(this.albumNameLabel);
+            this.AlbumHeaderPanel.Location = new System.Drawing.Point(10, -6);
+            this.AlbumHeaderPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.AlbumHeaderPanel.Name = "AlbumHeaderPanel";
+            this.AlbumHeaderPanel.Size = new System.Drawing.Size(239, 41);
+            this.AlbumHeaderPanel.TabIndex = 3;
+            this.AlbumHeaderPanel.WrapContents = false;
             // 
             // albumNameLabel
             // 
@@ -198,8 +198,7 @@ namespace PhotoBuddy.Screens
             this.contentPanel.TabIndex = 3;
             // 
             // addPhotosFileDialog
-            //modified:11-29 Donnellan and Tan rewrite to allow all image types at once 
-            //
+            // 
             this.addPhotosFileDialog.Filter = "(*.png;*.bmp;*.jpg;*.gif)|*.png;*.bmp;*.jpg;*.gif|All files (*.*)|*.* ";
             this.addPhotosFileDialog.Multiselect = true;
             // 
@@ -208,15 +207,15 @@ namespace PhotoBuddy.Screens
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.foundationTableLayoutPanel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.AlbumPanel);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AlbumViewUserControl";
             this.Size = new System.Drawing.Size(375, 325);
-            this.foundationTableLayoutPanel.ResumeLayout(false);
+            this.AlbumPanel.ResumeLayout(false);
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
-            this.headerFlowLayoutPanel.ResumeLayout(false);
-            this.headerFlowLayoutPanel.PerformLayout();
+            this.AlbumHeaderPanel.ResumeLayout(false);
+            this.AlbumHeaderPanel.PerformLayout();
             this.footerPanel.ResumeLayout(false);
             this.footerPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -225,14 +224,14 @@ namespace PhotoBuddy.Screens
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel foundationTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel AlbumPanel;
         private System.Windows.Forms.Panel headerPanel;
         private System.Windows.Forms.Panel footerPanel;
         private System.Windows.Forms.Button addPhotosButton;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label albumNameLabel;
         private System.Windows.Forms.FlowLayoutPanel photosFlowPanel;
-        private System.Windows.Forms.FlowLayoutPanel headerFlowLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel AlbumHeaderPanel;
         private System.Windows.Forms.Panel contentPanel;
         private System.Windows.Forms.OpenFileDialog addPhotosFileDialog;
         private System.Windows.Forms.Label albumSizeLabel;

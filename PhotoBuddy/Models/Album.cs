@@ -36,7 +36,7 @@ namespace PhotoBuddy.Models
         ///   <para>Created: 2011-10-28</para>
         /// </remarks>
         private readonly IDictionary<string, IPhoto> photos = new Dictionary<string, IPhoto>();
-        
+
         /// <summary>
         /// Backing store for the cover photo.
         /// </summary>
@@ -218,6 +218,11 @@ namespace PhotoBuddy.Models
         {
             // Copies the file to the secret location.
             string photoId = Photo.GeneratePhotoKey(filePath);
+            if (this.ContainsPhoto(photoId))
+            {
+                return null;
+            }
+            
             string storagePath = AlbumRepository.StoreFile(filePath, photoId);
             string storageName = Path.GetFileName(storagePath);
 
@@ -280,7 +285,7 @@ namespace PhotoBuddy.Models
 
             return thumbnail;
         }
-        
+
         /// <summary>
         /// Determines whether the album contains the specified photo id.
         /// </summary>
