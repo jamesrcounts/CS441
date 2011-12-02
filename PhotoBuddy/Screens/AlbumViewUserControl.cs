@@ -29,6 +29,16 @@ namespace PhotoBuddy.Screens
     public partial class AlbumViewUserControl : UserControl, IScreen
     {
         /// <summary>
+        /// A value indicating whether adding photos to the album is allowed.
+        /// </summary>
+        private bool addPhotosEnabled;
+
+        /// <summary>
+        /// The current album.
+        /// </summary>
+        private IAlbum currentAlbum;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="AlbumViewUserControl"/> class.
         /// </summary>
         /// <remarks><para>Author(s): Miguel Gonzales and Andrea Tan</para></remarks>
@@ -513,14 +523,5 @@ namespace PhotoBuddy.Screens
             Button button = sender as Button;
             button.ForeColor = Color.White;
         }
-        /// <summary>
-        /// A value indicating whether adding photos to the album is allowed.
-        /// </summary>
-        private bool addPhotosEnabled;
-
-        /// <summary>
-        /// The current album.
-        /// </summary>
-        private IAlbum currentAlbum;
     }
 }

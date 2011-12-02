@@ -11,11 +11,9 @@
 namespace PhotoBuddy.Screens
 {
     using System;
-    using PhotoBuddy.Models;
     using System.Drawing;
     using System.Windows.Forms;
-    using System.IO;
-
+    using PhotoBuddy.Models;
 
     /// <summary>
     /// Provides a user interface to crop a photo.
@@ -48,8 +46,11 @@ namespace PhotoBuddy.Screens
         /// </summary>
         public event EventHandler<EventArgs<Image>> ContinueEvent;
 
-        ///Occurs when Black and White is clicked
-        public event EventHandler<EventArgs<Image>> ContinueBWEvent;
+        /// <summary>
+        /// Occurs when Black and White is clicked
+        /// </summary>
+        public event EventHandler<EventArgs<Image>> ContinueBlackAndWhiteEvent;
+
         /// <summary>
         /// Gets or sets the image.
         /// </summary>
@@ -96,11 +97,16 @@ namespace PhotoBuddy.Screens
                 handler(sender, e);
             }
         }
-        ////This is the caller to the black and white event handler 
+
+        /// <summary>
+        /// This is the caller to the black and white event handler
+        /// </summary>
+        /// <param name="sender">Black and White Button</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containging the event data.</param>
         ////Kendra Diaz
-        public virtual void OnContinueBlknWhtEvent(object sender, EventArgs<Image> e)
+        public virtual void OnContinueBlackAndWhiteEvent(object sender, EventArgs<Image> e)
         {
-            EventHandler<EventArgs<Image>> handler = this.ContinueBWEvent;
+            EventHandler<EventArgs<Image>> handler = this.ContinueBlackAndWhiteEvent;
             if (handler != null)
             {
                 handler(sender, e);
@@ -134,15 +140,19 @@ namespace PhotoBuddy.Screens
             this.OnContinueEvent(this, new EventArgs<Image>(croppedImage));
         }
 
+        /// <summary>
+        /// Handles the Click event of the BlackATndWhiteButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data</param>
         private void Click_BlacknWhite(object sender, EventArgs e)
         {
             Bitmap copyImage = (Bitmap)this.photoCropBox.Image;
-            copyImage = BlackandWhite.MakeGrayscale3(copyImage);
+            copyImage = BlackAndWhite.MakeGrayscale3(copyImage);
             ////this.photoCropBox.Image = copyImage;  
             ////this.Invalidate();
-            //NOW SAVE THE IMAGE
-            this.OnContinueBlknWhtEvent(this, new EventArgs<Image>(copyImage));
+            // NOW SAVE THE IMAGE
+            this.OnContinueBlackAndWhiteEvent(this, new EventArgs<Image>(copyImage));
         }
     }
 }
-

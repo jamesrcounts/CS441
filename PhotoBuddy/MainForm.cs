@@ -116,8 +116,6 @@ namespace PhotoBuddy
             view.AddPhotosEnabled = false;
             this.CurrentView = view;
             this.LoadView();
-
-
         }
 
         #endregion

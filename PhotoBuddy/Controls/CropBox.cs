@@ -224,7 +224,8 @@ namespace PhotoBuddy.Controls
 
             // Find the position
             int horizontalOffset = (this.Width - scaledSize.Width) / 2;
-            var scaledPosition = new Point(horizontalOffset, 0);
+            int verticalOffset = (this.Height - scaledSize.Height) / 2;
+            var scaledPosition = new Point(horizontalOffset, verticalOffset);
 
             // The image rectangle
             this.imageRectangle = new Rectangle(scaledPosition, scaledSize);

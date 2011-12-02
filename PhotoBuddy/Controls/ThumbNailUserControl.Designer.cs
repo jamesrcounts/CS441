@@ -92,7 +92,7 @@ namespace PhotoBuddy.Controls
             this.setAsAlbumCoverToolStripMenuItem});
             this.thumbnailContextMenuStrip.Name = "contextMenuStrip1";
             this.thumbnailContextMenuStrip.Size = new System.Drawing.Size(178, 70);
-            this.thumbnailContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.thumbnailContextMenuStrip_Opening);
+            
             // 
             // deleteToolStripMenuItem
             // 

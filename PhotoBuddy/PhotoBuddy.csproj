@@ -67,6 +67,7 @@
     <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
     <CodeContractsReferenceAssembly>DoNotBuild</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+    <CodeAnalysisRuleSet>pb3.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -137,7 +138,7 @@
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumEventArgs.cs" />
     <Compile Include="Models\AlbumRepository.cs" />
-    <Compile Include="Models\BlackandWhite.cs" />
+    <Compile Include="Models\BlackAndWhite.cs" />
     <Compile Include="Models\IAlbum.cs" />
     <Compile Include="Models\IPhoto.cs" />
     <Compile Include="Models\Photo.cs" />

@@ -260,6 +260,7 @@ namespace PhotoBuddy
                 this.slideShowTimer.Stop();
             }
         }
+
         /// <summary>
         /// This function will stop the timer for the slideshow when called.
         /// BUG FIX for crash found in cycle 2.
@@ -275,9 +276,9 @@ namespace PhotoBuddy
             this.slideShowTimer.Stop();
         }
 
-        ///<summary>
-        ///Disable photo editing from view photo in search results.
-        ///</summary>
+        /// <summary>   
+        /// Disable photo editing from view photo in search results.
+        /// </summary>
         /// <remarks>
         /// Authors: Kendra Diaz and Thomas Donnellan.
         /// Created: Nov. 17, 2011 
@@ -304,7 +305,7 @@ namespace PhotoBuddy
             photoControl.Image = this.pictureBox1.Image;
             photoControl.CancelEvent += this.CancelCrop;
             photoControl.ContinueEvent += this.ContinueCrop;
-            photoControl.ContinueBWEvent += this.ContinueBlknWht;
+            photoControl.ContinueBlackAndWhiteEvent += this.ContinueBlknWht;
             this.Controls.Add(photoControl);
             photoControl.Dock = DockStyle.Fill;
 
@@ -383,7 +384,7 @@ namespace PhotoBuddy
         {
             photoCropControl.ContinueEvent -= this.ContinueCrop;
             photoCropControl.CancelEvent -= this.CancelCrop;
-            photoCropControl.ContinueBWEvent -= this.ContinueBlknWht;
+            photoCropControl.ContinueBlackAndWhiteEvent -= this.ContinueBlknWht;
             photoCropControl.Hide();
             photoCropControl.Dispose();
             this.foundationTableLayoutPanel.Show();
@@ -401,11 +402,12 @@ namespace PhotoBuddy
             this.TearDownCropControl(photoCropControl);
             this.ResumeLayout();
         }
+
         /// <summary>
         /// Handle Saving new Black and White photo
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The Black And WhiteButton</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containg the event data</param>
         /// <remarks>
         /// Author: Kendra Diaz
         /// Modified: Thomas Donnellan refactoring 11/27/2011

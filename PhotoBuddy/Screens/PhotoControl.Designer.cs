@@ -34,7 +34,7 @@ namespace PhotoBuddy.Screens
             this.EditLabel = new System.Windows.Forms.Label();
             this.EditFooterPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ConfirmFooterPanel = new System.Windows.Forms.Panel();
-            this.BlackWhiteButton = new System.Windows.Forms.Button();
+            this.BlackAndWhiteButton = new System.Windows.Forms.Button();
             this.ConfirmCropButton = new System.Windows.Forms.Button();
             this.CancelFooterPanel = new System.Windows.Forms.Panel();
             this.CancelEditButton = new System.Windows.Forms.Button();
@@ -102,7 +102,7 @@ namespace PhotoBuddy.Screens
             // 
             // ConfirmFooterPanel
             // 
-            this.ConfirmFooterPanel.Controls.Add(this.BlackWhiteButton);
+            this.ConfirmFooterPanel.Controls.Add(this.BlackAndWhiteButton);
             this.ConfirmFooterPanel.Controls.Add(this.ConfirmCropButton);
             this.ConfirmFooterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ConfirmFooterPanel.Location = new System.Drawing.Point(383, 0);
@@ -111,25 +111,25 @@ namespace PhotoBuddy.Screens
             this.ConfirmFooterPanel.Size = new System.Drawing.Size(203, 36);
             this.ConfirmFooterPanel.TabIndex = 5;
             // 
-            // BlackWhiteButton
+            // BlackAndWhiteButton
             // 
-            this.BlackWhiteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BlackWhiteButton.AutoSize = true;
-            this.BlackWhiteButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BlackWhiteButton.BackColor = System.Drawing.Color.Transparent;
-            this.BlackWhiteButton.FlatAppearance.BorderSize = 0;
-            this.BlackWhiteButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
-            this.BlackWhiteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BlackWhiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BlackWhiteButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
-            this.BlackWhiteButton.Location = new System.Drawing.Point(44, 4);
-            this.BlackWhiteButton.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.BlackWhiteButton.Name = "BlackWhiteButton";
-            this.BlackWhiteButton.Size = new System.Drawing.Size(49, 30);
-            this.BlackWhiteButton.TabIndex = 12;
-            this.BlackWhiteButton.Text = "B/W";
-            this.BlackWhiteButton.UseVisualStyleBackColor = false;
-            this.BlackWhiteButton.Click += new System.EventHandler(this.Click_BlacknWhite);
+            this.BlackAndWhiteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BlackAndWhiteButton.AutoSize = true;
+            this.BlackAndWhiteButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BlackAndWhiteButton.BackColor = System.Drawing.Color.Transparent;
+            this.BlackAndWhiteButton.FlatAppearance.BorderSize = 0;
+            this.BlackAndWhiteButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.BlackAndWhiteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BlackAndWhiteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BlackAndWhiteButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
+            this.BlackAndWhiteButton.Location = new System.Drawing.Point(44, 4);
+            this.BlackAndWhiteButton.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.BlackAndWhiteButton.Name = "BlackAndWhiteButton";
+            this.BlackAndWhiteButton.Size = new System.Drawing.Size(49, 30);
+            this.BlackAndWhiteButton.TabIndex = 12;
+            this.BlackAndWhiteButton.Text = "B/W";
+            this.BlackAndWhiteButton.UseVisualStyleBackColor = false;
+            this.BlackAndWhiteButton.Click += new System.EventHandler(this.Click_BlacknWhite);
             // 
             // ConfirmCropButton
             // 
@@ -224,6 +224,6 @@ namespace PhotoBuddy.Screens
         private System.Windows.Forms.Button CancelEditButton;
         private System.Windows.Forms.Button ConfirmCropButton;
         private Controls.CropBox photoCropBox;
-        private System.Windows.Forms.Button BlackWhiteButton;
+        private System.Windows.Forms.Button BlackAndWhiteButton;
     }
 }

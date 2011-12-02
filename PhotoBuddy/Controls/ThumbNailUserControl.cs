@@ -110,9 +110,8 @@ namespace PhotoBuddy.Controls
             }
 
             set
-            {
+            {             
                 this.photo = value;
-                /// Yellow Flag 1 posible bug requires further research Thomas Donnellan.
                 this.thumbnailPictureBox.Image = ThumbnailUserControl.DefaultImage;
                 if (this.photo != null)
                 {
@@ -316,11 +315,6 @@ namespace PhotoBuddy.Controls
             var album = this.photo.Album;
             album.CoverPhoto = this.photo;
             album.Repository.SaveAlbums();
-        }
-
-        private void thumbnailContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
         }
     }
 }

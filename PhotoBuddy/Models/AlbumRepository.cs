@@ -56,6 +56,7 @@ namespace PhotoBuddy.Models
             {
                 Directory.CreateDirectory(Constants.PhotosFolderPath);
             }
+
             // load existing data from file
             if (File.Exists(Constants.XmlDataFilePath))
             {
@@ -207,8 +208,7 @@ namespace PhotoBuddy.Models
             {
                 return;
             }
-
-     
+  
             photo.DisplayName = displayName;
            
             this.SaveAlbums();
@@ -334,13 +334,13 @@ namespace PhotoBuddy.Models
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan and Kendra Diaz-(11/17/11)
         /// Kendra: New definition handles names with white spaces and makes names not case sensitive
+        /// </remarks>
         public bool IsExistingAlbumName(string albumName)
         {
-            
-
             // if album name exists return true else false
             albumName = albumName.Trim();
             albumName = albumName.ToLower();
+
             // lower albumName
             foreach (string keyAlbum in this.albums.Keys)
             {
@@ -351,11 +351,9 @@ namespace PhotoBuddy.Models
                     return true;
                 }
             }
+
             return false;
         }
-
-            ////return this.albums.ContainsKey(albumName);
-        
 
         /// <summary>
         /// Loads the albums.

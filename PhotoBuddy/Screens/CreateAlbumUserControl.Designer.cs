@@ -108,7 +108,6 @@ namespace PhotoBuddy.Screens
             this.albumNameTextBox.Name = "albumNameTextBox";
             this.albumNameTextBox.Size = new System.Drawing.Size(325, 35);
             this.albumNameTextBox.TabIndex = 0;
-            this.albumNameTextBox.TextChanged += new System.EventHandler(this.albumNameTextBox_TextChanged);
             this.albumNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleAlbumNameTextBoxKeyDown);
             // 
             // continueButton

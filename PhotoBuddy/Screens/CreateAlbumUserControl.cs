@@ -227,10 +227,9 @@ namespace PhotoBuddy.Screens
         /// Authors: Kendra Diaz and Thomas Donnellan
         private void RenameAlbum()
         {
-
             if (this.Model.IsExistingAlbumName(this.albumNameTextBox.Text) == true)
             {
-                this.showInvalidName();
+                this.ShowInvalidName();
                 return;
             }
 
@@ -239,9 +238,9 @@ namespace PhotoBuddy.Screens
             this.OnRenameAlbumEvent(this, new EventArgs<IAlbum>(this.album));
         }
 
-        /// REFACTORING - Display invalid name message
-        /// Authors: Kendra Diaz and Thomas Donnellan<summary>
-        private void showInvalidName()
+        /// <summary>REFACTORING - Display invalid name message
+        /// Authors: Kendra Diaz and Thomas Donnellan</summary>
+        private void ShowInvalidName()
         {
             var invalidAlbumNameMessage = new InvalidAlbumNameMessage();
             CultureAwareMessageBox.Show(
@@ -298,7 +297,6 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandleContinueButtonClick(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(this.albumNameTextBox.Text))
             {
                 this.HandleEmptyAlbumNameError();
@@ -327,7 +325,7 @@ namespace PhotoBuddy.Screens
             string rawAlbumName = this.albumNameTextBox.Text;
             if (this.Model.IsExistingAlbumName(rawAlbumName))
             {
-                this.showInvalidName();
+                this.ShowInvalidName();
                 return;
             }
 
@@ -385,11 +383,6 @@ namespace PhotoBuddy.Screens
         {
             Button button = sender as Button;
             button.ForeColor = Color.White;
-        }
-
-        private void albumNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -367,22 +367,22 @@ namespace PhotoBuddy.Models
         /// <summary>
         /// Opens this instance.
         /// </summary>
-        /// <param name="FullPath">the dedicated memory of the instance</param>
+        /// <param name="fullPath">The path to the file.</param>
         /// <remarks>
         ///   <para>Author: Jim Counts and Eric Wei</para>
         ///   <para>Created: 2011-11-06</para>
         /// </remarks>
         /// <returns> value as null </returns>
-        private static MemoryStream OpenMemoryStream(string FullPath)
+        private static MemoryStream OpenMemoryStream(string fullPath)
         {
-            if (!File.Exists(FullPath))
+            if (!File.Exists(fullPath))
             {
                 return null;
             }
 
             try
             {
-                return new MemoryStream(File.ReadAllBytes(FullPath));
+                return new MemoryStream(File.ReadAllBytes(fullPath));
             }
             catch (OutOfMemoryException)
             {

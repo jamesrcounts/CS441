@@ -44,7 +44,6 @@ namespace PhotoBuddy
             this.messageLabel.Text = "This is the photo you have selected to rename.";
         }
 
-
         /// <summary>
         /// Gets the name of the photo.
         /// </summary>
@@ -70,16 +69,14 @@ namespace PhotoBuddy
         /// Accepts the photo then closes the form.
         /// </summary>
         /// <param name="sender">The Continue button</param>
-        /// <param name="e">the event args.</param>
+        /// <param name="e">the event arguments.</param>
         /// <remarks>
         /// Author(s): Miguel Gonzales and Andrea Tan
         /// </remarks>
         private void HandleContinueButtonClick(object sender, EventArgs e)
         {          
-            
-            
             this.DisplayName = this.displayNameTextBox.Text;
-            // Did user enter a blank name?
+            //// Did user enter a blank name?
             if (string.IsNullOrWhiteSpace(this.DisplayName))
             {
                 CultureAwareMessageBox.Show(
@@ -103,7 +100,6 @@ namespace PhotoBuddy
                 return;
             }
 
-  
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
