@@ -323,6 +323,6 @@
   <Import Condition="Exists('$(SlowCheetahTargets)')" Project="$(SlowCheetahTargets)" />
   <Import Condition="Exists('$(StyleCopTargets)')" Project="$(StyleCopTargets)" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Debug "$(ProjectDir)FxCop\FxCop.bat" "$(TargetPath)"</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == NULL "$(ProjectDir)FxCop\FxCop.bat" "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
 </Project>
