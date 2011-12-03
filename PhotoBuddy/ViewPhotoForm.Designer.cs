@@ -44,11 +44,14 @@ namespace PhotoBuddy
             this.backButton = new System.Windows.Forms.Button();
             this.nextPhotoButton = new System.Windows.Forms.Button();
             this.slideShowTimer = new System.Windows.Forms.Timer(this.components);
+            this.SlideShowSpeedNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.SpeedControlLabel = new System.Windows.Forms.Label();
             this.foundationTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.bottomtableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SlideShowSpeedNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // foundationTableLayoutPanel
@@ -211,6 +214,8 @@ namespace PhotoBuddy
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.SpeedControlLabel);
+            this.panel2.Controls.Add(this.SlideShowSpeedNumericUpDown);
             this.panel2.Controls.Add(this.backButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -265,8 +270,40 @@ namespace PhotoBuddy
             // 
             // slideShowTimer
             // 
-            this.slideShowTimer.Interval = 5000;
+            this.slideShowTimer.Interval = 3000;
             this.slideShowTimer.Tick += new System.EventHandler(this.HandleNextPhotoButtonClick);
+            // 
+            // SlideShowSpeedNumericUpDown
+            // 
+            this.SlideShowSpeedNumericUpDown.Location = new System.Drawing.Point(148, 12);
+            this.SlideShowSpeedNumericUpDown.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.SlideShowSpeedNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.SlideShowSpeedNumericUpDown.Name = "SlideShowSpeedNumericUpDown";
+            this.SlideShowSpeedNumericUpDown.Size = new System.Drawing.Size(30, 20);
+            this.SlideShowSpeedNumericUpDown.TabIndex = 3;
+            this.SlideShowSpeedNumericUpDown.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.SlideShowSpeedNumericUpDown.ValueChanged += new System.EventHandler(this.SlideShowSpeedNumericUpDown_ValueChanged);
+            // 
+            // SpeedControlLabel
+            // 
+            this.SpeedControlLabel.AutoSize = true;
+            this.SpeedControlLabel.Location = new System.Drawing.Point(104, 14);
+            this.SpeedControlLabel.Name = "SpeedControlLabel";
+            this.SpeedControlLabel.Size = new System.Drawing.Size(38, 13);
+            this.SpeedControlLabel.TabIndex = 4;
+            this.SpeedControlLabel.Text = "Speed";
             // 
             // ViewPhotoForm
             // 
@@ -288,6 +325,7 @@ namespace PhotoBuddy
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SlideShowSpeedNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -307,5 +345,7 @@ namespace PhotoBuddy
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button playPauseButton;
         private System.Windows.Forms.Timer slideShowTimer;
+        private System.Windows.Forms.Label SpeedControlLabel;
+        private System.Windows.Forms.NumericUpDown SlideShowSpeedNumericUpDown;
     }
 }

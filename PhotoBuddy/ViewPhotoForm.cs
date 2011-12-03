@@ -427,5 +427,18 @@ namespace PhotoBuddy
             this.TearDownCropControl(photoCropControl);
             this.ResumeLayout();
         }
+
+        /// <summary>
+        /// changes the slide show timer's intreval
+        /// </summary>
+        /// <param name="sender">The Slide show speed control</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containg the event data</param>
+        /// <remarks>
+        /// Author: Thomas Donnellan and Miguel Gonzales
+        /// </remarks>
+        private void SlideShowSpeedNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            this.slideShowTimer.Interval = (int)this.SlideShowSpeedNumericUpDown.Value * 1000;
+        }
     }
 }
