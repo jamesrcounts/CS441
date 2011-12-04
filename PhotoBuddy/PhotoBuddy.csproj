@@ -209,6 +209,12 @@
     <Compile Include="Controls\CropBox.Designer.cs">
       <DependentUpon>CropBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\RotatePhotoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screens\RotatePhotoControl.Designer.cs">
+      <DependentUpon>RotatePhotoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UploadViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\HomeScreenUserControl.resx">
       <DependentUpon>HomeScreenUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\RotatePhotoControl.resx">
+      <DependentUpon>RotatePhotoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UploadViewForm.resx">
       <DependentUpon>UploadViewForm.cs</DependentUpon>

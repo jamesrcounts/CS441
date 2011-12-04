@@ -154,5 +154,63 @@ namespace PhotoBuddy.Screens
             // NOW SAVE THE IMAGE
             this.OnContinueBlackAndWhiteEvent(this, new EventArgs<Image>(copyImage));
         }
+
+        private void HandleRotateButtonClick(object sender, EventArgs e)
+        {
+            this.SuspendLayout();
+            this.foundationTableLayoutPanel.Hide();
+
+            var rotateControl = new RotatePhotoControl();
+            rotateControl.Image = this.photoCropBox.Photo;
+            rotateControl.CancelEvent += this.CancelRotate;
+            //rotateControl.ContinueEvent += this.ContinueRotate;
+            //photoControl.CancelEvent += this.CancelCrop;
+            //photoControl.ContinueEvent += this.ContinueCrop;
+            //photoControl.ContinueBlackAndWhiteEvent += this.ContinueBlknWht;
+            this.Controls.Add(rotateControl);
+            rotateControl.Dock = DockStyle.Fill;
+
+            rotateControl.Show();
+            this.ResumeLayout();
+        }
+
+        /// <summary>
+        /// Cancels the crop and shows the view again.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void CancelRotate(object sender, EventArgs e)
+        {
+            var rotateControl = (RotatePhotoControl)sender;
+            this.SuspendLayout();
+            this.TearDownRotateControl(rotateControl);
+            this.ResumeLayout();
+        }
+
+        /// <summary>
+        /// Cancels the crop and shows the view again.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void ContinueRotate(object sender, EventArgs e)
+        {
+            var rotateControl = (RotatePhotoControl)sender;
+            this.SuspendLayout();
+            this.TearDownRotateControl(rotateControl);
+            this.ResumeLayout();
+        }
+
+        /// <summary>
+        /// Tears down a crop control.
+        /// </summary>
+        /// <param name="rotateControl">The photo crop control.</param>
+        private void TearDownRotateControl(RotatePhotoControl rotateControl)
+        {
+            //rotateControl.ContinueEvent -= this.ContinueRotate;
+            rotateControl.CancelEvent -= this.CancelRotate;
+            rotateControl.Hide();
+            rotateControl.Dispose();
+            this.foundationTableLayoutPanel.Show();
+        }
     }
 }

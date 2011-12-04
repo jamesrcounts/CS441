@@ -39,6 +39,7 @@ namespace PhotoBuddy.Screens
             this.CancelFooterPanel = new System.Windows.Forms.Panel();
             this.CancelEditButton = new System.Windows.Forms.Button();
             this.photoCropBox = new PhotoBuddy.Controls.CropBox();
+            this.rotateButton = new System.Windows.Forms.Button();
             this.foundationTableLayoutPanel.SuspendLayout();
             this.EditFooterPanel.SuspendLayout();
             this.ConfirmFooterPanel.SuspendLayout();
@@ -91,6 +92,7 @@ namespace PhotoBuddy.Screens
             this.EditFooterPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.EditFooterPanel.Controls.Add(this.ConfirmFooterPanel, 4, 0);
             this.EditFooterPanel.Controls.Add(this.CancelFooterPanel, 0, 0);
+            this.EditFooterPanel.Controls.Add(this.rotateButton, 2, 0);
             this.EditFooterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EditFooterPanel.Location = new System.Drawing.Point(0, 426);
             this.EditFooterPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -194,6 +196,26 @@ namespace PhotoBuddy.Screens
             this.photoCropBox.TabIndex = 10;
             this.photoCropBox.TabStop = false;
             // 
+            // rotateButton
+            // 
+            this.rotateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.rotateButton.AutoSize = true;
+            this.rotateButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.rotateButton.BackColor = System.Drawing.Color.Transparent;
+            this.rotateButton.FlatAppearance.BorderSize = 0;
+            this.rotateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.rotateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rotateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rotateButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
+            this.rotateButton.Location = new System.Drawing.Point(259, 0);
+            this.rotateButton.Margin = new System.Windows.Forms.Padding(0);
+            this.rotateButton.Name = "rotateButton";
+            this.rotateButton.Size = new System.Drawing.Size(68, 36);
+            this.rotateButton.TabIndex = 13;
+            this.rotateButton.Text = "Rotate";
+            this.rotateButton.UseVisualStyleBackColor = false;
+            this.rotateButton.Click += new System.EventHandler(this.HandleRotateButtonClick);
+            // 
             // CropPhotoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -205,6 +227,7 @@ namespace PhotoBuddy.Screens
             this.foundationTableLayoutPanel.ResumeLayout(false);
             this.foundationTableLayoutPanel.PerformLayout();
             this.EditFooterPanel.ResumeLayout(false);
+            this.EditFooterPanel.PerformLayout();
             this.ConfirmFooterPanel.ResumeLayout(false);
             this.ConfirmFooterPanel.PerformLayout();
             this.CancelFooterPanel.ResumeLayout(false);
@@ -225,5 +248,6 @@ namespace PhotoBuddy.Screens
         private System.Windows.Forms.Button ConfirmCropButton;
         private Controls.CropBox photoCropBox;
         private System.Windows.Forms.Button BlackAndWhiteButton;
+        private System.Windows.Forms.Button rotateButton;
     }
 }
