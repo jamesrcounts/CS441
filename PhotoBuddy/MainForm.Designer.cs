@@ -102,6 +102,7 @@ namespace PhotoBuddy
             // searchControl
             // 
             this.searchControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchControl.AutoSize = true;
             this.searchControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(70)))), ((int)(((byte)(102)))));
             this.searchControl.Location = new System.Drawing.Point(502, 9);
             this.searchControl.Name = "searchControl";

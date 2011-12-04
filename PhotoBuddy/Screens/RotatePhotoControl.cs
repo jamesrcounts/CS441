@@ -16,6 +16,8 @@ namespace PhotoBuddy.Screens
             InitializeComponent();
         }
 
+        public Image originalPhoto { get; set; }
+
         /// <summary>
         /// Occurs when the user wants to abandon rotation without saving changes.
         /// </summary>
@@ -24,7 +26,7 @@ namespace PhotoBuddy.Screens
         /// <summary>
         /// Occurs when the user wants to save the rotation result.
         /// </summary>
-        //public event EventHandler<EventArgs<Image>> ContinueEvent;
+        public event EventHandler<EventArgs<Image>> ContinueEvent;
 
         /// <summary>
         /// Gets or sets the image.
@@ -59,9 +61,23 @@ namespace PhotoBuddy.Screens
             }
         }
 
+        /// <summary>
+        /// Raises the continue event.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;System.Drawing.Image&gt;"/> instance containing the event data.</param>
+        public virtual void OnContinueEvent(object sender, EventArgs<Image> e)
+        {
+            EventHandler<EventArgs<Image>> handler = this.ContinueEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
         private void SaveRotateButton_Click(object sender, EventArgs e)
         {
-
+            this.OnContinueEvent(this, new EventArgs<Image>(this.Image));
         }
 
         private void CancelRotateButton_Click(object sender, EventArgs e)

@@ -52,6 +52,11 @@ namespace PhotoBuddy.Screens
         public event EventHandler<EventArgs<Image>> ContinueBlackAndWhiteEvent;
 
         /// <summary>
+        /// Occurs when Black and White is clicked
+        /// </summary>
+        public event EventHandler<EventArgs<Image>> ContinueRotateEvent;
+
+        /// <summary>
         /// Gets or sets the image.
         /// </summary>
         /// <value>
@@ -114,6 +119,20 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
+        /// Raises the continue event.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;System.Drawing.Image&gt;"/> instance containing the event data.</param>
+        public virtual void OnContinueRotateEvent(object sender, EventArgs<Image> e)
+        {
+            EventHandler<EventArgs<Image>> handler = this.ContinueRotateEvent;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
+        /// <summary>
         /// Handles the Click event of the CancelEditButton control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -161,12 +180,10 @@ namespace PhotoBuddy.Screens
             this.foundationTableLayoutPanel.Hide();
 
             var rotateControl = new RotatePhotoControl();
-            rotateControl.Image = this.photoCropBox.Photo;
+            rotateControl.Image = (Image)this.photoCropBox.Photo.Clone();
+            rotateControl.originalPhoto = this.photoCropBox.Photo;
             rotateControl.CancelEvent += this.CancelRotate;
-            //rotateControl.ContinueEvent += this.ContinueRotate;
-            //photoControl.CancelEvent += this.CancelCrop;
-            //photoControl.ContinueEvent += this.ContinueCrop;
-            //photoControl.ContinueBlackAndWhiteEvent += this.ContinueBlknWht;
+            rotateControl.ContinueEvent += this.ContinueRotate;
             this.Controls.Add(rotateControl);
             rotateControl.Dock = DockStyle.Fill;
 
@@ -175,7 +192,7 @@ namespace PhotoBuddy.Screens
         }
 
         /// <summary>
-        /// Cancels the crop and shows the view again.
+        /// Cancels the rotate and shows the view again.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
@@ -183,21 +200,23 @@ namespace PhotoBuddy.Screens
         {
             var rotateControl = (RotatePhotoControl)sender;
             this.SuspendLayout();
+            this.photoCropBox.Photo = rotateControl.originalPhoto;
             this.TearDownRotateControl(rotateControl);
             this.ResumeLayout();
         }
 
         /// <summary>
-        /// Cancels the crop and shows the view again.
+        /// Cancels the rotate and shows the view again.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void ContinueRotate(object sender, EventArgs e)
+        private void ContinueRotate(object sender, EventArgs<Image> e)
         {
             var rotateControl = (RotatePhotoControl)sender;
             this.SuspendLayout();
             this.TearDownRotateControl(rotateControl);
             this.ResumeLayout();
+            this.OnContinueRotateEvent(this, new EventArgs<Image>(e.Data));
         }
 
         /// <summary>
@@ -206,7 +225,7 @@ namespace PhotoBuddy.Screens
         /// <param name="rotateControl">The photo crop control.</param>
         private void TearDownRotateControl(RotatePhotoControl rotateControl)
         {
-            //rotateControl.ContinueEvent -= this.ContinueRotate;
+            rotateControl.ContinueEvent -= this.ContinueRotate;
             rotateControl.CancelEvent -= this.CancelRotate;
             rotateControl.Hide();
             rotateControl.Dispose();

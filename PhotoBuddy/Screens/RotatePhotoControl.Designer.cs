@@ -140,6 +140,7 @@
             this.SaveRotateButton.TabIndex = 11;
             this.SaveRotateButton.Text = "Save";
             this.SaveRotateButton.UseVisualStyleBackColor = false;
+            this.SaveRotateButton.Click += new System.EventHandler(this.SaveRotateButton_Click);
             // 
             // CancelFooterPanel
             // 

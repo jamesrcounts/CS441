@@ -306,6 +306,7 @@ namespace PhotoBuddy
             photoControl.CancelEvent += this.CancelCrop;
             photoControl.ContinueEvent += this.ContinueCrop;
             photoControl.ContinueBlackAndWhiteEvent += this.ContinueBlknWht;
+            photoControl.ContinueRotateEvent += this.ContinueRotate;
             this.Controls.Add(photoControl);
             photoControl.Dock = DockStyle.Fill;
 
@@ -429,6 +430,28 @@ namespace PhotoBuddy
         }
 
         /// <summary>
+        /// Process a cropped image.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;System.Drawing.Image&gt;"/> instance containing the event data.</param>
+        private void ContinueRotate(object sender, EventArgs<Image> e)
+        {
+            var photoCropControl = (CropPhotoControl)sender;
+            this.SuspendLayout();
+
+            IPhoto croppedPhoto = this.AddImageToAlbum(e.Data);
+            if (croppedPhoto != null)
+            {
+                Task.Factory.StartNew(() => this.OnPhotoAddedEvent(this, new EventArgs<IPhoto>(croppedPhoto)));
+                this.DisplayPhoto(croppedPhoto);
+            }
+
+            this.TearDownCropControl(photoCropControl);
+
+            this.ResumeLayout();
+        }
+
+        /// <summary>
         /// changes the slide show timer's intreval
         /// </summary>
         /// <param name="sender">The Slide show speed control</param>
@@ -438,7 +461,7 @@ namespace PhotoBuddy
         /// </remarks>
         private void SlideShowSpeedNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            this.slideShowTimer.Interval = (int)this.SlideShowSpeedNumericUpDown.Value * 1000;
+            this.slideShowTimer.Interval = 6000 -((int)this.SlideShowSpeedNumericUpDown.Value * 1000);
         }
     }
 }
