@@ -30,7 +30,7 @@ namespace PhotoBuddy.Screens
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CropPhotoControl));
-            this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.EditTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.EditLabel = new System.Windows.Forms.Label();
             this.EditFooterPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ConfirmFooterPanel = new System.Windows.Forms.Panel();
@@ -38,34 +38,34 @@ namespace PhotoBuddy.Screens
             this.ConfirmCropButton = new System.Windows.Forms.Button();
             this.CancelFooterPanel = new System.Windows.Forms.Panel();
             this.CancelEditButton = new System.Windows.Forms.Button();
-            this.photoCropBox = new PhotoBuddy.Controls.CropBox();
             this.rotateButton = new System.Windows.Forms.Button();
-            this.foundationTableLayoutPanel.SuspendLayout();
+            this.photoCropBox = new PhotoBuddy.Controls.CropBox();
+            this.EditTableLayoutPanel.SuspendLayout();
             this.EditFooterPanel.SuspendLayout();
             this.ConfirmFooterPanel.SuspendLayout();
             this.CancelFooterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.photoCropBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // foundationTableLayoutPanel
+            // EditTableLayoutPanel
             // 
-            this.foundationTableLayoutPanel.BackColor = System.Drawing.Color.White;
-            this.foundationTableLayoutPanel.ColumnCount = 1;
-            this.foundationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.foundationTableLayoutPanel.Controls.Add(this.EditLabel, 0, 1);
-            this.foundationTableLayoutPanel.Controls.Add(this.EditFooterPanel, 0, 2);
-            this.foundationTableLayoutPanel.Controls.Add(this.photoCropBox, 0, 0);
-            this.foundationTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.foundationTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
-            this.foundationTableLayoutPanel.RowCount = 3;
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(586, 462);
-            this.foundationTableLayoutPanel.TabIndex = 2;
+            this.EditTableLayoutPanel.BackColor = System.Drawing.Color.White;
+            this.EditTableLayoutPanel.ColumnCount = 1;
+            this.EditTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.EditTableLayoutPanel.Controls.Add(this.EditLabel, 0, 1);
+            this.EditTableLayoutPanel.Controls.Add(this.EditFooterPanel, 0, 2);
+            this.EditTableLayoutPanel.Controls.Add(this.photoCropBox, 0, 0);
+            this.EditTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EditTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.EditTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.EditTableLayoutPanel.Name = "EditTableLayoutPanel";
+            this.EditTableLayoutPanel.RowCount = 3;
+            this.EditTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.EditTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.EditTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.EditTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.EditTableLayoutPanel.Size = new System.Drawing.Size(586, 462);
+            this.EditTableLayoutPanel.TabIndex = 2;
             // 
             // EditLabel
             // 
@@ -131,7 +131,7 @@ namespace PhotoBuddy.Screens
             this.BlackAndWhiteButton.TabIndex = 12;
             this.BlackAndWhiteButton.Text = "B/W";
             this.BlackAndWhiteButton.UseVisualStyleBackColor = false;
-            this.BlackAndWhiteButton.Click += new System.EventHandler(this.Click_BlacknWhite);
+            this.BlackAndWhiteButton.Click += new System.EventHandler(this.HandleBlackandWhite);
             // 
             // ConfirmCropButton
             // 
@@ -184,18 +184,6 @@ namespace PhotoBuddy.Screens
             this.CancelEditButton.UseVisualStyleBackColor = false;
             this.CancelEditButton.Click += new System.EventHandler(this.HandleCancelButtonClick);
             // 
-            // photoCropBox
-            // 
-            this.photoCropBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.photoCropBox.Image = ((System.Drawing.Image)(resources.GetObject("photoCropBox.Image")));
-            this.photoCropBox.Location = new System.Drawing.Point(3, 3);
-            this.photoCropBox.Name = "photoCropBox";
-            this.photoCropBox.Photo = ((System.Drawing.Image)(resources.GetObject("photoCropBox.Photo")));
-            this.photoCropBox.Size = new System.Drawing.Size(580, 374);
-            this.photoCropBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.photoCropBox.TabIndex = 10;
-            this.photoCropBox.TabStop = false;
-            // 
             // rotateButton
             // 
             this.rotateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -216,16 +204,28 @@ namespace PhotoBuddy.Screens
             this.rotateButton.UseVisualStyleBackColor = false;
             this.rotateButton.Click += new System.EventHandler(this.HandleRotateButtonClick);
             // 
+            // photoCropBox
+            // 
+            this.photoCropBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.photoCropBox.Image = ((System.Drawing.Image)(resources.GetObject("photoCropBox.Image")));
+            this.photoCropBox.Location = new System.Drawing.Point(3, 3);
+            this.photoCropBox.Name = "photoCropBox";
+            this.photoCropBox.Photo = ((System.Drawing.Image)(resources.GetObject("photoCropBox.Photo")));
+            this.photoCropBox.Size = new System.Drawing.Size(580, 374);
+            this.photoCropBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.photoCropBox.TabIndex = 10;
+            this.photoCropBox.TabStop = false;
+            // 
             // CropPhotoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.foundationTableLayoutPanel);
+            this.Controls.Add(this.EditTableLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CropPhotoControl";
             this.Size = new System.Drawing.Size(586, 462);
-            this.foundationTableLayoutPanel.ResumeLayout(false);
-            this.foundationTableLayoutPanel.PerformLayout();
+            this.EditTableLayoutPanel.ResumeLayout(false);
+            this.EditTableLayoutPanel.PerformLayout();
             this.EditFooterPanel.ResumeLayout(false);
             this.EditFooterPanel.PerformLayout();
             this.ConfirmFooterPanel.ResumeLayout(false);
@@ -239,7 +239,7 @@ namespace PhotoBuddy.Screens
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel foundationTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel EditTableLayoutPanel;
         private System.Windows.Forms.Label EditLabel;
         private System.Windows.Forms.TableLayoutPanel EditFooterPanel;
         private System.Windows.Forms.Panel ConfirmFooterPanel;

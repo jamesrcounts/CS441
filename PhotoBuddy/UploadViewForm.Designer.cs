@@ -30,55 +30,55 @@ namespace PhotoBuddy
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UploadViewForm));
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.RenameLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.UploadViewFooterPanel = new System.Windows.Forms.Panel();
             this.cancelButton = new System.Windows.Forms.Button();
             this.continueButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.UploadViewBox = new System.Windows.Forms.PictureBox();
             this.messageLabel = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.UndeRenamePanel = new System.Windows.Forms.Panel();
+            this.RenamePanel = new System.Windows.Forms.TableLayoutPanel();
             this.displayNameTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.NameYourPhotoLabel = new System.Windows.Forms.Label();
+            this.RenameLayoutPanel.SuspendLayout();
+            this.UploadViewFooterPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UploadViewBox)).BeginInit();
+            this.UndeRenamePanel.SuspendLayout();
+            this.RenamePanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // RenameLayoutPanel
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.messageLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(586, 451);
-            this.tableLayoutPanel1.TabIndex = 8;
+            this.RenameLayoutPanel.BackColor = System.Drawing.Color.White;
+            this.RenameLayoutPanel.ColumnCount = 1;
+            this.RenameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.RenameLayoutPanel.Controls.Add(this.UploadViewFooterPanel, 0, 3);
+            this.RenameLayoutPanel.Controls.Add(this.UploadViewBox, 0, 0);
+            this.RenameLayoutPanel.Controls.Add(this.messageLabel, 0, 1);
+            this.RenameLayoutPanel.Controls.Add(this.UndeRenamePanel, 0, 2);
+            this.RenameLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RenameLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.RenameLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.RenameLayoutPanel.Name = "RenameLayoutPanel";
+            this.RenameLayoutPanel.RowCount = 4;
+            this.RenameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.RenameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.RenameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.RenameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.RenameLayoutPanel.Size = new System.Drawing.Size(586, 451);
+            this.RenameLayoutPanel.TabIndex = 8;
             // 
-            // panel2
+            // UploadViewFooterPanel
             // 
-            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel2.Controls.Add(this.cancelButton);
-            this.panel2.Controls.Add(this.continueButton);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 415);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(586, 36);
-            this.panel2.TabIndex = 7;
+            this.UploadViewFooterPanel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.UploadViewFooterPanel.Controls.Add(this.cancelButton);
+            this.UploadViewFooterPanel.Controls.Add(this.continueButton);
+            this.UploadViewFooterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UploadViewFooterPanel.Location = new System.Drawing.Point(0, 415);
+            this.UploadViewFooterPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.UploadViewFooterPanel.Name = "UploadViewFooterPanel";
+            this.UploadViewFooterPanel.Size = new System.Drawing.Size(586, 36);
+            this.UploadViewFooterPanel.TabIndex = 7;
             // 
             // cancelButton
             // 
@@ -122,16 +122,16 @@ namespace PhotoBuddy
             this.continueButton.MouseEnter += new System.EventHandler(this.HandleButtonMouseEnter);
             this.continueButton.MouseLeave += new System.EventHandler(this.HandleButtonMouseLeave);
             // 
-            // pictureBox1
+            // UploadViewBox
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(566, 314);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.UploadViewBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UploadViewBox.Location = new System.Drawing.Point(10, 10);
+            this.UploadViewBox.Margin = new System.Windows.Forms.Padding(10);
+            this.UploadViewBox.Name = "UploadViewBox";
+            this.UploadViewBox.Size = new System.Drawing.Size(566, 314);
+            this.UploadViewBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.UploadViewBox.TabIndex = 2;
+            this.UploadViewBox.TabStop = false;
             // 
             // messageLabel
             // 
@@ -146,32 +146,32 @@ namespace PhotoBuddy
             this.messageLabel.Text = "This is the photo selected to upload.";
             this.messageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel1
+            // UndeRenamePanel
             // 
-            this.panel1.Controls.Add(this.tableLayoutPanel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 366);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(586, 49);
-            this.panel1.TabIndex = 6;
+            this.UndeRenamePanel.Controls.Add(this.RenamePanel);
+            this.UndeRenamePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UndeRenamePanel.Location = new System.Drawing.Point(0, 366);
+            this.UndeRenamePanel.Margin = new System.Windows.Forms.Padding(0);
+            this.UndeRenamePanel.Name = "UndeRenamePanel";
+            this.UndeRenamePanel.Size = new System.Drawing.Size(586, 49);
+            this.UndeRenamePanel.TabIndex = 6;
             // 
-            // tableLayoutPanel2
+            // RenamePanel
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 229F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.displayNameTextBox, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(586, 49);
-            this.tableLayoutPanel2.TabIndex = 9;
+            this.RenamePanel.ColumnCount = 3;
+            this.RenamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.RenamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 229F));
+            this.RenamePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.RenamePanel.Controls.Add(this.displayNameTextBox, 1, 0);
+            this.RenamePanel.Controls.Add(this.NameYourPhotoLabel, 0, 0);
+            this.RenamePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RenamePanel.Location = new System.Drawing.Point(0, 0);
+            this.RenamePanel.Margin = new System.Windows.Forms.Padding(2);
+            this.RenamePanel.Name = "RenamePanel";
+            this.RenamePanel.RowCount = 1;
+            this.RenamePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.RenamePanel.Size = new System.Drawing.Size(586, 49);
+            this.RenamePanel.TabIndex = 9;
             // 
             // displayNameTextBox
             // 
@@ -184,53 +184,53 @@ namespace PhotoBuddy
             this.displayNameTextBox.TabIndex = 0;
             this.displayNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleDisplayNameTextBoxKeyDown);
             // 
-            // label2
+            // NameYourPhotoLabel
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(2, 14);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Name Your Photo";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.NameYourPhotoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.NameYourPhotoLabel.AutoSize = true;
+            this.NameYourPhotoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameYourPhotoLabel.Location = new System.Drawing.Point(2, 14);
+            this.NameYourPhotoLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.NameYourPhotoLabel.Name = "NameYourPhotoLabel";
+            this.NameYourPhotoLabel.Size = new System.Drawing.Size(174, 20);
+            this.NameYourPhotoLabel.TabIndex = 5;
+            this.NameYourPhotoLabel.Text = "Name Your Photo";
+            this.NameYourPhotoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // UploadViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 451);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.RenameLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UploadViewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UploadViewForm";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.RenameLayoutPanel.ResumeLayout(false);
+            this.RenameLayoutPanel.PerformLayout();
+            this.UploadViewFooterPanel.ResumeLayout(false);
+            this.UploadViewFooterPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UploadViewBox)).EndInit();
+            this.UndeRenamePanel.ResumeLayout(false);
+            this.RenamePanel.ResumeLayout(false);
+            this.RenamePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TableLayoutPanel RenameLayoutPanel;
+        private System.Windows.Forms.Panel UploadViewFooterPanel;
         private System.Windows.Forms.Label messageLabel;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button continueButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox UploadViewBox;
+        private System.Windows.Forms.Panel UndeRenamePanel;
         private System.Windows.Forms.TextBox displayNameTextBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label NameYourPhotoLabel;
+        private System.Windows.Forms.TableLayoutPanel RenamePanel;
     }
 }

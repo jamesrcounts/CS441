@@ -32,7 +32,7 @@ namespace PhotoBuddy.Models
         ///   <para>Author(s): Kendra Diaz, Thomas Donnellan, Eric Wei, Jim Counts</para>
         ///   <para>Modified: 2011-11-26</para>
         /// </remarks>
-        public static Bitmap MakeGrayscale3(Bitmap original)
+        public static Bitmap MakeGrayscale(Bitmap original)
         {
             // create a blank bitmap the same size as original
             Bitmap newBitmap = new Bitmap(original.Width, original.Height);

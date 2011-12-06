@@ -108,7 +108,8 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <param name="sender">Black and White Button</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containging the event data.</param>
-        ////Kendra Diaz
+        /// <remarks> Author Kendra Diaz
+        /// Modified: Thomas Donnellan Refactoring</remarks>
         public virtual void OnContinueBlackAndWhiteEvent(object sender, EventArgs<Image> e)
         {
             EventHandler<EventArgs<Image>> handler = this.ContinueBlackAndWhiteEvent;
@@ -164,10 +165,10 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <param name="sender">The source of the event</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data</param>
-        private void Click_BlacknWhite(object sender, EventArgs e)
+        private void HandleBlackandWhite(object sender, EventArgs e)
         {
             Bitmap copyImage = (Bitmap)this.photoCropBox.Image;
-            copyImage = BlackAndWhite.MakeGrayscale3(copyImage);
+            copyImage = BlackAndWhite.MakeGrayscale(copyImage);
             ////this.photoCropBox.Image = copyImage;  
             ////this.Invalidate();
             // NOW SAVE THE IMAGE
@@ -177,7 +178,7 @@ namespace PhotoBuddy.Screens
         private void HandleRotateButtonClick(object sender, EventArgs e)
         {
             this.SuspendLayout();
-            this.foundationTableLayoutPanel.Hide();
+            this.EditTableLayoutPanel.Hide();
 
             var rotateControl = new RotatePhotoControl();
             rotateControl.Image = (Image)this.photoCropBox.Photo.Clone();
@@ -229,7 +230,7 @@ namespace PhotoBuddy.Screens
             rotateControl.CancelEvent -= this.CancelRotate;
             rotateControl.Hide();
             rotateControl.Dispose();
-            this.foundationTableLayoutPanel.Show();
+            this.EditTableLayoutPanel.Show();
         }
     }
 }

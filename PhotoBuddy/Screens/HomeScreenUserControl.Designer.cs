@@ -36,7 +36,7 @@ namespace PhotoBuddy.Screens
             this.CreateButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.albumsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.dividerPanel = new System.Windows.Forms.Panel();
+            this.DividerPanel = new System.Windows.Forms.Panel();
             this.HomeScreenPanel.SuspendLayout();
             this.HeadingPanel.SuspendLayout();
             this.HomeScreenActionPanel.SuspendLayout();
@@ -50,7 +50,7 @@ namespace PhotoBuddy.Screens
             this.HomeScreenPanel.Controls.Add(this.HeadingPanel, 0, 0);
             this.HomeScreenPanel.Controls.Add(this.HomeScreenActionPanel, 0, 3);
             this.HomeScreenPanel.Controls.Add(this.albumsFlowPanel, 0, 2);
-            this.HomeScreenPanel.Controls.Add(this.dividerPanel, 0, 1);
+            this.HomeScreenPanel.Controls.Add(this.DividerPanel, 0, 1);
             this.HomeScreenPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HomeScreenPanel.Location = new System.Drawing.Point(0, 0);
             this.HomeScreenPanel.Margin = new System.Windows.Forms.Padding(2);
@@ -154,15 +154,15 @@ namespace PhotoBuddy.Screens
             this.albumsFlowPanel.Size = new System.Drawing.Size(280, 166);
             this.albumsFlowPanel.TabIndex = 2;
             // 
-            // dividerPanel
+            // DividerPanel
             // 
-            this.dividerPanel.BackColor = System.Drawing.Color.Black;
-            this.dividerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dividerPanel.Location = new System.Drawing.Point(10, 35);
-            this.dividerPanel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.dividerPanel.Name = "dividerPanel";
-            this.dividerPanel.Size = new System.Drawing.Size(280, 1);
-            this.dividerPanel.TabIndex = 3;
+            this.DividerPanel.BackColor = System.Drawing.Color.Black;
+            this.DividerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DividerPanel.Location = new System.Drawing.Point(10, 35);
+            this.DividerPanel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.DividerPanel.Name = "DividerPanel";
+            this.DividerPanel.Size = new System.Drawing.Size(280, 1);
+            this.DividerPanel.TabIndex = 3;
             // 
             // HomeScreenUserControl
             // 
@@ -191,6 +191,6 @@ namespace PhotoBuddy.Screens
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button CreateButton;
         private System.Windows.Forms.FlowLayoutPanel albumsFlowPanel;
-        private System.Windows.Forms.Panel dividerPanel;
+        private System.Windows.Forms.Panel DividerPanel;
     }
 }

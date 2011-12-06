@@ -31,11 +31,11 @@ namespace PhotoBuddy
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.screenHolderPanel = new System.Windows.Forms.Panel();
-            this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.MainScreenTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.photoBuddyButton = new System.Windows.Forms.Button();
             this.searchControl = new PhotoBuddy.Controls.SearchControl();
-            this.foundationTableLayoutPanel.SuspendLayout();
+            this.MainScreenTableLayoutPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,22 +49,22 @@ namespace PhotoBuddy
             this.screenHolderPanel.Size = new System.Drawing.Size(784, 526);
             this.screenHolderPanel.TabIndex = 2;
             // 
-            // foundationTableLayoutPanel
+            // MainScreenTableLayoutPanel
             // 
-            this.foundationTableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(146)))), ((int)(((byte)(190)))));
-            this.foundationTableLayoutPanel.ColumnCount = 1;
-            this.foundationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.foundationTableLayoutPanel.Controls.Add(this.screenHolderPanel, 0, 1);
-            this.foundationTableLayoutPanel.Controls.Add(this.contentPanel, 0, 0);
-            this.foundationTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.foundationTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
-            this.foundationTableLayoutPanel.RowCount = 2;
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(784, 562);
-            this.foundationTableLayoutPanel.TabIndex = 3;
+            this.MainScreenTableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(146)))), ((int)(((byte)(190)))));
+            this.MainScreenTableLayoutPanel.ColumnCount = 1;
+            this.MainScreenTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainScreenTableLayoutPanel.Controls.Add(this.screenHolderPanel, 0, 1);
+            this.MainScreenTableLayoutPanel.Controls.Add(this.contentPanel, 0, 0);
+            this.MainScreenTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainScreenTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.MainScreenTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.MainScreenTableLayoutPanel.Name = "MainScreenTableLayoutPanel";
+            this.MainScreenTableLayoutPanel.RowCount = 2;
+            this.MainScreenTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.MainScreenTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainScreenTableLayoutPanel.Size = new System.Drawing.Size(784, 562);
+            this.MainScreenTableLayoutPanel.TabIndex = 3;
             // 
             // contentPanel
             // 
@@ -114,14 +114,14 @@ namespace PhotoBuddy
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.foundationTableLayoutPanel);
+            this.Controls.Add(this.MainScreenTableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeScreenForm";
-            this.foundationTableLayoutPanel.ResumeLayout(false);
-            this.foundationTableLayoutPanel.PerformLayout();
+            this.MainScreenTableLayoutPanel.ResumeLayout(false);
+            this.MainScreenTableLayoutPanel.PerformLayout();
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -131,7 +131,7 @@ namespace PhotoBuddy
         #endregion
 
         private System.Windows.Forms.Panel screenHolderPanel;
-        private System.Windows.Forms.TableLayoutPanel foundationTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel MainScreenTableLayoutPanel;
         private System.Windows.Forms.Panel contentPanel;
         private System.Windows.Forms.Button photoBuddyButton;
         private Controls.SearchControl searchControl;

@@ -315,7 +315,7 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public bool ContainsName(string displayName)
         {
-            return this.photos.Values.Any(photo => photo.DisplayName == displayName);
+            return this.photos.Values.Any(photo => photo.DisplayName.ToLower() == displayName);
         }
 
         /// <summary>
@@ -426,6 +426,18 @@ namespace PhotoBuddy.Models
             {
                 handler(sender, e);
             }
+        }
+
+        public bool IsExistingDisplayName(string photoName)
+        {
+            photoName = photoName.Trim();
+            photoName = photoName.ToLower();
+            if (ContainsName(photoName))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

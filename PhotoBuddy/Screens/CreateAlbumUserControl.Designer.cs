@@ -36,7 +36,7 @@ namespace PhotoBuddy.Screens
             this.continueButton = new System.Windows.Forms.Button();
             this.createAlbumLabel = new System.Windows.Forms.Label();
             this.createHeaderLabel = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.dividerPanel = new System.Windows.Forms.Panel();
             this.CreateAlbumPanel.SuspendLayout();
             this.CrateAlbumTextPanel.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +49,7 @@ namespace PhotoBuddy.Screens
             this.CreateAlbumPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.CreateAlbumPanel.Controls.Add(this.CrateAlbumTextPanel, 1, 2);
             this.CreateAlbumPanel.Controls.Add(this.createHeaderLabel, 0, 0);
-            this.CreateAlbumPanel.Controls.Add(this.panel2, 0, 1);
+            this.CreateAlbumPanel.Controls.Add(this.dividerPanel, 0, 1);
             this.CreateAlbumPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CreateAlbumPanel.Location = new System.Drawing.Point(0, 0);
             this.CreateAlbumPanel.Name = "CreateAlbumPanel";
@@ -159,16 +159,16 @@ namespace PhotoBuddy.Screens
             this.createHeaderLabel.Text = "label1";
             this.createHeaderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel2
+            // dividerPanel
             // 
-            this.panel2.BackColor = System.Drawing.Color.Black;
-            this.CreateAlbumPanel.SetColumnSpan(this.panel2, 3);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(10, 37);
-            this.panel2.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(355, 1);
-            this.panel2.TabIndex = 7;
+            this.dividerPanel.BackColor = System.Drawing.Color.Black;
+            this.CreateAlbumPanel.SetColumnSpan(this.dividerPanel, 3);
+            this.dividerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dividerPanel.Location = new System.Drawing.Point(10, 37);
+            this.dividerPanel.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.dividerPanel.Name = "dividerPanel";
+            this.dividerPanel.Size = new System.Drawing.Size(355, 1);
+            this.dividerPanel.TabIndex = 7;
             // 
             // CreateAlbumUserControl
             // 
@@ -196,6 +196,6 @@ namespace PhotoBuddy.Screens
         private System.Windows.Forms.TextBox albumNameTextBox;
         private System.Windows.Forms.Label createAlbumLabel;
         private System.Windows.Forms.Label createHeaderLabel;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel dividerPanel;
     }
 }

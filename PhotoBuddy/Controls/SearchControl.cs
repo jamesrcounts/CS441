@@ -74,12 +74,12 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void HandleSearchButtonClick(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(this.searchTextBox.Text))
+            if (string.IsNullOrWhiteSpace(this.SearchTextBox.Text))
             {
                 return;
             }
 
-            var terms = this.searchTextBox.Text.ToUpperInvariant().Trim().Split(' ');
+            var terms = this.SearchTextBox.Text.ToUpperInvariant().Trim().Split(' ');
             this.OnSearchInitiatedEvent(this, new EventArgs<string[]>(terms));
         }
     }

@@ -22,6 +22,7 @@ namespace PhotoBuddy
     /// </summary>
     public partial class UploadViewForm : Form
     {
+       
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadViewForm"/> class.
         /// </summary>
@@ -39,7 +40,7 @@ namespace PhotoBuddy
             this.InitializeComponent();
 
             this.Text = Format.Culture("{0} {1} - Photo Buddy", "Rename", photo.DisplayName);
-            this.pictureBox1.Image = photo.Image;
+            this.UploadViewBox.Image = photo.Image;
             this.displayNameTextBox.Text = photo.DisplayName;
             this.messageLabel.Text = "This is the photo you have selected to rename.";
         }
@@ -75,28 +76,19 @@ namespace PhotoBuddy
         /// </remarks>
         private void HandleContinueButtonClick(object sender, EventArgs e)
         {          
-            this.DisplayName = this.displayNameTextBox.Text;
+            string rawDisplayName = this.displayNameTextBox.Text;
+            this.DisplayName = rawDisplayName.Trim();
             //// Did user enter a blank name?
             if (string.IsNullOrWhiteSpace(this.DisplayName))
             {
-                CultureAwareMessageBox.Show(
-                    this,
-                    "Photo name must not be empty.",
-                    "Photo Buddy - " + Application.ProductVersion,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                this.HandleEmptyDisplayName();
                 return;
             }
 
             // Did user enter too long of a name?
             if (Constants.MaxNameLength < this.DisplayName.Length)
             {
-                CultureAwareMessageBox.Show(
-                    this,
-                    Format.Culture("Photo name is too long.  Please enter a name up to {0} characters.", Constants.MaxNameLength),
-                    "Photo Buddy - " + Application.ProductVersion,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                this.HandleTooLongDisplayName();
                 return;
             }
 
@@ -119,6 +111,39 @@ namespace PhotoBuddy
             {
                 this.HandleContinueButtonClick(sender, e);
             }
+        }
+        /// <summary>
+        /// Handles the too long display name error.
+        /// </summary>
+        /// <remarks><para>
+        /// Author:Thomas Donnellan
+        /// </para></remarks>
+        private void HandleTooLongDisplayName()
+        {
+            CultureAwareMessageBox.Show(
+                    this,
+                    Format.Culture("Photo name is too long.  Please enter a name up to {0} characters.", Constants.MaxNameLength),
+                    "Photo Buddy - " + Application.ProductVersion,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            return;
+        }
+
+        /// <summary>
+        /// Handles the empty display name error.
+        /// </summary>
+        /// <remarks><para>
+        /// Author:Thomas Donnellan
+        /// </para></remarks>
+        private void HandleEmptyDisplayName()
+        {
+            CultureAwareMessageBox.Show(
+                     this,
+                     "Photo name must not be empty.",
+                     "Photo Buddy - " + Application.ProductVersion,
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Warning);
+            return;
         }
 
         /// <summary>

@@ -208,7 +208,7 @@ namespace PhotoBuddy.Models
             {
                 return;
             }
-  
+           
             photo.DisplayName = displayName;
            
             this.SaveAlbums();
@@ -332,8 +332,8 @@ namespace PhotoBuddy.Models
         ///   <c>true</c> if the specified album name is already used; otherwise, <c>false</c>.
         /// </returns>
         /// <remarks>
-        /// Author(s): Miguel Gonzales and Andrea Tan and Kendra Diaz-(11/17/11)
-        /// Kendra: New definition handles names with white spaces and makes names not case sensitive
+        /// Author(s): Miguel Gonzales and Andrea Tan 
+        /// Modified: 11/17/2011 Kendra New definition handles names with white spaces and makes names not case sensitive
         /// </remarks>
         public bool IsExistingAlbumName(string albumName)
         {

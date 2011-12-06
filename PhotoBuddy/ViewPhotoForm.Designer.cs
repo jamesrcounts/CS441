@@ -37,20 +37,20 @@ namespace PhotoBuddy
             this.bottomtableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.playPauseButton = new System.Windows.Forms.Button();
             this.previousPhotoButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.rightViewControlPanel = new System.Windows.Forms.Panel();
             this.EditPhotoButton = new System.Windows.Forms.Button();
             this.currentAlbumLabel = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.leftViewControlPanel = new System.Windows.Forms.Panel();
+            this.SpeedControlLabel = new System.Windows.Forms.Label();
+            this.SlideShowSpeedNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.backButton = new System.Windows.Forms.Button();
             this.nextPhotoButton = new System.Windows.Forms.Button();
             this.slideShowTimer = new System.Windows.Forms.Timer(this.components);
-            this.SlideShowSpeedNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.SpeedControlLabel = new System.Windows.Forms.Label();
             this.foundationTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.bottomtableLayoutPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.rightViewControlPanel.SuspendLayout();
+            this.leftViewControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SlideShowSpeedNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,8 +110,8 @@ namespace PhotoBuddy
             this.bottomtableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.bottomtableLayoutPanel2.Controls.Add(this.playPauseButton, 2, 0);
             this.bottomtableLayoutPanel2.Controls.Add(this.previousPhotoButton, 1, 0);
-            this.bottomtableLayoutPanel2.Controls.Add(this.panel1, 4, 0);
-            this.bottomtableLayoutPanel2.Controls.Add(this.panel2, 0, 0);
+            this.bottomtableLayoutPanel2.Controls.Add(this.rightViewControlPanel, 4, 0);
+            this.bottomtableLayoutPanel2.Controls.Add(this.leftViewControlPanel, 0, 0);
             this.bottomtableLayoutPanel2.Controls.Add(this.nextPhotoButton, 3, 0);
             this.bottomtableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bottomtableLayoutPanel2.Location = new System.Drawing.Point(0, 426);
@@ -166,16 +166,16 @@ namespace PhotoBuddy
             this.previousPhotoButton.MouseEnter += new System.EventHandler(this.HandleButtonMouseEnter);
             this.previousPhotoButton.MouseLeave += new System.EventHandler(this.HandleButtonMouseLeave);
             // 
-            // panel1
+            // rightViewControlPanel
             // 
-            this.panel1.Controls.Add(this.EditPhotoButton);
-            this.panel1.Controls.Add(this.currentAlbumLabel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(383, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(203, 36);
-            this.panel1.TabIndex = 5;
+            this.rightViewControlPanel.Controls.Add(this.EditPhotoButton);
+            this.rightViewControlPanel.Controls.Add(this.currentAlbumLabel);
+            this.rightViewControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rightViewControlPanel.Location = new System.Drawing.Point(383, 0);
+            this.rightViewControlPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.rightViewControlPanel.Name = "rightViewControlPanel";
+            this.rightViewControlPanel.Size = new System.Drawing.Size(203, 36);
+            this.rightViewControlPanel.TabIndex = 5;
             // 
             // EditPhotoButton
             // 
@@ -212,17 +212,49 @@ namespace PhotoBuddy
             this.currentAlbumLabel.Text = "1/32";
             this.currentAlbumLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel2
+            // leftViewControlPanel
             // 
-            this.panel2.Controls.Add(this.SpeedControlLabel);
-            this.panel2.Controls.Add(this.SlideShowSpeedNumericUpDown);
-            this.panel2.Controls.Add(this.backButton);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(203, 36);
-            this.panel2.TabIndex = 6;
+            this.leftViewControlPanel.Controls.Add(this.SpeedControlLabel);
+            this.leftViewControlPanel.Controls.Add(this.SlideShowSpeedNumericUpDown);
+            this.leftViewControlPanel.Controls.Add(this.backButton);
+            this.leftViewControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.leftViewControlPanel.Location = new System.Drawing.Point(0, 0);
+            this.leftViewControlPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.leftViewControlPanel.Name = "leftViewControlPanel";
+            this.leftViewControlPanel.Size = new System.Drawing.Size(203, 36);
+            this.leftViewControlPanel.TabIndex = 6;
+            // 
+            // SpeedControlLabel
+            // 
+            this.SpeedControlLabel.AutoSize = true;
+            this.SpeedControlLabel.Location = new System.Drawing.Point(104, 14);
+            this.SpeedControlLabel.Name = "SpeedControlLabel";
+            this.SpeedControlLabel.Size = new System.Drawing.Size(38, 13);
+            this.SpeedControlLabel.TabIndex = 4;
+            this.SpeedControlLabel.Text = "Speed";
+            // 
+            // SlideShowSpeedNumericUpDown
+            // 
+            this.SlideShowSpeedNumericUpDown.Location = new System.Drawing.Point(148, 12);
+            this.SlideShowSpeedNumericUpDown.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.SlideShowSpeedNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.SlideShowSpeedNumericUpDown.Name = "SlideShowSpeedNumericUpDown";
+            this.SlideShowSpeedNumericUpDown.Size = new System.Drawing.Size(30, 20);
+            this.SlideShowSpeedNumericUpDown.TabIndex = 3;
+            this.SlideShowSpeedNumericUpDown.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.SlideShowSpeedNumericUpDown.ValueChanged += new System.EventHandler(this.SlideShowSpeedNumericUpDown_ValueChanged);
             // 
             // backButton
             // 
@@ -273,38 +305,6 @@ namespace PhotoBuddy
             this.slideShowTimer.Interval = 3000;
             this.slideShowTimer.Tick += new System.EventHandler(this.HandleNextPhotoButtonClick);
             // 
-            // SlideShowSpeedNumericUpDown
-            // 
-            this.SlideShowSpeedNumericUpDown.Location = new System.Drawing.Point(148, 12);
-            this.SlideShowSpeedNumericUpDown.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.SlideShowSpeedNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.SlideShowSpeedNumericUpDown.Name = "SlideShowSpeedNumericUpDown";
-            this.SlideShowSpeedNumericUpDown.Size = new System.Drawing.Size(30, 20);
-            this.SlideShowSpeedNumericUpDown.TabIndex = 3;
-            this.SlideShowSpeedNumericUpDown.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.SlideShowSpeedNumericUpDown.ValueChanged += new System.EventHandler(this.SlideShowSpeedNumericUpDown_ValueChanged);
-            // 
-            // SpeedControlLabel
-            // 
-            this.SpeedControlLabel.AutoSize = true;
-            this.SpeedControlLabel.Location = new System.Drawing.Point(104, 14);
-            this.SpeedControlLabel.Name = "SpeedControlLabel";
-            this.SpeedControlLabel.Size = new System.Drawing.Size(38, 13);
-            this.SpeedControlLabel.TabIndex = 4;
-            this.SpeedControlLabel.Text = "Speed";
-            // 
             // ViewPhotoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,10 +321,10 @@ namespace PhotoBuddy
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.bottomtableLayoutPanel2.ResumeLayout(false);
             this.bottomtableLayoutPanel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.rightViewControlPanel.ResumeLayout(false);
+            this.rightViewControlPanel.PerformLayout();
+            this.leftViewControlPanel.ResumeLayout(false);
+            this.leftViewControlPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SlideShowSpeedNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
@@ -341,8 +341,8 @@ namespace PhotoBuddy
         private System.Windows.Forms.Label photoNameLabel;
         private System.Windows.Forms.TableLayoutPanel bottomtableLayoutPanel2;
         private System.Windows.Forms.Button EditPhotoButton;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel rightViewControlPanel;
+        private System.Windows.Forms.Panel leftViewControlPanel;
         private System.Windows.Forms.Button playPauseButton;
         private System.Windows.Forms.Timer slideShowTimer;
         private System.Windows.Forms.Label SpeedControlLabel;

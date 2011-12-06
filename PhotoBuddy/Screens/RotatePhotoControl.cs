@@ -1,4 +1,13 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="RotatePhotoControl.cs" company="Gold Rush">
+//     Copyright (c) Gold Rush 2011. All rights reserved.
+// </copyright>
+// Author(s): Thomas Donnellan and Miguel Gonzales
+// Date: Sept 28 2011
+// Modified date: Dec. 3, 2011
+// Description: this class is responsible for the rotate photo control.
+//-----------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -75,57 +84,85 @@ namespace PhotoBuddy.Screens
             }
         }
 
+        /// <summary>
+        /// saves the rotated image when clicked
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The <see cref=" Systme.EventArgs"/> instance containing event data.</param>
+        /// <remarks>Authors: Thomas Donnellan and Miguel Gonzales</remarks>
         private void SaveRotateButton_Click(object sender, EventArgs e)
         {
             this.OnContinueEvent(this, new EventArgs<Image>(this.Image));
         }
 
+        /// <summary> 
+        /// cancels the rotation editing
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The <see cref=" Systme.EventArgs"/> instance containing event data.</param>
+        /// <remarks>Authors: Thomas Donnellan and Miguel Gonzales</remarks>
         private void CancelRotateButton_Click(object sender, EventArgs e)
         {
             this.OnCancelEvent(this, e);
         }
 
+        /// <summary>
+        /// filps the photo horizantaly.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The <see cref=" Systme.EventArgs"/> instance containing event data.</param>
+        /// <remarks>Authors: Thomas Donnellan and Miguel Gonzales</remarks>
         private void FlipHorizontalButton_Click(object sender, EventArgs e)
         {
-            Image flipped = this.photoRotateBox.Image;
             if (this.Image != null)
             {
-                this.photoRotateBox.Image = null;
-                flipped.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                this.photoRotateBox.Image = flipped;
+                this.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                this.photoRotateBox.Invalidate();
             }
         }
 
+        /// <summary>
+        /// flips the photo vertically
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The <see cref=" Systme.EventArgs"/> instance containing event data.</param>
+        /// <remarks>Authors: Thomas Donnellan and Miguel Gonzales</remarks>
         private void FlipVerticalButton_Click(object sender, EventArgs e)
         {
-            Image flipped = this.photoRotateBox.Image;
             if (this.Image != null)
             {
-                this.photoRotateBox.Image = null;
-                flipped.RotateFlip(RotateFlipType.RotateNoneFlipY);
-                this.photoRotateBox.Image = flipped;
+                this.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+                this.photoRotateBox.Invalidate();
             }
         }
 
+        /// <summary>
+        /// rotates the photo left 90 degrees
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The <see cref=" Systme.EventArgs"/> instance containing event data.</param>
+        /// <remarks>Authors: Thomas Donnellan and Miguel Gonzales</remarks>
         private void RotateLeftButton_Click(object sender, EventArgs e)
         {
-            Image flipped = this.photoRotateBox.Image;
             if (this.Image != null)
             {
-                this.photoRotateBox.Image = null;
-                flipped.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                this.photoRotateBox.Image = flipped;
+                this.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                this.photoRotateBox.Invalidate();
             }
         }
 
+        /// <summary>
+        /// rotates the photo right 90 degrees.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The <see cref=" Systme.EventArgs"/> instance containing event data.</param>
+        /// <remarks>Authors: Thomas Donnellan and Miguel Gonzales</remarks>
         private void RotateRightButton_Click(object sender, EventArgs e)
         {
-            Image flipped = this.photoRotateBox.Image;
             if (this.Image != null)
             {
-                this.photoRotateBox.Image = null;
-                flipped.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                this.photoRotateBox.Image = flipped;
+                this.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                this.photoRotateBox.Invalidate();
             }
         }
     }

@@ -305,7 +305,7 @@ namespace PhotoBuddy
             photoControl.Image = this.pictureBox1.Image;
             photoControl.CancelEvent += this.CancelCrop;
             photoControl.ContinueEvent += this.ContinueCrop;
-            photoControl.ContinueBlackAndWhiteEvent += this.ContinueBlknWht;
+            photoControl.ContinueBlackAndWhiteEvent += this.ContinueBlackAndWhite;
             photoControl.ContinueRotateEvent += this.ContinueRotate;
             this.Controls.Add(photoControl);
             photoControl.Dock = DockStyle.Fill;
@@ -385,7 +385,7 @@ namespace PhotoBuddy
         {
             photoCropControl.ContinueEvent -= this.ContinueCrop;
             photoCropControl.CancelEvent -= this.CancelCrop;
-            photoCropControl.ContinueBlackAndWhiteEvent -= this.ContinueBlknWht;
+            photoCropControl.ContinueBlackAndWhiteEvent -= this.ContinueBlackAndWhite;
             photoCropControl.Hide();
             photoCropControl.Dispose();
             this.foundationTableLayoutPanel.Show();
@@ -408,12 +408,12 @@ namespace PhotoBuddy
         /// Handle Saving new Black and White photo
         /// </summary>
         /// <param name="sender">The Black And WhiteButton</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containg the event data</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data</param>
         /// <remarks>
         /// Author: Kendra Diaz
         /// Modified: Thomas Donnellan refactoring 11/27/2011
         /// </remarks>
-        private void ContinueBlknWht(object sender, EventArgs<Image> e)
+        private void ContinueBlackAndWhite(object sender, EventArgs<Image> e)
         {
             var photoCropControl = (CropPhotoControl)sender;
             this.SuspendLayout();

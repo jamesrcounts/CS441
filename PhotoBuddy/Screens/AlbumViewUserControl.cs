@@ -81,11 +81,11 @@ namespace PhotoBuddy.Screens
                 this.addPhotosEnabled = value;
                 if (!this.addPhotosEnabled)
                 {
-                    this.addPhotosButton.Hide();
+                    this.AddPhotosButton.Hide();
                 }
                 else
                 {
-                    this.addPhotosButton.Show();
+                    this.AddPhotosButton.Show();
                 }
             }
         }
@@ -121,7 +121,7 @@ namespace PhotoBuddy.Screens
                 this.AddPhotosEnabled = true;
                 if (this.currentAlbum != null)
                 {
-                    this.albumNameLabel.Text = this.currentAlbum.AlbumId.Replace("&", "&&");
+                    this.AlbumNameLabel.Text = this.currentAlbum.AlbumId.Replace("&", "&&");
                     this.RefreshPhotoList();
                 }
             }
@@ -279,8 +279,8 @@ namespace PhotoBuddy.Screens
                 return;
             }
 
-            this.photosFlowPanel.Controls.Add(thumb);
-            this.UpdateAlbumCount(this.photosFlowPanel.Controls.Count);
+            this.PhotosFlowPanel.Controls.Add(thumb);
+            this.UpdateAlbumCount(this.PhotosFlowPanel.Controls.Count);
         }
 
         /// <summary>
@@ -313,12 +313,12 @@ namespace PhotoBuddy.Screens
         {
             stopAddToken = new CancellationTokenSource();
             // Get the startup directory from the settings file
-            this.addPhotosFileDialog.InitialDirectory = Environment.ExpandEnvironmentVariables(Settings.Default.LastImportDirectory);
-            DialogResult fileDialogResult = this.addPhotosFileDialog.ShowDialog();
+            this.AddPhotosFileDialog.InitialDirectory = Environment.ExpandEnvironmentVariables(Settings.Default.LastImportDirectory);
+            DialogResult fileDialogResult = this.AddPhotosFileDialog.ShowDialog();
             if (fileDialogResult == DialogResult.OK)
             {
                 // Cache the directory the user just picked a file from.
-                Settings.Default.LastImportDirectory = Path.GetDirectoryName(this.addPhotosFileDialog.FileName);
+                Settings.Default.LastImportDirectory = Path.GetDirectoryName(this.AddPhotosFileDialog.FileName);
                 Settings.Default.Save();
 
                 // Setup a pipeline
@@ -345,7 +345,7 @@ namespace PhotoBuddy.Screens
                 // Start filling the pipeline.
                 try
                 {
-                    foreach (var fullPath in this.addPhotosFileDialog.FileNames)
+                    foreach (var fullPath in this.AddPhotosFileDialog.FileNames)
                     {
                         pathBuffer.Add(fullPath);
                     }
@@ -375,7 +375,7 @@ namespace PhotoBuddy.Screens
             this.stopRefreshToken = new CancellationTokenSource();
             var photoBuffer = new BlockingCollection<IPhoto>();
             var thumbnailBuffer = new BlockingCollection<ThumbnailUserControl>(32);
-            this.photosFlowPanel.Controls.Clear();
+            this.PhotosFlowPanel.Controls.Clear();
 
             Task.Factory.StartNew(
                 () => this.GenerateThumbnailControls(photoBuffer, thumbnailBuffer, stopRefreshToken.Token),
@@ -490,7 +490,7 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandlePhotosFlowPanelMouseEnter(object sender, EventArgs e)
         {
-            this.photosFlowPanel.Focus();
+            this.PhotosFlowPanel.Focus();
         }
 
         /// <summary>
@@ -504,7 +504,7 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandlePhotosFlowPanelMouseClick(object sender, MouseEventArgs e)
         {
-            this.photosFlowPanel.Focus();
+            this.PhotosFlowPanel.Focus();
         }
 
         /// <summary>
@@ -514,7 +514,7 @@ namespace PhotoBuddy.Screens
         /// <param name="e">The <see cref="PhotoBuddy.EventObjects.PhotoEventArgs"/> instance containing the event data.</param>
         private void HandleDeletePhotoEvent(object sender, EventArgs e)
         {
-            this.photosFlowPanel.Controls.Remove((Control)sender);
+            this.PhotosFlowPanel.Controls.Remove((Control)sender);
             this.albumSizeLabel.Text = Format.Culture("{0} photos", this.CurrentAlbum.Count);
         }
 

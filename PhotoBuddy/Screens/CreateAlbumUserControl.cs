@@ -224,12 +224,13 @@ namespace PhotoBuddy.Screens
         /// Checks to see if the album name exists before allowing the user to rename the album and then
         /// the album is either renamed or an exception is thrown
         /// </summary>
-        /// Authors: Kendra Diaz and Thomas Donnellan
+        /// Authors: James Counts and Eric Wei
+        /// Modified: Donnnellan and Diaz recognize different case and whitespace. 
         private void RenameAlbum()
         {
             if (this.Model.IsExistingAlbumName(this.albumNameTextBox.Text) == true)
             {
-                this.ShowInvalidName();
+                this.HandleInvalidName();
                 return;
             }
 
@@ -238,9 +239,11 @@ namespace PhotoBuddy.Screens
             this.OnRenameAlbumEvent(this, new EventArgs<IAlbum>(this.album));
         }
 
-        /// <summary>REFACTORING - Display invalid name message
-        /// Authors: Kendra Diaz and Thomas Donnellan</summary>
-        private void ShowInvalidName()
+        /// <summary>
+        /// REFACTORING - Display invalid name message
+        /// </summary>
+        /// <remarks>Authors: Kendra Diaz and Thomas Donnellan</remarks>
+        private void HandleInvalidName()
         {
             var invalidAlbumNameMessage = new InvalidAlbumNameMessage();
             CultureAwareMessageBox.Show(
@@ -325,7 +328,7 @@ namespace PhotoBuddy.Screens
             string rawAlbumName = this.albumNameTextBox.Text;
             if (this.Model.IsExistingAlbumName(rawAlbumName))
             {
-                this.ShowInvalidName();
+                this.HandleInvalidName();
                 return;
             }
 
