@@ -31,9 +31,9 @@ namespace PhotoBuddy
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewPhotoForm));
-            this.foundationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.ViewPhotoTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.photoNameLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ViewPhotoBox = new System.Windows.Forms.PictureBox();
             this.bottomtableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.playPauseButton = new System.Windows.Forms.Button();
             this.previousPhotoButton = new System.Windows.Forms.Button();
@@ -46,33 +46,33 @@ namespace PhotoBuddy
             this.backButton = new System.Windows.Forms.Button();
             this.nextPhotoButton = new System.Windows.Forms.Button();
             this.slideShowTimer = new System.Windows.Forms.Timer(this.components);
-            this.foundationTableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.ViewPhotoTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewPhotoBox)).BeginInit();
             this.bottomtableLayoutPanel2.SuspendLayout();
             this.rightViewControlPanel.SuspendLayout();
             this.leftViewControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SlideShowSpeedNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
-            // foundationTableLayoutPanel
+            // ViewPhotoTableLayoutPanel
             // 
-            this.foundationTableLayoutPanel.BackColor = System.Drawing.Color.White;
-            this.foundationTableLayoutPanel.ColumnCount = 1;
-            this.foundationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.foundationTableLayoutPanel.Controls.Add(this.photoNameLabel, 0, 1);
-            this.foundationTableLayoutPanel.Controls.Add(this.pictureBox1, 0, 0);
-            this.foundationTableLayoutPanel.Controls.Add(this.bottomtableLayoutPanel2, 0, 2);
-            this.foundationTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.foundationTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.foundationTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.foundationTableLayoutPanel.Name = "foundationTableLayoutPanel";
-            this.foundationTableLayoutPanel.RowCount = 3;
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.foundationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.foundationTableLayoutPanel.Size = new System.Drawing.Size(586, 462);
-            this.foundationTableLayoutPanel.TabIndex = 2;
+            this.ViewPhotoTableLayoutPanel.BackColor = System.Drawing.Color.White;
+            this.ViewPhotoTableLayoutPanel.ColumnCount = 1;
+            this.ViewPhotoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ViewPhotoTableLayoutPanel.Controls.Add(this.photoNameLabel, 0, 1);
+            this.ViewPhotoTableLayoutPanel.Controls.Add(this.ViewPhotoBox, 0, 0);
+            this.ViewPhotoTableLayoutPanel.Controls.Add(this.bottomtableLayoutPanel2, 0, 2);
+            this.ViewPhotoTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ViewPhotoTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.ViewPhotoTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.ViewPhotoTableLayoutPanel.Name = "ViewPhotoTableLayoutPanel";
+            this.ViewPhotoTableLayoutPanel.RowCount = 3;
+            this.ViewPhotoTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ViewPhotoTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.ViewPhotoTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.ViewPhotoTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.ViewPhotoTableLayoutPanel.Size = new System.Drawing.Size(586, 462);
+            this.ViewPhotoTableLayoutPanel.TabIndex = 2;
             // 
             // photoNameLabel
             // 
@@ -88,16 +88,16 @@ namespace PhotoBuddy
             this.photoNameLabel.Text = "displayNameLabel";
             this.photoNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox1
+            // ViewPhotoBox
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(10, 10, 10, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(566, 370);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.ViewPhotoBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ViewPhotoBox.Location = new System.Drawing.Point(10, 10);
+            this.ViewPhotoBox.Margin = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.ViewPhotoBox.Name = "ViewPhotoBox";
+            this.ViewPhotoBox.Size = new System.Drawing.Size(566, 370);
+            this.ViewPhotoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ViewPhotoBox.TabIndex = 2;
+            this.ViewPhotoBox.TabStop = false;
             // 
             // bottomtableLayoutPanel2
             // 
@@ -310,15 +310,15 @@ namespace PhotoBuddy
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 462);
-            this.Controls.Add(this.foundationTableLayoutPanel);
+            this.Controls.Add(this.ViewPhotoTableLayoutPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ViewPhotoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Photo Display - Photo Buddy";
-            this.foundationTableLayoutPanel.ResumeLayout(false);
-            this.foundationTableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ViewPhotoTableLayoutPanel.ResumeLayout(false);
+            this.ViewPhotoTableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewPhotoBox)).EndInit();
             this.bottomtableLayoutPanel2.ResumeLayout(false);
             this.bottomtableLayoutPanel2.PerformLayout();
             this.rightViewControlPanel.ResumeLayout(false);
@@ -332,12 +332,12 @@ namespace PhotoBuddy
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel foundationTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel ViewPhotoTableLayoutPanel;
         private System.Windows.Forms.Label currentAlbumLabel;
         private System.Windows.Forms.Button previousPhotoButton;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Button nextPhotoButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox ViewPhotoBox;
         private System.Windows.Forms.Label photoNameLabel;
         private System.Windows.Forms.TableLayoutPanel bottomtableLayoutPanel2;
         private System.Windows.Forms.Button EditPhotoButton;

@@ -59,7 +59,7 @@ namespace PhotoBuddy.Screens
             this.createHeaderLabel.Text = this.DisplayName;
 
             // Default to creating a new album.
-            this.createAlbumLabel.Text = "Please enter the name of the new album:";
+            this.CreateAlbumLabel.Text = "Please enter the name of the new album:";
             this.albumNameTextBox.Text = string.Empty;
             this.createHeaderLabel.Text = this.DisplayName;
             this.albumNameTextBox.Focus();
@@ -104,7 +104,7 @@ namespace PhotoBuddy.Screens
                 {
                     // Editing an existing album.
                     this.albumNameTextBox.Text = this.album.AlbumId;
-                    this.createAlbumLabel.Text = "Please enter the new album name:";
+                    this.CreateAlbumLabel.Text = "Please enter the new album name:";
                     this.createHeaderLabel.Text = "Edit Album: " + this.album.AlbumId.Replace("&", "&&");
                 }
             }
@@ -295,7 +295,7 @@ namespace PhotoBuddy.Screens
         /// postCondition: if the album name has not been created then simply continue and
         /// eventually get added to album list. otherwise it will do nothing.</para>
         /// <para>Alterations:</para>
-        /// <para>11/18 Thomas Donnellan applying whitespace check  and non-case sensitive 
+        /// <para>11/18 Thomas Donnellan applying whitespace check  
         /// to create album added new lines of code</para>
         /// </remarks>
         private void HandleContinueButtonClick(object sender, EventArgs e)

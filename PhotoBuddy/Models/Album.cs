@@ -427,17 +427,5 @@ namespace PhotoBuddy.Models
                 handler(sender, e);
             }
         }
-
-        public bool IsExistingDisplayName(string photoName)
-        {
-            photoName = photoName.Trim();
-            photoName = photoName.ToLower();
-            if (ContainsName(photoName))
-            {
-                return true;
-            }
-
-            return false;
-        }
     }
 }

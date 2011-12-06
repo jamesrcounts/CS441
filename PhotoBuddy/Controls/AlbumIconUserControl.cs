@@ -91,12 +91,12 @@ namespace PhotoBuddy.Controls
         {
             get
             {
-                return this.albumNameTextBox.Text;
+                return this.AlbumNameTextBox.Text;
             }
 
             set
             {
-                this.albumNameTextBox.Text = value;
+                this.AlbumNameTextBox.Text = value;
             }
         }
 
@@ -114,12 +114,12 @@ namespace PhotoBuddy.Controls
         {
             get
             {
-                return Convert.ToInt32(this.albumCountLabel.Text, CultureInfo.CurrentCulture);
+                return Convert.ToInt32(this.AlbumCountLabel.Text, CultureInfo.CurrentCulture);
             }
 
             set
             {
-                this.albumCountLabel.Text = value.ToString(CultureInfo.CurrentCulture);
+                this.AlbumCountLabel.Text = value.ToString(CultureInfo.CurrentCulture);
             }
         }
 
@@ -137,7 +137,7 @@ namespace PhotoBuddy.Controls
         {
             get
             {
-                return this.thumbnailPictureBox.Width;
+                return this.ThumbnailPictureBox.Width;
             }
         }
 
@@ -155,7 +155,7 @@ namespace PhotoBuddy.Controls
         {
             get
             {
-                return this.thumbnailPictureBox.Height;
+                return this.ThumbnailPictureBox.Height;
             }
         }
 
@@ -173,12 +173,12 @@ namespace PhotoBuddy.Controls
         {
             get
             {
-                return this.coverPhotoPictureBox.Image;
+                return this.CoverPhotoPictureBox.Image;
             }
 
             set
             {
-                this.coverPhotoPictureBox.Image = value;
+                this.CoverPhotoPictureBox.Image = value;
             }
         }
 
@@ -248,7 +248,7 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void RemovePhotoHighlight(object sender, EventArgs e)
         {
-            this.thumbnailPanel.BackColor = Color.White;
+            this.ThumbnailPanel.BackColor = Color.White;
         }
 
         /// <summary>
@@ -304,7 +304,7 @@ namespace PhotoBuddy.Controls
         /// </remarks>
         private void HighlightAlbum(object sender, EventArgs e)
         {
-            this.thumbnailPanel.BackColor = Color.Gold;
+            this.ThumbnailPanel.BackColor = Color.Gold;
         }
 
         /// <summary>

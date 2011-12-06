@@ -175,6 +175,12 @@ namespace PhotoBuddy.Screens
             this.OnContinueBlackAndWhiteEvent(this, new EventArgs<Image>(copyImage));
         }
 
+        /// <summary>
+        /// handles the click event of the Rotate button
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> intance containing the event data</param>
+        /// <remarks> Authors: Thomas Donnellan and Miguel Gonzales</remarks>
         private void HandleRotateButtonClick(object sender, EventArgs e)
         {
             this.SuspendLayout();
@@ -182,7 +188,7 @@ namespace PhotoBuddy.Screens
 
             var rotateControl = new RotatePhotoControl();
             rotateControl.Image = (Image)this.photoCropBox.Photo.Clone();
-            rotateControl.originalPhoto = this.photoCropBox.Photo;
+            rotateControl.OriginalPhoto = this.photoCropBox.Photo;
             rotateControl.CancelEvent += this.CancelRotate;
             rotateControl.ContinueEvent += this.ContinueRotate;
             this.Controls.Add(rotateControl);
@@ -201,7 +207,7 @@ namespace PhotoBuddy.Screens
         {
             var rotateControl = (RotatePhotoControl)sender;
             this.SuspendLayout();
-            this.photoCropBox.Photo = rotateControl.originalPhoto;
+            this.photoCropBox.Photo = rotateControl.OriginalPhoto;
             this.TearDownRotateControl(rotateControl);
             this.ResumeLayout();
         }

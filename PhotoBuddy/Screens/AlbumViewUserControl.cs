@@ -16,12 +16,12 @@ namespace PhotoBuddy.Screens
     using System.Diagnostics;
     using System.Drawing;
     using System.IO;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using PhotoBuddy.Controls;
     using PhotoBuddy.Models;
     using PhotoBuddy.Properties;
-    using System.Threading;
 
     /// <summary>
     /// Displays an album
@@ -29,8 +29,14 @@ namespace PhotoBuddy.Screens
     [DebuggerDisplay("{DisplayName}")]
     public partial class AlbumViewUserControl : UserControl, IScreen
     {
-
+        /// <summary>
+        /// A token carries the cancelation notice of refreshing the album view to generate thumbnails.
+        /// </summary>
         private CancellationTokenSource stopRefreshToken;
+
+        /// <summary>
+        /// a token carrying the cancelation notice for adding photos to an album.
+        /// </summary>
         private CancellationTokenSource stopAddToken;
 
         /// <summary>
@@ -196,6 +202,9 @@ namespace PhotoBuddy.Screens
         /// Creates the thumbnail user control.
         /// </summary>
         /// <returns>A new thumbnail user control, created on the UI thread.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        /// </remarks>
         private ThumbnailUserControl CreateThumbnailUserControl()
         {
             if (this.InvokeRequired && !this.IsDisposed)
@@ -206,7 +215,8 @@ namespace PhotoBuddy.Screens
                     return this.Invoke(invoker) as ThumbnailUserControl;
                 }
                 catch
-                { }
+                { 
+                }
             }
 
             return new ThumbnailUserControl();
@@ -216,11 +226,19 @@ namespace PhotoBuddy.Screens
         /// Adds the thumbnail controls.
         /// </summary>
         /// <param name="controls">The controls.</param>
+        /// <param name="token"> The token carrying the cancelation notice.</param>
+        ///  <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        /// </remarks>
         private void AddThumbnailControls(BlockingCollection<ThumbnailUserControl> controls, CancellationToken token)
         {
             foreach (var control in controls.GetConsumingEnumerable())
             {
-                if (token.IsCancellationRequested) break;
+                if (token.IsCancellationRequested)
+                {
+                    break;
+                }
+
                 this.AddThumbnail(control);
             }
         }
@@ -245,13 +263,18 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <param name="photos">The photos.</param>
         /// <param name="controls">The controls.</param>
+        /// <param name="token"> The token carrying the cancelation notice.</param>
         private void GenerateThumbnailControls(BlockingCollection<IPhoto> photos, BlockingCollection<ThumbnailUserControl> controls, CancellationToken token)
         {
             try
             {
                 foreach (var photo in photos.GetConsumingEnumerable())
                 {
-                    if (token.IsCancellationRequested) break;
+                    if (token.IsCancellationRequested)
+                    {
+                        break;
+                    }
+
                     ThumbnailUserControl thumbnailControl = this.ConfigureThumbnailControl(photo);
                     controls.Add(thumbnailControl);
                 }
@@ -298,6 +321,7 @@ namespace PhotoBuddy.Screens
             {
                 this.stopAddToken.Cancel();
             }
+
             this.OnBackEvent(this, e);
         }
 
@@ -311,7 +335,8 @@ namespace PhotoBuddy.Screens
         /// </remarks>
         private void HandleAddPhotosButtonClick(object sender, EventArgs e)
         {
-            stopAddToken = new CancellationTokenSource();
+            this.stopAddToken = new CancellationTokenSource();
+
             // Get the startup directory from the settings file
             this.AddPhotosFileDialog.InitialDirectory = Environment.ExpandEnvironmentVariables(Settings.Default.LastImportDirectory);
             DialogResult fileDialogResult = this.AddPhotosFileDialog.ShowDialog();
@@ -325,21 +350,21 @@ namespace PhotoBuddy.Screens
                 var pathBuffer = new BlockingCollection<string>();
                 var filteredPathBuffer = new BlockingCollection<Tuple<string, string>>(32);
                 Task.Factory.StartNew(
-                    () => this.CalculateKeys(pathBuffer, filteredPathBuffer, stopAddToken.Token),
+                    () => this.CalculateKeys(pathBuffer, filteredPathBuffer, this.stopAddToken.Token),
                     TaskCreationOptions.LongRunning);
 
                 var photoBuffer = new BlockingCollection<IPhoto>(32);
                 Task.Factory.StartNew(
-                    () => this.AddPhotos(filteredPathBuffer, photoBuffer, stopAddToken.Token),
+                    () => this.AddPhotos(filteredPathBuffer, photoBuffer, this.stopAddToken.Token),
                     TaskCreationOptions.LongRunning);
 
                 var thumbnailBuffer = new BlockingCollection<ThumbnailUserControl>(32);
                 Task.Factory.StartNew(
-                    () => this.GenerateThumbnailControls(photoBuffer, thumbnailBuffer, stopAddToken.Token),
+                    () => this.GenerateThumbnailControls(photoBuffer, thumbnailBuffer, this.stopAddToken.Token),
                     TaskCreationOptions.LongRunning);
 
                 Task.Factory.StartNew(
-                    () => this.AddThumbnailControls(thumbnailBuffer, stopAddToken.Token),
+                    () => this.AddThumbnailControls(thumbnailBuffer, this.stopAddToken.Token),
                     TaskCreationOptions.LongRunning);
 
                 // Start filling the pipeline.
@@ -378,16 +403,20 @@ namespace PhotoBuddy.Screens
             this.PhotosFlowPanel.Controls.Clear();
 
             Task.Factory.StartNew(
-                () => this.GenerateThumbnailControls(photoBuffer, thumbnailBuffer, stopRefreshToken.Token),
+                () => this.GenerateThumbnailControls(photoBuffer, thumbnailBuffer, this.stopRefreshToken.Token),
                 TaskCreationOptions.LongRunning);
             Task.Factory.StartNew(
-                () => this.AddThumbnailControls(thumbnailBuffer, stopRefreshToken.Token),
+                () => this.AddThumbnailControls(thumbnailBuffer, this.stopRefreshToken.Token),
                 TaskCreationOptions.LongRunning);
             try
             {
                 foreach (var photo in photosToAdd)
                 {
-                    if (stopRefreshToken.IsCancellationRequested) break;
+                    if (this.stopRefreshToken.IsCancellationRequested)
+                    {
+                        break;
+                    }
+
                     photoBuffer.Add(photo);
                 }
             }
@@ -402,13 +431,18 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <param name="keysAndPaths">The paths.</param>
         /// <param name="photos">The photos.</param>
+        /// <param name="token"> The token carrying the cancelation notice.</param>
         private void AddPhotos(BlockingCollection<Tuple<string, string>> keysAndPaths, BlockingCollection<IPhoto> photos, CancellationToken token)
         {
             try
             {
                 foreach (Tuple<string, string> keyAndPath in keysAndPaths.GetConsumingEnumerable())
                 {
-                    if (token.IsCancellationRequested) break;
+                    if (token.IsCancellationRequested)
+                    { 
+                        break;
+                    }
+
                     if (!this.CurrentAlbum.ContainsPhoto(keyAndPath.Item1))
                     {
                         var photo = this.CurrentAlbum.AddPhoto(keyAndPath.Item2);
@@ -427,6 +461,7 @@ namespace PhotoBuddy.Screens
         /// </summary>
         /// <param name="paths">The paths.</param>
         /// <param name="keysAndPaths">The paths with thier hash keys.</param>
+        /// <param name="token">The token that carries the cancelation notice</param>
         /// <remarks>Inefficient bug fix: 2011-11-08 10:42 AM</remarks>
         private void CalculateKeys(BlockingCollection<string> paths, BlockingCollection<Tuple<string, string>> keysAndPaths, CancellationToken token)
         {

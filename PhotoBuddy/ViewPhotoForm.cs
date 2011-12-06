@@ -119,7 +119,7 @@ namespace PhotoBuddy
         {
             this.CloseCurrentPhoto();
             this.currentPhoto = this.allPhotosInAlbum[index];
-            this.pictureBox1.Image = this.currentPhoto.Image;
+            this.ViewPhotoBox.Image = this.currentPhoto.Image;
             this.currentAlbumLabel.Text = Format.Culture("{0}/{1}", index + 1, this.allPhotosInAlbum.Count);
             this.photoNameLabel.Text = this.currentPhoto.DisplayName.Replace("&", "&&");
         }
@@ -299,10 +299,10 @@ namespace PhotoBuddy
             this.StopTimer();
             //// stop slide show
             this.SuspendLayout();
-            this.foundationTableLayoutPanel.Hide();
+            this.ViewPhotoTableLayoutPanel.Hide();
 
             var photoControl = new CropPhotoControl();
-            photoControl.Image = this.pictureBox1.Image;
+            photoControl.Image = this.ViewPhotoBox.Image;
             photoControl.CancelEvent += this.CancelCrop;
             photoControl.ContinueEvent += this.ContinueCrop;
             photoControl.ContinueBlackAndWhiteEvent += this.ContinueBlackAndWhite;
@@ -388,7 +388,7 @@ namespace PhotoBuddy
             photoCropControl.ContinueBlackAndWhiteEvent -= this.ContinueBlackAndWhite;
             photoCropControl.Hide();
             photoCropControl.Dispose();
-            this.foundationTableLayoutPanel.Show();
+            this.ViewPhotoTableLayoutPanel.Show();
         }
      
         /// <summary>

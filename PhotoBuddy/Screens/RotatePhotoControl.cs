@@ -3,29 +3,46 @@
 //     Copyright (c) Gold Rush 2011. All rights reserved.
 // </copyright>
 // Author(s): Thomas Donnellan and Miguel Gonzales
-// Date: Sept 28 2011
-// Modified date: Dec. 3, 2011
+// Date:Dec. 3, 2011
 // Description: this class is responsible for the rotate photo control.
 //-----------------------------------------------------------------------
+
+namespace PhotoBuddy.Screens
+{
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PhotoBuddy.Screens
-{
+    /// <summary>
+    /// Provides a user interface to rotate a photo.
+    /// </summary>
+    /// <remarks>
+    ///   <para>Author: Thomas Donnellan and Miguel Gonzales</para>
+    ///   <para>Created: 2011-12-03</para>
+    /// </remarks>
     public partial class RotatePhotoControl : UserControl
     {
+        /// <summary>
+        /// Initilizes a new instance of the <see cref="RotatePhotoControl"/> class.
+        /// </summary>
+        /// <remarks>
+        ///   <para>Author: Thomas Donnellan and Miguel Gonzales</para>
+        ///   <para>Created: 2011-12-03</para>
+        /// </remarks>
         public RotatePhotoControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
-        public Image originalPhoto { get; set; }
+        /// <summary>
+        /// Gets the original image.
+        /// </summary>
+        public Image OriginalPhoto { get; set; }
 
         /// <summary>
         /// Occurs when the user wants to abandon rotation without saving changes.
@@ -47,12 +64,12 @@ namespace PhotoBuddy.Screens
         {
             get
             {
-                return this.photoRotateBox.Image;
+                return this.PhotoRotateBox.Image;
             }
 
             set
             {
-                this.photoRotateBox.Image = value;
+                this.PhotoRotateBox.Image = value;
             }
         }
 
@@ -117,7 +134,7 @@ namespace PhotoBuddy.Screens
             if (this.Image != null)
             {
                 this.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                this.photoRotateBox.Invalidate();
+                this.PhotoRotateBox.Invalidate();
             }
         }
 
@@ -132,7 +149,7 @@ namespace PhotoBuddy.Screens
             if (this.Image != null)
             {
                 this.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
-                this.photoRotateBox.Invalidate();
+                this.PhotoRotateBox.Invalidate();
             }
         }
 
@@ -147,7 +164,7 @@ namespace PhotoBuddy.Screens
             if (this.Image != null)
             {
                 this.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                this.photoRotateBox.Invalidate();
+                this.PhotoRotateBox.Invalidate();
             }
         }
 
@@ -162,7 +179,7 @@ namespace PhotoBuddy.Screens
             if (this.Image != null)
             {
                 this.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                this.photoRotateBox.Invalidate();
+                this.PhotoRotateBox.Invalidate();
             }
         }
     }

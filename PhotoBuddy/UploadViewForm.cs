@@ -112,12 +112,13 @@ namespace PhotoBuddy
                 this.HandleContinueButtonClick(sender, e);
             }
         }
+        
         /// <summary>
         /// Handles the too long display name error.
         /// </summary>
-        /// <remarks><para>
-        /// Author:Thomas Donnellan
-        /// </para></remarks>
+        /// <remarks>
+        /// <para>Author:Thomas Donnellan</para>
+        /// </remarks>
         private void HandleTooLongDisplayName()
         {
             CultureAwareMessageBox.Show(

@@ -31,10 +31,10 @@ namespace PhotoBuddy.Screens
         {
             this.CreateAlbumPanel = new System.Windows.Forms.TableLayoutPanel();
             this.CrateAlbumTextPanel = new System.Windows.Forms.Panel();
-            this.cancelButton = new System.Windows.Forms.Button();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.albumNameTextBox = new System.Windows.Forms.TextBox();
             this.continueButton = new System.Windows.Forms.Button();
-            this.createAlbumLabel = new System.Windows.Forms.Label();
+            this.CreateAlbumLabel = new System.Windows.Forms.Label();
             this.createHeaderLabel = new System.Windows.Forms.Label();
             this.dividerPanel = new System.Windows.Forms.Panel();
             this.CreateAlbumPanel.SuspendLayout();
@@ -67,10 +67,10 @@ namespace PhotoBuddy.Screens
             // 
             this.CrateAlbumTextPanel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.CrateAlbumTextPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CrateAlbumTextPanel.Controls.Add(this.cancelButton);
+            this.CrateAlbumTextPanel.Controls.Add(this.CancelButton);
             this.CrateAlbumTextPanel.Controls.Add(this.albumNameTextBox);
             this.CrateAlbumTextPanel.Controls.Add(this.continueButton);
-            this.CrateAlbumTextPanel.Controls.Add(this.createAlbumLabel);
+            this.CrateAlbumTextPanel.Controls.Add(this.CreateAlbumLabel);
             this.CrateAlbumTextPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CrateAlbumTextPanel.Location = new System.Drawing.Point(15, 48);
             this.CrateAlbumTextPanel.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
@@ -79,25 +79,25 @@ namespace PhotoBuddy.Screens
             this.CrateAlbumTextPanel.Size = new System.Drawing.Size(345, 219);
             this.CrateAlbumTextPanel.TabIndex = 4;
             // 
-            // cancelButton
+            // CancelButton
             // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.AutoSize = true;
-            this.cancelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.cancelButton.BackColor = System.Drawing.Color.Gainsboro;
-            this.cancelButton.FlatAppearance.BorderSize = 0;
-            this.cancelButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
-            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.ForeColor = System.Drawing.Color.Black;
-            this.cancelButton.Location = new System.Drawing.Point(265, 179);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(68, 30);
-            this.cancelButton.TabIndex = 4;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = false;
-            this.cancelButton.Click += new System.EventHandler(this.HandleCancelButtonClick);
+            this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CancelButton.AutoSize = true;
+            this.CancelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CancelButton.BackColor = System.Drawing.Color.Gainsboro;
+            this.CancelButton.FlatAppearance.BorderSize = 0;
+            this.CancelButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelButton.ForeColor = System.Drawing.Color.Black;
+            this.CancelButton.Location = new System.Drawing.Point(265, 179);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(68, 30);
+            this.CancelButton.TabIndex = 4;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = false;
+            this.CancelButton.Click += new System.EventHandler(this.HandleCancelButtonClick);
             // 
             // albumNameTextBox
             // 
@@ -132,17 +132,17 @@ namespace PhotoBuddy.Screens
             this.continueButton.MouseEnter += new System.EventHandler(this.HandleButtonMouseEnter);
             this.continueButton.MouseLeave += new System.EventHandler(this.HandleButtonMouseLeave);
             // 
-            // createAlbumLabel
+            // CreateAlbumLabel
             // 
-            this.createAlbumLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.createAlbumLabel.AutoSize = true;
-            this.createAlbumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createAlbumLabel.Location = new System.Drawing.Point(39, 10);
-            this.createAlbumLabel.Name = "createAlbumLabel";
-            this.createAlbumLabel.Size = new System.Drawing.Size(266, 17);
-            this.createAlbumLabel.TabIndex = 5;
-            this.createAlbumLabel.Text = "Please enter the name of the new album:";
-            this.createAlbumLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CreateAlbumLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CreateAlbumLabel.AutoSize = true;
+            this.CreateAlbumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreateAlbumLabel.Location = new System.Drawing.Point(39, 10);
+            this.CreateAlbumLabel.Name = "CreateAlbumLabel";
+            this.CreateAlbumLabel.Size = new System.Drawing.Size(266, 17);
+            this.CreateAlbumLabel.TabIndex = 5;
+            this.CreateAlbumLabel.Text = "Please enter the name of the new album:";
+            this.CreateAlbumLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // createHeaderLabel
             // 
@@ -191,10 +191,10 @@ namespace PhotoBuddy.Screens
 
         private System.Windows.Forms.TableLayoutPanel CreateAlbumPanel;
         private System.Windows.Forms.Panel CrateAlbumTextPanel;
-        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button continueButton;
         private System.Windows.Forms.TextBox albumNameTextBox;
-        private System.Windows.Forms.Label createAlbumLabel;
+        private System.Windows.Forms.Label CreateAlbumLabel;
         private System.Windows.Forms.Label createHeaderLabel;
         private System.Windows.Forms.Panel dividerPanel;
     }

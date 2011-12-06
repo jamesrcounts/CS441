@@ -32,19 +32,19 @@ namespace PhotoBuddy.Controls
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlbumIconUserControl));
             this.AlbumIconLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.thumbnailPanel = new System.Windows.Forms.Panel();
-            this.albumCountLabel = new System.Windows.Forms.Label();
-            this.coverPhotoPictureBox = new System.Windows.Forms.PictureBox();
-            this.albumContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thumbnailPictureBox = new System.Windows.Forms.PictureBox();
-            this.albumNameTextBox = new System.Windows.Forms.TextBox();
+            this.ThumbnailPanel = new System.Windows.Forms.Panel();
+            this.AlbumCountLabel = new System.Windows.Forms.Label();
+            this.CoverPhotoPictureBox = new System.Windows.Forms.PictureBox();
+            this.AlbumContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RenameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ThumbnailPictureBox = new System.Windows.Forms.PictureBox();
+            this.AlbumNameTextBox = new System.Windows.Forms.TextBox();
             this.AlbumIconLayoutPanel.SuspendLayout();
-            this.thumbnailPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.coverPhotoPictureBox)).BeginInit();
-            this.albumContextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).BeginInit();
+            this.ThumbnailPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CoverPhotoPictureBox)).BeginInit();
+            this.AlbumContextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ThumbnailPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // AlbumIconLayoutPanel
@@ -52,8 +52,8 @@ namespace PhotoBuddy.Controls
             this.AlbumIconLayoutPanel.BackColor = System.Drawing.SystemColors.Window;
             this.AlbumIconLayoutPanel.ColumnCount = 1;
             this.AlbumIconLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.AlbumIconLayoutPanel.Controls.Add(this.thumbnailPanel, 0, 0);
-            this.AlbumIconLayoutPanel.Controls.Add(this.albumNameTextBox, 0, 1);
+            this.AlbumIconLayoutPanel.Controls.Add(this.ThumbnailPanel, 0, 0);
+            this.AlbumIconLayoutPanel.Controls.Add(this.AlbumNameTextBox, 0, 1);
             this.AlbumIconLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AlbumIconLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.AlbumIconLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -64,102 +64,102 @@ namespace PhotoBuddy.Controls
             this.AlbumIconLayoutPanel.Size = new System.Drawing.Size(164, 150);
             this.AlbumIconLayoutPanel.TabIndex = 1;
             // 
-            // thumbnailPanel
+            // ThumbnailPanel
             // 
-            this.thumbnailPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.ThumbnailPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.thumbnailPanel.AutoSize = true;
-            this.thumbnailPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.thumbnailPanel.BackColor = System.Drawing.Color.White;
-            this.thumbnailPanel.Controls.Add(this.albumCountLabel);
-            this.thumbnailPanel.Controls.Add(this.coverPhotoPictureBox);
-            this.thumbnailPanel.Controls.Add(this.thumbnailPictureBox);
-            this.thumbnailPanel.Location = new System.Drawing.Point(0, 0);
-            this.thumbnailPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.thumbnailPanel.MinimumSize = new System.Drawing.Size(10, 10);
-            this.thumbnailPanel.Name = "thumbnailPanel";
-            this.thumbnailPanel.Padding = new System.Windows.Forms.Padding(2);
-            this.thumbnailPanel.Size = new System.Drawing.Size(164, 124);
-            this.thumbnailPanel.TabIndex = 0;
+            this.ThumbnailPanel.AutoSize = true;
+            this.ThumbnailPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ThumbnailPanel.BackColor = System.Drawing.Color.White;
+            this.ThumbnailPanel.Controls.Add(this.AlbumCountLabel);
+            this.ThumbnailPanel.Controls.Add(this.CoverPhotoPictureBox);
+            this.ThumbnailPanel.Controls.Add(this.ThumbnailPictureBox);
+            this.ThumbnailPanel.Location = new System.Drawing.Point(0, 0);
+            this.ThumbnailPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.ThumbnailPanel.MinimumSize = new System.Drawing.Size(10, 10);
+            this.ThumbnailPanel.Name = "ThumbnailPanel";
+            this.ThumbnailPanel.Padding = new System.Windows.Forms.Padding(2);
+            this.ThumbnailPanel.Size = new System.Drawing.Size(164, 124);
+            this.ThumbnailPanel.TabIndex = 0;
             // 
-            // albumCountLabel
+            // AlbumCountLabel
             // 
-            this.albumCountLabel.BackColor = System.Drawing.Color.White;
-            this.albumCountLabel.Location = new System.Drawing.Point(25, 5);
-            this.albumCountLabel.Name = "albumCountLabel";
-            this.albumCountLabel.Size = new System.Drawing.Size(48, 14);
-            this.albumCountLabel.TabIndex = 2;
-            this.albumCountLabel.Text = "57 ";
-            this.albumCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.AlbumCountLabel.BackColor = System.Drawing.Color.White;
+            this.AlbumCountLabel.Location = new System.Drawing.Point(25, 5);
+            this.AlbumCountLabel.Name = "AlbumCountLabel";
+            this.AlbumCountLabel.Size = new System.Drawing.Size(48, 14);
+            this.AlbumCountLabel.TabIndex = 2;
+            this.AlbumCountLabel.Text = "57 ";
+            this.AlbumCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // coverPhotoPictureBox
+            // CoverPhotoPictureBox
             // 
-            this.coverPhotoPictureBox.BackColor = System.Drawing.Color.Black;
-            this.coverPhotoPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.coverPhotoPictureBox.ContextMenuStrip = this.albumContextMenuStrip;
-            this.coverPhotoPictureBox.Location = new System.Drawing.Point(37, 31);
-            this.coverPhotoPictureBox.Name = "coverPhotoPictureBox";
-            this.coverPhotoPictureBox.Size = new System.Drawing.Size(90, 74);
-            this.coverPhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.coverPhotoPictureBox.TabIndex = 1;
-            this.coverPhotoPictureBox.TabStop = false;
-            this.coverPhotoPictureBox.Click += new System.EventHandler(this.HandleCoverImagePictureBoxClick);
-            this.coverPhotoPictureBox.MouseEnter += new System.EventHandler(this.HighlightAlbum);
-            this.coverPhotoPictureBox.MouseLeave += new System.EventHandler(this.RemovePhotoHighlight);
+            this.CoverPhotoPictureBox.BackColor = System.Drawing.Color.Black;
+            this.CoverPhotoPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CoverPhotoPictureBox.ContextMenuStrip = this.AlbumContextMenuStrip;
+            this.CoverPhotoPictureBox.Location = new System.Drawing.Point(37, 31);
+            this.CoverPhotoPictureBox.Name = "CoverPhotoPictureBox";
+            this.CoverPhotoPictureBox.Size = new System.Drawing.Size(90, 74);
+            this.CoverPhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.CoverPhotoPictureBox.TabIndex = 1;
+            this.CoverPhotoPictureBox.TabStop = false;
+            this.CoverPhotoPictureBox.Click += new System.EventHandler(this.HandleCoverImagePictureBoxClick);
+            this.CoverPhotoPictureBox.MouseEnter += new System.EventHandler(this.HighlightAlbum);
+            this.CoverPhotoPictureBox.MouseLeave += new System.EventHandler(this.RemovePhotoHighlight);
             // 
-            // albumContextMenuStrip
+            // AlbumContextMenuStrip
             // 
-            this.albumContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem,
-            this.renameToolStripMenuItem});
-            this.albumContextMenuStrip.Name = "albumContextMenuStrip";
-            this.albumContextMenuStrip.Size = new System.Drawing.Size(118, 48);
+            this.AlbumContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DeleteToolStripMenuItem,
+            this.RenameToolStripMenuItem});
+            this.AlbumContextMenuStrip.Name = "albumContextMenuStrip";
+            this.AlbumContextMenuStrip.Size = new System.Drawing.Size(118, 48);
             // 
-            // deleteToolStripMenuItem
+            // DeleteToolStripMenuItem
             // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.HandleDeleteToolStripItemClick);
+            this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
+            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.DeleteToolStripMenuItem.Text = "Delete";
+            this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.HandleDeleteToolStripItemClick);
             // 
-            // renameToolStripMenuItem
+            // RenameToolStripMenuItem
             // 
-            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.renameToolStripMenuItem.Text = "Rename";
-            this.renameToolStripMenuItem.Click += new System.EventHandler(this.HandleRenameAlbumClick);
+            this.RenameToolStripMenuItem.Name = "RenameToolStripMenuItem";
+            this.RenameToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.RenameToolStripMenuItem.Text = "Rename";
+            this.RenameToolStripMenuItem.Click += new System.EventHandler(this.HandleRenameAlbumClick);
             // 
-            // thumbnailPictureBox
+            // ThumbnailPictureBox
             // 
-            this.thumbnailPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.thumbnailPictureBox.ContextMenuStrip = this.albumContextMenuStrip;
-            this.thumbnailPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.thumbnailPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("thumbnailPictureBox.Image")));
-            this.thumbnailPictureBox.Location = new System.Drawing.Point(2, 2);
-            this.thumbnailPictureBox.Margin = new System.Windows.Forms.Padding(5);
-            this.thumbnailPictureBox.Name = "thumbnailPictureBox";
-            this.thumbnailPictureBox.Size = new System.Drawing.Size(160, 120);
-            this.thumbnailPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.thumbnailPictureBox.TabIndex = 0;
-            this.thumbnailPictureBox.TabStop = false;
-            this.thumbnailPictureBox.Click += new System.EventHandler(this.HandleCoverImagePictureBoxClick);
-            this.thumbnailPictureBox.MouseEnter += new System.EventHandler(this.HighlightAlbum);
-            this.thumbnailPictureBox.MouseLeave += new System.EventHandler(this.RemovePhotoHighlight);
+            this.ThumbnailPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.ThumbnailPictureBox.ContextMenuStrip = this.AlbumContextMenuStrip;
+            this.ThumbnailPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ThumbnailPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("ThumbnailPictureBox.Image")));
+            this.ThumbnailPictureBox.Location = new System.Drawing.Point(2, 2);
+            this.ThumbnailPictureBox.Margin = new System.Windows.Forms.Padding(5);
+            this.ThumbnailPictureBox.Name = "ThumbnailPictureBox";
+            this.ThumbnailPictureBox.Size = new System.Drawing.Size(160, 120);
+            this.ThumbnailPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ThumbnailPictureBox.TabIndex = 0;
+            this.ThumbnailPictureBox.TabStop = false;
+            this.ThumbnailPictureBox.Click += new System.EventHandler(this.HandleCoverImagePictureBoxClick);
+            this.ThumbnailPictureBox.MouseEnter += new System.EventHandler(this.HighlightAlbum);
+            this.ThumbnailPictureBox.MouseLeave += new System.EventHandler(this.RemovePhotoHighlight);
             // 
-            // albumNameTextBox
+            // AlbumNameTextBox
             // 
-            this.albumNameTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.albumNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.albumNameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.albumNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.albumNameTextBox.Location = new System.Drawing.Point(1, 125);
-            this.albumNameTextBox.Margin = new System.Windows.Forms.Padding(1);
-            this.albumNameTextBox.Name = "albumNameTextBox";
-            this.albumNameTextBox.ReadOnly = true;
-            this.albumNameTextBox.Size = new System.Drawing.Size(162, 13);
-            this.albumNameTextBox.TabIndex = 1;
-            this.albumNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.AlbumNameTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.AlbumNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AlbumNameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AlbumNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AlbumNameTextBox.Location = new System.Drawing.Point(1, 125);
+            this.AlbumNameTextBox.Margin = new System.Windows.Forms.Padding(1);
+            this.AlbumNameTextBox.Name = "AlbumNameTextBox";
+            this.AlbumNameTextBox.ReadOnly = true;
+            this.AlbumNameTextBox.Size = new System.Drawing.Size(162, 13);
+            this.AlbumNameTextBox.TabIndex = 1;
+            this.AlbumNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // AlbumIconUserControl
             // 
@@ -170,10 +170,10 @@ namespace PhotoBuddy.Controls
             this.Size = new System.Drawing.Size(164, 150);
             this.AlbumIconLayoutPanel.ResumeLayout(false);
             this.AlbumIconLayoutPanel.PerformLayout();
-            this.thumbnailPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.coverPhotoPictureBox)).EndInit();
-            this.albumContextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.thumbnailPictureBox)).EndInit();
+            this.ThumbnailPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CoverPhotoPictureBox)).EndInit();
+            this.AlbumContextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ThumbnailPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -181,13 +181,13 @@ namespace PhotoBuddy.Controls
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel AlbumIconLayoutPanel;
-        private System.Windows.Forms.Panel thumbnailPanel;
-        private System.Windows.Forms.PictureBox thumbnailPictureBox;
-        private System.Windows.Forms.TextBox albumNameTextBox;
-        private System.Windows.Forms.Label albumCountLabel;
-        private System.Windows.Forms.PictureBox coverPhotoPictureBox;
-        private System.Windows.Forms.ContextMenuStrip albumContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
+        private System.Windows.Forms.Panel ThumbnailPanel;
+        private System.Windows.Forms.PictureBox ThumbnailPictureBox;
+        private System.Windows.Forms.TextBox AlbumNameTextBox;
+        private System.Windows.Forms.Label AlbumCountLabel;
+        private System.Windows.Forms.PictureBox CoverPhotoPictureBox;
+        private System.Windows.Forms.ContextMenuStrip AlbumContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem DeleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RenameToolStripMenuItem;
     }
 }
