@@ -13,6 +13,7 @@ namespace PhotoBuddy.Models
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    
 
     /// <summary>
     /// Describes an album.

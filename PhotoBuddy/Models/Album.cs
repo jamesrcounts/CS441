@@ -315,7 +315,7 @@ namespace PhotoBuddy.Models
         /// </remarks>
         public bool ContainsName(string displayName)
         {
-            return this.photos.Values.Any(photo => photo.DisplayName.ToLower() == displayName);
+            return this.photos.Values.Any(photo => photo.DisplayName.ToLower() == displayName.ToLower());
         }
 
         /// <summary>

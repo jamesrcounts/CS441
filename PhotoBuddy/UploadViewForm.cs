@@ -22,7 +22,9 @@ namespace PhotoBuddy
     /// </summary>
     public partial class UploadViewForm : Form
     {
-       
+
+        public IAlbum Album;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadViewForm"/> class.
         /// </summary>
@@ -38,6 +40,8 @@ namespace PhotoBuddy
         public UploadViewForm(IPhoto photo)
         {
             this.InitializeComponent();
+
+            Album = photo.Album;
 
             this.Text = Format.Culture("{0} {1} - Photo Buddy", "Rename", photo.DisplayName);
             this.UploadViewBox.Image = photo.Image;
@@ -92,6 +96,15 @@ namespace PhotoBuddy
                 return;
             }
 
+            if (Album.ContainsName(this.DisplayName))
+            {
+                this.HandleIsExistingDisplayName();
+                return;
+            }
+
+
+
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -127,6 +140,23 @@ namespace PhotoBuddy
                     "Photo Buddy - " + Application.ProductVersion,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
+            return;
+        }
+
+        /// <summary>
+        /// Handles the already existing display name on rename.
+        /// </summary>
+        /// <remarks>
+        /// <para>Author:Thomas Donnellan</para>
+        /// </remarks>
+        private void HandleIsExistingDisplayName()
+        {
+            CultureAwareMessageBox.Show(
+                     this,
+                     "Photo name already in use.",
+                     "Photo Buddy - " + Application.ProductVersion,
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Warning);
             return;
         }
 
