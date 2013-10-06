@@ -9,12 +9,12 @@
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Tests
 {
-    using System.IO;
+    using ApprovalTests.Namers;
     using ApprovalTests.Reporters;
     using ApprovalTests.WinForms;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PhotoBuddy.Common;
-    using PhotoBuddy.Screens;
+    using System.IO;
 
     /// <summary>
     /// A container for tests related to <see cref="MainForm"/>
@@ -27,15 +27,10 @@ namespace PhotoBuddy.Tests
     public class MainFormTest
     {
         /// <summary>
-        /// Generates an image of the Opening View then compares it to a previously
-        /// approved image of the Opening View to confirm that the view matches its
-        /// approved specification.
+        /// Approve Album View
         /// </summary>
-        /// <remarks>
-        /// <para>Author: Jim Counts and Eric Wei</para>
-        /// </remarks>
         [TestMethod]
-        public void ApproveOpeningView()
+        public void ApproveAlbumView()
         {
             // Do
             var data = new FileInfo(Constants.XmlDataFilePath);
@@ -46,8 +41,11 @@ namespace PhotoBuddy.Tests
 
             using (var mainForm = new MainForm())
             {
+                mainForm.ShowAlbum("Zombies");
+
                 // Approve
-                Approvals.Approve(mainForm);
+                ApprovalResults.UniqueForMachineName();
+                WinFormsApprovals.Verify(mainForm);
             }
         }
 
@@ -69,15 +67,21 @@ namespace PhotoBuddy.Tests
                 mainForm.ShowScreen("CreateAlbum");
 
                 // Approve
-                Approvals.Approve(mainForm);
+                ApprovalResults.UniqueForMachineName();
+                WinFormsApprovals.Verify(mainForm);
             }
         }
 
         /// <summary>
-        /// Approve Album View
+        /// Generates an image of the Opening View then compares it to a previously
+        /// approved image of the Opening View to confirm that the view matches its
+        /// approved specification.
         /// </summary>
+        /// <remarks>
+        /// <para>Author: Jim Counts and Eric Wei</para>
+        /// </remarks>
         [TestMethod]
-        public void ApproveAlbumView()
+        public void ApproveOpeningView()
         {
             // Do
             var data = new FileInfo(Constants.XmlDataFilePath);
@@ -88,10 +92,8 @@ namespace PhotoBuddy.Tests
 
             using (var mainForm = new MainForm())
             {
-                mainForm.ShowAlbum("Zombies");
-
-                // Approve
-                Approvals.Approve(mainForm);
+                ApprovalResults.UniqueForMachineName();
+                WinFormsApprovals.Verify(mainForm);
             }
         }
 

@@ -5,15 +5,16 @@
 // Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei
 // Date: Sept 28 2011
 // Modified date: 2011-11-05
-// Description: program start up forms, which gets inherited from multiple user controls
+// Description: program start up forms, which gets inherited from multiple
+// user controls
 //-----------------------------------------------------------------------
 namespace PhotoBuddy
 {
+    using PhotoBuddy.Models;
+    using PhotoBuddy.Screens;
     using System;
     using System.Text;
     using System.Windows.Forms;
-    using PhotoBuddy.Models;
-    using PhotoBuddy.Screens;
 
     /// <summary>
     /// The application shell.
@@ -118,7 +119,7 @@ namespace PhotoBuddy
             this.LoadView();
         }
 
-        #endregion
+        #endregion View Updaters
 
         #region Update View Request Handlers
 
@@ -134,6 +135,21 @@ namespace PhotoBuddy
         private void ShowAlbum(object sender, EventArgs<string> e)
         {
             this.ShowAlbum(e.Data);
+        }
+
+        /// <summary>
+        /// Handles the create button click.
+        /// </summary>
+        /// <param name="sender">Create button click on Home screen.</param>
+        /// <param name="e">The event args.</param>
+        /// <remarks>
+        /// <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei</para>
+        /// <para>Modified: 2011-11-05</para>
+        /// <para>Initiates the creation of a new album.</para>
+        /// </remarks>
+        private void ShowCreateAlbumView(object sender, EventArgs e)
+        {
+            this.ShowScreen("CreateAlbum");
         }
 
         /// <summary>
@@ -165,32 +181,6 @@ namespace PhotoBuddy
         }
 
         /// <summary>
-        /// Handles the create button click.
-        /// </summary>
-        /// <param name="sender">Create button click on Home screen.</param>
-        /// <param name="e">The event args.</param>
-        /// <remarks>
-        /// <para>Author(s): Miguel Gonzales, Andrea Tan, Jim Counts and Eric Wei</para>
-        /// <para>Modified: 2011-11-05</para>
-        /// <para>Initiates the creation of a new album.</para>
-        /// </remarks>
-        private void ShowCreateAlbumView(object sender, EventArgs e)
-        {
-            this.ShowScreen("CreateAlbum");
-        }
-
-        /// <summary>
-        /// Handles the SearchInitiatedEvent event of the searchControl control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;System.String[]&gt;"/> instance containing the event data.</param>
-        private void ShowSearchResults(object sender, EventArgs<string[]> e)
-        {
-            var searchResults = Model.Search(e.Data);
-            this.ShowSearchResults(searchResults);
-        }
-
-        /// <summary>
         /// Shows the rename album view.
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -204,9 +194,84 @@ namespace PhotoBuddy
             this.ShowRenameAlbum(e.Data);
         }
 
-        #endregion
+        /// <summary>
+        /// Handles the SearchInitiatedEvent event of the searchControl control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="PhotoBuddy.EventArgs&lt;System.String[]&gt;"/> instance containing the event data.</param>
+        private void ShowSearchResults(object sender, EventArgs<string[]> e)
+        {
+            var searchResults = Model.Search(e.Data);
+            this.ShowSearchResults(searchResults);
+        }
+
+        #endregion Update View Request Handlers
 
         #region View Factory Methods
+
+        /// <summary>
+        /// Creates the album view.
+        /// </summary>
+        /// <returns>A new album view.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        private AlbumViewUserControl CreateAlbumView()
+        {
+            var view = new AlbumViewUserControl();
+            view.BackEvent += this.ShowHomeView;
+            return view;
+        }
+
+        /// <summary>
+        /// Creates the create album view.
+        /// </summary>
+        /// <returns>The create album view.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        private CreateAlbumUserControl CreateCreateAlbumView()
+        {
+            CreateAlbumUserControl view = new CreateAlbumUserControl(Model);
+            view.CancelEvent += this.ShowHomeView;
+            view.CreateAlbumEvent += this.ShowAlbum;
+            return view;
+        }
+
+        /// <summary>
+        /// Creates the home view.
+        /// </summary>
+        /// <returns>The home view.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        private HomeScreenUserControl CreateHomeView()
+        {
+            HomeScreenUserControl view = new HomeScreenUserControl(Model);
+            view.CreateAlbumEvent += this.ShowCreateAlbumView;
+            view.AlbumSelectedEvent += this.ShowAlbum;
+            view.RenameAlbumEvent += this.ShowRenameAlbumView;
+            return view;
+        }
+
+        /// <summary>
+        /// Creates the rename album view.
+        /// </summary>
+        /// <returns>The rename album view.</returns>
+        /// <remarks>
+        ///   <para>Author: Jim Counts and Eric Wei</para>
+        ///   <para>Created: 2011-11-05</para>
+        /// </remarks>
+        private CreateAlbumUserControl CreateRenameAlbumView()
+        {
+            CreateAlbumUserControl view = new CreateAlbumUserControl(Model);
+            view.CancelEvent += this.ShowHomeView;
+            view.RenameAlbumEvent += this.ShowHomeView;
+            return view;
+        }
 
         /// <summary>
         /// Gets the view.
@@ -242,71 +307,7 @@ namespace PhotoBuddy
             return null;
         }
 
-        /// <summary>
-        /// Creates the home view.
-        /// </summary>
-        /// <returns>The home view.</returns>
-        /// <remarks>
-        ///   <para>Author: Jim Counts and Eric Wei</para>
-        ///   <para>Created: 2011-11-05</para>
-        /// </remarks>
-        private HomeScreenUserControl CreateHomeView()
-        {
-            HomeScreenUserControl view = new HomeScreenUserControl(Model);
-            view.CreateAlbumEvent += this.ShowCreateAlbumView;
-            view.AlbumSelectedEvent += this.ShowAlbum;
-            view.RenameAlbumEvent += this.ShowRenameAlbumView;
-            return view;
-        }
-
-        /// <summary>
-        /// Creates the album view.
-        /// </summary>
-        /// <returns>A new album view.</returns>
-        /// <remarks>
-        ///   <para>Author: Jim Counts and Eric Wei</para>
-        ///   <para>Created: 2011-11-05</para>
-        /// </remarks>
-        private AlbumViewUserControl CreateAlbumView()
-        {
-            var view = new AlbumViewUserControl();
-            view.BackEvent += this.ShowHomeView;
-            return view;
-        }
-
-        /// <summary>
-        /// Creates the create album view.
-        /// </summary>
-        /// <returns>The create album view.</returns>
-        /// <remarks>
-        ///   <para>Author: Jim Counts and Eric Wei</para>
-        ///   <para>Created: 2011-11-05</para>
-        /// </remarks>
-        private CreateAlbumUserControl CreateCreateAlbumView()
-        {
-            CreateAlbumUserControl view = new CreateAlbumUserControl(Model);
-            view.CancelEvent += this.ShowHomeView;
-            view.CreateAlbumEvent += this.ShowAlbum;
-            return view;
-        }
-
-        /// <summary>
-        /// Creates the rename album view.
-        /// </summary>
-        /// <returns>The rename album view.</returns>
-        /// <remarks>
-        ///   <para>Author: Jim Counts and Eric Wei</para>
-        ///   <para>Created: 2011-11-05</para>
-        /// </remarks>
-        private CreateAlbumUserControl CreateRenameAlbumView()
-        {
-            CreateAlbumUserControl view = new CreateAlbumUserControl(Model);
-            view.CancelEvent += this.ShowHomeView;
-            view.RenameAlbumEvent += this.ShowHomeView;
-            return view;
-        }
-
-        #endregion
+        #endregion View Factory Methods
 
         /// <summary>
         /// Clears the screen.
