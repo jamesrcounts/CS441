@@ -23,8 +23,18 @@ namespace PhotoBuddy
     /// <summary>
     /// Container for the main entry point for the application.
     /// </summary>
-    internal static class Program
+    public static class Program
     {
+        public static string MutexName
+        {
+            get
+            {
+                return Format.Invariant(@"Local\{0}:{1}",
+                    PhotoBuddy.Properties.Resources.AppName,
+                    Environment.UserName);
+            }
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -37,13 +47,10 @@ namespace PhotoBuddy
         /// <seealso cref="http://www.yoda.arachsys.com/csharp/threads/waithandles.shtml">Jon Skeet</seealso>
         /// <seealso cref="http://www.dotnetperls.com/single-instance-windows-form">Dotnetperls</seealso>
         [STAThread]
-        private static void Main()
+        public static void Main()
         {
             bool firstUserInstance;
-            string mutexName = Format.Invariant(
-                                    @"Local\{0}:{1}",
-                                    PhotoBuddy.Properties.Resources.AppName,
-                                    Environment.UserName);
+            string mutexName = MutexName;
             using (Mutex mutex = new Mutex(true, mutexName, out firstUserInstance))
             {
                 if (!firstUserInstance)
