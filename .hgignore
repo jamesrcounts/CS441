@@ -1,8 +1,0 @@
-syntax: glob
-*/obj
-*.suo
-*/bin
-*StyleCop.Cache
-TestResults/*
-PhotoBuddy/Resources/Thumbs.db
-*.orig
