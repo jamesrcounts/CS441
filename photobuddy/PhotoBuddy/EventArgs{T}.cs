@@ -19,7 +19,7 @@ namespace PhotoBuddy
     ///   <para>Author: Jim Counts and Eric Wei</para>
     ///   <para>Created: 2011-11-05</para>
     /// </remarks>
-    public class EventArgs<T> : EventArgs
+    public sealed class EventArgs<T> : EventArgs
     {
         /// <summary>
         /// The data value to pass.
