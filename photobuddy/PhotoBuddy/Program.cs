@@ -50,19 +50,33 @@ namespace PhotoBuddy
         public static void Main()
         {
             bool firstUserInstance;
-            string mutexName = MutexName;
-            using (Mutex mutex = new Mutex(true, mutexName, out firstUserInstance))
+            using (var mutex = new Mutex(true, MutexName, out firstUserInstance))
             {
-                if (!firstUserInstance)
-                {
-                    ProcessChecker.ShowWindow();
-                    return;
-                }
-
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm());
+                StartApplication(
+                    firstUserInstance,
+                    ProcessChecker.ShowWindow,
+                    StartNew);
             }
+        }
+
+        public static void StartApplication(
+            bool firstUserInstance,
+            Action showExisting, Action startNew)
+        {
+            if (!firstUserInstance)
+            {
+                showExisting();
+                return;
+            }
+
+            startNew();
+        }
+
+        public static void StartNew()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
         }
     }
 }

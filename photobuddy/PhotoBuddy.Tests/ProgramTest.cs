@@ -1,9 +1,5 @@
 ﻿using ApprovalTests;
 using ApprovalTests.Namers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace PhotoBuddy.Tests
@@ -15,6 +11,28 @@ namespace PhotoBuddy.Tests
         {
             ApprovalResults.UniqueForUserName();
             Approvals.Verify(Program.MutexName);
+        }
+
+        [Fact]
+        public void StartNewWhenFirst()
+        {
+            bool called = false;
+            Program.StartApplication(
+                true,
+                () => { },
+                () => { called = true; });
+            Assert.True(called);
+        }
+
+        [Fact]
+        public void ShowExistingWhenSecond()
+        {
+            bool called = false;
+            Program.StartApplication(
+                false,
+                () => { called = true; },
+                () => { });
+            Assert.True(called);
         }
     }
 }

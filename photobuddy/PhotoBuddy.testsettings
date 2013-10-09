@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestSettings name="PhotoBuddy" id="83104c0d-27d3-4427-acb5-7aa33391231e" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Description>These are default test settings for a local test run.</Description>
+  <Execution>
+    <TestTypeSpecific>
+      <UnitTestRunConfig testTypeId="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b">
+        <AssemblyResolution>
+          <TestDirectory useLoadContext="true" />
+        </AssemblyResolution>
+      </UnitTestRunConfig>
+    </TestTypeSpecific>
+    <AgentRule name="LocalMachineDefaultRole">
+      <DataCollectors>
+        <DataCollector uri="datacollector://microsoft/CodeCoverage/1.0" assemblyQualifiedName="Microsoft.VisualStudio.TestTools.CodeCoverage.CoveragePlugIn, Microsoft.VisualStudio.QualityTools.Plugins.CodeCoverage, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" friendlyName="Code Coverage (Visual Studio 2010)">
+          <Configuration>
+            <CodeCoverage xmlns="">
+              <Regular>
+                <CodeCoverageItem binaryFile="PhotoBuddy\bin\x86\Debug\PhotoBuddy.exe" pdbFile="PhotoBuddy\bin\x86\Debug\PhotoBuddy.pdb" instrumentInPlace="true" />
+              </Regular>
+            </CodeCoverage>
+          </Configuration>
+        </DataCollector>
+        <DataCollector uri="datacollector://microsoft/TestImpact/1.0" assemblyQualifiedName="Microsoft.VisualStudio.TraceCollector.TestImpactDataCollector, Microsoft.VisualStudio.TraceCollector, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" friendlyName="Test Impact">
+          <Configuration>
+            <WorkerProcessList xmlns="">
+              <WorkerProcess>w3wp.exe</WorkerProcess>
+            </WorkerProcessList>
+            <MaximumConcurrentTests xmlns="">32</MaximumConcurrentTests>
+            <InstrumentIIS xmlns="">False</InstrumentIIS>
+            <RemoteInstrumentIIS xmlns="">False</RemoteInstrumentIIS>
+            <ProcessList IsExclusionList="True" xmlns="">
+              <Process>devenv.exe</Process>
+              <Process>mtm.exe</Process>
+              <Process>TestAgentConfigUI.exe</Process>
+              <Process>TestControllerConfigUI.exe</Process>
+              <Process>DW20.exe</Process>
+              <Process>TFSMgmt.exe</Process>
+              <Process>TFSJobAgent.exe</Process>
+              <Process>TFSBuildServiceHost.exe</Process>
+              <Process>Microsoft.VisualStudio.PerfWatson.exe</Process>
+              <Process>FxCopCmd.exe</Process>
+              <Process>MSBuild.exe</Process>
+              <Process>sqlservr.exe</Process>
+              <Process>IntelliTrace.exe</Process>
+              <Process>MSVSMON.exe</Process>
+              <Process>IntelliTraceSC.exe</Process>
+              <Process>xdesproc.exe</Process>
+              <Process>VWDExpress.exe</Process>
+              <Process>VsWinExpress.exe</Process>
+              <Process>Blend.exe</Process>
+            </ProcessList>
+            <ModuleList IsExclusionList="True" xmlns="">
+              <Module>PublicKeyToken:B77A5C561934E089</Module>
+              <Module>PublicKeyToken:B03F5F7F11D50A3A</Module>
+              <Module>PublicKeyToken:31BF3856AD364E35</Module>
+              <Module>PublicKeyToken:89845DCD8080CC91</Module>
+              <Module>PublicKeyToken:71E9BCE111E9429C</Module>
+              <Module>Microsoft.</Module>
+            </ModuleList>
+          </Configuration>
+        </DataCollector>
+      </DataCollectors>
+    </AgentRule>
+  </Execution>
+</TestSettings>
