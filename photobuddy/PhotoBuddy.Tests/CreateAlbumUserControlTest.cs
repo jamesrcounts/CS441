@@ -6,19 +6,18 @@
 namespace PhotoBuddy.Tests
 {
     using ApprovalTests.Reporters;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Xunit;
 
     /// <summary>
     /// Container for tests related to CreateAlbumUserControl
     /// </summary>
-    [TestClass]
     [UseReporter(typeof(DiffReporter))]
     public class CreateAlbumUserControlTest
     {
         /// <summary>
         /// Approves the album name too long error.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void ApproveAlbumNameTooLongError()
         {
             return;

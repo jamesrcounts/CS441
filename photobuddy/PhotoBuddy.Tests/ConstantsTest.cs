@@ -9,65 +9,64 @@
 //-----------------------------------------------------------------------
 namespace PhotoBuddy.Tests
 {
-  using System;
-  using Microsoft.VisualStudio.TestTools.UnitTesting;
-  using PhotoBuddy.Common;
-
-  /// <summary>
-  /// A container for tests related to <see cref="Constants"/>
-  /// </summary>
-  [TestClass]
-  public class ConstantsTest
-  {
-      /// <summary>
-      /// Should read maximum album name length from configuration
-      /// </summary>
-      /// <remarks>
-      /// Author: Jim Counts and Eric Wei
-      /// </remarks>
-      [TestMethod]
-      public void ShouldReadMaxAlbumLengthFromConfig()
-      {
-          int actual = Constants.MaxNameLength;
-          Assert.AreEqual(32, actual);
-      }
+    using PhotoBuddy.Common;
+    using System;
+    using Xunit;
 
     /// <summary>
-    /// Refers to app data folder in photos folder path.
+    /// A container for tests related to <see cref="Constants"/>
     /// </summary>
-    /// <remarks>
-    /// <para>Author: Jim Counts and Eric Wei</para>
-    /// </remarks>
-    [TestMethod]
-    public void ReferToAppDataFolderInPhotosFolderPath()
+    public class ConstantsTest
     {
-      // Arrange
-      string expected = Environment.ExpandEnvironmentVariables(@"%APPDATA%\PhotoBuddy");
+        /// <summary>
+        /// Should read maximum album name length from configuration
+        /// </summary>
+        /// <remarks>
+        /// Author: Jim Counts and Eric Wei
+        /// </remarks>
+        [Fact]
+        public void ShouldReadMaxAlbumLengthFromConfig()
+        {
+            int actual = Constants.MaxNameLength;
+            Assert.Equal(32, actual);
+        }
 
-      // Act
-      string actual = Environment.ExpandEnvironmentVariables(Constants.PhotosFolderPath);
+        /// <summary>
+        /// Refers to app data folder in photos folder path.
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: Jim Counts and Eric Wei</para>
+        /// </remarks>
+        [Fact]
+        public void ReferToAppDataFolderInPhotosFolderPath()
+        {
+            // Arrange
+            string expected = Environment.ExpandEnvironmentVariables(@"%APPDATA%\PhotoBuddy");
 
-      // Assert
-      Assert.AreEqual(expected, actual);
+            // Act
+            string actual = Environment.ExpandEnvironmentVariables(Constants.PhotosFolderPath);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        /// <summary>
+        /// Refers to app data folder in XML path.
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: Jim Counts and Eric Wei</para>
+        /// </remarks>
+        [Fact]
+        public void ReferToAppDataFolderInXmlPath()
+        {
+            // Arrange
+            string expected = Environment.ExpandEnvironmentVariables(@"%APPDATA%\PhotoBuddy\PhotoBuddyData.xml");
+
+            // Act
+            string actual = Environment.ExpandEnvironmentVariables(Constants.XmlDataFilePath);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
     }
-
-    /// <summary>
-    /// Refers to app data folder in XML path.
-    /// </summary>
-    /// <remarks>
-    /// <para>Author: Jim Counts and Eric Wei</para>
-    /// </remarks>
-    [TestMethod]
-    public void ReferToAppDataFolderInXmlPath()
-    {
-      // Arrange
-      string expected = Environment.ExpandEnvironmentVariables(@"%APPDATA%\PhotoBuddy\PhotoBuddyData.xml");
-
-      // Act
-      string actual = Environment.ExpandEnvironmentVariables(Constants.XmlDataFilePath);
-
-      // Assert
-      Assert.AreEqual(expected, actual);
-    }
-  }
 }

@@ -13,12 +13,9 @@ namespace PhotoBuddy.Tests
     using ApprovalTests.Namers;
     using ApprovalTests.Reporters;
     using ApprovalTests.WinForms;
-    using ApprovalUtilities.SimpleLogger;
-    using ApprovalUtilities.SimpleLogger.Writers;
-    using ApprovalUtilities.Utilities;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using PhotoBuddy.Common;
     using System.IO;
+    using Xunit;
 
     /// <summary>
     /// A container for tests related to <see cref="MainForm"/>
@@ -26,39 +23,13 @@ namespace PhotoBuddy.Tests
     /// <remarks>
     /// <para>Author: Jim Counts and Eric Wei</para>
     /// </remarks>
-    [TestClass]
     [UseReporter(typeof(DiffReporter))]
     public class MainFormTest
     {
-        public MainFormTest()
-        {
-            Logger.Writer = new FileWriter() { LogFile = PathUtilities.GetAdjacentFile("test.log") };
-        }
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
-
-        [TestInitialize]
-        public void Setup()
-        {
-            var testName = this.TestContext.TestName;
-            Logger.Message(testName);
-            Logger.MarkerIn();
-        }
-
-        [TestCleanup]
-        public void TearDown()
-        {
-            Logger.MarkerOut();
-        }
-
         /// <summary>
         /// Approve Album View
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void ApproveAlbumView()
         {
             // Do
@@ -81,7 +52,7 @@ namespace PhotoBuddy.Tests
         /// <summary>
         /// Approve Create Album View
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void ApproveCreateAlbumView()
         {
             // Do
@@ -109,7 +80,7 @@ namespace PhotoBuddy.Tests
         /// <remarks>
         /// <para>Author: Jim Counts and Eric Wei</para>
         /// </remarks>
-        [TestMethod]
+        [Fact]
         public void ApproveOpeningView()
         {
             // Do
